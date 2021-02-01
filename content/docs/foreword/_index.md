@@ -1,5 +1,6 @@
 ---
 title: "Foreword"
+output: hugodown::md_document()
 ---
 
 

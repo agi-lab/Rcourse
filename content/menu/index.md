@@ -5,9 +5,6 @@ headless: true
 - [**Foreword**]({{< relref "/docs/foreword" >}})
 <br />
 
-- [**Base R**]({{< relref "/docs/baseR" >}})
-<br />
-
 - [**Example Site b**]({{< relref "/docs/example" >}})
 - [Table of Contents]({{< relref "/docs/example/table-of-contents" >}})
   - [With ToC]({{< relref "/docs/example/table-of-contents/with-toc" >}})

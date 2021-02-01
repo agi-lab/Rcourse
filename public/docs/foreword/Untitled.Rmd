@@ -1,27 +1,31 @@
 ---
-title: "Foreword"
+  title: "Untitled"
+author: "Benjamin Avanzi"
+date: "01/02/2021"
+output:
+  md_document:
+  variant: markdown
 ---
-
-
-# A first R Course  
-
-## Overview of contents
-The contents include Base R, tidyverse, data visualisation, and document generation via R Markdown.
+  
+  # A first R Course
+  
+  ## Overview of contents
+  The contents include Base R, tidyverse, data visualisation, and document generation via R Markdown.
 
 Main references are:
-
-- Base R: 
-    - [The R Software](http://biostatisticien.eu/springeR/index-en.html)
-    - some LinkedIn Learning videos which are referenced in the materials
+  
+  - Base R: 
+  - [The R Software](http://biostatisticien.eu/springeR/index-en.html)
+- some LinkedIn Learning videos which are referenced in the materials
 - tidyverse and advanced data visualisation:
-    - [tidyverse](https://www.tidyverse.org)
-    - [R for Data Science](https://r4ds.had.co.nz)
-    - some LinkedIn Learning videos which are referenced in the materials
+  - [tidyverse](https://www.tidyverse.org)
+- [R for Data Science](https://r4ds.had.co.nz)
+- some LinkedIn Learning videos which are referenced in the materials
 - advanced data visualisation:
-    - [R for Data Science, "Communicate" section](https://r4ds.had.co.nz)
-    - [bookdown](https://bookdown.org)
-    - [blogdown](https://bookdown.org/yihui/blogdown/)
-    - some LinkedIn Learning videos which are referenced in the materials
+  - [R for Data Science, "Communicate" section](https://r4ds.had.co.nz)
+- [bookdown](https://bookdown.org)
+- [blogdown](https://bookdown.org/yihui/blogdown/)
+- some LinkedIn Learning videos which are referenced in the materials
 
 ## History
 Those materials were created by the following people, while being employed in the institutions in parentheses
