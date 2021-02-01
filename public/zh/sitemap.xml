@@ -3,59 +3,60 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/zh/categories/</loc>
+    <loc>https://a-first-r-course.netlify.app/zh/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/categories/"
+                href="https://a-first-r-course.netlify.app/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ru"
-                href="https://example.com/ru/categories/"
+                href="https://a-first-r-course.netlify.app/ru/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://example.com/zh/categories/"
+                href="https://a-first-r-course.netlify.app/zh/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/zh/tags/</loc>
+    <loc>https://a-first-r-course.netlify.app/zh/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/tags/"
+                href="https://a-first-r-course.netlify.app/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ru"
-                href="https://example.com/ru/tags/"
+                href="https://a-first-r-course.netlify.app/ru/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://example.com/zh/tags/"
+                href="https://a-first-r-course.netlify.app/zh/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/zh/</loc>
+    <loc>https://a-first-r-course.netlify.app/zh/</loc>
+    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/"
+                href="https://a-first-r-course.netlify.app/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ru"
-                href="https://example.com/ru/"
+                href="https://a-first-r-course.netlify.app/ru/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://example.com/zh/"
+                href="https://a-first-r-course.netlify.app/zh/"
                 />
   </url>
   

@@ -1,5 +1,5 @@
-baseURL: https://example.com/
-title: Hugo Book
+baseURL: https://a-first-r-course.netlify.app
+title: A First R Course
 theme: hugo-book
 disablePathToLower: yes
 enableGitInfo: yes
