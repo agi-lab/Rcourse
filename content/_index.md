@@ -15,14 +15,14 @@ When using R, this will involve the following steps:
 
 1. Extract and "Clean" raw data
 1. Analyse data and create visualisation
-1. Produce them in a chose medium for communication
+1. Produce them in a chosen medium for communication
 
 On this website we explain the basics of how some of those steps can be performed:
-1. Manipulate Data
+1. Manipulate data
 1. Visualise data
 1. Produce media
 
-Of course, this all starts with understanding R, so we start with Base R. The structure is reflected on the side.
+Of course, this all starts with understanding R, so we start with Base R. This structure is reflected on the side.
 
 
 ## References
