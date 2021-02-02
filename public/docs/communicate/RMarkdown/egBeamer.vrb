@@ -1,0 +1,19 @@
+\frametitle{Beamer}
+\protect\hypertarget{beamer}{}
+
+Beamer is extremely customisable, but you need to know some LaTeX!
+
+Or you can just learn the two or three commands necessary to make some
+cool slides!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ "Beamer uses LaTeX to look awesome!"}
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Beamer uses LaTeX to look awesome!"
+\end{verbatim}
+

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Data visualisation in Base R #  Learning outcomes #  By the end of this tutorial, you should be able to
+ draw and edit curves and plots in R perform basic interaction with R plots present and summarise statistical data with visualisation tools manage graphical windows in R  Warning: the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing data visualisations with certain packages (such as &ldquo;ggplot2&rdquo; or &ldquo;plotly&rdquo;; see next sections).">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Data visualisation in Base R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/datavisualistationinbaseR/" />
+
+<title>Data visualisation in Base R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/datavisualistationinbaseR/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/"class=active>Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/"class=active>Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Data visualisation in Base R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-visualisation-in-base-r">Data visualisation in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#basic-plot-plot-and-points-functions---pages-156-158">Basic plot: plot() and points() functions - Pages 156-158</a></li>
+        <li><a href="#the-plot-function">The plot() function</a>
+          <ul>
+            <li><a href="#plot-arguments---type">Plot() Arguments - type</a></li>
+            <li><a href="#plot-arguments---titles">Plot() Arguments - Titles</a></li>
+            <li><a href="#the-points-function">The points() function</a></li>
+            <li><a href="#plot-arguments---ylim">Plot() Arguments - ylim</a></li>
+            <li><a href="#plot-arguments---col">Plot() arguments - col</a></li>
+          </ul>
+        </li>
+        <li><a href="#legend-function">legend() function</a></li>
+        <li><a href="#empirical-copula">Empirical Copula</a></li>
+        <li><a href="#basic-plot-the-curve-function---pages-162">Basic plot: the curve() function - Pages 162</a></li>
+        <li><a href="#basic-plot-adding-text---page-169-170">Basic plot: adding text - Page 169-170</a></li>
+        <li><a href="#basic-plot-axes---page-172-173">Basic plot: axes - Page 172-173</a></li>
+        <li><a href="#statistical-visualisation-other-types-of-charts">Statistical visualisation: other types of charts</a>
+          <ul>
+            <li><a href="#statistical-visualisation---qualitativediscrete-variables---pages-358362">Statistical visualisation - qualitative/discrete variables - Pages 358,362</a></li>
+            <li><a href="#statistical-visualisation---continuous-variables---pages-366369">Statistical visualisation - continuous variables - Pages 366,369</a></li>
+            <li><a href="#statistical-visualisation---bivariate-qualitative-variables---pages-371-372">Statistical visualisation - bivariate qualitative variables - Pages 371-372</a></li>
+          </ul>
+        </li>
+        <li><a href="#adding-a-legend-page-173-174">Adding a legend (Page 173-174)</a></li>
+        <li><a href="#graphical-windows---splitting-the-graphics-window---page-154">Graphical windows - Splitting the Graphics Window - Page 154</a></li>
+        <li><a href="#graphical-windows---opening-closing-and-saving-graphical-windows---pages-151-153">Graphical windows - Opening, closing and saving graphical windows - Pages 151-153</a></li>
+        <li><a href="#additional-notes">Additional Notes</a>
+          <ul>
+            <li><a href="#additional-notes-the-segments-and-lines-functions---pages-158-159">Additional Notes: the segments() and lines() functions - Pages 158-159</a></li>
+            <li><a href="#additional-notes-the-abline-function---pages-159">Additional Notes: the abline() function - Pages 159</a></li>
+            <li><a href="#additional-notes-interacting-with-the-plot-the-locator-function---page-175">Additional Notes: Interacting with the plot: the locator() function - Page 175</a></li>
+            <li><a href="#additional-notes-interacting-with-the-plot-the-identify-function---page-175">Additional Notes: Interacting with the plot: the identify() function - Page 175</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="data-visualisation-in-base-r">
+  Data visualisation in Base R
+  <a class="anchor" href="#data-visualisation-in-base-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this tutorial, you should be able to</p>
+<ul>
+<li>draw and edit curves and plots in R</li>
+<li>perform basic interaction with R plots</li>
+<li>present and summarise statistical data with visualisation tools</li>
+<li>manage graphical windows in R</li>
+</ul>
+<p><strong>Warning:</strong> the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing data visualisations with certain packages (such as &ldquo;ggplot2&rdquo; or &ldquo;plotly&rdquo;; see next sections).</p>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R
+Software</a>.</p>
+<h2 id="basic-plot-plot-and-points-functions---pages-156-158">
+  Basic plot: plot() and points() functions - Pages 156-158
+  <a class="anchor" href="#basic-plot-plot-and-points-functions---pages-156-158">#</a>
+</h2>
+<p>The plot() and points() functions are extremely useful for creating basic exploratory plots. Consider the data set <code>longley</code> (included in R). One can obtain a description of the data using the <code>?longley</code> command.</p>
+<p>Say we are interested to find out if the <strong>number of armed forces</strong> and <strong>number of unemployed</strong> move together over time. The following graph would be useful:</p>
+<p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-1-1.png" width="80%" /></p>
+<p>So how do we create such a graph?</p>
+<h2 id="the-plot-function">
+  The plot() function
+  <a class="anchor" href="#the-plot-function">#</a>
+</h2>
+<ul>
+<li>In R, plots are created layer by layer, so we begin with a simple plot and add elements.</li>
+<li>To create the simple basic plot we use the plot() function.</li>
+<li>The arguments are a vector of <code>x</code> values and a vector of <code>y</code> values.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-2-1.png" width="80%" /></p>
+<ul>
+<li>A decent start, but could be greatly improved. What would you change about this graph?</li>
+</ul>
+<h3 id="plot-arguments---type">
+  Plot() Arguments - type
+  <a class="anchor" href="#plot-arguments---type">#</a>
+</h3>
+<ul>
+<li>Time series data should generally be a line graph. We can change the plot from points to a line by changing the argument &lsquo;type&rsquo; to &ldquo;l&rdquo;. By default, this was set to &ldquo;p&rdquo; for point. Another option is &ldquo;b&rdquo; for both line and point.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-3-1.png" width="80%" /></p>
+<ul>
+<li>Looking better already!</li>
+</ul>
+<h3 id="plot-arguments---titles">
+  Plot() Arguments - Titles
+  <a class="anchor" href="#plot-arguments---titles">#</a>
+</h3>
+<ul>
+<li>Let us add some titles to improve the readability of our plot</li>
+<li>We would like to add axis labels, a main title and a subtitle</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Armed Forces (1947-1962)&#34;</span>, sub<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Exploratory analysis&#34;</span>,
+     xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Year&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Number&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-4-1.png" width="80%" /></p>
+<p>Awesome. Now let us add the second variable, <strong>Number Unemployed</strong>.</p>
+<h3 id="the-points-function">
+  The points() function
+  <a class="anchor" href="#the-points-function">#</a>
+</h3>
+<ul>
+<li>The <code>points()</code> function has the same basic arguments as <code>plot()</code>, but does not create an entirely new plot.</li>
+<li>Instead, it adds the points to the previously created plot.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Armed Forces and Unemployment (1947-1962)&#34;</span>, sub<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Exploratory analysis&#34;</span>,
+     xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Year&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Number&#34;</span>)
+<span style="color:#a6e22e">points</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Unemployed, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-5-1.png" width="80%" /></p>
+<ul>
+<li>Oops! The <code>points()</code> function does not adjust limits of the axis automatically to fit all the new data, so the new line goes off the edge of the plot.</li>
+</ul>
+<h3 id="plot-arguments---ylim">
+  Plot() Arguments - ylim
+  <a class="anchor" href="#plot-arguments---ylim">#</a>
+</h3>
+<ul>
+<li>We can change the value of the &lsquo;ylim&rsquo; argument in <code>plot()</code>, to change the <code>y</code> limits. The input is a vector of length 2: <code>c(min, max)</code>.</li>
+<li>The same applies for &lsquo;xlim&rsquo;.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Armed Forces and Unemployment (1947-1962)&#34;</span>, sub<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Exploratory analysis&#34;</span>,
+     xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Year&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Number&#34;</span>, ylim<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">600</span>))
+<span style="color:#a6e22e">points</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Unemployed, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-6-1.png" width="80%" /></p>
+<ul>
+<li>Better&hellip; but it&rsquo;s still difficult to distinguish between the lines. Let&rsquo;s add some colour!</li>
+</ul>
+<h3 id="plot-arguments---col">
+  Plot() arguments - col
+  <a class="anchor" href="#plot-arguments---col">#</a>
+</h3>
+<ul>
+<li>Use the &lsquo;col&rsquo; option to choose a colour note the syntax: you need to specify the colour by a string, e.g.  <code> col = 'red'</code>).</li>
+<li>We also make the lines broader by using argument <code>lwd = 2</code>, for &lsquo;line width&rsquo;.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Armed Forces and Unemployment (1947-1962)&#34;</span>, sub<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Exploratory analysis&#34;</span>,
+     xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Year&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Number&#34;</span>, ylim<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">600</span>))
+<span style="color:#a6e22e">points</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Unemployed, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-7-1.png" width="80%" /></p>
+<ul>
+<li>
+<p>There is a wide range of colours built into R. You can use Google to find them!</p>
+</li>
+<li>
+<p>For reference, the colors() function also returns the names of the 657 colours known to R. For example, if you want to get the different shades of orange, you can use the instruction:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colors</span>()<span style="color:#a6e22e">[grep</span>(<span style="color:#e6db74">&#34;orange&#34;</span>,<span style="color:#a6e22e">colors</span>())]
+</code></pre></div><p>[1] &ldquo;darkorange&rdquo;  &ldquo;darkorange1&rdquo; &ldquo;darkorange2&rdquo; &ldquo;darkorange3&rdquo; &ldquo;darkorange4&rdquo;
+[6] &ldquo;orange&rdquo;      &ldquo;orange1&rdquo;     &ldquo;orange2&rdquo;     &ldquo;orange3&rdquo;     &ldquo;orange4&rdquo; <br>
+[11] &ldquo;orangered&rdquo;   &ldquo;orangered1&rdquo;  &ldquo;orangered2&rdquo;  &ldquo;orangered3&rdquo;  &ldquo;orangered4&rdquo;</p>
+<h2 id="legend-function">
+  legend() function
+  <a class="anchor" href="#legend-function">#</a>
+</h2>
+<ul>
+<li>The last missing piece is a legend to help explain which line is which.</li>
+<li>the legend() function does this for us.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Armed.Forces, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Armed Forces and Unemployment (1947-1962)&#34;</span>, sub<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Exploratory analysis&#34;</span>,
+     xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Year&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Number&#34;</span>, ylim<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">600</span>))
+<span style="color:#a6e22e">points</span>(longley<span style="color:#f92672">$</span>Year, longley<span style="color:#f92672">$</span>Unemployed, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>)
+<span style="color:#a6e22e">legend</span>(<span style="color:#e6db74">&#39;bottomright&#39;</span>, legend<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Armed Forces&#34;</span>,<span style="color:#e6db74">&#34;Unemployed&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;black&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>), lty<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/unnamed-chunk-8-1.png" width="80%" /></p>
+<p>Any trends here?</p>
+<h2 id="empirical-copula">
+  Empirical Copula
+  <a class="anchor" href="#empirical-copula">#</a>
+</h2>
+<p>Beside the log-transformation, a good way to scale down big observations is to use function <code>ecdf()</code> and draw the empirical copula (a standardised repartition of the pairs of data points, to a <code>\([0,1]\times [0,1]\)</code> rectangle) of a paired dataset</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attach</span>(mammals) 
+<span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">ecdf</span>(body)(body),<span style="color:#a6e22e">ecdf</span>(brain)(brain), xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ecdf of body&#34;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ecdf of brain&#34;</span> )
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/copula-1.png" width="80%" /></p>
+<h2 id="basic-plot-the-curve-function---pages-162">
+  Basic plot: the curve() function - Pages 162
+  <a class="anchor" href="#basic-plot-the-curve-function---pages-162">#</a>
+</h2>
+<ul>
+<li>To draw a curve (given by a function of <code>x</code>) on the interval specified by the bounds <code>from</code> and <code>to</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">curve</span>(<span style="color:#a6e22e">dnorm</span>(x, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>), from<span style="color:#f92672">=</span><span style="color:#ae81ff">-2</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/curve-1.png" width="80%" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">curve</span>(x<span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>x), from <span style="color:#f92672">=</span><span style="color:#ae81ff">-1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## Warning in sin(1/x): NaNs produced</span>
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/curve-2.png" width="80%" /></p>
+<ul>
+<li>The previous plot does not look very good: it is too &lsquo;rough&rsquo;. This has a quick fix!</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># with argument &#39;n&#39; we raise the # of points at which the function is evaluated (improves resolution)</span>
+<span style="color:#a6e22e">curve</span>(x<span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>x), from <span style="color:#f92672">=</span><span style="color:#ae81ff">-1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/curve2-1.png" width="80%" /></p>
+<ul>
+<li>Note also the use of argument <code>lwd</code> that makes the lines bigger</li>
+</ul>
+<h2 id="basic-plot-adding-text---page-169-170">
+  Basic plot: adding text - Page 169-170
+  <a class="anchor" href="#basic-plot-adding-text---page-169-170">#</a>
+</h2>
+<ul>
+<li>Let&rsquo;s take a look at possible improvements of our plots, such as adding text and mathematical expressions or changing margins.</li>
+<li>Take a careful look at the code and identify which line has added which element.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set margins of the graph (order: bottom, left, top, and right). The default is c(5.1, 4.1, 4.1, 2.1).</span>
+<span style="color:#a6e22e">par</span>(mar<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>))
+<span style="color:#a6e22e">curve</span>(x<span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>x), from <span style="color:#f92672">=</span><span style="color:#ae81ff">-1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;darkblue&#34;</span>, xlab<span style="color:#f92672">=</span><span style="color:#a6e22e">expression</span>(theta[i]), ylab<span style="color:#f92672">=</span><span style="color:#a6e22e">expression</span>(y[i]), cex.lab <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">text</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">-0.05</span>, <span style="color:#e6db74">&#34;Fun with R&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;purple&#34;</span>)
+<span style="color:#a6e22e">text</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.05</span>, <span style="color:#a6e22e">expression</span>(y<span style="color:#f92672">==</span>theta<span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>theta)))
+p <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">4</span>
+<span style="color:#a6e22e">text</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">-0.075</span>, <span style="color:#a6e22e">bquote</span>(beta<span style="color:#a6e22e">[.</span>(p)]), cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">mtext</span>(<span style="color:#e6db74">&#34;Marginal text&#34;</span>, side<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/text-1.png" width="80%" /></p>
+<p>Notes:</p>
+<ul>
+<li>argument &lsquo;cex&rsquo; allows you to change the size of elements</li>
+<li>we used a R expression to create math notations</li>
+<li>a bquote is useful when your math expression is dependent on the value of a variable (here the value of p is displayed)</li>
+</ul>
+<h2 id="basic-plot-axes---page-172-173">
+  Basic plot: axes - Page 172-173
+  <a class="anchor" href="#basic-plot-axes---page-172-173">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot.new</span>()
+<span style="color:#a6e22e">lines</span>(x<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>), y<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+<span style="color:#a6e22e">axis</span>(side<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, at<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">1</span>), labels<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;blue&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">axis</span>(side<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, at<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">1</span>), labels<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;I&#34;</span>,<span style="color:#e6db74">&#34;II&#34;</span>,<span style="color:#e6db74">&#34;III&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;darkgreen&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">axis</span>(side<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, at<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.333</span>, <span style="color:#ae81ff">0.667</span>, <span style="color:#ae81ff">1</span>), labels<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;i&#34;</span>,<span style="color:#e6db74">&#34;ii&#34;</span>, <span style="color:#e6db74">&#34;iii&#34;</span>, <span style="color:#e6db74">&#34;iv&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;purple&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/axis-1.png" width="80%" /></p>
+<h2 id="statistical-visualisation-other-types-of-charts">
+  Statistical visualisation: other types of charts
+  <a class="anchor" href="#statistical-visualisation-other-types-of-charts">#</a>
+</h2>
+<ul>
+<li>
+<p>R has a wide range of built-in functions that can be used to visualise data. Knowing/using them will save you time, compared to coding yourself complex statistical plots from scratch.</p>
+</li>
+<li>
+<p>In the next few sections we use the same dataset as the textbook (reformatted as <code>sample_data.csv</code>) for illustration purposes.</p>
+</li>
+</ul>
+<h3 id="statistical-visualisation---qualitativediscrete-variables---pages-358362">
+  Statistical visualisation - qualitative/discrete variables - Pages 358,362
+  <a class="anchor" href="#statistical-visualisation---qualitativediscrete-variables---pages-358362">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pie</span>(<span style="color:#a6e22e">table</span>(situation), cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.75</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Marital status of participants&#39;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/pie-1.png" width="80%" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dotchart</span>(<span style="color:#a6e22e">as.numeric</span>(<span style="color:#a6e22e">table</span>(fat)), col <span style="color:#f92672">=</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">8</span>, start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.4</span>, end <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>), labels<span style="color:#f92672">=</span><span style="color:#a6e22e">levels</span>(fat), pch <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.75</span>, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;# of participants&#39;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Type of fat in the diet&#39;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/dot-1.png" width="80%" /></p>
+<h3 id="statistical-visualisation---continuous-variables---pages-366369">
+  Statistical visualisation - continuous variables - Pages 366,369
+  <a class="anchor" href="#statistical-visualisation---continuous-variables---pages-366369">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">hist</span>(height,col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;green&#34;</span>,main<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/hist-1.png" width="80%" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">boxplot</span>(height <span style="color:#f92672">~</span> gender, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;orange&#34;</span>, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;gender&#39;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;height (cm)&#39;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/boxplot-1.png" width="80%" /></p>
+<h3 id="statistical-visualisation---bivariate-qualitative-variables---pages-371-372">
+  Statistical visualisation - bivariate qualitative variables - Pages 371-372
+  <a class="anchor" href="#statistical-visualisation---bivariate-qualitative-variables---pages-371-372">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># turn a contingency table into a proportions table</span>
+tss <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">prop.table</span>(<span style="color:#a6e22e">table</span>(situation, gender), <span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">barplot</span>(tss,bes<span style="color:#f92672">=</span>T,leg<span style="color:#f92672">=</span>T)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/barplot-1.png" width="80%" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">barplot</span>(tss,bes<span style="color:#f92672">=</span>F,leg<span style="color:#f92672">=</span>T)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/barplot-2.png" width="80%" /></p>
+<h2 id="adding-a-legend-page-173-174">
+  Adding a legend (Page 173-174)
+  <a class="anchor" href="#adding-a-legend-page-173-174">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#a6e22e">hist</span>(<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">10000</span>, <span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">1</span>), breaks <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>, prob <span style="color:#f92672">=</span> T, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lightblue&#34;</span>, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, xlim <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-8</span>, <span style="color:#ae81ff">8</span>), main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Two empirical distributions&#34;</span>)
+<span style="color:#a6e22e">hist</span>(<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">10000</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), breaks <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>, prob <span style="color:#f92672">=</span> T, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>, add <span style="color:#f92672">=</span>T)
+<span style="color:#a6e22e">curve</span>(<span style="color:#a6e22e">dnorm</span>(x, <span style="color:#ae81ff">-3</span>, <span style="color:#ae81ff">1</span>), lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, add <span style="color:#f92672">=</span> T, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>)
+<span style="color:#a6e22e">curve</span>(<span style="color:#a6e22e">dnorm</span>(x, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>), lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, add <span style="color:#f92672">=</span> T, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>)
+<span style="color:#a6e22e">legend</span>(<span style="color:#e6db74">&#34;topright&#34;</span>, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>, legend<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Sample 1&#34;</span>, <span style="color:#e6db74">&#34;Sample 2&#34;</span>), fill<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;lightblue&#34;</span>, <span style="color:#e6db74">&#34;blue&#34;</span>))
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/caption-1.png" width="80%" /></p>
+<p>Notes:</p>
+<ul>
+<li>With argument &lsquo;xlab&rsquo; we force the range of &lsquo;x&rsquo; values to be what we want</li>
+<li>Argument <code>prob = TRUE</code> means the histogram is on a probability scale (not a count scale), and hence you can directly compare it to a theoretical pdf (the Normal in this case)</li>
+</ul>
+<h2 id="graphical-windows---splitting-the-graphics-window---page-154">
+  Graphical windows - Splitting the Graphics Window - Page 154
+  <a class="anchor" href="#graphical-windows---splitting-the-graphics-window---page-154">#</a>
+</h2>
+<p>You can easily have several plots (of possibly different types) in one plot, as below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Split the window to have 3 lines and 2 columns of plots (to be filled by column)</span>
+<span style="color:#a6e22e">par</span>(mfcol<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>))
+<span style="color:#75715e"># First plot</span>
+<span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>,col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;l&#34;</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)	
+<span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>,col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;orange&#34;</span>,type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;p&#34;</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)	
+<span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>,col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;blue&#34;</span>,type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;b&#34;</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)	
+<span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">ts</span>(<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">100</span>)),col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;purple&#34;</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#a6e22e">curve</span>(<span style="color:#a6e22e">sqrt</span>(x^2 <span style="color:#f92672">-</span> x^4), from <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>, to <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#a6e22e">hist</span>(<span style="color:#a6e22e">rexp</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>), main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, xlab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/mfrow-1.png" width="80%" /></p>
+<h2 id="graphical-windows---opening-closing-and-saving-graphical-windows---pages-151-153">
+  Graphical windows - Opening, closing and saving graphical windows - Pages 151-153
+  <a class="anchor" href="#graphical-windows---opening-closing-and-saving-graphical-windows---pages-151-153">#</a>
+</h2>
+<ul>
+<li>
+<p>To open a new graphical window, use the instructions <code>windows()</code> or <code>win.graph()</code> (for MacOS, use <code>quartz()</code>).</p>
+</li>
+<li>
+<p>To close some graphical device, use: <code>dev.off(device-number)</code>.</p>
+</li>
+<li>
+<p>To save a plot:</p>
+<ul>
+<li>
+<p>if the plot has <strong>already</strong> been drawn in a window, use</p>
+<ul>
+<li><code>savePlot(filename=&quot;Rplot&quot;,type=&quot;pdf&quot;)</code></li>
+</ul>
+</li>
+<li>
+<p>You can also specify the export plot before it is created</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">windows</span>()
+<span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example12.pdf&#34;</span>)
+<span style="color:#a6e22e">hist</span>(<span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">100</span>))	
+<span style="color:#a6e22e">dev.off</span>()
+</code></pre></div><h2 id="additional-notes">
+  Additional Notes
+  <a class="anchor" href="#additional-notes">#</a>
+</h2>
+<h3 id="additional-notes-the-segments-and-lines-functions---pages-158-159">
+  Additional Notes: the segments() and lines() functions - Pages 158-159
+  <a class="anchor" href="#additional-notes-the-segments-and-lines-functions---pages-158-159">#</a>
+</h3>
+<p>To join points with straight lines on an existing plot:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># create an empty plot</span>
+<span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;n&#34;</span>, xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>) 
+<span style="color:#75715e"># add a segment joining two points</span>
+<span style="color:#a6e22e">segments</span>(x0<span style="color:#f92672">=</span><span style="color:#ae81ff">-0.5</span>, y0<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, x1<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, y1<span style="color:#f92672">=</span><span style="color:#ae81ff">-0.5</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<span style="color:#75715e"># add two segments, joining three points: first argument is the &#39;x&#39; values, second is the &#39;y&#39; values</span>
+<span style="color:#a6e22e">lines</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-1</span>,<span style="color:#ae81ff">0.2</span>,<span style="color:#ae81ff">1</span>), col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>) 
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/straight-1.png" width="80%" /></p>
+<h3 id="additional-notes-the-abline-function---pages-159">
+  Additional Notes: the abline() function - Pages 159
+  <a class="anchor" href="#additional-notes-the-abline-function---pages-159">#</a>
+</h3>
+<p>To draw a straight line of equation <code>\(y=a+bx\)</code> (specified by the arguments a and b), or a horizontal line (argument h), or a vertical line (argument v)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;n&#34;</span>, xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>) 
+<span style="color:#a6e22e">abline</span>(h<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>, v<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;purple&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<span style="color:#a6e22e">abline</span>(a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;orange&#34;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+</code></pre></div><p><img src="/docs/baseR/datavisualistationinbaseR/_index_files/figure-html/abline-1.png" width="80%" /></p>
+<h3 id="additional-notes-interacting-with-the-plot-the-locator-function---page-175">
+  Additional Notes: Interacting with the plot: the locator() function - Page 175
+  <a class="anchor" href="#additional-notes-interacting-with-the-plot-the-locator-function---page-175">#</a>
+</h3>
+<p>The <code>locator()</code> function is used to place a point on a plot, or to get its coordinates with a click of the mouse. It can also be useful to add text (or a caption) at a specific location, thanks to the mouse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Enter the following instructions, then click anywhere on the plot.</span>
+<span style="color:#a6e22e">plot</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#a6e22e">text</span>(<span style="color:#a6e22e">locator</span>(<span style="color:#ae81ff">1</span>), labels<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What a cool dot!&#34;</span>)
+</code></pre></div><h3 id="additional-notes-interacting-with-the-plot-the-identify-function---page-175">
+  Additional Notes: Interacting with the plot: the identify() function - Page 175
+  <a class="anchor" href="#additional-notes-interacting-with-the-plot-the-identify-function---page-175">#</a>
+</h3>
+<p>The <code>identify()</code> function is used to identify and mark points already present on a plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Enter the following instructions, then click next to points on the plot. Use ESC to exit the interactive mode.</span>
+<span style="color:#a6e22e">plot</span>(swiss[,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>])
+x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">identify</span>(swiss[,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>], labels<span style="color:#f92672">=</span><span style="color:#a6e22e">rownames</span>(swiss))
+x
+</code></pre></div><h1 id="relevant-exercises">
+  Relevant Exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h1>
+<ul>
+<li>7.1-7.16, 11.14-11.18</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/datavisualistationinbaseR/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-visualisation-in-base-r">Data visualisation in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#basic-plot-plot-and-points-functions---pages-156-158">Basic plot: plot() and points() functions - Pages 156-158</a></li>
+        <li><a href="#the-plot-function">The plot() function</a>
+          <ul>
+            <li><a href="#plot-arguments---type">Plot() Arguments - type</a></li>
+            <li><a href="#plot-arguments---titles">Plot() Arguments - Titles</a></li>
+            <li><a href="#the-points-function">The points() function</a></li>
+            <li><a href="#plot-arguments---ylim">Plot() Arguments - ylim</a></li>
+            <li><a href="#plot-arguments---col">Plot() arguments - col</a></li>
+          </ul>
+        </li>
+        <li><a href="#legend-function">legend() function</a></li>
+        <li><a href="#empirical-copula">Empirical Copula</a></li>
+        <li><a href="#basic-plot-the-curve-function---pages-162">Basic plot: the curve() function - Pages 162</a></li>
+        <li><a href="#basic-plot-adding-text---page-169-170">Basic plot: adding text - Page 169-170</a></li>
+        <li><a href="#basic-plot-axes---page-172-173">Basic plot: axes - Page 172-173</a></li>
+        <li><a href="#statistical-visualisation-other-types-of-charts">Statistical visualisation: other types of charts</a>
+          <ul>
+            <li><a href="#statistical-visualisation---qualitativediscrete-variables---pages-358362">Statistical visualisation - qualitative/discrete variables - Pages 358,362</a></li>
+            <li><a href="#statistical-visualisation---continuous-variables---pages-366369">Statistical visualisation - continuous variables - Pages 366,369</a></li>
+            <li><a href="#statistical-visualisation---bivariate-qualitative-variables---pages-371-372">Statistical visualisation - bivariate qualitative variables - Pages 371-372</a></li>
+          </ul>
+        </li>
+        <li><a href="#adding-a-legend-page-173-174">Adding a legend (Page 173-174)</a></li>
+        <li><a href="#graphical-windows---splitting-the-graphics-window---page-154">Graphical windows - Splitting the Graphics Window - Page 154</a></li>
+        <li><a href="#graphical-windows---opening-closing-and-saving-graphical-windows---pages-151-153">Graphical windows - Opening, closing and saving graphical windows - Pages 151-153</a></li>
+        <li><a href="#additional-notes">Additional Notes</a>
+          <ul>
+            <li><a href="#additional-notes-the-segments-and-lines-functions---pages-158-159">Additional Notes: the segments() and lines() functions - Pages 158-159</a></li>
+            <li><a href="#additional-notes-the-abline-function---pages-159">Additional Notes: the abline() function - Pages 159</a></li>
+            <li><a href="#additional-notes-interacting-with-the-plot-the-locator-function---page-175">Additional Notes: Interacting with the plot: the locator() function - Page 175</a></li>
+            <li><a href="#additional-notes-interacting-with-the-plot-the-identify-function---page-175">Additional Notes: Interacting with the plot: the identify() function - Page 175</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

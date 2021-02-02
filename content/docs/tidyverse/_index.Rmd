@@ -1,0 +1,634 @@
+---
+title: "The Tidyverse"
+---
+
+```{r setup, include=FALSE, message=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# The Tidyverse
+
+## The Bigger Picture
+
+In this document we learn how to manipulate data with the Tidyverse. Simply put, we are learning how to transform raw data into clean, easy-to-work-with tidy data. In the overall context of the workflow, this falls into the category of wrangling raw data into something more useable.
+
+<center><img src = "images/workflowschematic.JPG" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.JPG" width="80%" class="ImageBorder"> </img></center>
+
+`{{<expand "Note: LinkedIn Learning videos" "...">}}
+There are references to LinkedIn Learning videos. These are complementary but not really required as the notes below are meant to be self-contained. Some students and staff would have access for free. Do not purchase access unless you are sure you don’t have access through your organisation already.
+{{</expand>}}`
+
+## What is the Tidyverse?
+> [LinkedIn Learning 1.1 - 1.3](https://www.linkedin.com/learning/learning-the-r-tidyverse/what-is-the-tidyverse)
+
+
+```{r library-tidyverse, echo = TRUE, message = FALSE}
+library("tidyverse")
+# Loads the tidyverse packages
+```
+
+- A series of R packages that can be used together
+- The aim is to create data which is 'tidy'
+- Uses
+    - Formatting raw data in a more readable form
+    - Preparing data for use with other packages
+    - 'Wrangling' data (manipulating parts of datasets)
+    - Visualising data with static graphs (ggplot2)
+    
+- Note: if you do not have the tidyverse (or any package described in these notes) installed, you can do so by running `install.packages("tidyverse")` in the R terminal
+    
+## Using the pipeline operator in the Tidyverse
+> [LinkedIn Learning 3.1 - 3.3](https://www.linkedin.com/learning/learning-the-r-tidyverse/648985)
+
+Some of you would be familiar with how young children tell a story: "she did that, and then he did that, and then she did that, and then he did that, etc etc". Well, the structure with `%>%` operators is exactly the same, and often makes the coding more natural when things are done sequentially.
+
+```{r pipeline-1, message = TRUE}
+n <- c(4, 6, 5)
+n %>%
+  mean()
+```
+
+- The above is the equivalent of mean(n)
+- The `%>%` operator can be thought of as "and then".
+- The operator takes the left hand side of it and 'forces' it into the first argument of the right hand side
+
+But what if we don't want to force everything into the *first* argument? What if we want to force everything into another argument?
+
+- We use a dot (`.`) where the argument we want goes
+
+```{r pipeline-2, message = TRUE}
+n %>%
+  mean() %>%
+  replicate("HELLO", n = .)
+```
+
+The above example is the equivalent of saying:
+
+```{r pipeline-3, message = TRUE, eval=FALSE}
+temp <- n %>%
+  mean()
+
+replicate("HELLO", n = temp)
+```
+
+## Packages for reading data
+
+Base R (R without any packages) comes with several functions designed for reading and writing files. However, we use packages to read files in a smarter way than base R.
+
+### The 'readxl' package
+> [LinkedIn Learning 4.2](https://www.linkedin.com/learning/learning-the-r-tidyverse/import-xlsx-files-with-readxl-in-r)
+
+- A package which easily imports Excel data
+```{r readxl, message = FALSE}
+library("readxl")
+# Note: readr comes with the Tidyverse but readxl must be loaded separately
+alien_data <- read_csv("sample_data/alien_data.csv")
+head(alien_data, 5)
+
+student_data <- read_csv("sample_data/student_data.csv")
+head(student_data, 5)
+```
+
+- The `read_csv()` and `read_xlsx` functions, among others, are very useful
+
+### A caution for readxl
+
+- `read_csv()` and `write_csv()` are two functions that readxl introduces to read and write csv files
+- `read.csv()` and `write.csv()` are two functions built into base R to read and write csv files
+
+The readxl functions are much smarter and faster when it comes to csv and xlsx manipulation with R. Don't be confused with the base R functions!
+
+### The 'readr' package
+> [LinkedIn Learning 4.3](https://www.linkedin.com/learning/learning-the-r-tidyverse/import-csv-files-with-readr-into-r)
+
+- A package with superior file reading than base R
+- Automatic conversion of dates, times, numbers, among other features
+- Full command list found: https://cran.r-project.org/web/packages/readr/readr.pdf
+```{r readr, message = TRUE}
+read_file("sample_data/secret_message.txt")
+```
+
+## What are tibbles?
+> [LinkedIn Learning 4.4](https://www.linkedin.com/learning/learning-the-r-tidyverse/is-it-a-data-frame-or-a-tibble)
+
+That table we just saw was called "A tibble" by R.
+
+- Tibbles are the standard tables of the Tidyverse
+- They are like data.frames but better
+- They store info about attributes of column data (such as their class)
+- Appending data to tibbles is easy as they are designed to work with Tidyverse packages
+- `as_tibble()` can be used to convert data.frames
+
+## What is dplyr?
+
+`dplyr` is one of the packages contained in the Tidyverse and is our main tool for manipulating data
+
+- Uses the pipeline operator `%>%`
+- The pipeline operator makes manipulating data easy to format
+- `dplyr` contains many tools for selecting sub-sections of data
+- `dplyr` contains many tools for modifying or providing interpretation of data
+- `dplyr` can prepare data to be graphed more easily by other packages
+
+### A note on using dplyr
+
+- `dplyr` functions are to be used primarily with data tables
+    - Includes data.frames and tibbles
+- `dplyr` functions expect the first argument to be a table
+- We typically use the functions by 'piping' data into them:
+```{r dplyr-setup1, message=FALSE}
+alien_data %>%
+  group_by(colour)
+```
+
+- If we want to create a new table with our modifications complete, we simply assign it
+
+```{r dplyr-setup2}
+grouped_alien_data <- alien_data %>%
+  group_by(colour)
+```
+
+### arrange()
+
+- This function orders our data according to a variable
+
+```{r arrange}
+alien_data %>%
+  arrange(desc(height))
+
+student_data %>%
+  arrange(name)
+```
+
+- In the above example, we see that `arrange()` can apply to character variables as well as numeric variables
+
+### select()
+
+> [LinkedIn Learning 4.5](https://www.linkedin.com/learning/learning-the-r-tidyverse/select-and-filter-data)
+
+This function can be used to retrieve only certain columns of that data.
+
+```{r select1}
+alien_data
+alien_data %>%
+  select(name, colour)
+```
+
+We can specify with `select(-column)` to remove columns.
+
+```{r select2}
+alien_data %>%
+  select(-height)
+```
+
+We can specify filtering only columns with a given string in their name.
+
+```{r select3}
+alien_data %>%
+  select(contains("eight"))
+```
+
+We can also use the `everything()` functon to select "everything else". This can be used to rearrange our data.
+
+```{r select4}
+alien_data %>%
+  select(colour, everything())
+```
+
+### filter()
+> [LinkedIn Learning 4.5](https://www.linkedin.com/learning/learning-the-r-tidyverse/select-and-filter-data)
+
+This function sifts through our data with a condition - we are left with only the data that satisfies this condition.
+
+```{r filter1}
+alien_data %>%
+  filter(height > 50)
+```
+
+We can also have compound conditions using:
+
+- The `&` (and) operator
+- The '|' (or) operator
+- Filter two or more times
+
+```{r filter2}
+alien_data %>%
+  filter(height > 50 & weight > 15)
+
+alien_data %>%
+  filter(colour == "Blue") %>%
+  filter(weight > 15)
+```
+
+
+### mutate()
+> [LinkedIn Learning 4.6](https://www.linkedin.com/learning/learning-the-r-tidyverse/convert-strings-to-dates-with-mutate)
+
+This function creates new columns based on a certain condition. It can also modify existing columns. To use it:
+
+- Specify the name of the column to create
+- Include an equals (`=`)
+- Specify how we define this column
+
+```{r mutate}
+student_data
+student_data %>%
+  mutate(final_mark = test1 + test2)
+```
+
+### separate()
+> [LinkedIn Learning 4.7](https://www.linkedin.com/learning/learning-the-r-tidyverse/separating-columns-into-multiple-columns)
+
+This function takes one column and splits it into more than one. It is especially useful when manipulating data which is rather unorganised, for example, data in `.txt` files without columns.
+
+- First argument is the target column
+- Second argument is a vector of column names to split it into
+- Third argument is the separator by which to split the data
+    
+```{r separate}
+student_data
+student_data %>%
+  separate(name, c("First", "Last"), sep = " ")
+```
+
+### merge()
+
+- This is a very powerful function
+- merge() takes two data sets and combines them into one by using a common column
+
+```{r merge1, include=FALSE}
+alien_data2 <- read_csv("sample_data/alien_data2.csv")
+```
+```{r merge2}
+alien_data
+alien_data2
+
+merge(alien_data, alien_data2, by = "name")
+```
+
+Be very careful when merging, as all elements must be a perfect match in the "by" column!
+
+## Data Sampling
+> [LinkedIn Learning 5.1](https://www.linkedin.com/learning/learning-the-r-tidyverse/sample-data-and-cross-validation-with-dplyr)
+
+- `sample_frac()` takes a proportion as its argument, and returns a subsection of our data containing a random proportion of the data
+- `sample_n()` takes a number as its argument, and returns a subsection of our data containing that many random points from the data
+- Both functions can take the optional argument `replace = FALSE` to allow for repeats
+```{r sample1}
+student_data %>%
+  sample_n(5)
+```
+
+### group_by()
+> [LinkedIn Learning 5.2, 5.3](https://www.linkedin.com/learning/learning-the-r-tidyverse/categorizing-data-with-group-by)
+
+- `group_by()` is a very powerful function
+- We can use it to create "groups" in a tibble
+
+We can imagine that our data is like a school of students. We "group" our data by putting different students into different classes. The data doesn't change, but we can interact with each class separately. This makes it easy if we want to, for example, count the number of students in a class, or find out which class gets the highest marks.
+
+When we are making groups:
+
+- **Any operation we perform on the data will be done according to groups**
+- Creating new groups overrides old groups
+- `ungroup()' removes groups
+
+How many aliens are there of each colour?
+
+```{r group_by1}
+colour_count <- alien_data %>%
+  group_by(colour) %>%
+  mutate(count = n()) %>%
+  select(colour, count)
+
+colour_count
+```
+
+**Note**: n() is a funtion with no arguments that counts the number of observations in a group.
+
+- We have the correct counts per colour, but we are displaying too much information.
+- The `unique()` function only includes unique data based on some variable
+- Because we are grouped by colour, `unique()' will apply on the colour variable
+
+```{r group_by2}
+colour_count %>%
+  unique()
+```
+
+Example: Did males or females perform better on their test? 
+(Data was randomly generated!)
+
+```{r group_by3}
+student_data
+```
+We must:
+
+- Add the final mark column
+- Group data by gender
+- Create (mutate) an average mark column according to gender
+- Select the data we want
+
+```{r group_by4}
+student_data %>%
+  mutate(final_mark = test1 + test2) %>%
+  group_by(gender) %>%
+  mutate(average_mark = sum(final_mark) / n()) %>%
+  select(gender, average_mark) %>%
+  unique()
+```
+Note: sum() and n() apply by group -- this is why groups are so useful!
+
+## Cumulative functions
+> [LinkedIn Learning 5.4](https://www.linkedin.com/learning/learning-the-r-tidyverse/cumulative-sums-and-more-cumsum-cumall-and-cumany)
+
+- Sometimes we need to add all the values of a certain data column up to current point
+- Usually this takes the form of a running total with respect to time
+
+### cumsum()
+
+Provides the cumulative sum.
+
+```{r cumulation0, message=FALSE}
+music_data <- read_csv("sample_data/music_data.csv")
+```
+
+Introducing a new dataset - a student's log of daily practice.
+
+```{r cumulation1}
+head(music_data, 5)
+music_data %>%
+  mutate(running_total = cumsum(hours))
+```
+
+- This provides us with a cumulative total hours practice after each practice session
+
+**[Harder example]:** What if we want the daily total?
+
+- Recall if we want the daily total we can use grouping and `unique()`
+
+```{r cumulation2}
+daily_music_data <- music_data %>%
+  # Establish date groups
+  group_by(date) %>%
+  # Find daily total by summing within the date groups
+  mutate(daily_total = sum(hours)) %>%
+  # Select just our date and daily total
+  select(date, daily_total) %>%
+  # unique() acts only on 'date' due to groups
+  unique() %>%
+  # ungroup() so other functions do not act on date groups
+  ungroup()
+
+daily_music_data
+
+daily_music_data %>%
+  # cumsum() now acts on the whole data, since we ungrouped
+  mutate(running_total = cumsum(daily_total))
+```
+
+### cummean()
+
+- Provides the cumulative mean
+- The cumulative mean is the average of all values up to and including that point
+- In our practice example, the cumulative mean hours practiced will be an average of all *non-future* sessions at a given date
+
+```{r cumulation3}
+daily_music_data %>%
+  mutate(cumulative_mean = cummean(daily_total))
+```
+
+### cumall() and cumany()
+
+- Each function provides a different type of cumulation
+- Each function takes its argument to be a logical expression
+- Each function outputs a vector of logical values
+
+### What's the difference?
+
+- `cumall()` returns `TRUE` for every case until the first `FALSE`, then `FALSE` for all cases after
+- `cumany()` returns `FALSE` for every case until the first `TRUE`, then `TRUE` for all cases after
+- Both are typically combined with the `filter()` function for cumulation *before* or *after* a certain point in our data 
+
+Let's say we want to select every practice session *before* the longest one:
+
+```{r cumulation4}
+daily_music_data %>%
+  mutate(is_before_longest = cumall(daily_total < max(daily_total)))
+```
+
+- We can see that on 11/06/19, our longest day, we fail the condition for the first time
+- All logical values afterwards are `FALSE`
+
+```{r cumulation5}
+daily_music_data %>%
+  filter(cumall(daily_total < max(daily_total)))
+```
+
+Let's say we want to select every practice session *after* the longest one
+```{r cumulation6}
+daily_music_data %>%
+  mutate(is_after_longest = cumany(daily_total == max(daily_total)))
+```
+- We can see that on 11/06/19, our longest day, we pass the condition for the first time
+- All logical values afterwards are `TRUE`
+```{r cumulation7}
+daily_music_data %>%
+  filter(cumany(daily_total == max(daily_total)))
+```
+
+## summarise()
+> [LinkedIn Learning 5.5, 5.6](https://www.linkedin.com/learning/learning-the-r-tidyverse/create-group-summaries)
+
+- This function is like a stronger version of `mutate()`
+- We throw away all columns except those that are grouped
+- We also add columns according to the argument of `summarise()`
+
+Counting aliens by colour is something we have done previously with `group_by()`, then `mutate()`, then `select()`:
+
+```{r summarise1}
+alien_data %>%
+  group_by(colour) %>%
+  summarise(number = n())
+```
+
+### sumarise_all()
+
+- This version of `summarise()` applies one summary function on every column variable
+- Here we are given errors as there is no 'mean' of the name column
+```{r summarise2}
+student_data %>%
+  summarise_all(mean)
+```
+
+### summarise_if()
+
+- This version of `summarise()` gives us more precision, applying one summary function to certain column variables
+- It takes a logical argument and only summarises variables which pass this logic
+```{r summarise3}
+student_data %>%
+  summarise_if(is.numeric,
+               mean)
+```
+
+## recode()
+
+- This funtion is like a key which is used to replace values with other values
+- We first specify the vector to modify, then we give the replacement key
+
+We can change the colour of aliens:
+```{r recode1}
+
+
+alien_data$colour = recode(alien_data$colour,
+                           "Red" = "Orange",
+                           "Blue" = "Violet",
+                           "Green" = "Brown")
+alien_data
+```
+
+## Data Cleaning
+### What is data cleaning?
+> [LinkedIn Learning 4.1](https://www.linkedin.com/learning/learning-the-r-tidyverse/separate-raw-and-clean-data-folders)
+
+- We now know enough about `dplyr` to perform some data cleaning
+- Data cleaning is where we take some data that isn't formatted how we want, and format it how we want
+- Generally the final result should be a tibble
+
+### Take note
+
+- This section will contain several new functions
+- Often in R you will require a specific function you have never seen before
+- Make use of online resources such as [Stack Overflow](https://stackoverflow.com/) to find solutions!
+
+
+### Example - data cleaning with a messy file
+
+> "Tidy datasets are all alike but every messy dataset is messy in its own way." --Hadley Wickham
+
+When we clean data, we can make it extremely useful, however every data set must be cleaned in its own way. *There is no magic formula that will work every time, but the general ideas will usually be the same.*
+
+- Here is a dataset containing the average yearly temperature as recorded by an Australian weather station over 100 years
+- Data courtesy of the [Bureau of Meteorology](http://www.bom.gov.au/climate/change/datasets/datasets.shtml)
+
+```{r cleaning1}
+station1 <- read.delim("bom_data/tmeanahq.002012.annual.txt")
+head(station1, n = 5)
+```
+
+- `read.delim()` is a base R function which reads data line by line and formats into a single column table
+- If we look at this particular data, it is a .txt document, and so we will need extensive formatting to make it a readable tibble
+
+The first column of the data is the start date or measurements, the second column is the end, and the third is the temperature data. For this task, let's assume we only need the year and the temperature stat.
+
+First we'll use `read_delim()`, the improved version of `read.delim()` from the `readr` package to separate our data into columns.
+
+```{r cleaning2, warning=FALSE, message=FALSE}
+station1 <- read_delim("bom_data/tmeanahq.002012.annual.txt",
+                       delim = " ")
+head(station1, n = 5)
+```
+
+We now have columns, but our data is still a mess.
+
+- Our column names make no sense
+- Our dates are formatted as numbers
+- Our temperatures are formatted as characters
+- Our station name is actually split across three separate columns
+
+First we isolate location. Take note that `make.names()` is a function which improves the formatting of column names.
+
+```{r cleaning3}
+colnames(station1) <- make.names(colnames(station1))
+location_name = paste(colnames(station1)[7:length(colnames(station1))], collapse = ' ')
+location_name
+location_name = as.character(substring(location_name, 5))
+location_name
+```
+
+- length() returns the length of a string
+- paste() concatenates strings
+- We have asked the location_name variable to store the concatenation of all the column names of our data after the 6th column
+- We have gone the extra mile to make this work for station names that are more or less than three words long - this is good coding practice!
+- as.character() and substring() are used to tweak the name to remove the file's unsightly formating
+
+Now we `mutate()` our location column and year column.
+
+```{r cleaning4}
+station1 <- station1 %>%
+  mutate(location = (location_name)) %>%
+  mutate(year = substr(MEAN, start = 1, stop = 4))
+  # Our year is just the first four characters in our misnamed start date column
+station1
+```
+
+- Let's also rename our temperature column from the string of numbers it currently is, and convert the data to numbers (not characters)
+
+```{r cleaning5}
+colnames(station1)[3] <- "average.temp"
+station1$average.temp <- as.numeric(station1$average.temp)
+```
+- Finally we `select()` to get only the data we want
+```{r cleaning6}
+station1 <- station1 %>%
+  select(year,
+         average.temp,
+         location)
+station1
+```
+
+### Extra example -- one function to clean four files
+
+- This isn't the only file we have that is formatted the same way - we have four files
+    - "tmeanahq.002012.annual.txt"
+    - "tmeanahq.003003.annual.txt"
+    - "tmeanahq.003032.annual.txt"
+    - "tmeanahq.004020.annual.txt"
+- We wish to format them in the same way as above, so we write a function to do this
+- The function uses steps identical to those given above, but takes its argument to be the name of the file
+
+```{r cleaning7}
+clean_station_data <- function(FILE_NAME) {
+  station <- read_delim(FILE_NAME, delim = " ")
+  
+  colnames(station) <- make.names(colnames(station))
+  location_name = paste(colnames(station)[7:length(colnames(station))], collapse = ' ')
+  location_name = as.character(substring(location_name, 5))
+  
+  station <- station %>%
+    mutate(location = (location_name)) %>%
+    mutate(year = substr(MEAN, start = 1, stop = 4))
+  
+  colnames(station)[3] <- "average.temp"
+  station$average.temp <- as.numeric(station$average.temp)
+  
+  station <- station %>%
+    filter(average.temp != 99999.9)
+  # This was a line added according to the data's specification, that this value represents missing data
+  
+  station <- station %>%
+  select(year,
+         average.temp,
+         location)
+  
+  return(station)
+}
+```
+
+- We obtain a list of file names
+- We then apply our function to all of these files and combine them into one table
+
+```{r cleaning8, results=TRUE, message=FALSE, warning=FALSE}
+file_list <- list.files(pattern = "tmean*")
+station_data <- bind_rows(lapply(file_list, clean_station_data))
+# The lapply() function applied the specified function to every element of a specified list
+# The bind_rows() function is provided by dplyr
+head(station_data, n = 5)
+tail(station_data, n = 5)
+```
+
+The result is beautiful, tidy data! The process was long, and required the use of several niche functions. If you ever want to accomplish something with R, chances are there's a function that exists that you may not know about. Try searching the web for helpful functions to deal with difficult tasks like this one.
+
+## A bonus!
+
+[Here's a cheat sheet for working with the "Data Wrangling" components of the Tidyverse. Good luck!] (https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)

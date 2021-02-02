@@ -1,0 +1,10 @@
+20040621 922   0     2     6dyoung       regionclean xx092234 xx092234
+20040621 922   0     0     1dyoung     dropfeatures xx092234 region.*
+20040621 922   0     2     4dyoung     reselect xx092234 aust_cd66_clp
+20040621 922   0     0     0dyoung     labelerrors aust_cd66_clp unlabeled
+20040621 922   0     0     0dyoung           createlabels aust_cd66_clp
+20040621 922   0     8     3dyoung           build aust_cd66_clp
+20040621 922   0     0    27dyoung copy aust_cd66_clp /archive2/public/metadata/data/nsaasr9nnd_022/nsaasr9nnd_02211a04ec_alb132/aust_cd66_clp
+200406211041   0     2     0dyoung project cover AUST_CD66_CLP temp /home/nric/dyoung/lws_proj/prj/geowgswgs2alb1836132grsgda.prj
+200406211041   0     7     0dyoung build temp
+200406211041   0     0     0dyoung rename temp AUST_CD66_CLP

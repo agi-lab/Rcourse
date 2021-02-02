@@ -1,0 +1,3 @@
+This file contains 4 .txt files from the BoM, used to compile the supplementary material.
+The .Rmd will not work properly unless the files are in this directory.
+It can easily be modified to run if the files are in a sub-directory, however this makes the example significantly more complicated and difficult to understand.

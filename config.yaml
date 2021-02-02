@@ -1,5 +1,5 @@
 baseURL: https://a-first-r-course.netlify.app
-title: A First R Course
+title: Communicate Data with R
 theme: hugo-book
 disablePathToLower: yes
 enableGitInfo: yes
@@ -10,7 +10,7 @@ markup:
   tableOfContents:
     startLevel: 1
 # pygmentsUseClasses = true
-# ignoreFiles = ['\.Rmd$', '_files$', '_cache$', '\.knit\.md$', '\.utf8\.md$']
+#ignoreFiles = ['\.Rmd$', '_files$', '_cache$', '\.knit\.md$', '\.utf8\.md$']
 languages:
   en:
     contentDir: content
@@ -31,7 +31,7 @@ menu:
       weight: 1
     - name: AGIL
       url: https://github.com/agi-lab
-      weight: 10
+      weight: 2
     - name: Hugo Themes
       url: https://themes.gohugo.io/hugo-book/
       weight: 20

@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Tidyverse - ggplot #  The Bigger Picture #  In this document we learn how to create sophisticated plots with ggplot. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisations.
+ \    Note: LinkedIn Learning videos ...  There are references to LinkedIn Learning videos.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="The Tidyverse - ggplot" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/visualisation/1ggplot/" />
+
+<title>The Tidyverse - ggplot | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/visualisation/1ggplot/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/"class=active>ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>The Tidyverse - ggplot</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-tidyverse---ggplot">The Tidyverse - ggplot</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#what-is-ggplot">What is ggplot?</a></li>
+        <li><a href="#the-grammar-of-graphics">The Grammar of Graphics</a></li>
+        <li><a href="#ggplot-and-the-add--operator">ggplot() and the &ldquo;add&rdquo; (<code>+</code>) Operator</a>
+          <ul>
+            <li><a href="#ggplot"><code>ggplot()</code></a></li>
+            <li><a href="#the-add--operator">The &ldquo;add&rdquo; (<code>+</code>) Operator</a></li>
+          </ul>
+        </li>
+        <li><a href="#creating-scatterplots">Creating Scatterplots</a></li>
+        <li><a href="#creating-line-plots-and-smoothing">Creating Line Plots and Smoothing</a></li>
+        <li><a href="#a-note-on-aesthetics">A Note on Aesthetics</a></li>
+        <li><a href="#creating-bar-and-column-graphs">Creating Bar and Column Graphs</a>
+          <ul>
+            <li><a href="#geom_bar"><code>geom_bar()</code></a></li>
+            <li><a href="#geom_col"><code>geom_col()</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#creating-histograms">Creating Histograms</a></li>
+        <li><a href="#creating-boxplots">Creating Boxplots</a></li>
+        <li><a href="#the-precision-of-ggplot">The Precision of ggplot</a></li>
+        <li><a href="#modifying-background-elements">Modifying Background Elements</a>
+          <ul>
+            <li><a href="#the-plot-background-colour">The Plot Background colour</a></li>
+            <li><a href="#the-panel-background-colour">The Panel Background Colour</a></li>
+            <li><a href="#grid-lines">Grid Lines</a></li>
+            <li><a href="#get-creative">Get Creative!</a></li>
+          </ul>
+        </li>
+        <li><a href="#modifying-the-axes">Modifying the Axes</a></li>
+        <li><a href="#changing-scale">Changing Scale</a></li>
+        <li><a href="#custom-colours-and-cleaner-legends">Custom Colours and Cleaner Legends</a>
+          <ul>
+            <li><a href="#functions-within-functions">Functions within functions</a></li>
+          </ul>
+        </li>
+        <li><a href="#annotations">Annotations</a></li>
+        <li><a href="#titles">Titles</a></li>
+        <li><a href="#predefined-themes">Predefined Themes</a></li>
+        <li><a href="#a-useful-link">A Useful Link</a></li>
+        <li><a href="#mapping-with-ggplot-and-ggmap">Mapping with ggplot and ggmap</a></li>
+        <li><a href="#ggplot-challenge">ggplot Challenge</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-tidyverse---ggplot">
+  The Tidyverse - ggplot
+  <a class="anchor" href="#the-tidyverse---ggplot">#</a>
+</h1>
+<h2 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h2>
+<p>In this document we learn how to create sophisticated plots with ggplot. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisations.</p>
+<center><img src = "images/workflowschematic.JPG" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.JPG" width="80%" class="ImageBorder"> </img></center>
+<p><code>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>Note: LinkedIn Learning videos</span>
+      <span>...</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      There are references to LinkedIn Learning videos. These are complementary but not really required as the notes below are meant to be self-contained. Some students and staff would have access for free. Do not purchase access unless you are sure you don’t have access through your organisation already.
+    </div>
+  </label>
+</div>
+</code></p>
+<h2 id="what-is-ggplot">
+  What is ggplot?
+  <a class="anchor" href="#what-is-ggplot">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/introducing-ggplot2">LindedIn Learning 1.1</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+</code></pre></div><ul>
+<li>A chart-making package in R</li>
+<li>A subset of the Tidyverse, the highly regarded data manipulating package of R</li>
+<li>The package is used to create highly tweakable graphs, plots and charts of many varieties
+<ul>
+<li>Scatterplots and line graphs</li>
+<li>Bar graphs and column graphs</li>
+<li>Histograms</li>
+<li>Maps</li>
+<li>And many more</li>
+</ul>
+</li>
+<li>ggplot heavily depends on the add (<code>+</code>) operator to create charts</li>
+</ul>
+<h2 id="the-grammar-of-graphics">
+  The Grammar of Graphics
+  <a class="anchor" href="#the-grammar-of-graphics">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/the-grammar-of-graphics">LindedIn Learning 1.2</a></p>
+</blockquote>
+<p>The &lsquo;Grammar of Graphics&rsquo; is just a method of describing graphs we create. This is more relevant to <code>ggplot</code> than other packages we may use because of the unique syntax required by <code>ggplot</code>.</p>
+<p>For every visualisation we wish to create, we must consider its properties.</p>
+<p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar_v_scatter-1.png" width="100%" style="display: block; margin: auto;" /><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar_v_scatter-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>In this example, both graphs display the same data, but bar graph is very different from a scatterplot. In the bar graph, the size of a bar represents the y-value of our data, whereas in the scatterplot this is represented by the height of a point. We need a language to describe what is going on here.</p>
+<p>We describe components of a visualisation as such:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><em>Component of Visualisation</em></th>
+<th style="text-align:left"><em>Definition</em></th>
+<th style="text-align:left"><em>Examples</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Data</strong></td>
+<td style="text-align:left">The set of data we want to visualise</td>
+<td style="text-align:left">Height, weight, number of&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Geometries</strong></td>
+<td style="text-align:left">Shapes we use to visualise data</td>
+<td style="text-align:left">Lines, bubbles, regions&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Aesthetics</strong></td>
+<td style="text-align:left">Properties of geometries</td>
+<td style="text-align:left">Thickness, size, colour&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Scales</strong></td>
+<td style="text-align:left">Mappings between geometries and aesthetics</td>
+<td style="text-align:left">Thickness of a line, size of a bubble, colour of a region&hellip;</td>
+</tr>
+</tbody>
+</table>
+<p>Now we have the language we need to fully describe visualisations. One uses a point-and-line geometry, with vertical and horizontal aesthetics reflecting x- and y-values, and one uses a bar geometry, describing y-values using the height aesthetic and x-values using the label aesthetic.</p>
+<h2 id="ggplot-and-the-add--operator">
+  ggplot() and the &ldquo;add&rdquo; (<code>+</code>) Operator
+  <a class="anchor" href="#ggplot-and-the-add--operator">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/build-your-first-visualization">LindedIn Learning 1.4</a></p>
+</blockquote>
+<h3 id="ggplot">
+  <code>ggplot()</code>
+  <a class="anchor" href="#ggplot">#</a>
+</h3>
+<ul>
+<li>Whenever we wish to make a visualisation with <code>ggplot</code> we begin with <code>ggplot()</code></li>
+<li>This creates an empty plot</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>()
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/ggplot()1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>When we plot data, we note that the <code>ggplot()</code> function has a <code>data</code> argument</li>
+</ul>
+<p>We can add data in two ways:</p>
+<ul>
+<li>Directly using the argument:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> sample_data)
+</code></pre></div><ul>
+<li>Using the pipeline operator of the Tidyverse:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>()
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/ggplot()3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We note that no data is showing up. This is because we haven&rsquo;t specified any method of graphing using the &ldquo;add&rdquo; (<code>+</code>) operator.</p>
+<h3 id="the-add--operator">
+  The &ldquo;add&rdquo; (<code>+</code>) Operator
+  <a class="anchor" href="#the-add--operator">#</a>
+</h3>
+<ul>
+<li><code>ggplot</code> works by creating a plot with <code>ggplot()</code> and then &lsquo;add&rsquo;ing to it</li>
+<li>We specify <em>data</em> with <code>ggplot()</code></li>
+<li>We then specify <em>geometries</em> by &lsquo;add&rsquo;ing other functions to <code>ggplot()</code></li>
+<li>Then we can specify <em>aesthetics</em> using these functions</li>
+<li>As an example, if we &lsquo;add&rsquo; the <code>geom_point()</code> function to our ggplot using <code>+</code>, we will get a plot</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/add1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>The &ldquo;add&rdquo; (<code>+</code>) operator represents adding a geometry</li>
+<li>If we wish to add another geometry, we can just use it again</li>
+<li>For example, if we want lines connecting these points, we can just add another geometry with the <code>geom_line()</code> function</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                y <span style="color:#f92672">=</span> V2))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/add2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="creating-scatterplots">
+  Creating Scatterplots
+  <a class="anchor" href="#creating-scatterplots">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/scatterplots">LindedIn Learning 2.1</a></p>
+</blockquote>
+<p>We will be using the [ACORN-SAT temperature data](o	http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks) for our examples.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;tidy_ACORN-SAT_data/station_data.rdata&#34;</span>)
+sample_temperature <span style="color:#f92672">&lt;-</span> station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>
+         <span style="color:#f92672">|</span> Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Darwin&#34;</span>
+         <span style="color:#f92672">|</span> Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Adelaide&#34;</span>
+         <span style="color:#f92672">|</span> Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Alice Springs&#34;</span>)
+<span style="color:#a6e22e">head</span>(sample_temperature, <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>##   Number year average.temp  Station.name Latitude Longitude Elevation Start
+## 1  14015 1910         26.8        Darwin   -12.42    130.89        30  1910
+## 2  15590 1910         20.2 Alice Springs   -23.80    133.89       546  1910
+## 3  23090 1910         15.9      Adelaide   -34.92    138.62        48  1910
+## 4  66062 1910         18.0        Sydney   -33.86    151.21        39  1910
+## 5  14015 1911         26.5        Darwin   -12.42    130.89        30  1910
+</code></pre><p>We already know we choose <strong>data</strong> to plot using <code>ggplot()</code>. We know we can choose <strong>geometries</strong> using various other functions. Now we need to know how to specificy <strong>aesthetics</strong>.</p>
+<ul>
+<li>Every geometry function takes an argument called <code>mapping</code></li>
+<li>This argument takes the value of another function, called <code>aes()</code></li>
+<li><code>aes()</code> itself has arguments which control our aesthetics</li>
+</ul>
+<p>For a scatterplot our geometry function is <code>geom_point()</code>, <code>aes()</code> has these arguments:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Argument</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">Data for the x-axis</td>
+</tr>
+<tr>
+<td style="text-align:center">y</td>
+<td style="text-align:center">Data for the y-axis</td>
+</tr>
+<tr>
+<td style="text-align:center">shape</td>
+<td style="text-align:center">Shape of points</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">Colour of points</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">Size of points</td>
+</tr>
+</tbody>
+</table>
+<p>There is also an argument <code>alpha</code> which controls the opacity of points, <em>but this is an argument of <code>geom_point()</code>, <strong>not</strong> <code>aes()</code></em></p>
+<ul>
+<li>For our graph, we can use this to plot temperature over time</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                 y <span style="color:#f92672">=</span> average.temp))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/scatterplot1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Currently the plot looks rather disorganised - we will fix this later</li>
+<li>For now we will add an aesthetic and modify the colour of points according to location</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                 y <span style="color:#f92672">=</span> average.temp,
+                 color <span style="color:#f92672">=</span> Station.name))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/scatterplot2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="creating-line-plots-and-smoothing">
+  Creating Line Plots and Smoothing
+  <a class="anchor" href="#creating-line-plots-and-smoothing">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/lines-and-smoothers">LindedIn Learning 2.2</a></p>
+</blockquote>
+<ul>
+<li><code>geom_line()</code> is much like <code>geom_point()</code>, but it is used to create line graphs</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/line1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Did the plot not work?</p>
+<ul>
+<li>To use <code>geom_line()</code> with multiple categories, we must tell ggplot how to group them somehow</li>
+<li>We use the <code>group</code> argument of <code>aes()</code></li>
+<li>Here we specify to group temperature data according to the station it comes from</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/line2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><code>geom_smooth()</code> is a new geometry function</li>
+<li>This function puts a curve of best fit in our graph</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/smooth1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We can remove the grey area representing standard error of our COBF by setting the <code>se</code> argument to false</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name),
+              se <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/smooth2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="a-note-on-aesthetics">
+  A Note on Aesthetics
+  <a class="anchor" href="#a-note-on-aesthetics">#</a>
+</h2>
+<p>So far we have seen the <code>aes()</code> function as an argument of &lsquo;geom&rsquo; functions, and we will continue to see this throughout this material. It is worth noting, however, that the <code>aes()</code> function can be used as an argument of <code>ggplot()</code> <em>instead</em> of the geom functions. As an example consider this plot with multiple geometries:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                y <span style="color:#f92672">=</span> V2))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/note1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This can be rewritten using only one use of <code>aes()</code> if we use it as an argument of <code>ggplot()</code> instead of both <code>geom_point()</code> and <code>geom_line()</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+             y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>()
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/note2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We get the same effect. Note that if we then used <code>aes()</code> within <code>geom_point()</code> (for example), the new aesthetics we supply would override the <code>ggplot()</code> aesthetics.</p>
+<h2 id="creating-bar-and-column-graphs">
+  Creating Bar and Column Graphs
+  <a class="anchor" href="#creating-bar-and-column-graphs">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/bars-and-columns">LindedIn Learning 2.3</a></p>
+</blockquote>
+<ul>
+<li>There are two types of bar/column graph geometry functions we deal with:
+<ul>
+<li><code>geom_bar()</code></li>
+<li><code>geom_col()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="geom_bar">
+  <code>geom_bar()</code>
+  <a class="anchor" href="#geom_bar">#</a>
+</h3>
+<ul>
+<li>For the <code>geom_bar()</code> function, the user specifies an <code>x</code> variable to graph, and the function takes the <code>y</code> variable to be a count of observations of the <code>x</code></li>
+<li>This is similar to a histogram, only we usually use it for categorical variables</li>
+<li>Let&rsquo;s demonstrate by classifing years in Sydney as hot, cold or moderate</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hot_or_cold <span style="color:#f92672">&lt;-</span> station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(warmth <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(average.temp <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;hot&#34;</span>, <span style="color:#e6db74">&#34;cold&#34;</span>))
+</code></pre></div><ul>
+<li>We can then see how many of each day there are</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hot_or_cold <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_bar</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> warmth))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h3 id="geom_col">
+  <code>geom_col()</code>
+  <a class="anchor" href="#geom_col">#</a>
+</h3>
+<ul>
+<li>The <code>geom_col()</code> function is more versatile, allowing the user to specify both and <code>x</code> and <code>y</code> variable</li>
+<li>The <code>x</code> is usually categorical, and the <code>y</code> quantative</li>
+</ul>
+<p>We introduce the 
+  <a href="https://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/4655.0Explanatory%20Notes12016?OpenDocument">Australian Environmental-Economic Accounts (2016)</a> for our examples.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;tidy_EnvAcc_data/consumption.rdata&#34;</span>)
+<span style="color:#a6e22e">head</span>(consumption, <span style="color:#ae81ff">12</span>)
+</code></pre></div><pre><code>## # A tibble: 12 x 3
+##    State year    water_consumption
+##    &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;
+##  1 NSW   2008–09              4555
+##  2 VIC   2008–09              2951
+##  3 QLD   2008–09              3341
+##  4 SA    2008–09              1179
+##  5 WA    2008–09              1361
+##  6 TAS   2008–09               466
+##  7 NT    2008–09               160
+##  8 ACT   2008–09                48
+##  9 NSW   2009–10              4323
+## 10 VIC   2009–10              2904
+## 11 QLD   2009–10              3112
+## 12 SA    2009–10              1110
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Here we plot Australia&rsquo;s total yearly water consumption</li>
+<li>If we wish to create a stacked column graph, we can try specifing the <code>color</code> argument of <code>aes()</code> to colour by state</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption,
+               color <span style="color:#f92672">=</span> State))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>This default, however, gives only an outline</li>
+<li>We can use the <code>fill</code> argument to create solid colour</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption,
+               fill <span style="color:#f92672">=</span> State))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/bar5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="creating-histograms">
+  Creating Histograms
+  <a class="anchor" href="#creating-histograms">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/histograms">LindedIn Learning 2.4</a></p>
+</blockquote>
+<ul>
+<li>Histograms in <code>ggplot</code> are very flexible</li>
+<li>We use the <code>geom_histogram()</code> function to specify a histogram geometry</li>
+<li>We can then fine tune several arguments (<strong>Note</strong>: these are arguments of <code>geom_histogram()</code>, and <em>not</em> aes())
+<ul>
+<li>The <code>x</code> argument selects the variable to plot</li>
+<li>The <code>bins</code> argument can choose the number of bins we use <em>OR</em></li>
+<li>The <code>binwidth</code> argument can specify the width of the bins we place our observations in</li>
+<li>The <code>origin</code> argument specifies the number from which we begin setting bins and is only useful with the <code>bins</code> argument</li>
+</ul>
+</li>
+</ul>
+<p>We again use annual temperatures in Sydney as an example.</p>
+<ul>
+<li>First try setting exactly 10 bins</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                 bins <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/histogram1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We can see that our first bin begins slightly before 17 degrees</li>
+<li>If we wished, we could use <code>origin</code> to ensure the first bin begins counting from 16.5 degrees</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                 bins <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
+                 origin <span style="color:#f92672">=</span> <span style="color:#ae81ff">16.5</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/histogram2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We could also specify a binwidth width of 0.5 degrees, meaning one column represents all observations in a 0.5 degree range</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/histogram3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="creating-boxplots">
+  Creating Boxplots
+  <a class="anchor" href="#creating-boxplots">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/box-plots">LindedIn Learning 2.5</a></p>
+</blockquote>
+<ul>
+<li>We use the <code>geom_boxplot()</code> geometry function</li>
+<li>The user specifies an <code>x</code> and a <code>y</code> variable
+<ul>
+<li><code>x</code> must be a categorical variable</li>
+</ul>
+</li>
+<li>This will automatically construct a boxplot for every different category of <code>x</code> based on the distribution of our <code>y</code> data</li>
+</ul>
+<p>We can, as an example, examine how the average yearly temperatures of Sydney, Darwin, Adelaide and Alice Springs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_boxplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> Station.name,
+                   y <span style="color:#f92672">=</span> average.temp,
+                   fill <span style="color:#f92672">=</span> Station.name))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/boxplot1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="the-precision-of-ggplot">
+  The Precision of ggplot
+  <a class="anchor" href="#the-precision-of-ggplot">#</a>
+</h2>
+<p>As was stated before, <code>ggplot</code> is a package which allows for extremely detailed tweaking of graphs. This includes the ability to modify, create and delete:</p>
+<ul>
+<li>The background colour of charts</li>
+<li>The grid lines thickness and colour</li>
+<li>The axis labels</li>
+<li>The axis scale</li>
+<li>The colours of any geometries</li>
+<li>The legend title</li>
+<li>The legend position</li>
+<li>Annotations</li>
+<li>Lines</li>
+<li>Titles and subtitles</li>
+</ul>
+<p>We make such modifications using the <code>theme()</code> function. This function can take many different arguments:</p>
+<ul>
+<li><code>plot.background</code></li>
+<li><code>panel.background</code></li>
+<li><code>panel.grid.major</code></li>
+<li><code>panel.grid.minor</code></li>
+<li><code>legend.key</code></li>
+<li><code>axis.ticks</code></li>
+<li><code>axis.title</code></li>
+</ul>
+<p>Each relates to one element of a visualisation, and we consider each in turn.</p>
+<h2 id="modifying-background-elements">
+  Modifying Background Elements
+  <a class="anchor" href="#modifying-background-elements">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/modifying-the-background">LindedIn Learning 3.1</a></p>
+</blockquote>
+<p>For our tweaking examples, we&rsquo;ll use our histogram:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/background1-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>We introduce the <code>theme()</code> function and discover we can modify several elements.</p>
+<h3 id="the-plot-background-colour">
+  The Plot Background colour
+  <a class="anchor" href="#the-plot-background-colour">#</a>
+</h3>
+<ul>
+<li>We use <code>plot.background</code> and set this to the <code>element_rect()</code> function</li>
+<li>This new function has the <code>colour</code> argument which we can control, making the border a colour of our choice</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(plot.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/background2-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Or the <code>fill</code> argument, which fills the entire background</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(plot.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/background3-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<h3 id="the-panel-background-colour">
+  The Panel Background Colour
+  <a class="anchor" href="#the-panel-background-colour">#</a>
+</h3>
+<ul>
+<li>We use <code>panel.background</code> and set this to the <code>element_rect()</code> function</li>
+<li>Then again we have our options to <code>colour</code> or <code>fill</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/panel1-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Or&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/panel2-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<h3 id="grid-lines">
+  Grid Lines
+  <a class="anchor" href="#grid-lines">#</a>
+</h3>
+<ul>
+<li>We can also modify the grid lines we see on our charts</li>
+<li>There are two types of grid lines, major and minor</li>
+<li>They are modified using <code>panel.grid.major</code> and <code>panel.grid.minor</code></li>
+<li>For each, we set them to the <code>element_line()</code> function</li>
+<li>This new function takes arguments of <code>colour</code> and <code>size</code></li>
+</ul>
+<p>Here are some examples:</p>
+<ul>
+<li>Modifying major lines to be blue and very thick:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.grid.major <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>,
+                                        size <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/gridlines1-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Note: we can modify the vertical and horizontal major grid lines with <code>panel.grid.major.x</code> and <code>panel.grid.major.y</code> respectively</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.grid.major.x <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>),
+        panel.grid.major.y <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;green&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/gridlines2-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Modifying minor lines:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.grid.minor <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/gridlines3-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>If we wish, we can also totally remove an element (such as the grid lines)</li>
+<li>If we don&rsquo;t want any gridlines, we set it to the <code>element_blank()</code> function</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(panel.grid.major <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>(),
+        panel.grid.minor <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_blank</span>())
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/gridlines4-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<h3 id="get-creative">
+  Get Creative!
+  <a class="anchor" href="#get-creative">#</a>
+</h3>
+<p>Combining all of these features can produce some cool looking graphs!
+
+  <a href="https://htmlcolorcodes.com/">If you have html colour codes</a>, you can pick your own colours!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(plot.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#000000&#34;</span>,
+                                       fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#A6FEFD&#34;</span>),
+        panel.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#000000&#34;</span>,
+                                        fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#FFEEEE&#34;</span>),
+        panel.grid.major <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>,
+                                        colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#FF8383&#34;</span>),
+        panel.grid.minor <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#B0FCFF&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/creative1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="modifying-the-axes">
+  Modifying the Axes
+  <a class="anchor" href="#modifying-the-axes">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/working-with-axes">LindedIn Learning 3.2</a></p>
+</blockquote>
+<ul>
+<li>We introduce two new types of functions</li>
+<li><code>xlab()</code> and <code>ylab()</code> can change the labels of axes</li>
+<li><code>xlim()</code> and <code>ylim()</code> can change the range of what the axes display</li>
+</ul>
+<p>It&rsquo;s simple enough to change axis names:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">xlab</span>(<span style="color:#e6db74">&#34;Average Yearly Temp. (°C)&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">ylab</span>(<span style="color:#e6db74">&#34;Number of Observations (1910-2012&#34;</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/axis1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As an example of axis range, observe contrast in the x-axis for the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                y <span style="color:#f92672">=</span> V2))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/axis2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Versus&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">xlim</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">ylim</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/axis3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can also reduce the axis range, but this may cause a loss of data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                 y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> V1,
+                y <span style="color:#f92672">=</span> V2)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">xlim</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">ylim</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/axis4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="changing-scale">
+  Changing Scale
+  <a class="anchor" href="#changing-scale">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/changing-scales">LindedIn Learning 3.3</a></p>
+</blockquote>
+<p>Finally, we can take care of this awfully scaled plot!</p>
+<p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/scale1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We introduce the concept of scale functions.</p>
+<ul>
+<li>There are very many, each with their own purpose, but they all generally modify the scales of our charts</li>
+<li>They are named by the convention &ldquo;scale_name_datatype()&rdquo;</li>
+<li>A 
+  <a href="https://ggplot2.tidyverse.org/reference/#section-scales">full list can be found here</a>, but examples include:
+<ul>
+<li><code>scale_x_discrete()</code></li>
+<li><code>scale_y_continuous()</code></li>
+<li><code>scale_size_continuous()</code></li>
+<li><code>scale_fill_manual()</code></li>
+<li><code>scale_colour_gradient()</code></li>
+<li>Etc&hellip;</li>
+</ul>
+</li>
+<li>The arguments they take vary according to the function, but for now we are interested in:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>name</code></td>
+<td style="text-align:center">Changes axis names (just like <code>xlab()</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>limits</code></td>
+<td style="text-align:center">Changes the axis range with precise control</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>breaks</code></td>
+<td style="text-align:center">Change the way numbers are displayed on our scale with precise control</td>
+</tr>
+</tbody>
+</table>
+<p>\</p>
+<p>First of all, we rename axes with <code>name</code> and rescale our range.
+<strong>Note:</strong> <code>limits</code> and <code>breaks</code> take a vector of numbers as their value. We ususally use <code>seq()</code> to assign to <code>breaks</code> (specifying the start, end, and step-value) whilst we usually use a vector to assign to <code>limits</code> (specifying only a start and end value).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_x_discrete</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Year&#34;</span>,
+                   breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1910</span>, <span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_y_continuous</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yearly Temp. (°C)&#34;</span>,
+                     limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/scale2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now this looks much nicer!</p>
+<h2 id="custom-colours-and-cleaner-legends">
+  Custom Colours and Cleaner Legends
+  <a class="anchor" href="#custom-colours-and-cleaner-legends">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/cleaning-up-legends">LindedIn Learning 3.4</a></p>
+</blockquote>
+<ul>
+<li>Sometimes automatically generated legends aren&rsquo;t exactly what we want</li>
+<li>We can add the <code>scale_fill_manual()</code> or <code>scale_colour_manual()</code> functions to our plot to fine tune it
+<ul>
+<li>Which do we use? If we colour our data using the <code>fill</code> argument, use the first, and if we colour our data using the <code>colour</code> argument, use the second</li>
+</ul>
+</li>
+<li>This function has two important arguments &ndash; <code>values</code> and <code>guide</code></li>
+<li>The <code>values</code> function takes a vector of colours and can be used to create custom colours in a chart</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_x_discrete</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Year&#34;</span>,
+                   breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1910</span>, <span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_y_continuous</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yearly Temp. (°C)&#34;</span>,
+                     limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_colour_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#FF0000&#34;</span>, <span style="color:#e6db74">&#34;#0031FF&#34;</span>, <span style="color:#e6db74">&#34;#FF00EB&#34;</span>, <span style="color:#e6db74">&#34;#13BB00&#34;</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/legends1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h3 id="functions-within-functions">
+  Functions within functions
+  <a class="anchor" href="#functions-within-functions">#</a>
+</h3>
+<p>The <code>guide</code> argument of the above two functions itself takes a function as its value. The function is called <code>guide_legend()</code>.</p>
+<ul>
+<li>These are the arguments of <code>guide_legend()</code>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>title</code></td>
+<td style="text-align:center">Changes legend title</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>nrow</code></td>
+<td style="text-align:center">Changes how many rows the legend uses to display data</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>label.position</code></td>
+<td style="text-align:center">Changes where the label title appears in the legend</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>keywidth</code></td>
+<td style="text-align:center">Numeric argument to modify the width of legend boxes</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>legend.key</code></td>
+<td style="text-align:center">Takes value of a vector of colours and specifies custom colours</td>
+</tr>
+</tbody>
+</table>
+<p>\</p>
+<p>Let&rsquo;s use all of the above on our chart.</p>
+<ul>
+<li>We set the title to &ldquo;Location&rdquo;</li>
+<li>We display the data in two rows</li>
+<li>We put the legend label (here the location name) to the left</li>
+<li>We specify a width of 2.5</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_x_discrete</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Year&#34;</span>,
+                   breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1910</span>, <span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_y_continuous</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yearly Temp. (°C)&#34;</span>,
+                     limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_colour_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#FF0000&#34;</span>, <span style="color:#e6db74">&#34;#0031FF&#34;</span>, <span style="color:#e6db74">&#34;#FF00EB&#34;</span>, <span style="color:#e6db74">&#34;#13BB00&#34;</span>),
+                    guide <span style="color:#f92672">=</span> <span style="color:#a6e22e">guide_legend</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Location&#34;</span>,
+                                         nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
+                                         label.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>,
+                                         keywidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>))
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/legends2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We note we can also use the <code>legend.position</code> argument of the <code>theme()</code> function to change where our legend is</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_x_discrete</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Year&#34;</span>,
+                   breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1910</span>, <span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_y_continuous</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yearly Temp. (°C)&#34;</span>,
+                     limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_colour_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#FF0000&#34;</span>, <span style="color:#e6db74">&#34;#0031FF&#34;</span>, <span style="color:#e6db74">&#34;#FF00EB&#34;</span>, <span style="color:#e6db74">&#34;#13BB00&#34;</span>),
+                    guide <span style="color:#f92672">=</span> <span style="color:#a6e22e">guide_legend</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Location&#34;</span>,
+                                         nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+                                         label.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>,
+                                         keywidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.5</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/legends3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Note:</strong> <code>legend.position= &quot;none&quot;</code> removes a legend entirely.</p>
+<h2 id="annotations">
+  Annotations
+  <a class="anchor" href="#annotations">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/annotating-your-visualization">LindedIn Learning 3.5</a></p>
+</blockquote>
+<ul>
+<li>To annotate we use the <code>annotate()</code> function</li>
+<li><strong>Note:</strong> the first argument of this function must be &ldquo;text&rdquo;</li>
+<li>It also takes the <code>label</code> argument, being the text of your annotation</li>
+<li>In addition, the <code>x</code> and <code>y</code> arguments for position on a chart</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_temperature <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                y <span style="color:#f92672">=</span> average.temp,
+                color <span style="color:#f92672">=</span> Station.name,
+                group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_smooth</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+                  y <span style="color:#f92672">=</span> average.temp,
+                  color <span style="color:#f92672">=</span> Station.name,
+                  group <span style="color:#f92672">=</span> Station.name)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_x_discrete</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Year&#34;</span>,
+                   breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1910</span>, <span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">10</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_y_continuous</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yearly Temp. (°C)&#34;</span>,
+                     limits <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">30</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">scale_colour_manual</span>(values <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#FF0000&#34;</span>, <span style="color:#e6db74">&#34;#0031FF&#34;</span>, <span style="color:#e6db74">&#34;#FF00EB&#34;</span>, <span style="color:#e6db74">&#34;#13BB00&#34;</span>)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>,
+           label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Adelaide&#34;</span>,
+           x <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>,
+           y <span style="color:#f92672">=</span> <span style="color:#ae81ff">16.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>,
+           label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>,
+           x <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>,
+           y <span style="color:#f92672">=</span> <span style="color:#ae81ff">18.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>,
+           label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Alice Springs&#34;</span>,
+           x <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>,
+           y <span style="color:#f92672">=</span> <span style="color:#ae81ff">22</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>,
+           label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Darwin&#34;</span>,
+           x <span style="color:#f92672">=</span> <span style="color:#ae81ff">90</span>,
+           y <span style="color:#f92672">=</span> <span style="color:#ae81ff">27.5</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/annotations1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>We can also add lines in as we please using the <code>geom_hline()</code> or <code>geom_vline()</code> functions</li>
+<li>These only take the <code>yintercept</code> or <code>xintercept</code> functions respectively and can be used to place lines at any point on a chart</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption,
+               fill <span style="color:#f92672">=</span> State)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">ylim</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">22000</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">annotate</span>(<span style="color:#e6db74">&#34;text&#34;</span>,
+           label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Peak&#34;</span>,
+           x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>,
+           y <span style="color:#f92672">=</span> <span style="color:#ae81ff">21000</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_hline</span>(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">19756</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/annotate2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="titles">
+  Titles
+  <a class="anchor" href="#titles">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/adding-titles">LindedIn Learning 3.6</a></p>
+</blockquote>
+<ul>
+<li>For titles we use <code>ggtitle()</code></li>
+<li>For subtitles we use the <code>subtitle</code> argument of <code>ggtitle()</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption,
+               fill <span style="color:#f92672">=</span> State)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">ggtitle</span>(<span style="color:#e6db74">&#34;Water Consumption of Australia over Time&#34;</span>,
+          subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Data provided by the Australian Environmental-Economic Accounts, 2016&#34;</span>)
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/titles1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<h2 id="predefined-themes">
+  Predefined Themes
+  <a class="anchor" href="#predefined-themes">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/using-themes">LindedIn Learning 3.7</a></p>
+</blockquote>
+<ul>
+<li>In as much as we have precise customisation available in ggplot, sometimes we may not want to bother</li>
+<li>We can automatically modify graphs we&rsquo;ve made using pre-constructed themes from ggplot, using set theme functions as such</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;ggthemes&#34;</span>)
+
+station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(Station.name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Sydney&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_histogram</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> average.temp),
+                     binwidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme_solarized</span>()
+</code></pre></div><p><img src="/docs/visualisation/1ggplot/_index_files/figure-html/themes1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Some themes included in standard <code>ggplot</code>:
+<ul>
+<li><code>theme_bw()</code></li>
+<li><code>theme_dark()</code></li>
+<li><code>theme_void()</code></li>
+<li><code>theme_minimal()</code></li>
+</ul>
+</li>
+<li>Some themes included in the <code>ggthemes</code> package (must be installed and library&rsquo;d)
+<ul>
+<li><code>theme_solarized()</code></li>
+<li><code>theme_excel()</code></li>
+<li><code>theme_wsi()</code></li>
+<li><code>theme_economist()</code></li>
+<li><code>theme_fivethirtyeight()</code></li>
+</ul>
+</li>
+<li>
+  <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">Here are the ggplot themes</a>, and 
+  <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">here are the ggthemes themes</a></li>
+</ul>
+<h2 id="a-useful-link">
+  A Useful Link
+  <a class="anchor" href="#a-useful-link">#</a>
+</h2>
+<p>Here&rsquo;s the 
+  <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot Cheat Sheet</a> published by R Studio!</p>
+<h2 id="mapping-with-ggplot-and-ggmap">
+  Mapping with ggplot and ggmap
+  <a class="anchor" href="#mapping-with-ggplot-and-ggmap">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/visualizing-data-with-maps">LindedIn Learning Section 4</a></p>
+</blockquote>
+<ul>
+<li><code>ggplot</code> and its sibling package <code>ggmap</code> are used to render maps and map-based charts in R</li>
+<li>This includes the ability to make, among other things:
+<ul>
+<li>Regular maps</li>
+<li>Geoplots</li>
+<li>Choropleths</li>
+</ul>
+</li>
+<li>ggmap communicates with Google Maps, and functions by using an API key (Application Programming Interface key) to request access to Google&rsquo;s maps</li>
+</ul>
+<p>Unfortunately, as of June 2018, Google updated its policy on API keys, significantly limiting the capabilities of ggmap for individuals who have not signed up to Google APIs with billing details. As a result the content of Section 4 is not considered in this course.</p>
+<h2 id="ggplot-challenge">
+  ggplot Challenge
+  <a class="anchor" href="#ggplot-challenge">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/data-visualization-in-r-with-ggplot2/challenge-assignment">LindedIn Learning 5.1</a></p>
+</blockquote>
+<p>The LindedIn Learning tutorial provides a practice dataset, along with a challenge. Given the dataset, the challenge is:</p>
+<ul>
+<li>Plot a map of all schools in California</li>
+<li>Colour the points based on their Institutional Control</li>
+<li>Change the size of the points to reflect their Undergraduate Population</li>
+</ul>
+<p>Good luck!</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/visualisation/1ggplot/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-tidyverse---ggplot">The Tidyverse - ggplot</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#what-is-ggplot">What is ggplot?</a></li>
+        <li><a href="#the-grammar-of-graphics">The Grammar of Graphics</a></li>
+        <li><a href="#ggplot-and-the-add--operator">ggplot() and the &ldquo;add&rdquo; (<code>+</code>) Operator</a>
+          <ul>
+            <li><a href="#ggplot"><code>ggplot()</code></a></li>
+            <li><a href="#the-add--operator">The &ldquo;add&rdquo; (<code>+</code>) Operator</a></li>
+          </ul>
+        </li>
+        <li><a href="#creating-scatterplots">Creating Scatterplots</a></li>
+        <li><a href="#creating-line-plots-and-smoothing">Creating Line Plots and Smoothing</a></li>
+        <li><a href="#a-note-on-aesthetics">A Note on Aesthetics</a></li>
+        <li><a href="#creating-bar-and-column-graphs">Creating Bar and Column Graphs</a>
+          <ul>
+            <li><a href="#geom_bar"><code>geom_bar()</code></a></li>
+            <li><a href="#geom_col"><code>geom_col()</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#creating-histograms">Creating Histograms</a></li>
+        <li><a href="#creating-boxplots">Creating Boxplots</a></li>
+        <li><a href="#the-precision-of-ggplot">The Precision of ggplot</a></li>
+        <li><a href="#modifying-background-elements">Modifying Background Elements</a>
+          <ul>
+            <li><a href="#the-plot-background-colour">The Plot Background colour</a></li>
+            <li><a href="#the-panel-background-colour">The Panel Background Colour</a></li>
+            <li><a href="#grid-lines">Grid Lines</a></li>
+            <li><a href="#get-creative">Get Creative!</a></li>
+          </ul>
+        </li>
+        <li><a href="#modifying-the-axes">Modifying the Axes</a></li>
+        <li><a href="#changing-scale">Changing Scale</a></li>
+        <li><a href="#custom-colours-and-cleaner-legends">Custom Colours and Cleaner Legends</a>
+          <ul>
+            <li><a href="#functions-within-functions">Functions within functions</a></li>
+          </ul>
+        </li>
+        <li><a href="#annotations">Annotations</a></li>
+        <li><a href="#titles">Titles</a></li>
+        <li><a href="#predefined-themes">Predefined Themes</a></li>
+        <li><a href="#a-useful-link">A Useful Link</a></li>
+        <li><a href="#mapping-with-ggplot-and-ggmap">Mapping with ggplot and ggmap</a></li>
+        <li><a href="#ggplot-challenge">ggplot Challenge</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

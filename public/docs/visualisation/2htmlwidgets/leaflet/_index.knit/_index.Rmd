@@ -1,0 +1,382 @@
+---
+title: "htmlwidgets - Leaflet"
+author: "UNSW"
+date: "2019"
+output: 
+  html_document:
+    self_contained: false
+css: html-styles.css
+---
+
+```{r setup, include=FALSE, message=TRUE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      out.width = "80%")
+```
+
+```{r tidyverse, include=FALSE, message=FALSE}
+library("tidyverse")
+```
+
+# The Bigger Picture
+
+In this document we learn how to create interactive charts with leaflet. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+
+
+# What is Leaflet?
+
+> [Lynda 2.1](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/what-is-the-leaflet-library?u=2087740)
+
+```{r library-leaflet, echo = TRUE, message = FALSE}
+library("leaflet")
+```
+
+- An htmlwidget used to make interactive maps
+- The package is bound to the Leaflet library in JavaScript
+- Can create:
+    - Geoplots
+    - Choropleths
+    - Geolines maps
+- Like the Tidyverse, leaflet heavily depends on the pipeline (`%>%`) operator to create charts
+    
+# Creating basic geoplots
+
+> [Lynda 2.2, 2.3](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740)
+
+The example data used is from the [ACORN-SAT dataset](http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks). The dataset spans 112 Australian stations recording temperature measurements for over 100 years. We will use data from the year 2000.
+
+```{r basic_geoplot1, echo=FALSE}
+load("tidy_ACORN-SAT_data/station_data.rdata")
+station_data <- station_data %>%
+  filter(year == 2000)
+```
+
+```{r basic_geoplot2}
+station_data %>%
+  sample_n(5)
+```
+
+- We begin by piping our data into the `leaflet()` function to begin any leaflet chart
+
+```{r basic_geoplot3, message=FALSE, results=FALSE}
+station_data %>%
+  leaflet()
+```
+
+- We may then pipe this data into a variety of "functions" to customise the graph we create
+- Since we first want a geoplot, we use `addTiles()` to get a default map
+
+```{r basic_geoplot4}
+plot <- station_data %>%
+  leaflet() %>%
+  addTiles()
+widgetframe::frameWidget(plot)
+```
+
+Notice how we can move around and zoom in -- Leaflet is very interactive!
+
+- We could also use`addProviderTiles()` to use a custom map
+- Maps available from https://rstudio.github.io/leaflet/basemaps.html
+
+```{r basic_geoplot5}
+plot <- station_data %>%
+  leaflet() %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMap)
+widgetframe::frameWidget(plot)
+```
+
+- We may now pipe into `addMarkers()` to place our geographical data
+
+```{r basic_geoplot6}
+station_data %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = ~Longitude,
+             lat = ~Latitude)
+```
+
+If we have numeric latitude and longitude columns in our data, `addMarkers()` will automatically use these. If your columns aren't automatically detected, try using `lat = ~as.numeric(Latitude)`. The error may be caused by numeric data stored as a character variable!
+
+# Geoplot options
+
+> [Lynda 2.2, 2.3](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740)
+
+- We can display data if we hover over our points, or if we click on them
+- Hover data is given by the `label` argument of `addMarkers()`
+- Click data is given by the `popup` argument of `addMarkets()`
+- For each, we can display multiple variables or lines of text by adding arguments to `paste0()` or `paste()`
+    - If we type this special string "<br/>", our following text begins on a new line
+
+```{r geoplot_options1}
+station_data %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(label = ~Station.name,
+             popup = ~paste0("Altitude: ",
+                             Elevation,
+                             "<br/>",
+                             "<br/>",
+                             "Isn't Leaflet neat?"),
+             lng = ~Longitude,
+             lat = ~Latitude)
+```
+
+Click on the markers!
+
+# A note on Leaflet formatting
+
+Notice in the previous section, our arguments used a tilde ("`~`") before we called on our column names. This even occured when we called them within a formula.
+
+```{r tilde, message=FALSE}
+station_data %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(label = ~Station.name,
+             popup = ~paste0("Altitude: ", Elevation),
+             lng = ~Longitude,
+             lat = ~Latitude)
+```
+
+We must do this, as this is the format Leaflet demands. It's how Leaflet detects column names and converts them to lists of variables.
+
+# Creating circle marker geoplots
+
+> [Lynda 2.2, 2.3](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740)
+
+- We simply use `addCircleMarkers()` instead of just `addMarkers()`
+- We also gain access to a number of additional options, some of which are shown here
+
+Radius changes the size of circle plots according to a variable. Here we'd like the size to represent temperature.
+
+```{r circle_marker_plot1}
+station_data %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(label = ~paste("The", Station.name, "circle!"),
+                   radius = ~average.temp,
+                   lng = ~Longitude,
+                   lat = ~Latitude)
+```
+
+
+We can also change the colour of the circle markers according to a variable, although this requires some setup.
+
+- First we define a palette with the `colorNumeric()` function
+- The `palette` argument specifies the colours we move on a gradient between
+- The `domain` argument is the list of numeric values we map to the gradient
+
+```{r circle_marker_plot2}
+pal <- colorNumeric(
+  palette = "YlOrRd",
+  domain = station_data$average.temp)
+```
+
+- We can then use this in the `color` argument of `addCircleMarkers()`
+
+```{r circle_marker_plot3}
+station_data %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(label = ~paste("The", Station.name, "circle!"),
+                   color = ~pal(average.temp),
+                   lng = ~Longitude,
+                   lat = ~Latitude)
+```
+
+- R comes with several pre-built palettes such as "YlOrRd" and "Blues" to help `colorNumeric()`
+- Take note that using the `colorRampPalette()` function, it is possible to create custom palettes
+- In this example, the `palette` argument of `colorNumeric()` is defined using this special `colorRampPalette()` call
+
+```{r circle_marker_plot4}
+pal <- colorNumeric(
+  palette = colorRampPalette(c("green", "purple"))(length(station_data$average.temp)),
+  domain = station_data$average.temp)
+```
+
+# Leaflet Choropleths
+
+> [Lynda 2.4, 2.5](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/prepare-data-for-a-choropleth-plot?u=2087740)
+
+A choropleth is a map-based chart in which regions are shaded with colours to reflect some variable. Creating choropleths with Leaflet requires us to manipulate 'shapefiles'. These are files which contain information about points, lines, polygons (etc) necessary to visually depict shapes, such as countries of the world. Before we can create a choropleth, we must learn how to prepare these shape files
+
+\  
+
+There are two types of shapefiles
+- ESRI shapefiles - the older standard for shapefiles
+    - To use them we must have (at least) one of all of the below:
+    - A `.dbf` file
+    - A `.shp` file
+    - A `.shx` file
+- GeoJson shapefiles - a newer type
+    - To use them we only require one `.json` file
+
+A good sources of global shapefiles are [NaturalEarthData.com](http://www.naturalearthdata.com/downloads/) and [Johan's repository](https://gitgub.com/johan/world.geo.json)
+ 
+
+# Preparing shapefiles
+
+> [Lynda 2.4](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/prepare-data-for-a-choropleth-plot?u=2087740)
+
+- We require the library "`sf`"
+- We call upon `read_sf()` to read an entire directory of shapefiles and save the result
+- For our example we will use an Australian shapefile released by the [Australian Government](http://data.daff.gov.au/anrdl/metadata_files/pa_nsaasr9nnd_02211a04.xml)
+
+```{r shapefiles1}
+library("sf")
+shapefile_map <- read_sf(dsn = "shapefiles")
+# Note: for file path, do not include a '/' at the end
+shapefile_map
+```
+
+- Note that our `shapefile_map` variable has a column called "geometry"
+    - Each value in "geometry" is a list of lattitudes and longitudes
+    - These geographical points map out a shape, hence our "shapefiles"
+- After reading the files in, we simply pipe them into the `addPolygons()` Leaflet function to view our map
+
+```{r shapefiles3}
+shapefile_map %>%
+  leaflet() %>%
+  addPolygons()
+```
+
+# Creating Leaflet choropleths and Legends
+> [Lynda 2.5, 2.7](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-choropleth-maps-2?u=2087740)
+
+We have our shapes - we will now mutate our shape data so that they are named by state.
+
+```{r choropleth1}
+shapefile_map$State <- c("NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT")
+```
+
+- Of course we want to colour our chart
+- We first create a palette
+
+What colours do we use?
+
+- [Color Brewer](Colorbrewer2.org) is a website with many palettes
+- We will use the one called "Set1"
+
+How do we create our palette?
+
+-Several functions exist
+    - `colorNumeric()` for continuous numeric variable colouring
+    - `colorQuantile()` for colouring by quantile of a numeric variable
+    - `colorBin()` for colouring by bins of a numeric variable
+    - `colorFactor()` for colouring by a categorical variable
+
+Right now we have a map but no data. Let us colour by "State", a categorical variable.
+
+```{r choropleth2}
+palette <- colorFactor("Set1", domain = shapefile_map$State)
+
+shapefile_map %>%
+  leaflet() %>%
+  addTiles() %>%
+  addPolygons(color = ~palette(State)) %>%
+  addLegend(pal = palette, values = ~State, title = "State: ")
+```
+
+- Note that color is an argument of addPolygons()
+- Note that the palette object is a function we are applying to the "State" column
+
+Here we have introduced the Leaflet `addLegend()` function
+- The `pal` argument specifies the palette we use for the legend
+- The `values` argument specifies the variable our legend explains
+- The `title` argument titles the legend
+
+Let us add some actual data to our choropleth. We will use the 2013-2014 subset of water usage data from the [Australian Environmental-Economic Accounts (2016)](https://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/4655.0Explanatory%20Notes12016?OpenDocument)
+
+- To see how this data was processed, see `building_state_data.R`
+- We can add extra data simply by merging with respect to the "State" variable
+
+```{r choropleth3}
+load("tidy_EnvAcc_data/water_data.rdata")
+water_data
+
+water_data_map <- shapefile_map %>%
+  merge(water_data, by = "State")
+```
+
+We may now make a new palette and colour it. Let us do this by the average price of water.
+
+- While we're at it, let's display the average price by hovering our mouse over the state
+- Additionally let's make it so that if we click, we can see per household water consumption and expenditure
+
+```{r choropleth4}
+palette <- colorNumeric("Blues", domain = water_data_map$`HouseholdPrice($/KL)`)
+
+water_data_map %>%
+  leaflet() %>%
+  addTiles() %>%
+  addPolygons(color = ~palette(water_data_map$`HouseholdPrice($/KL)`),
+              label = ~paste("Price:",
+                            water_data_map$`HouseholdPrice($/KL)`),
+              popup = ~paste("Average household consumption (KL):",
+                             water_data_map$`HouseholdPhysical(GL)`,
+                             "<br/>",
+                             "Household expenditure ($m):",
+                             water_data_map$`HouseholdMonetary($m)`)) %>%
+  addLegend(pal = palette,
+            values = ~water_data_map$`HouseholdPrice($/KL)`,
+            title = "Average price of water ($/KL): ")
+```
+
+Just like with `addMarkers()`, the `label` and `popup` arguments still work!
+
+# Geoline maps
+
+> [Lynda 2.6](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-geolines-maps?u=2087740)
+
+- These are another great feature of Leaflet that requires some preparation
+- We can create maps of arcs across the surface of the earth using the `gcIntermediate()` function
+- We specify our "to" and from points as latitudes and longitudes
+    - For our example we will use the ACORN-SAT stations and plot the distance between the most eastern and most western stations
+
+To begin, we need the "geosphere" and "sp" packages. We also need two data.frames, each containing only a set of latitudes and longitudes. For our example, we filter out only the most eastern and most western coordinates.
+
+```{r geolines1, message=FALSE}
+library("geosphere")
+library("sp")
+
+load("tidy_ACORN-SAT_data/station_data.rdata")
+east_to_west <- station_data %>%
+  filter(year == 2000)
+
+start_loc <- east_to_west %>%
+  filter(Longitude == max(Longitude)) %>%
+  select(Longitude, Latitude)
+
+end_loc <- east_to_west %>%
+  filter(Longitude == min(Longitude)) %>%
+  select(Longitude, Latitude)
+```
+
+- We then use `gcIntermediate()` to create our lines
+    - This is useful, but isn't attached to our original data
+- We thus pipe the result into `SpatialLinesDataFrame()` specifying our data to create one integrated object
+- Finally we pipe this into `st_as_sf()` to format the object as an sf
+
+```{r geolines2, message=FALSE}
+distance <- gcIntermediate(p1 = start_loc,
+                           p2 = end_loc,
+                           n = 50,
+                           addStartEnd = TRUE,
+                           sp = TRUE) %>%
+  SpatialLinesDataFrame(data = east_to_west) %>%
+  st_as_sf()
+```
+
+- Now we can use `addPolylines()` specifying our object to plot the lines
+- In our example this is only one line, but multiple lines are just as achievable
+
+``````{r geolines3, message=FALSE}
+east_to_west %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(label = ~Station.name) %>%
+  addPolylines(data = distance)
+```

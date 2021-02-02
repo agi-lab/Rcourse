@@ -5,23 +5,21 @@
   <meta name="generator" content="Hugo 0.80.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="knitr::opts_chunk$set(echo = TRUE) A first R Course #  Overview of contents #  The contents include Base R, tidyverse, data visualisation, and document generation via R Markdown.
-Main references are:
- Base R:   The R Software some LinkedIn Learning videos which are referenced in the materials   tidyverse and advanced data visualisation:   tidyverse  R for Data Science some LinkedIn Learning videos which are referenced in the materials   advanced data visualisation:   R for Data Science, &ldquo;Communicate&rdquo; section  bookdown  blogdown some LinkedIn Learning videos which are referenced in the materials    History #  Those materials were created by the following people, while being employed in the institutions in parentheses">
+<meta name="description" content="A first R Course #  Credentials #  Those materials were created by the following people, while being employed in the institutions in parentheses
+  Benjamin Avanzi (University of New South Wales, University of Melbourne) &mdash; for all contents  Pierre Lafaye de Micheaux (Université de Montréal, University of New South Wales, Université de Montpellier) &mdash; especially for Base R contents Xinda Yang (University of New South Wales) &mdash; especially for Base R contents and some tidyverse and data visualisation contents Johnny Wong (University of New South Wales) &mdash; especially for dplyr contents  Alan Xian (University of New South Wales, Macquarie University) &mdash; especially for Base R contents and some tidyverse and data visualisation contents  Guillaume Boglioni Beaulieu (University of New South Wales) &mdash; especially for Base R contents and some tidyverse and data visualisation contents Arkington Owen (University of New South Wales) &mdash; for Base R contents to a limited extent, but especially for the tidyverse, advanced data visualisation contents, and document generation via R Markdown contents  It all started with an initial set of slides on Base R that were created by Pierre Lafaye de Micheaux, and aligned with textbook The R Software.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Foreword" />
-<meta property="og:description" content="knitr::opts_chunk$set(echo = TRUE) A first R Course #  Overview of contents #  The contents include Base R, tidyverse, data visualisation, and document generation via R Markdown.
-Main references are:
- Base R:   The R Software some LinkedIn Learning videos which are referenced in the materials   tidyverse and advanced data visualisation:   tidyverse  R for Data Science some LinkedIn Learning videos which are referenced in the materials   advanced data visualisation:   R for Data Science, &ldquo;Communicate&rdquo; section  bookdown  blogdown some LinkedIn Learning videos which are referenced in the materials    History #  Those materials were created by the following people, while being employed in the institutions in parentheses" />
-<meta property="og:type" content="article" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="https://a-first-r-course.netlify.app/docs/foreword/" />
 
-<title>Foreword | A First R Course</title>
+<title>Foreword | A First Course in R</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.6c7c6446dfdee7c8c933e9bbc6e80ee3ed6c913b2a59519f2092c3c6a9d63e55.css" integrity="sha256-bHxkRt/e58jJM&#43;m7xugO4&#43;1skTsqWVGfIJLDxqnWPlU=">
-<script defer src="/en.search.min.99d6ab632b623dc6d63fce05bb69dafd5ca570ae06025adf4c2258f9246474b2.js" integrity="sha256-mdarYytiPcbWP84Fu2na/VylcK4GAlrfTCJY&#43;SRkdLI="></script>
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
 
 <script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/foreword/index.xml" title="A First Course in R" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -39,7 +37,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="/"><span>A First R Course</span>
+  <a href="/"><span>A First Course in R</span>
   </a>
 </h2>
 
@@ -60,317 +58,79 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  
-
-
-
-  
   <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/" class="">Example Site</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/table-of-contents/" class="">Table of Contents</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/table-of-contents/with-toc/" class="">With ToC</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/table-of-contents/without-toc/" class="">Without ToC</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-4e46b01272d410b3a99461d79326ddf4" class="toggle"  />
-    <label for="section-4e46b01272d410b3a99461d79326ddf4" class="flex justify-between">
-      <a  class="">Collapsed</a>
-      <span>▾</span>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/" class="">3rd Level</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/4th-level/" class="">4th Level</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>Shortcodes</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/buttons/" class="">Buttons</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/columns/" class="">Columns</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/details/" class="">Details</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/expand/" class="">Expand</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/hints/" class="">Hints</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/katex/" class="">Katex</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/mermaid/" class="">Mermaid</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-d3fc1bf6d66cd84b896a0af9f40cb1d5" class="toggle"  />
-    <label for="section-d3fc1bf6d66cd84b896a0af9f40cb1d5" class="flex justify-between">
-      <a href="https://a-first-r-course.netlify.app/docs/shortcodes/section/" class="">Section</a>
-      <span>▾</span>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/section/page1/" class="">Page1</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/section/page2/" class="">Page2</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/shortcodes/tabs/" class="">Tabs</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://a-first-r-course.netlify.app/docs/foreword/" class=" active">Foreword</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
 
 
 
@@ -381,14 +141,20 @@ https://github.com/alex-shpak/hugo-book
 <ul>
   
   <li>
-    <a href="/posts/" >
-        Blog
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
       </a>
   </li>
   
   <li>
-    <a href="https://github.com/alex-shpak/hugo-book" target="_blank" rel="noopener">
-        Github
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
       </a>
   </li>
   
@@ -443,8 +209,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#a-first-r-course">A first R Course</a>
       <ul>
-        <li><a href="#overview-of-contents">Overview of contents</a></li>
-        <li><a href="#history">History</a></li>
+        <li><a href="#credentials">Credentials</a></li>
       </ul>
     </li>
   </ul>
@@ -459,49 +224,13 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><pre><code class="language-{r" data-lang="{r">knitr::opts_chunk$set(echo = TRUE)
-</code></pre><h1 id="a-first-r-course">
+  <article class="markdown"><h1 id="a-first-r-course">
   A first R Course
   <a class="anchor" href="#a-first-r-course">#</a>
 </h1>
-<h2 id="overview-of-contents">
-  Overview of contents
-  <a class="anchor" href="#overview-of-contents">#</a>
-</h2>
-<p>The contents include Base R, tidyverse, data visualisation, and document generation via R Markdown.</p>
-<p>Main references are:</p>
-<ul>
-<li>Base R:
-<ul>
-<li>
-  <a href="http://biostatisticien.eu/springeR/index-en.html">The R Software</a></li>
-<li>some LinkedIn Learning videos which are referenced in the materials</li>
-</ul>
-</li>
-<li>tidyverse and advanced data visualisation:
-<ul>
-<li>
-  <a href="https://www.tidyverse.org">tidyverse</a></li>
-<li>
-  <a href="https://r4ds.had.co.nz">R for Data Science</a></li>
-<li>some LinkedIn Learning videos which are referenced in the materials</li>
-</ul>
-</li>
-<li>advanced data visualisation:
-<ul>
-<li>
-  <a href="https://r4ds.had.co.nz">R for Data Science, &ldquo;Communicate&rdquo; section</a></li>
-<li>
-  <a href="https://bookdown.org">bookdown</a></li>
-<li>
-  <a href="https://bookdown.org/yihui/blogdown/">blogdown</a></li>
-<li>some LinkedIn Learning videos which are referenced in the materials</li>
-</ul>
-</li>
-</ul>
-<h2 id="history">
-  History
-  <a class="anchor" href="#history">#</a>
+<h2 id="credentials">
+  Credentials
+  <a class="anchor" href="#credentials">#</a>
 </h2>
 <p>Those materials were created by the following people, while being employed in the institutions in parentheses</p>
 <ul>
@@ -510,6 +239,7 @@ https://github.com/alex-shpak/hugo-book
 <li>
   <a href="https://web.maths.unsw.edu.au/~lafaye/">Pierre Lafaye de Micheaux</a> (Université de Montréal, University of New South Wales, Université de Montpellier) &mdash; especially for Base R contents</li>
 <li>Xinda Yang (University of New South Wales) &mdash; especially for Base R contents and some tidyverse and data visualisation contents</li>
+<li>Johnny Wong (University of New South Wales) &mdash; especially for dplyr contents</li>
 <li>
   <a href="https://researchers.mq.edu.au/en/persons/alan-xian">Alan Xian</a> (University of New South Wales, Macquarie University) &mdash; especially for Base R contents and some tidyverse and data visualisation contents</li>
 <li>
@@ -530,61 +260,18 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex flex-wrap justify-between">
 
-  
 
 
-
-  
-    
-  
-    
-  
-    
-  
-
-
-
-<div class="book-languages" tabindex="0" aria-haspopup="true">
-  <ul>
-    <li class="flex align-center">
-      <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
-      English
-    </li> 
-  </ul>
-
-  <ul class="book-languages-list">
-    
-    <li class="active">
-      <a href="https://a-first-r-course.netlify.app/" class="flex align-center">
-        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
-        English
-      </a>
-    </li>
-    
-    <li class="">
-      <a href="https://a-first-r-course.netlify.app/ru/" class="flex align-center">
-        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
-        Russian
-      </a>
-    </li>
-    
-    <li class="">
-      <a href="https://a-first-r-course.netlify.app/zh/" class="flex align-center">
-        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
-        Chinese
-      </a>
-    </li>
-    
-  </ul>
-</div>
-
-
-
+  <div><a class="flex align-center" href="https://github.com/agi-lab/Rcourse/commit/4935383195419d61eddd455fa5bb00e0f18d9942" title='Last modified by Benjamin Avanzi | 1 February 2021' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>1 February 2021</span>
+    </a>
+  </div>
 
 
 
   <div>
-    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/master/exampleSite/content/docs/foreword/index.md" target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/foreword/_index.md" target="_blank" rel="noopener">
       <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
       <span>Edit this page</span>
     </a>
@@ -616,8 +303,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#a-first-r-course">A first R Course</a>
       <ul>
-        <li><a href="#overview-of-contents">Overview of contents</a></li>
-        <li><a href="#history">History</a></li>
+        <li><a href="#credentials">Credentials</a></li>
       </ul>
     </li>
   </ul>

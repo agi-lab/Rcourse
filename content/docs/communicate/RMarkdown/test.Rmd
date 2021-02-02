@@ -1,0 +1,31 @@
+---
+title: "The R Logo"
+author: "Hugh Mann"
+date: "09/08/2019"
+output:
+  bookdown::html_document2:
+    df_print: paged
+css: html-styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Parabola
+
+```{r code1, fig.cap="*A nice parabola.*"}
+text <- "R Markdown is cool"
+print(text)
+x = seq(-5,5,0.1)
+y = x^2
+plot(x,y)
+load("tidy_EnvAcc_data/consumption.rdata")
+library("tidyverse")
+```
+
+```{r table1}
+head(consumption) %>%
+  knitr::kable(caption = "Water Consumption in Australia")
+```
+

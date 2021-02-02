@@ -1,0 +1,519 @@
+---
+title: 'Data manipulation, operations and work strategy in Base R'
+author: University of New South Wales
+date: "2019"
+output: 
+  slidy_presentation:
+    self_contained: no
+css: styles.css
+---
+
+```{r setup, include=FALSE}
+# install the dplyr package first
+knitr::opts_chunk$set(eval=TRUE,echo = TRUE,collapse=TRUE,out.width = '80%')
+library(dplyr)
+```
+
+# Learning outcomes
+
+By the end of this topic, you should be able to
+
+
+- extract elements from different R data structures in an efficient way
+
+- manipulate different types of R data structures with appropriate R functions
+
+- implement work strategies of R and R Studio
+
+**Warning:** Some of the materials here are so-called "Base R". There are easier (and often better) ways of doing data manipulations with the ["tidyverse" ecosystem](https://www.lynda.com/R-tutorials/Learning-R-Tidyverse/586672-2.html?org=unsw.edu.au). You will learn the tidyverse in week 2, but it is still essential to first be literate in "Base R", so hang on. *That being said, the package "dplyr" covered here is part of "tidyverse", so we are getting there!*
+
+# Vectors - Extracting elements from vectors - Method I - Page 100
+By using the index/indices
+
+```{r vector,eval=TRUE,echo=TRUE}
+vec <- c(2,4,6,8,3)
+vec[2]
+vec[-2]
+vec[2:5]
+vec[-c(1,5)]
+```	
+
+# Vectors - Extracting elements from vectors - Method II - Pages 100-101
+	
+By using logical masks (that is, by specifying whether each element will be extracted using a logical index):
+
+```{r vector_logical,eval=TRUE,echo=TRUE}
+vec
+vec[c(F,F,T,T,F)]
+vec[vec>4]
+```	
+
+Advantages: fast execution and easy communication.	
+
+
+
+# Vectors - Extracting elements from vectors - Three useful functions - Page 101
+
+```{r vector_three,eval=TRUE,echo=TRUE}
+x <- c(1,9,0,0,-5,9,-5)
+which.max(x)
+which.min(x)
+which(x==0)
+```	
+
+
+
+# Matrix - Extraction from matrices- Method I - Pages 102-103	
+
+By using indices `X[indr, indc]`
+
+- `indr` is the vector of indices of rows and  `indc` is the vector of indices of columns to extract
+- omitting `indr` (respectively `indc`) means that all rows are selected (respectively all columns)
+- `indr` and `indc` can be preceded by a minus sign (-) to indicate elements not to extract
+
+```{r matrix,eval=TRUE,echo=TRUE}
+Mat <- matrix(1:12,nrow=4,byrow=TRUE)
+Mat
+Mat[2,3]
+
+Mat[,1]
+
+Mat[c(1,4),]
+Mat[3,-c(1,3)]
+```		
+
+# Matrix - Extraction from matrices- Method II - Pages 102-103
+
+By using logical masks `X[mask]`
+
+- a mask is a matrix of logical values (TRUE or FALSE) of the same size as X, indicating which elements to extract
+
+```{r matrix_logical,eval=TRUE,echo=TRUE}
+Mat <- matrix(1:12,nrow=4,byrow=TRUE)
+MatLogical <- matrix(c(TRUE,FALSE),nrow=4,ncol=3)
+Mat
+MatLogical
+Mat[MatLogical]
+```
+
+# Matrix - The which() function for matrices - Page 104
+
+```{r matrix_which,eval=TRUE,echo=TRUE}
+m <- matrix(c(1,2,3,1,2,3,2,1,3),3,3)
+m
+which(m == 1) 
+# m is seen as the concatenation of its columns
+which(m == 1,arr.ind=TRUE)
+# this gives the indices (row and column) of all elements = 1
+```
+
+# Data frame example
+
+```{r dataframe,eval=TRUE,echo=TRUE}
+X <- data.frame(GENDER=c("F","M","M","F"),
+Height=c(165,182,178,160),
+Weight=c(50,65,67,55),
+Income=c(80,90,60,50))
+row.names(X)<-c('Aiyana','James','John','Abbey')
+
+X
+X[3,2]
+X['John','Height']
+
+X$Weight
+X["John",]
+X[,"Height"]
+```
+
+
+
+# The attach() function
+
+The function `attach(some.data.frame)` creates a workspace where each variable of the data frame can be accessed directly (without using the dollar sign `$`). Therefore it can reduce the length of codes. However, this space does not 'communicate' with the working directory. Therefore, if you make a change in the data frame, it will not be effective in this additional workspace. We then recommend to be very careful with the `attach()` function (especially for large projects).
+
+```{r attach,eval=TRUE,echo=TRUE}
+attach(X)
+GENDER
+# We update GENDER in our data frame X
+X$GENDER <- c("F", "F", "F", "F")
+X$GENDER
+# However, the version of X we 'attached' has NOT been updated
+GENDER
+```
+
+# dplyr - Introduction
+
+dplyr is a commonly used package. It makes manipulating dataframes very easy and intuitive. To install (and load) any package, just type
+
+```{r, eval=F}
+install.packages('dplyr') # Installs the package, you need this only once
+library('dplyr') # Loads the package, you need this every time you use it
+```
+
+There are 6 main functions in dplyr:
+
+* filter - selects rows
+
+* select - selects columns
+
+* arrange - sorts rows by some order
+
+* mutate - creates new columns
+
+* group_by - groups certain rows together
+
+* summarise - provides summaries of grouped rows
+
+
+# dplyr - Filter and Select
+
+Here some examples using the in-built data frame 'mtcars'
+
+```{r, eval=TRUE}
+
+# Filters the dataset for observations with mpg greater than 20
+filter(mtcars, mpg > 30) 
+
+# Returns the dataframe mtcars but only with the 3 specified columns
+select(mtcars, mpg, cyl, wt) 
+
+# Returns the columns mpg and cyl for rows with wt greater than 2
+select(filter(mtcars, wt > 2), mpg, cyl)
+```
+
+# dplyr - Pipeline operator, Arrange and Mutate
+As you apply more operations to your dataframe, the nested functions you use can get hard to read
+
+Luckily, the dplyr package includes the useful 'pipeline' operator %>% (*orally referred to as "pipe", such as in "A pipe B"*). Think of it as "and then"
+```{r, eval=TRUE}
+
+# Take the dataframe, and then filter for mpg greater than 20
+mtcars %>% filter(mpg>30)
+
+# Do the same, and then select certain columns
+mtcars %>% 
+  filter(mpg > 30) %>%
+  select(mpg, wt)
+
+########################### arrange ##################################
+# Sort the rows in ascending order of wt
+mtcars %>%
+  filter(mpg > 30) %>%
+  arrange(wt)
+
+# Sort the rows in descending order of wt
+mtcars %>%
+  filter(mpg > 30) %>%
+  arrange(desc(wt))
+
+########################### mutate ###################################
+mtcars %>%
+  mutate(double_wt = wt*2, # Creates a new variable called double_wt
+         kms_per_gallon = mpg*1.61, # Creates a new variable called kms_per_gallon
+         name = row.names(mtcars)) %>%  # Creates a new variable with names of the cars
+  select(name, double_wt, kms_per_gallon)
+```
+
+# dplyr - Why use the pipeline operator?
+
+The pipeline operator makes it much easier to read what is going on. Note that the following two pieces of code achieve the same thing.
+
+```{r}
+# Using base R
+arrange(select(filter(mtcars, mpg > 30), mpg, wt, cyl), desc(wt))
+```
+
+
+```{r}
+# Using dplyr
+mtcars %>%
+  filter(mpg > 30) %>%
+  select(mpg, wt, cyl) %>%
+  arrange(desc(wt))
+```
+
+It is hard to quickly get what the base R version is doing. In contrast, you can easily interpret the dplyr versions as:
+
+- take the mtcars dataset, **and then**
+
+- filter for mpg > 30, **and then**
+
+- select the columns mpg, wt, cyl, **and then**
+
+- arrange them by descending weight
+
+# dplyr - summarise and group_by
+
+summarise() will give you summary statistics
+
+```{r, eval = TRUE}
+mtcars %>%
+  summarise(mean_mpg = mean(mpg),
+            num_cars = n(),
+            sd_wt = sd(wt))
+```
+
+group_by is a very powerful function that will group rows into different categories. You can then use summarise() to find summary statistics of each group
+
+```{r, eval = TRUE}
+mtcars %>%
+  group_by(cyl) %>% # Group cars by how many cylinders they have
+  summarise(avg_mpg = mean(mpg)) # Find the average mpg for each group (cyl)
+
+```
+
+Common summary statistics include:
+
+- mean() the average
+- sd() the standard deviation
+- n() the count
+
+
+# dplyr - Why use dplyr?
+
+dplyr is generally easier to read and write than base R. The following codes do the same thing
+
+**Base R:**
+```{r, eval = TRUE}
+new_df <- mtcars[mtcars$mpg > 30 & mtcars$wt < 2,]
+new_df["kmpl"] <- new_df$mpg * 0.264172 * 1.60934
+new_df <- new_df[, c("kmpl", "disp", "wt")]
+```
+
+**dplyr:**
+```{r, eval = TRUE}
+new_df <- mtcars %>%
+  mutate(name = rownames(mtcars),
+         kmpl = mpg * 0.264172 * 1.60934) %>%
+  filter(mpg > 30,
+         wt < 2) %>%
+  select(name,
+         kmpl,
+         disp,
+         wt)
+```
+
+In particular, group_by and summarise are very easy to write with dplyr. They are significantly harder to write in base R:
+
+**Base R:**
+```{r}
+avg_weight <- aggregate(mtcars$wt,
+          by = list(cylinders = mtcars$cyl, 
+                    gears = mtcars$gear),
+          FUN = mean)
+
+names(avg_weight)[3] <- "Average_weight"
+
+sd_weight <- aggregate(mtcars$wt,
+           by = list(cylinders = mtcars$cyl, 
+                     gears = mtcars$gear),
+           FUN = sd)
+
+names(sd_weight)[3] <- "std_dev_weight"
+
+new_df <- merge(avg_weight, sd_weight, by = c("cylinders", "gears"))
+```
+
+**dplyr:**
+```{r}
+new_df <- mtcars %>%
+  group_by(cyl, gear) %>%
+  summarise(avg_weight = mean(wt),
+            sd_weight = sd(wt))
+```
+
+# dplyr - More information
+
+- Cheat sheet for dplyr - https://ugoproto.github.io/ugo_r_doc/dplyr.pdf
+
+- Online tutorial - http://genomicsclass.github.io/book/pages/dplyr_tutorial.html
+
+- Pick and choose from this Lynda course on: ["tidyverse"](https://www.lynda.com/R-tutorials/Learning-R-Tidyverse/586672-2.html?org=unsw.edu.au) </p> **If you complete the Lynda course this will give you a certification that you can them add to your LinkedIn account!**
+
+
+
+
+# Work strategy - page 285
+
+Recall that to access files directly, you can set up your working directory using:
+	
+- setwd("C:/Users/...").
+- in Rstudio: Go to Session $\rightarrow$ Set Working Directory
+
+You can also read and execute the contents of an external R script file using the source() function:
+
+- source("C:/Users/.../myscript.R")
+
+Alternatively, you can use the file.choose() function which allows to 'manually' select a file
+
+- source(file.choose())
+
+Note: a R script file has the extension '.R'
+
+# Work strategy - page 285
+
+Workspace and .RData files
+
+- All the objects (vectors, lists, dataframes, functions, etc.) one creates in R are **temporarily** saved in a file on the hard disk, which is called the workspace. When you close your R session those objects are lost.
+- Therefore, it is recommended to create separate permanent workspace files for each of your projects. 
+- These files have the '.RData' extension.
+- Warning: If you load a .RData workspace in your current R session, any object defined in your temporary workspace will be overwritten if there is an object of the same name in the loaded workspace. 
+
+# Work strategy - page 285
+
+
+
+To save your workspace .RData file (also called workspace image):
+
+- save.image("C:/Users/.../myproject.RData")
+- or in Rstudio: Go to Session $\rightarrow$ Save Work Space As...
+- or, when you quit a RStudio session, you are asked whether you want to save your workspace
+
+To load a (previsously saved) workspace:
+
+- load("C:/Users/.../myproject.RData")
+- in Rstudio: Go to Session $\rightarrow$ Load Work Space...
+
+Note: The instructions above are to save your workspace (all objects produced by your script). **It is not the same as saving your actual R script!** 
+
+# Work stategy - Exercise
+
+Which of the following R codes saves the workspace image as week_5 in the directory ```C:\Users\student\Documents\ACTL1101``` ?
+
+```{r workspace,eval=FALSE,echo=TRUE}
+save.image("C:\Users\student\Documents\ACTL1101\week_5.rdata")
+```	
+
+```{r workspace2,eval=FALSE,echo=TRUE}
+save.image("C:/Users/student/Documents/ACTL1101/week_5")
+```	
+
+```{r workspace3,eval=FALSE,echo=TRUE}
+setwd("C:/Users/student/Documents/ACTL1101")
+save.image(week_5.rdata)
+```	
+
+```{r workspace4,eval=FALSE,echo=TRUE}
+setwd("C:\\Users\\student\\Documents\\ACTL1101")
+save.image("week_5.rdata")
+```	
+
+
+# Work stategy - Solution
+
+Which of the following R codes saves the workspace image as week_5 in the directory ```C:\Users\student\Documents\ACTL1101``` ?
+
+```{r workspacesol,eval=FALSE,echo=TRUE}
+save.image("C:\Users\student\Documents\ACTL1101\week_5.rdata")
+```	
+no, need to use ```\\``` or ```/```
+```{r workspacesol2,eval=FALSE,echo=TRUE}
+save.image("C:/Users/student/Documents/ACTL1101/week_5")
+```	
+no, missing .rdata after week_5
+```{r workspacesol3,eval=FALSE,echo=TRUE}
+setwd("C:/Users/student/Documents/ACTL1101")
+save.image(week_5.rdata)
+```	
+no, forgot to put week_5.rdata between quotation marks ```""```
+```{r workspacesol4,eval=FALSE,echo=TRUE}
+setwd("C:\\Users\\student\\Documents\\ACTL1101")
+save.image("week_5.rdata")
+```	
+yes, full marks!
+
+
+
+
+# Additional Notes
+
+There are many other vector and matrix operations that you may find useful. You should revise the contents below and refer to the textbook for more details.
+
+- inserting elements into vectors (see Pages 101-102), e.g.
+
+```{r vector_insert,eval=TRUE,echo=TRUE}
+vecA <- c(1, 3, 6, 2, 7, 4, 8, 1, 0)
+vecB <- c(vecA, 4, 1)
+(vecC <- c(vecA[1:4], 8, 5, vecA[5:9]))
+a <- c()
+a <- c(a,2)
+a
+```	
+
+- modifying the elements in a vector (see Page 101), e.g.
+
+```{r vector_modify,eval=TRUE,echo=TRUE}
+z<-c(0,0,0,2,0)
+z[c(1,5)] <- 1
+z
+z[which.max(z)] <- 0
+z
+z[z==0] <- 8
+z
+```	
+
+- modifying elements of matrices (see Page 105), e.g. 
+
+```{r matrix_modify,eval=TRUE,echo=TRUE}
+m <- matrix(c(1,2,3,1,2,3,2,1,3),3,3)
+m[m!=2] <- 0
+m
+
+Mat <- matrix(1:12,nrow=4,byrow=TRUE)
+Mat <- Mat[-4,]
+Mat
+
+m[Mat>7] <- Mat[Mat>7]
+m
+```
+
+- extracting elements from a list (see Pages 106-108)
+
+```{r list,eval=TRUE,echo=TRUE}
+L <- list(cars=c("FORD","PEUGEOT"),climate=c("Tropical","Temperate"))
+L[["cars"]]
+L$cars
+L$climate
+```
+
+Note that 
+
+    - $L[2]$ returns the second component of L as a list
+    
+    - $L[[2]]$ returns the second component of L as an element 
+
+- insering elements into a list (see Page 108)
+
+```{r list_insert,eval=TRUE,echo=TRUE}
+Mat <- matrix(1:12,nrow=4,byrow=TRUE)
+L <- list(12,c(34,67,8),Mat,1:5,list(10,11))
+L[2]
+class(L[2])
+L[c(3,4)]
+L[[2]]
+class(L[[2]])
+L[[5]][[2]]
+```
+
+# Additional Notes - Manipulating character strings - Page 109
+
+```{r character,eval=TRUE,echo=TRUE}
+(string <- c("one","two","three"))
+as.character(1:3)
+string1 <- c("a","B","bba","!")
+nchar(string1)
+string1[nchar(string1)>2]
+
+string2 <- c("e","D")
+
+paste(string1,string2)
+paste(string1,string2,sep="-")
+strsplit(c("05 Jan","06 Feb"), split=" ")
+```
+
+
+
+# Homework Exercises
+
+- 5.1, 5.3 5.6 - 5.19, 9.1-9.8, 9.10-9.12
+

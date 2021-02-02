@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Bigger Picture #  In this document we learn how to create interactive charts with Highcharter. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is Highcharter? #    Lynda 4.1
+ library(&#34;tidyverse&#34;) library(&#34;highcharter&#34;)  An htmlwidget used to make interactive graphs and charts of several types  Bar graphs and stacked bar graphs Scatterplots and bubble charts Interactive time series Tree maps Choropleths And many more   The package is specifically regarded for its effective presentation of time series The package is bound to the Highcharter library in JavaScript Highcharter heavily depends on the pipeline (%&gt;%) operator to create charts  Creating Bar Charts and Stacked Bar Charts #    Lynda 4.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="htmlwidgets - Highcharter" />
+<meta property="og:description" content="The Bigger Picture #  In this document we learn how to create interactive charts with Highcharter. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is Highcharter? #    Lynda 4.1
+ library(&#34;tidyverse&#34;) library(&#34;highcharter&#34;)  An htmlwidget used to make interactive graphs and charts of several types  Bar graphs and stacked bar graphs Scatterplots and bubble charts Interactive time series Tree maps Choropleths And many more   The package is specifically regarded for its effective presentation of time series The package is bound to the Highcharter library in JavaScript Highcharter heavily depends on the pipeline (%&gt;%) operator to create charts  Creating Bar Charts and Stacked Bar Charts #    Lynda 4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/highcharter/_index.knit/" />
+
+<title>htmlwidgets - Highcharter | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.365af13e903255891b4e8f0c7d566f2733fca621c254c49dc159520fac03ec84.js" integrity="sha256-NlrxPpAyVYkbTo8MfVZvJzP8piHCVMSdwVlSD6wD7IQ="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/docs/baseR/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href=""><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href=""><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/_index.knit/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/_index.knit/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/_index.knit/"class=active>highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/_index.knit/">visNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>htmlwidgets - Highcharter</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-highcharter">What is Highcharter?</a></li>
+    <li><a href="#creating-bar-charts-and-stacked-bar-charts">Creating Bar Charts and Stacked Bar Charts</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h1>
+<p>In this document we learn how to create interactive charts with Highcharter. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.</p>
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+<h1 id="what-is-highcharter">
+  What is Highcharter?
+  <a class="anchor" href="#what-is-highcharter">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/what-is-the-highcharter-library?u=2087740">Lynda 4.1</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;highcharter&#34;</span>)
+</code></pre></div><ul>
+<li>An htmlwidget used to make interactive graphs and charts of several types
+<ul>
+<li>Bar graphs and stacked bar graphs</li>
+<li>Scatterplots and bubble charts</li>
+<li>Interactive time series</li>
+<li>Tree maps</li>
+<li>Choropleths</li>
+<li>And many more</li>
+</ul>
+</li>
+<li>The package is specifically regarded for its effective presentation of time series</li>
+<li>The package is bound to the Highcharter library in JavaScript</li>
+<li>Highcharter heavily depends on the pipeline (<code>%&gt;%</code>) operator to create charts</li>
+</ul>
+<h1 id="creating-bar-charts-and-stacked-bar-charts">
+  Creating Bar Charts and Stacked Bar Charts
+  <a class="anchor" href="#creating-bar-charts-and-stacked-bar-charts">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-stacked-bar-charts?u=2087740">Lynda 4.2</a></p>
+</blockquote>
+<p>For our examples we will use the same data from the 
+  <a href="https://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/4655.0Explanatory%20Notes12016?OpenDocument">Australian Environmental-Economic Accounts (2016)</a>, now including data from 2008-2014. The data relates to water consumption by state.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/visualisation/2htmlwidgets/highcharter/_index.knit.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-highcharter">What is Highcharter?</a></li>
+    <li><a href="#creating-bar-charts-and-stacked-bar-charts">Creating Bar Charts and Stacked Bar Charts</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

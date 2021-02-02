@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Statistical analysis in R #  Learning outcomes #  By the end of this topic, you should be able to
+ summarise data in contingency tables calculate basic statistics from data  in particular, calculate dependency measures of two variables   simulate random observations  Warning: the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing things with the &ldquo;tidyverse&rdquo; ecosystem (see next section).">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Statistical analysis in R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/statisticalanalysis/" />
+
+<title>Statistical analysis in R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/statisticalanalysis/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/"class=active>Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Statistical analysis in R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#statistical-analysis-in-r">Statistical analysis in R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#understanding-your-data---importing-data---pages-339-343">Understanding your data - Importing data - Pages 339-343</a></li>
+        <li><a href="#understanding-your-data---variables---pages-339-343">Understanding your data - Variables - Pages 339-343</a></li>
+        <li><a href="#frequency-tables">Frequency tables</a>
+          <ul>
+            <li><a href="#frequency-table---discrete-variables---pages-343-344">Frequency table - discrete variables - Pages 343-344</a></li>
+            <li><a href="#frequency-table---continuous-variables---page-344">Frequency table - continuous variables - Page 344</a></li>
+            <li><a href="#frequency-table---choice-of-the-interval-brackets">Frequency table - Choice of the interval brackets</a></li>
+            <li><a href="#frequency-table---joint-observations---pages-344-345">Frequency table - joint observations - Pages 344-345</a></li>
+          </ul>
+        </li>
+        <li><a href="#numerical-statistics---pages-347-352">Numerical statistics - Pages 347-352</a>
+          <ul>
+            <li><a href="#numerical-statistics---notes---pages-347-352">Numerical statistics - Notes - Pages 347-352</a></li>
+          </ul>
+        </li>
+        <li><a href="#discussion---spot-data-problems">Discussion - Spot data problems</a>
+          <ul>
+            <li><a href="#discussion---solution">Discussion - Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#dependency-association-measures---pages-354-355">Dependency (association) measures - Pages 354-355</a></li>
+        <li><a href="#case-study-big-data-example">Case Study: &lsquo;Big Data&rsquo; Example</a>
+          <ul>
+            <li><a href="#case-study-import-and-check">Case Study: Import and check</a></li>
+            <li><a href="#case-study-exploration-questions">Case Study: Exploration Questions</a></li>
+            <li><a href="#exploration-questions-solution">Exploration Questions: Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#advanced-questions">Advanced Questions</a>
+          <ul>
+            <li><a href="#advanced-questions-solution">Advanced Questions: Solution</a></li>
+            <li><a href="#advanced-questions-discussion">Advanced Questions: Discussion</a></li>
+          </ul>
+        </li>
+        <li><a href="#probability-distributions-and-random-variables-in-r">Probability distributions and random variables in R</a></li>
+        <li><a href="#generating-random-variables-in-r---page-74">Generating random variables in R - Page 74</a>
+          <ul>
+            <li><a href="#generate-random-variables-in-r---setseed">Generate random variables in R - set.seed()</a></li>
+          </ul>
+        </li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="statistical-analysis-in-r">
+  Statistical analysis in R
+  <a class="anchor" href="#statistical-analysis-in-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this topic, you should be able to</p>
+<ul>
+<li>summarise data in contingency tables</li>
+<li>calculate basic statistics from data
+<ul>
+<li>in particular, calculate dependency measures of two variables</li>
+</ul>
+</li>
+<li>simulate random observations</li>
+</ul>
+<p><strong>Warning:</strong> the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing things with the &ldquo;tidyverse&rdquo; ecosystem (see next section).</p>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R
+Software</a>.</p>
+<h2 id="understanding-your-data---importing-data---pages-339-343">
+  Understanding your data - Importing data - Pages 339-343
+  <a class="anchor" href="#understanding-your-data---importing-data---pages-339-343">#</a>
+</h2>
+<p>We will use the sample_data.csv data throughout this module</p>
+<ul>
+<li>download the data from Moodle</li>
+<li>set-up the working directory and import the data (recommended to save the data in the folder you set as working directory)</li>
+<li>use the attach() function to gain direct access to the variables</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;sample_data.csv&#34;</span>, header<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">attach</span>(sample_data)
+<span style="color:#a6e22e">head</span>(sample_data)
+<span style="color:#75715e">##   X gender situation tea coffee height weight age      meat      fish raw_fruit</span>
+<span style="color:#75715e">## 1 1 Female    single   0      0    151     58  58 4-6/week. 2-3/week.  &lt;1/week.</span>
+<span style="color:#75715e">## 2 2 Female    single   1      1    162     60  60    1/day.   1/week.    1/day.</span>
+<span style="color:#75715e">## 3 3 Female    single   0      4    162     75  75 2-3/week.  &lt;1/week.    1/day.</span>
+<span style="color:#75715e">## 4 4 Female    single   0      0    154     45  45     never 4-6/week. 4-6/week.</span>
+<span style="color:#75715e">## 5 5 Female    single   2      1    154     50  50    1/day. 2-3/week.    1/day.</span>
+<span style="color:#75715e">## 6 6 Female    single   2      0    159     66  66 4-6/week.   1/week.    1/day.</span>
+<span style="color:#75715e">##   cooked_fruit_veg    chocol       fat</span>
+<span style="color:#75715e">## 1        4-6/week.    1/day.     Isio4</span>
+<span style="color:#75715e">## 2           1/day.  &lt;1/week. sunflower</span>
+<span style="color:#75715e">## 3          1/week.    1/day. sunflower</span>
+<span style="color:#75715e">## 4            never 2-3/week. margarine</span>
+<span style="color:#75715e">## 5           1/day. 2-3/week. margarine</span>
+<span style="color:#75715e">## 6           1/day.  &lt;1/week.    peanut</span>
+</code></pre></div><h2 id="understanding-your-data---variables---pages-339-343">
+  Understanding your data - Variables - Pages 339-343
+  <a class="anchor" href="#understanding-your-data---variables---pages-339-343">#</a>
+</h2>
+<p>13 variables (columns) of 226 individuals (rows)</p>
+<ul>
+<li>
+<p>qualitative: gender, situation and fat</p>
+</li>
+<li>
+<p>ordinal: meat, fish, raw_fruit, cooked_fruit_veg and chocol</p>
+</li>
+<li>
+<p>discrete quantitative: tea, coffee</p>
+</li>
+<li>
+<p>continuous quantitative: height, weight and age</p>
+</li>
+</ul>
+<p>Notes</p>
+<ul>
+<li>
+<p>The sample_data.csv is created based from the nutrition_elderly.csv spreadsheet downloaded from 
+  <a href="http://www.biostatisticien.eu/springeR/nutrition_elderly.xls">http://www.biostatisticien.eu/springeR/nutrition_elderly.xls</a>. See Page 339.</p>
+</li>
+<li>
+<p>Variables of nutrition_elderly.csv have been structured following the steps from Pages 340-343 and a new data frame was created and saved as sample_data.csv.</p>
+</li>
+</ul>
+<h2 id="frequency-tables">
+  Frequency tables
+  <a class="anchor" href="#frequency-tables">#</a>
+</h2>
+<h3 id="frequency-table---discrete-variables---pages-343-344">
+  Frequency table - discrete variables - Pages 343-344
+  <a class="anchor" href="#frequency-table---discrete-variables---pages-343-344">#</a>
+</h3>
+<p>For qualitative variable fat:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(tc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">table</span>(fat))
+<span style="color:#75715e">## fat</span>
+<span style="color:#75715e">##    butter      duck     Isio4 margarine     olive    peanut repesseed sunflower </span>
+<span style="color:#75715e">##        15         4        23        27        40        48         1        68</span>
+(tf <span style="color:#f92672">&lt;-</span> tc<span style="color:#f92672">/</span><span style="color:#a6e22e">length</span>(fat))
+<span style="color:#75715e">## fat</span>
+<span style="color:#75715e">##      butter        duck       Isio4   margarine       olive      peanut </span>
+<span style="color:#75715e">## 0.066371681 0.017699115 0.101769912 0.119469027 0.176991150 0.212389381 </span>
+<span style="color:#75715e">##   repesseed   sunflower </span>
+<span style="color:#75715e">## 0.004424779 0.300884956</span>
+<span style="color:#a6e22e">nlevels</span>(fat)
+<span style="color:#75715e">## [1] 0</span>
+</code></pre></div><p>A similar table can be obtained using dplyr:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">group_by</span>(fat) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>())
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 8 x 2</span>
+<span style="color:#75715e">##   fat           n</span>
+<span style="color:#75715e">##   &lt;chr&gt;     &lt;int&gt;</span>
+<span style="color:#75715e">## 1 butter       15</span>
+<span style="color:#75715e">## 2 duck          4</span>
+<span style="color:#75715e">## 3 Isio4        23</span>
+<span style="color:#75715e">## 4 margarine    27</span>
+<span style="color:#75715e">## 5 olive        40</span>
+<span style="color:#75715e">## 6 peanut       48</span>
+<span style="color:#75715e">## 7 repesseed     1</span>
+<span style="color:#75715e">## 8 sunflower    68</span>
+</code></pre></div><h3 id="frequency-table---continuous-variables---page-344">
+  Frequency table - continuous variables - Page 344
+  <a class="anchor" href="#frequency-table---continuous-variables---page-344">#</a>
+</h3>
+<p>For the continuous variable &lsquo;height&rsquo;, using dplyr functions (and function cut() to create intervals of &lsquo;height&rsquo;), we get:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ints <span style="color:#f92672">=</span> <span style="color:#a6e22e">cut</span>(height, breaks<span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">140</span>,<span style="color:#ae81ff">150</span>, <span style="color:#ae81ff">160</span>, <span style="color:#ae81ff">170</span>, <span style="color:#ae81ff">180</span>, <span style="color:#ae81ff">190</span>), right <span style="color:#f92672">=</span> F)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(ints) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>())
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 5 x 2</span>
+<span style="color:#75715e">##   ints          n</span>
+<span style="color:#75715e">##   &lt;fct&gt;     &lt;int&gt;</span>
+<span style="color:#75715e">## 1 [140,150)     3</span>
+<span style="color:#75715e">## 2 [150,160)    70</span>
+<span style="color:#75715e">## 3 [160,170)    89</span>
+<span style="color:#75715e">## 4 [170,180)    52</span>
+<span style="color:#75715e">## 5 [180,190)    12</span>
+</code></pre></div><p>A similar table can be obtained in base R (but it&rsquo;s hard to get appropriate names for categories!):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">res <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">hist</span>(height, plot<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>, breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">140</span>,<span style="color:#ae81ff">150</span>,<span style="color:#ae81ff">160</span>,<span style="color:#ae81ff">170</span>,<span style="color:#ae81ff">180</span>,<span style="color:#ae81ff">190</span>), right <span style="color:#f92672">=</span> F) <span style="color:#75715e"># put the data in 5 categories</span>
+x   <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.table</span>(res<span style="color:#f92672">$</span>counts) <span style="color:#75715e"># create the table</span>
+nn  <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.character</span>(res<span style="color:#f92672">$</span>breaks)
+<span style="color:#a6e22e">dimnames</span>(x) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">paste</span>(nn[<span style="color:#f92672">-</span><span style="color:#a6e22e">length</span>(nn)], nn[<span style="color:#ae81ff">-1</span>],sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-&#34;</span>)) <span style="color:#75715e"># add names to categories: this step is not straightforward!</span>
+x
+<span style="color:#75715e">## 140-150 150-160 160-170 170-180 180-190 </span>
+<span style="color:#75715e">##       3      70      89      52      12</span>
+</code></pre></div><h3 id="frequency-table---choice-of-the-interval-brackets">
+  Frequency table - Choice of the interval brackets
+  <a class="anchor" href="#frequency-table---choice-of-the-interval-brackets">#</a>
+</h3>
+<p>The choice of the interval brackets is arbitrary. There are no specific rules to choose the break points, but the choice should make practical sense. It mainly depends on the dataset, and the objective of the analysis.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ints <span style="color:#f92672">=</span> <span style="color:#a6e22e">cut</span>(height, breaks<span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">140</span>,<span style="color:#ae81ff">145</span>,<span style="color:#ae81ff">150</span>,<span style="color:#ae81ff">155</span>,<span style="color:#ae81ff">160</span>,
+    <span style="color:#ae81ff">165</span>,<span style="color:#ae81ff">170</span>,<span style="color:#ae81ff">175</span>,<span style="color:#ae81ff">180</span>,<span style="color:#ae81ff">185</span>,<span style="color:#ae81ff">190</span>), right <span style="color:#f92672">=</span> F)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(ints) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>())
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 10 x 2</span>
+<span style="color:#75715e">##    ints          n</span>
+<span style="color:#75715e">##    &lt;fct&gt;     &lt;int&gt;</span>
+<span style="color:#75715e">##  1 [140,145)     1</span>
+<span style="color:#75715e">##  2 [145,150)     2</span>
+<span style="color:#75715e">##  3 [150,155)    33</span>
+<span style="color:#75715e">##  4 [155,160)    37</span>
+<span style="color:#75715e">##  5 [160,165)    54</span>
+<span style="color:#75715e">##  6 [165,170)    35</span>
+<span style="color:#75715e">##  7 [170,175)    31</span>
+<span style="color:#75715e">##  8 [175,180)    21</span>
+<span style="color:#75715e">##  9 [180,185)     6</span>
+<span style="color:#75715e">## 10 [185,190)     6</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">sample_data <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">mutate</span>(ints <span style="color:#f92672">=</span> <span style="color:#a6e22e">cut</span>(height, breaks<span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">140</span>,<span style="color:#ae81ff">160</span>,<span style="color:#ae81ff">180</span>,<span style="color:#ae81ff">200</span>), right <span style="color:#f92672">=</span> F)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(ints) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>())
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 3 x 2</span>
+<span style="color:#75715e">##   ints          n</span>
+<span style="color:#75715e">##   &lt;fct&gt;     &lt;int&gt;</span>
+<span style="color:#75715e">## 1 [140,160)    73</span>
+<span style="color:#75715e">## 2 [160,180)   141</span>
+<span style="color:#75715e">## 3 [180,200)    12</span>
+</code></pre></div><h3 id="frequency-table---joint-observations---pages-344-345">
+  Frequency table - joint observations - Pages 344-345
+  <a class="anchor" href="#frequency-table---joint-observations---pages-344-345">#</a>
+</h3>
+<p>For the paired observations of gender and situation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(mytable <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">table</span>(gender,situation))
+<span style="color:#75715e">##         situation</span>
+<span style="color:#75715e">## gender   couple family single</span>
+<span style="color:#75715e">##   Female     56      7     78</span>
+<span style="color:#75715e">##   Male       63      2     20</span>
+(table.complete <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">addmargins</span>(mytable, FUN<span style="color:#f92672">=</span>sum, quiet<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>))
+<span style="color:#75715e">##         situation</span>
+<span style="color:#75715e">## gender   couple family single sum</span>
+<span style="color:#75715e">##   Female     56      7     78 141</span>
+<span style="color:#75715e">##   Male       63      2     20  85</span>
+<span style="color:#75715e">##   sum       119      9     98 226</span>
+</code></pre></div><h2 id="numerical-statistics---pages-347-352">
+  Numerical statistics - Pages 347-352
+  <a class="anchor" href="#numerical-statistics---pages-347-352">#</a>
+</h2>
+<p>Some useful statistics for a preliminary analysis (of variable &lsquo;weight&rsquo; in this example):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">mean</span>(weight)
+<span style="color:#75715e">## [1] 66.4823</span>
+<span style="color:#a6e22e">median</span>(weight)
+<span style="color:#75715e">## [1] 66</span>
+<span style="color:#a6e22e">sd</span>(weight)
+<span style="color:#75715e">## [1] 12.03337</span>
+<span style="color:#a6e22e">max</span>(weight)<span style="color:#f92672">-</span><span style="color:#a6e22e">min</span>(weight)
+<span style="color:#75715e">## [1] 58</span>
+<span style="color:#a6e22e">IQR</span>(weight)
+<span style="color:#75715e">## [1] 17.75</span>
+<span style="color:#a6e22e">mean</span>(<span style="color:#a6e22e">abs</span>(weight<span style="color:#f92672">-</span><span style="color:#a6e22e">mean</span>(weight)))
+<span style="color:#75715e">## [1] 9.919884</span>
+<span style="color:#a6e22e">quantile</span>(weight, probs<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">0.9</span>))
+<span style="color:#75715e">##  10%  90% </span>
+<span style="color:#75715e">## 51.5 82.0</span>
+</code></pre></div><h3 id="numerical-statistics---notes---pages-347-352">
+  Numerical statistics - Notes - Pages 347-352
+  <a class="anchor" href="#numerical-statistics---notes---pages-347-352">#</a>
+</h3>
+<ul>
+<li>We&rsquo;ve seen some examples of statistical functions, but there exists many more and with what you now know you can create your own functions to perform analysis.</li>
+<li>Always make sure you understand the outcome of your codes.</li>
+<li>An important problem in real data sets is that of missing data. In R you can check for missing data using the function na.fail(), and remove the missing data with na.omit() (see Page 347).</li>
+<li>You should also inspect whether your data is &lsquo;valid&rsquo;. For example, if there is a human height of 3 meters, then it is most likely an invalid data point.</li>
+</ul>
+<h2 id="discussion---spot-data-problems">
+  Discussion - Spot data problems
+  <a class="anchor" href="#discussion---spot-data-problems">#</a>
+</h2>
+<p>Do you see any problems in the data set below?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(my.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+             StudentID <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;001&#34;</span>, <span style="color:#e6db74">&#34;002&#34;</span>, <span style="color:#e6db74">&#34;008&#34;</span>, <span style="color:#e6db74">&#34;007&#34;</span>, <span style="color:#e6db74">&#34;002&#34;</span>), 
+             First_Name <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;01iver&#34;</span>, <span style="color:#e6db74">&#34;Emily&#34;</span>, <span style="color:#e6db74">&#34;Sofia&#34;</span>, <span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Emilia&#34;</span>), 
+             Last_Name <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Smith&#34;</span>, <span style="color:#e6db74">&#34;Jones&#34;</span>, <span style="color:#e6db74">&#34;Williams&#34;</span>, <span style="color:#e6db74">&#34;Brown&#34;</span>, <span style="color:#e6db74">&#34;Jones&#34;</span>), 
+             BirthDate <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;M&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;W&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>), 
+             DateOfBirth<span style="color:#f92672">=</span><span style="color:#a6e22e">as.Date</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;18/01/1998&#34;</span>,<span style="color:#e6db74">&#34;29/02/1998&#34;</span>,<span style="color:#e6db74">&#34;11/12/1997&#34;</span>,<span style="color:#e6db74">&#34;05/07/1998&#34;</span>,<span style="color:#e6db74">&#34;19/03/1998&#34;</span>),<span style="color:#e6db74">&#34;%d/%m/%Y&#34;</span>),
+             DateOfEnrollment<span style="color:#f92672">=</span><span style="color:#a6e22e">as.Date</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;31/01/2018&#34;</span>,<span style="color:#e6db74">&#34;02/02/2016&#34;</span>,<span style="color:#e6db74">&#34;01/07/2016&#34;</span>,<span style="color:#e6db74">&#34;02/07/2019&#34;</span>,<span style="color:#e6db74">&#34;05/02/1997&#34;</span>),<span style="color:#e6db74">&#34;%d/%m/%Y&#34;</span>),
+             University <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;UNSW&#34;</span>,<span style="color:#66d9ef">NA</span>,<span style="color:#e6db74">&#34;UNSW&#34;</span>,<span style="color:#e6db74">&#34;UNSW&#34;</span>,<span style="color:#e6db74">&#34;UNSW&#34;</span>),
+             WAM<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">52</span>,<span style="color:#ae81ff">67</span>,<span style="color:#ae81ff">76</span>,<span style="color:#ae81ff">87</span>,<span style="color:#ae81ff">92</span>),
+             Grade<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;P&#39;</span>,<span style="color:#e6db74">&#39;C&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>,<span style="color:#e6db74">&#39;HD&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>),
+             Books_Borrowed<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2.3</span>,<span style="color:#ae81ff">9</span>),
+             Lib_Fines_Incurred<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;$20&#34;</span>,<span style="color:#e6db74">&#34;$0&#34;</span>,<span style="color:#e6db74">&#34;$0&#34;</span>,<span style="color:#e6db74">&#34;$24&#34;</span>,<span style="color:#e6db74">&#34;$0&#34;</span>)
+            )
+           )
+<span style="color:#75715e">##   StudentID First_Name Last_Name BirthDate DateOfBirth DateOfEnrollment</span>
+<span style="color:#75715e">## 1       001     01iver     Smith         M  1998-01-18       2018-01-31</span>
+<span style="color:#75715e">## 2       002      Emily     Jones         F        &lt;NA&gt;       2016-02-02</span>
+<span style="color:#75715e">## 3       008      Sofia  Williams         F  1997-12-11       2016-07-01</span>
+<span style="color:#75715e">## 4       007       Alex     Brown         W  1998-07-05       2019-07-02</span>
+<span style="color:#75715e">## 5       002     Emilia     Jones         F  1998-03-19       1997-02-05</span>
+<span style="color:#75715e">##   University WAM Grade Books_Borrowed Lib_Fines_Incurred</span>
+<span style="color:#75715e">## 1       UNSW  52     P           15.0                $20</span>
+<span style="color:#75715e">## 2       &lt;NA&gt;  67     C            6.0                 $0</span>
+<span style="color:#75715e">## 3       UNSW  76     D            7.0                 $0</span>
+<span style="color:#75715e">## 4       UNSW  87    HD            2.3                $24</span>
+<span style="color:#75715e">## 5       UNSW  92     D            9.0                 $0</span>
+</code></pre></div><p>Furthermore, what functions can you use to check for these mistakes?</p>
+<h3 id="discussion---solution">
+  Discussion - Solution
+  <a class="anchor" href="#discussion---solution">#</a>
+</h3>
+<ul>
+<li>Oliver spelt with zero and one instead of &lsquo;Ol&rsquo;</li>
+<li>Different names with same StudentId</li>
+<li>Gender: value &lsquo;W&rsquo; is not consistent</li>
+<li>Invalid DateOfBirth: There is no 29th in February in 1998</li>
+<li>DateOfEnrollment before DateOfBirth</li>
+<li>University: Missing data</li>
+<li>Invalid value of Grade: WAM of 92 should correspond to HD rather than D</li>
+<li>Books_Borrowed: Decimal numbers</li>
+<li>Lib_Fines_Incurred are character variables rather than numeric</li>
+</ul>
+<p>To check for mistakes, one can:</p>
+<ul>
+<li>Statistical functions: minimum, maximum, frequency table, mean, etc.</li>
+<li>str(), typeof() to check format</li>
+<li>is.na(my.data)</li>
+<li>na.omit(my.data) to remove rows with missing values</li>
+</ul>
+<h2 id="dependency-association-measures---pages-354-355">
+  Dependency (association) measures - Pages 354-355
+  <a class="anchor" href="#dependency-association-measures---pages-354-355">#</a>
+</h2>
+<ul>
+<li>
+<p>We introduce the cor() function which allows one to calculate three dependency measures.</p>
+</li>
+<li>
+<p>As an example, we compute the correlation between two variables: &lsquo;GDP per Capita&rsquo; and &lsquo;Corruption Perception Index&rsquo;. This index ranks countries by &lsquo;their perceived levels of public sector corruption according to experts and business people&rsquo; (
+  <a href="https://www.transparency.org/news/feature/corruption_perceptions_index_2017">reference</a>). Note that the <em>lower</em> this index, the <em>more</em> corrupt a country is (or is perceived to be).</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Load dataset</span>
+cor.example <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;correlation.csv&#34;</span>, header <span style="color:#f92672">=</span> T)
+
+<span style="color:#75715e">#Compute association measures</span>
+<span style="color:#a6e22e">cor</span>(cor.example<span style="color:#f92672">$</span>GDP.Per.Capita, cor.example<span style="color:#f92672">$</span>Corruption.Perception.Index, method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pearson&#34;</span>)
+<span style="color:#75715e">## [1] 0.8105382</span>
+<span style="color:#a6e22e">cor</span>(cor.example<span style="color:#f92672">$</span>GDP.Per.Capita, cor.example<span style="color:#f92672">$</span>Corruption.Perception.Index, method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;kendall&#34;</span>)
+<span style="color:#75715e">## [1] 0.5833383</span>
+<span style="color:#a6e22e">cor</span>(cor.example<span style="color:#f92672">$</span>GDP.Per.Capita, cor.example<span style="color:#f92672">$</span>Corruption.Perception.Index, method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;spearman&#34;</span>)
+<span style="color:#75715e">## [1] 0.7640715</span>
+</code></pre></div><p>We note a  high correlation between GDP per Capita (in US$) and Corruption Perception Index.  That being said, from the graph we see that the relationship is not linear but convave.</p>
+<p><img src="/docs/baseR/statisticalanalysis/_index_files/figure-html/corplot2-1.png" width="80%" /></p>
+<p>Notes:</p>
+<ul>
+<li>
+<p>All three measures yield values ranging from -1 to 1.</p>
+</li>
+<li>
+<p>Pearson&rsquo;s correlation is probably the most widely used dependency measure. However, one should be aware that it only measures linear association.</p>
+</li>
+<li>
+<p>Although Kendall&rsquo;s tau and Spearman&rsquo;s rho are related to correlation, they measure non-linear dependencies. You will learn the theoretical details of these dependency measures in more advanced courses.</p>
+</li>
+<li>
+<p>Data for this example comes from: 
+  <a href="https://www.transparency.org/news/feature/corruption_perceptions_index_2017#table">transparency.org</a> and 
+  <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?view=map">data.worldbank.org</a>.</p>
+</li>
+</ul>
+<h2 id="case-study-big-data-example">
+  Case Study: &lsquo;Big Data&rsquo; Example
+  <a class="anchor" href="#case-study-big-data-example">#</a>
+</h2>
+<p>We introduce here two &lsquo;big&rsquo; data sets, which contain insurance data. Those are the files</p>
+<ul>
+<li><code>\(\verb|file_policy_building.csv|\)</code>, which contain information on all policies sold</li>
+<li><code>\(\verb|file_claim_building.csv|\)</code> , which contain information on all claims made, from the policies sold</li>
+</ul>
+<p>Additional information on these data sets can be found in the file <code>\(\verb|data_note.pdf|\)</code>.</p>
+<p>Here we want to analyse this data to get insights on it. As a first step, import both data sets in <code>\(\verb|R|\)</code>, and check what they look like.</p>
+<p><em>Hint</em>: use function <code>\(\verb|head()|\)</code>.</p>
+<h3 id="case-study-import-and-check">
+  Case Study: Import and check
+  <a class="anchor" href="#case-study-import-and-check">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Import files</span>
+building_policy <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;file_policy_building.csv&#34;</span>)
+building_claim <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;file_claim_building.csv&#34;</span>)
+
+<span style="color:#75715e"># Check the first few rows of both files</span>
+<span style="color:#a6e22e">head</span>(building_policy)
+<span style="color:#75715e">##     PolicyID  Inception     Expiry Age   GeoRisk   SocRisk</span>
+<span style="color:#75715e">## 1 B000000001 2007-10-02 2008-10-01  37  Low Risk  Low Risk</span>
+<span style="color:#75715e">## 2 B000000002 2009-12-25 2010-12-24  48 High Risk  Low Risk</span>
+<span style="color:#75715e">## 3 B000000003 2012-05-28 2013-05-27  46  Low Risk High Risk</span>
+<span style="color:#75715e">## 4 B000000004 2010-03-27 2011-03-26  34  Low Risk High Risk</span>
+<span style="color:#75715e">## 5 B000000005 2015-01-17 2016-01-16  42 High Risk  Low Risk</span>
+<span style="color:#75715e">## 6 B000000006 2014-06-21 2015-06-20  41  Low Risk    Normal</span>
+<span style="color:#a6e22e">head</span>(building_claim)
+<span style="color:#75715e">##     PolicyID AccidentDay GrossLossBuilding</span>
+<span style="color:#75715e">## 1 B000000018  2008-11-24          454.3947</span>
+<span style="color:#75715e">## 2 B000000020  2009-10-11         2576.5590</span>
+<span style="color:#75715e">## 3 B000000022  2009-10-15         1012.0273</span>
+<span style="color:#75715e">## 4 B000000029  2012-12-07          696.5213</span>
+<span style="color:#75715e">## 5 B000000031  2006-12-09          858.4258</span>
+<span style="color:#75715e">## 6 B000000032  2014-01-15         1636.9965</span>
+</code></pre></div><p>What do you see? Can you describe the information contained in those data sets?</p>
+<h3 id="case-study-exploration-questions">
+  Case Study: Exploration Questions
+  <a class="anchor" href="#case-study-exploration-questions">#</a>
+</h3>
+<p>Using <code>\(\verb|R|\)</code>, try to answer the following questions:</p>
+<ol>
+<li>How many different policies are there?</li>
+<li>How many claims were made?</li>
+<li>How many distinct policies generated claims?</li>
+<li>Why are the answers to question <code>\(2.\)</code> and <code>\(3.\)</code> different?</li>
+</ol>
+<h3 id="exploration-questions-solution">
+  Exploration Questions: Solution
+  <a class="anchor" href="#exploration-questions-solution">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Number of policies in total</span>
+<span style="color:#a6e22e">length</span>(building_policy<span style="color:#f92672">$</span>PolicyID)
+<span style="color:#75715e">## [1] 1048577</span>
+<span style="color:#75715e"># Number of claims in total</span>
+<span style="color:#a6e22e">length</span>(building_claim<span style="color:#f92672">$</span>PolicyID)
+<span style="color:#75715e">## [1] 310751</span>
+<span style="color:#75715e"># Number of DISTINCT policies with a claim</span>
+<span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">unique</span>(building_claim<span style="color:#f92672">$</span>PolicyID))
+<span style="color:#75715e">## [1] 262286</span>
+</code></pre></div><ul>
+<li>
+<p>We see that there are much more policies than claims; this makes sense as not all insured will make claims.</p>
+</li>
+<li>
+<p>Also, there are fewer distinct policies making claims than the total number of claims. This also makes sense, as it is possible that the same policy generates more than one claim.</p>
+</li>
+</ul>
+<h2 id="advanced-questions">
+  Advanced Questions
+  <a class="anchor" href="#advanced-questions">#</a>
+</h2>
+<p>You may have noticed that each policy has a &lsquo;GeoRisk&rsquo; category, either &lsquo;Low Risk&rsquo;, &lsquo;Normal&rsquo;, or &lsquo;High Risk&rsquo;. We want to know if these risk categories are appropriate. That is, are there more claims on average for policies categorised as &lsquo;High Risk&rsquo;? And are those claims bigger than for lower risk categories?</p>
+<p><strong>Questions</strong>:</p>
+<ol>
+<li>For each category of &lsquo;GeoRisk&rsquo;, find the average number of claims per policy.</li>
+<li>For each category of &lsquo;GeoRisk&rsquo;, find the mean and standard deviation of the total claim amount per policy (so if the same policy generates many claims, we want the total amount)</li>
+</ol>
+<p><em>Hint</em>: you will have to merge the two files. Also, don&rsquo;t forget your new friend <code>\(\verb|dplyr|\)</code>!</p>
+<h3 id="advanced-questions-solution">
+  Advanced Questions: Solution
+  <a class="anchor" href="#advanced-questions-solution">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># We first merge the files</span>
+<span style="color:#75715e"># The &#39;all.y = TRUE&#39; is very important, because it will keep the policies with more than one claim</span>
+building_all <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(x<span style="color:#f92672">=</span>building_claim, y<span style="color:#f92672">=</span>building_policy, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PolicyID&#34;</span>, all.y<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+
+<span style="color:#75715e"># Our solution uses dplyr:</span>
+building_all <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Create a variable &#39;claim_ind&#39; which is 1 if there is a claim (for a given policy), 0 otherwise</span>
+  <span style="color:#75715e"># Create a variable &#39;claim_amount&#39; equal to the claim amount (GrossLossBuilding) if there is a claim, 0 otherwise</span>
+  <span style="color:#a6e22e">mutate</span>(claim_ind <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(<span style="color:#a6e22e">is.na</span>(building_all<span style="color:#f92672">$</span>AccidentDay), <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>), 
+         claim_amount <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(<span style="color:#a6e22e">is.na</span>(building_all<span style="color:#f92672">$</span>AccidentDay), <span style="color:#ae81ff">0</span>, GrossLossBuilding)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Group all rows that are the same policy, count the number of claims in each, and the total claim amount</span>
+  <span style="color:#a6e22e">group_by</span>(PolicyID) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">mutate</span>(num_claim <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(claim_ind), sum_claim <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(claim_amount)) <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#75715e"># Keep only one row per PolicyID</span>
+  <span style="color:#a6e22e">distinct</span>(PolicyID, .keep_all <span style="color:#f92672">=</span> T) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Finally, group by GeoRisk and find the statistics</span>
+  <span style="color:#a6e22e">group_by</span>(GeoRisk) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summarise</span>(mean.nb <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(num_claim), mean.amount <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(sum_claim), sd.dev <span style="color:#f92672">=</span> <span style="color:#a6e22e">sd</span>(sum_claim))
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 3 x 4</span>
+<span style="color:#75715e">##   GeoRisk   mean.nb mean.amount sd.dev</span>
+<span style="color:#75715e">##   &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span style="color:#75715e">## 1 High Risk   0.429       1186.  2174.</span>
+<span style="color:#75715e">## 2 Low Risk    0.210        116.   294.</span>
+<span style="color:#75715e">## 3 Normal      0.317        438.   918.</span>
+</code></pre></div><p>Do you think the risk categories are appropriate?</p>
+<h3 id="advanced-questions-discussion">
+  Advanced Questions: Discussion
+  <a class="anchor" href="#advanced-questions-discussion">#</a>
+</h3>
+<ul>
+<li>
+<p>The risk categories do seem appropriate, since both the frequency (number of claims) and severity (size of claims) are the highest for the &lsquo;High Risk&rsquo; category, and the lowest for the &lsquo;Low Risk&rsquo; category.</p>
+</li>
+<li>
+<p>The standard deviation for the &lsquo;High Risk&rsquo; category is also much higher, indicating a lot of variability in the claim size.</p>
+</li>
+<li>
+<p>Can you think of any other analysis you would want to do with this dataset? Maybe check if there is a link between the &lsquo;Age&rsquo; of an insured and their number/size of claims? What else?</p>
+</li>
+</ul>
+<h2 id="probability-distributions-and-random-variables-in-r">
+  Probability distributions and random variables in R
+  <a class="anchor" href="#probability-distributions-and-random-variables-in-r">#</a>
+</h2>
+<ul>
+<li>
+<p>As seen in the prerequisite course ZZBU6501 (Introductory Data Analysis), statistical analysis is concerned with understanding and modelling random variables. This is important, as random variables are mathematical descriptions of the random phenomena encountered in everyday life</p>
+</li>
+<li>
+<p>Many probability distributions are implemented in base R. There are typically four functions you can use for each distribution. For the Normal distribution they are <code>dnorm</code> (density function), <code>pnorm</code> (CDF), <code>qnorm</code> (quantile function) and <code>rnorm</code> (random generator)</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dnorm</span>(<span style="color:#ae81ff">1.96</span>, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> , sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 0.05844094</span>
+<span style="color:#a6e22e">pnorm</span>(<span style="color:#ae81ff">1.96</span>, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> , sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 0.9750021</span>
+<span style="color:#a6e22e">qnorm</span>(<span style="color:#ae81ff">0.975</span>, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> , sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 1.959964</span>
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 0.8650636</span>
+</code></pre></div><ul>
+<li>Many more probability distributions are implemented in R. For instance, can you guess what <code>dexp()</code> does? Or <code>pgamma()</code>?</li>
+</ul>
+<h2 id="generating-random-variables-in-r---page-74">
+  Generating random variables in R - Page 74
+  <a class="anchor" href="#generating-random-variables-in-r---page-74">#</a>
+</h2>
+<ul>
+<li>To conduct statistical analysis, it is often useful to be able to generate realisations from random variables, and R is an apt tool to do so throught the use of functions <code>runif()</code>, <code>rnorm()</code>, <code>rgamma()</code>, etc&hellip;</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Generate two random obervations from a Uniform[0,1]</span>
+<span style="color:#a6e22e">runif</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## [1] 0.8510166 0.7857717</span>
+<span style="color:#75715e"># Generate four random observations from a Uniform[2,7]</span>
+<span style="color:#a6e22e">runif</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, min<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>)
+<span style="color:#75715e">## [1] 5.480644 5.216459 2.914898 4.077222</span>
+</code></pre></div><h3 id="generate-random-variables-in-r---setseed">
+  Generate random variables in R - set.seed()
+  <a class="anchor" href="#generate-random-variables-in-r---setseed">#</a>
+</h3>
+<ul>
+<li>
+<p>R cannot generate observations that are completely random. The simulated values are generated with an algorithm that &lsquo;imitates&rsquo; randomness. It looks random, and is random in the sense that if you don&rsquo;t know the algorithm (and where it starts), there is no way you can predict the numbers that will come out. But if you do know the algorithm (and where it starts), then you can predict the numbers precisely.</p>
+</li>
+<li>
+<p>Hence, it is possible to replicate simulated &lsquo;random&rsquo; values, provided you start the algorithm at the same place as before.</p>
+</li>
+<li>
+<p>To do so, use function <code>set.seed()</code>. When setting the seed to any particular value and then generating a random number, you are guaranteed to obtain the same result. Have a look at this example:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># I don&#39;t set the seed:</span>
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] -0.7679273</span>
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 0.3614276</span>
+
+<span style="color:#75715e"># I set the seed</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">7</span>)
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 2.287247</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">7</span>)
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 2.287247</span>
+
+<span style="color:#75715e"># I set a different seed</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] -0.9619334</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">rnorm</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] -0.9619334</span>
+</code></pre></div><h2 id="relevant-exercises">
+  Relevant Exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h2>
+<ul>
+<li>5.14-5.19, 11.1-11.13</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/statisticalanalysis/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#statistical-analysis-in-r">Statistical analysis in R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#understanding-your-data---importing-data---pages-339-343">Understanding your data - Importing data - Pages 339-343</a></li>
+        <li><a href="#understanding-your-data---variables---pages-339-343">Understanding your data - Variables - Pages 339-343</a></li>
+        <li><a href="#frequency-tables">Frequency tables</a>
+          <ul>
+            <li><a href="#frequency-table---discrete-variables---pages-343-344">Frequency table - discrete variables - Pages 343-344</a></li>
+            <li><a href="#frequency-table---continuous-variables---page-344">Frequency table - continuous variables - Page 344</a></li>
+            <li><a href="#frequency-table---choice-of-the-interval-brackets">Frequency table - Choice of the interval brackets</a></li>
+            <li><a href="#frequency-table---joint-observations---pages-344-345">Frequency table - joint observations - Pages 344-345</a></li>
+          </ul>
+        </li>
+        <li><a href="#numerical-statistics---pages-347-352">Numerical statistics - Pages 347-352</a>
+          <ul>
+            <li><a href="#numerical-statistics---notes---pages-347-352">Numerical statistics - Notes - Pages 347-352</a></li>
+          </ul>
+        </li>
+        <li><a href="#discussion---spot-data-problems">Discussion - Spot data problems</a>
+          <ul>
+            <li><a href="#discussion---solution">Discussion - Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#dependency-association-measures---pages-354-355">Dependency (association) measures - Pages 354-355</a></li>
+        <li><a href="#case-study-big-data-example">Case Study: &lsquo;Big Data&rsquo; Example</a>
+          <ul>
+            <li><a href="#case-study-import-and-check">Case Study: Import and check</a></li>
+            <li><a href="#case-study-exploration-questions">Case Study: Exploration Questions</a></li>
+            <li><a href="#exploration-questions-solution">Exploration Questions: Solution</a></li>
+          </ul>
+        </li>
+        <li><a href="#advanced-questions">Advanced Questions</a>
+          <ul>
+            <li><a href="#advanced-questions-solution">Advanced Questions: Solution</a></li>
+            <li><a href="#advanced-questions-discussion">Advanced Questions: Discussion</a></li>
+          </ul>
+        </li>
+        <li><a href="#probability-distributions-and-random-variables-in-r">Probability distributions and random variables in R</a></li>
+        <li><a href="#generating-random-variables-in-r---page-74">Generating random variables in R - Page 74</a>
+          <ul>
+            <li><a href="#generate-random-variables-in-r---setseed">Generate random variables in R - set.seed()</a></li>
+          </ul>
+        </li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

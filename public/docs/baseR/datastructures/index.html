@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Data structures, mathematical operations, importation and exportation in Base R #  Learning outcomes #  By the end of this topic, you should be able to
+ recognise and create different data structures in R demonstrate the advantages of different data structures perform mathematical operations import external data of different formats into R export R data into a variety of formats perform set operations  Warning: the materials here are so-called &ldquo;Base R&rdquo;.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Data structures, mathematical operations, importation and exportation in Base R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/datastructures/" />
+
+<title>Data structures, mathematical operations, importation and exportation in Base R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/datastructures/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/"class=active>Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Data structures, mathematical operations, importation and exportation in Base R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-structures-mathematical-operations-importation-and-exportation-in-base-r">Data structures, mathematical operations, importation and exportation in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#data-structure---vectors---page-51">Data structure - Vectors - page 51</a></li>
+        <li><a href="#vector-operations---some-basic-functions---page-87">Vector operations - Some basic functions - Page 87</a></li>
+        <li><a href="#vector-operations---examples---page-87-88">Vector operations - Examples - Page 87-88</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-51">Data structure - Matrices and arrays - page 51</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-52">Data structure - Matrices and arrays - page 52</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-53">Data structure - Matrices and arrays - page 53</a></li>
+        <li><a href="#recycling---pages-86-87">Recycling - Pages 86-87</a></li>
+        <li><a href="#merging---merging-columns---page-89">Merging - Merging columns - Page 89</a></li>
+        <li><a href="#matrix-operations---pages-315-316-317">Matrix operations - Pages 315-316-317</a></li>
+        <li><a href="#matrix-operations---the-solve-function---pages-316-317">Matrix operations - the solve() function - Pages 316-317</a></li>
+        <li><a href="#matrix-operations---the-function-apply---page-93">Matrix operations - The function apply() - Page 93</a></li>
+        <li><a href="#important-note-on-data-structures">Important note on data structures</a></li>
+        <li><a href="#data-structure---lists---page-53">Data structure - Lists - page 53</a></li>
+        <li><a href="#data-structure---data-frames---page-54">Data structure - Data frames - page 54</a></li>
+        <li><a href="#data-structure---data-frames">Data structure - Data frames</a></li>
+        <li><a href="#merging---merging-columns-of-data-frames---page-89-91">Merging - Merging columns of data frames - Page 89-91</a></li>
+        <li><a href="#merging---example">Merging - Example</a></li>
+        <li><a href="#data-structure---factors">Data structure - Factors</a></li>
+        <li><a href="#data-structure---summary">Data structure - Summary</a></li>
+        <li><a href="#importing-data---text-files---page-64">Importing data - text files - Page 64</a></li>
+        <li><a href="#importing-data---readtable---pages-64-65">Importing data - read.table() - Pages 64-65</a></li>
+        <li><a href="#importing-data---readtable---pages-64-66">Importing data - read.table() - Pages 64-66</a></li>
+        <li><a href="#importing-data---exercise---page-66">Importing data - Exercise - Page 66</a></li>
+        <li><a href="#importing-data---solution---page-66">Importing data - Solution - Page 66</a></li>
+        <li><a href="#importing-data---standard-formats-eg-csv---page-67">Importing data - Standard formats (e.g. csv) - Page 67</a></li>
+        <li><a href="#exporting-data---pages-72-73">Exporting data - Pages 72-73</a></li>
+        <li><a href="#additional-notes---data-structures">Additional notes - data structures</a></li>
+        <li><a href="#additional-notes---readftable---see-page-67">Additional notes - read.ftable - see Page 67</a></li>
+        <li><a href="#additional-notes---scan---see-page-68">Additional notes - scan - see Page 68</a></li>
+        <li><a href="#additional-notes---importing-data-from-excel-see-pages-69-70">Additional notes - Importing data from Excel (see Pages 69-70)</a></li>
+        <li><a href="#additional-notes---importing-data-from-some-other-software---page-71">Additional notes - Importing data from some other software - Page 71</a></li>
+        <li><a href="#additional-notes---importing-large-data-files---page-71">Additional notes - Importing large data files - Page 71</a></li>
+        <li><a href="#additional-notes---matrix-operations---diagonals-upper-and-lower-matrices---page-319">Additional notes - Matrix operations - Diagonals, upper and lower matrices - Page 319</a></li>
+        <li><a href="#additional-notes---merging-rows---pages-92-93">Additional notes - Merging rows - Pages 92-93</a></li>
+        <li><a href="#additional-notes---set-operations">Additional notes - Set operations</a></li>
+        <li><a href="#relevant-exercises">Relevant exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="data-structures-mathematical-operations-importation-and-exportation-in-base-r">
+  Data structures, mathematical operations, importation and exportation in Base R
+  <a class="anchor" href="#data-structures-mathematical-operations-importation-and-exportation-in-base-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this topic, you should be able to</p>
+<ul>
+<li>recognise and create different data structures in R</li>
+<li>demonstrate the advantages of different data structures</li>
+<li>perform mathematical operations</li>
+<li>import external data of different formats into R</li>
+<li>export R data into a variety of formats</li>
+<li>perform set operations</li>
+</ul>
+<p><strong>Warning:</strong> the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing things with the &ldquo;tidyverse&rdquo; ecosystem (see next section).</p>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R
+Software</a>.</p>
+<h2 id="data-structure---vectors---page-51">
+  Data structure - Vectors - page 51
+  <a class="anchor" href="#data-structure---vectors---page-51">#</a>
+</h2>
+<ul>
+<li>The basic data structure in R is the <strong>vector</strong> (a sequence of data points), which we have encountered before</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Create a vector called &#39;myVector&#39;</span>
+(myVector <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>))
+<span style="color:#75715e">## [1] 1 2 3</span>
+myVector <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>
+<span style="color:#75715e">## [1] 3 6 9</span>
+</code></pre></div><ul>
+<li>We now look into some more operations we can perform on vectors</li>
+</ul>
+<h2 id="vector-operations---some-basic-functions---page-87">
+  Vector operations - Some basic functions - Page 87
+  <a class="anchor" href="#vector-operations---some-basic-functions---page-87">#</a>
+</h2>
+<ul>
+<li>length(): returns the length of a vector.</li>
+<li>sort(): sorts the elements of a vector, in increasing or decreasing order.</li>
+<li>rev(): rearranges the elements of a vector in reverse order.</li>
+<li>rank(): returns the vector of ranks of the elements.</li>
+<li>head(): returns the first few elements of a vector.</li>
+<li>tail(): returns the last few elements of a vector.</li>
+</ul>
+<h2 id="vector-operations---examples---page-87-88">
+  Vector operations - Examples - Page 87-88
+  <a class="anchor" href="#vector-operations---examples---page-87-88">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x  <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>)
+<span style="color:#a6e22e">length</span>(x)
+<span style="color:#75715e">## [1] 9</span>
+<span style="color:#a6e22e">sort</span>(x)
+<span style="color:#75715e">## [1] 0 1 1 2 3 4 6 7 8</span>
+<span style="color:#a6e22e">sort</span>(x, decreasing<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e">## [1] 8 7 6 4 3 2 1 1 0</span>
+<span style="color:#a6e22e">rev</span>(x)
+<span style="color:#75715e">## [1] 0 1 8 4 7 2 6 3 1</span>
+<span style="color:#a6e22e">rank</span>(x)
+<span style="color:#75715e">## [1] 2.5 5.0 7.0 4.0 8.0 6.0 9.0 2.5 1.0</span>
+<span style="color:#a6e22e">head</span>(x, <span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1 3 6</span>
+<span style="color:#a6e22e">tail</span>(x, <span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## [1] 1 0</span>
+</code></pre></div><h2 id="data-structure---matrices-and-arrays---page-51">
+  Data structure - Matrices and arrays - page 51
+  <a class="anchor" href="#data-structure---matrices-and-arrays---page-51">#</a>
+</h2>
+<ul>
+<li>Matrices and arrays are generalisations of vectors</li>
+<li>A <strong>matrix</strong> has two dimensions (hence you need two indices to access a data point)</li>
+<li>An <strong>array</strong> allows for even more dimensions (hence you need multiple indices)</li>
+</ul>
+<h2 id="data-structure---matrices-and-arrays---page-52">
+  Data structure - Matrices and arrays - page 52
+  <a class="anchor" href="#data-structure---matrices-and-arrays---page-52">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>))
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    4    5    6</span>
+<span style="color:#75715e">## [3,]    7    8    9</span>
+<span style="color:#75715e">## [4,]   10   11   12</span>
+(X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>))
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    5    9</span>
+<span style="color:#75715e">## [2,]    2    6   10</span>
+<span style="color:#75715e">## [3,]    3    7   11</span>
+<span style="color:#75715e">## [4,]    4    8   12</span>
+<span style="color:#a6e22e">class</span>(X)
+<span style="color:#75715e">## [1] &#34;matrix&#34; &#34;array&#34;</span>
+	
+(X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">array</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>, dim<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>)))
+<span style="color:#75715e">## , , 1</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">##      [,1]</span>
+<span style="color:#75715e">## [1,]    1</span>
+<span style="color:#75715e">## [2,]    2</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## , , 2</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">##      [,1]</span>
+<span style="color:#75715e">## [1,]    3</span>
+<span style="color:#75715e">## [2,]    4</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## , , 3</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">##      [,1]</span>
+<span style="color:#75715e">## [1,]    5</span>
+<span style="color:#75715e">## [2,]    6</span>
+<span style="color:#a6e22e">class</span>(X)
+<span style="color:#75715e">## [1] &#34;array&#34;</span>
+</code></pre></div><p>Note: we used function class() to identify the stucture of X.</p>
+<h2 id="data-structure---matrices-and-arrays---page-53">
+  Data structure - Matrices and arrays - page 53
+  <a class="anchor" href="#data-structure---matrices-and-arrays---page-53">#</a>
+</h2>
+<p>Take a few minutes to think about how to interpret a three-dimensional array. The image below may help you.</p>
+<p>
+  <img src="array3d.png" alt="" /></p>
+<h2 id="recycling---pages-86-87">
+  Recycling - Pages 86-87
+  <a class="anchor" href="#recycling---pages-86-87">#</a>
+</h2>
+<p>Given an operation on two vectors/matrices/arrays of different lengths, R will complete the shortest data structure by repeating its elements from the beginning. We call this behaviour &lsquo;recycling&rsquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)
+x <span style="color:#f92672">+</span> y
+<span style="color:#75715e">## [1] 2 4 6 5 7 9</span>
+</code></pre></div><p>Another example is below, where the vector 1:3 is repeated to fill in a matrix:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    2    3    1</span>
+<span style="color:#75715e">## [3,]    3    1    2</span>
+<span style="color:#75715e">## [4,]    1    2    3</span>
+</code></pre></div><h2 id="merging---merging-columns---page-89">
+  Merging - Merging columns - Page 89
+  <a class="anchor" href="#merging---merging-columns---page-89">#</a>
+</h2>
+<p>You can merge vectors or matrices together to create a new matrix with functions cbind() and rbind().</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(B <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cbind</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>))
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    1    5</span>
+<span style="color:#75715e">## [2,]    2    6</span>
+<span style="color:#75715e">## [3,]    3    7</span>
+<span style="color:#75715e">## [4,]    4    8</span>
+(C <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cbind</span>(B, <span style="color:#ae81ff">9</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>))
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    5    9</span>
+<span style="color:#75715e">## [2,]    2    6   10</span>
+<span style="color:#75715e">## [3,]    3    7   11</span>
+<span style="color:#75715e">## [4,]    4    8   12</span>
+<span style="color:#a6e22e">class</span>(C)
+<span style="color:#75715e">## [1] &#34;matrix&#34; &#34;array&#34;</span>
+</code></pre></div><p>Try guess what rbind() does, then look it up in the book or on the internet.</p>
+<h2 id="matrix-operations---pages-315-316-317">
+  Matrix operations - Pages 315-316-317
+  <a class="anchor" href="#matrix-operations---pages-315-316-317">#</a>
+</h2>
+<p>You can perform &lsquo;usual&rsquo; mathematical operations on matrices. What are the mathematical meaning of the operations performed below?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">A <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, byrow<span style="color:#f92672">=</span>T)
+B <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">7</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, byrow<span style="color:#f92672">=</span>F)
+I2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">diag</span>(nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>) <span style="color:#75715e"># identity matrix of size 2x2</span>
+A
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    2    3</span>
+<span style="color:#75715e">## [2,]    5    4</span>
+B
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    1    8</span>
+<span style="color:#75715e">## [2,]    2    7</span>
+A<span style="color:#f92672">+</span>B 
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    3   11</span>
+<span style="color:#75715e">## [2,]    7   11</span>
+A<span style="color:#f92672">*</span>B
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    2   24</span>
+<span style="color:#75715e">## [2,]   10   28</span>
+A<span style="color:#f92672">/</span>B
+<span style="color:#75715e">##      [,1]      [,2]</span>
+<span style="color:#75715e">## [1,]  2.0 0.3750000</span>
+<span style="color:#75715e">## [2,]  2.5 0.5714286</span>
+A<span style="color:#f92672">%*%</span>I2
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    2    3</span>
+<span style="color:#75715e">## [2,]    5    4</span>
+A<span style="color:#f92672">%*%</span>B
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    8   37</span>
+<span style="color:#75715e">## [2,]   13   68</span>
+<span style="color:#a6e22e">t</span>(B)
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    1    2</span>
+<span style="color:#75715e">## [2,]    8    7</span>
+</code></pre></div><p>Note: the diag() function can also be used for different purposes (see R help file)</p>
+<h2 id="matrix-operations---the-solve-function---pages-316-317">
+  Matrix operations - the solve() function - Pages 316-317
+  <a class="anchor" href="#matrix-operations---the-solve-function---pages-316-317">#</a>
+</h2>
+<p>The solve(a,b) function can be used to solve <code>\(a \%*\% x = b\)</code>,  for <code>\(x\)</code>. Here <code>\(b\)</code> can be a vector or a matrix. If &lsquo;solve&rsquo; is used with only one argument, e.g. solve(A), it will return the inverse of a matrix (if it exists).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">solve</span>(A, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+A<span style="color:#f92672">%*%</span>x
+<span style="color:#75715e">##      [,1]</span>
+<span style="color:#75715e">## [1,]    1</span>
+<span style="color:#75715e">## [2,]    1</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">solve</span>(B) <span style="color:#f92672">%*%</span> B
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    1    0</span>
+<span style="color:#75715e">## [2,]    0    1</span>
+</code></pre></div><h2 id="matrix-operations---the-function-apply---page-93">
+  Matrix operations - The function apply() - Page 93
+  <a class="anchor" href="#matrix-operations---the-function-apply---page-93">#</a>
+</h2>
+<p>The function apply() is often quite handy. It applies a given function to the elements of all rows (MARGIN=1) or all columns (MARGIN=2) of a matrix.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>), nr <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>))
+<span style="color:#75715e">##      [,1] [,2] [,3] [,4]</span>
+<span style="color:#75715e">## [1,]    1    3    1    7</span>
+<span style="color:#75715e">## [2,]    2    4    6    8</span>
+<span style="color:#a6e22e">apply</span>(X, MARGIN<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, FUN<span style="color:#f92672">=</span>sum)
+<span style="color:#75715e">## [1] 12 20</span>
+<span style="color:#a6e22e">apply</span>(X, MARGIN<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, FUN<span style="color:#f92672">=</span>mean)
+<span style="color:#75715e">## [1] 1.5 3.5 3.5 7.5</span>
+</code></pre></div><p>Other functions you could use: rowSums(), colSums(), rowMeans(), colMeans().</p>
+<h2 id="important-note-on-data-structures">
+  Important note on data structures
+  <a class="anchor" href="#important-note-on-data-structures">#</a>
+</h2>
+<ul>
+<li>Do not confuse &lsquo;data structure&rsquo; (vector, matrix, array,&hellip;) with &lsquo;data type&rsquo; (which we saw in Week 1).</li>
+<li>A &lsquo;data type&rsquo; refers to the <strong>type</strong> of information (numerical, string, logical, etc.) while a &lsquo;data structure&rsquo; refers to <strong>how we store</strong> (or structure!) the information (in a vector, in a matrix, etc.)</li>
+</ul>
+<h2 id="data-structure---lists---page-53">
+  Data structure - Lists - page 53
+  <a class="anchor" href="#data-structure---lists---page-53">#</a>
+</h2>
+<ul>
+<li>Elements stored in vectors, matrices or arrays need to be of the same type (and R automatically converts them to the same type if they are not)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myVector <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#66d9ef">TRUE</span>)
+myVector
+<span style="color:#75715e">## [1] &#34;1&#34;    &#34;2&#34;    &#34;A&#34;    &#34;TRUE&#34;</span>
+<span style="color:#a6e22e">typeof</span>(myVector)
+<span style="color:#75715e">## [1] &#34;character&#34;</span>
+</code></pre></div><ul>
+<li>Lists can group together, in one structure, data of different types without altering them.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myList <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(<span style="color:#66d9ef">TRUE</span>, my.matrix<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>), <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1+2i</span>,<span style="color:#ae81ff">3</span>), <span style="color:#e6db74">&#34;A character string&#34;</span>)
+myList
+<span style="color:#75715e">## [[1]]</span>
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## $my.matrix</span>
+<span style="color:#75715e">##      [,1] [,2]</span>
+<span style="color:#75715e">## [1,]    1    3</span>
+<span style="color:#75715e">## [2,]    2    4</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## [[3]]</span>
+<span style="color:#75715e">## [1] 1+2i 3+0i</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## [[4]]</span>
+<span style="color:#75715e">## [1] &#34;A character string&#34;</span>
+</code></pre></div><h2 id="data-structure---data-frames---page-54">
+  Data structure - Data frames - page 54
+  <a class="anchor" href="#data-structure---data-frames---page-54">#</a>
+</h2>
+<p>A data.frame in R is a table where</p>
+<ul>
+<li>each row represents a single observation (e.g. an individual)</li>
+<li>each column represents a single variable, which must be of the same data type across all rows</li>
+</ul>
+<p>Data frames are widely used in R</p>
+<ul>
+<li>flexibility of having multiple data types</li>
+<li>in many cases, a dataset can be formulated as a data.frame</li>
+</ul>
+<h2 id="data-structure---data-frames">
+  Data structure - Data frames
+  <a class="anchor" href="#data-structure---data-frames">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">BMI <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(
+  Gender<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>),
+  Height<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1.83</span>,<span style="color:#ae81ff">1.76</span>,<span style="color:#ae81ff">1.82</span>,<span style="color:#ae81ff">1.60</span>),
+  Weight<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">67</span>,<span style="color:#ae81ff">58</span>,<span style="color:#ae81ff">66</span>,<span style="color:#ae81ff">48</span>),
+  row.names<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Jack&#34;</span>,<span style="color:#e6db74">&#34;Julia&#34;</span>,<span style="color:#e6db74">&#34;Henry&#34;</span>,<span style="color:#e6db74">&#34;Emma&#34;</span>))
+
+BMI
+<span style="color:#75715e">##       Gender Height Weight</span>
+<span style="color:#75715e">## Jack       M   1.83     67</span>
+<span style="color:#75715e">## Julia      F   1.76     58</span>
+<span style="color:#75715e">## Henry      M   1.82     66</span>
+<span style="color:#75715e">## Emma       F   1.60     48</span>
+<span style="color:#a6e22e">str</span>(BMI)
+<span style="color:#75715e">## &#39;data.frame&#39;:	4 obs. of  3 variables:</span>
+<span style="color:#75715e">##  $ Gender: chr  &#34;M&#34; &#34;F&#34; &#34;M&#34; &#34;F&#34;</span>
+<span style="color:#75715e">##  $ Height: num  1.83 1.76 1.82 1.6</span>
+<span style="color:#75715e">##  $ Weight: num  67 58 66 48</span>
+</code></pre></div><p>You can access a specific variable using the $ command</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">BMI<span style="color:#f92672">$</span>Gender
+<span style="color:#75715e">## [1] &#34;M&#34; &#34;F&#34; &#34;M&#34; &#34;F&#34;</span>
+</code></pre></div><h2 id="merging---merging-columns-of-data-frames---page-89-91">
+  Merging - Merging columns of data frames - Page 89-91
+  <a class="anchor" href="#merging---merging-columns-of-data-frames---page-89-91">#</a>
+</h2>
+<p>One may need to add to a data set some variables from another dataset (that has the same subjects). In these cases, you should use the merge() function with appropriate &lsquo;by&rsquo; arguments. Let&rsquo;s see an example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(GENDER<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;F&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>),
+ID<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">123</span>,<span style="color:#ae81ff">234</span>,<span style="color:#ae81ff">345</span>,<span style="color:#ae81ff">456</span>),
+NAME<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Mary&#34;</span>,<span style="color:#e6db74">&#34;James&#34;</span>,<span style="color:#e6db74">&#34;James&#34;</span>,<span style="color:#e6db74">&#34;Olivia&#34;</span>),
+Height<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">170</span>,<span style="color:#ae81ff">180</span>,<span style="color:#ae81ff">185</span>,<span style="color:#ae81ff">160</span>))
+
+Y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(GENDER<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>),
+ID<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">345</span>,<span style="color:#ae81ff">456</span>,<span style="color:#ae81ff">123</span>,<span style="color:#ae81ff">234</span>),
+NAME<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;James&#34;</span>,<span style="color:#e6db74">&#34;Olivia&#34;</span>,<span style="color:#e6db74">&#34;Mary&#34;</span>,<span style="color:#e6db74">&#34;James&#34;</span>),
+Weight<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">80</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">70</span>,<span style="color:#ae81ff">60</span>))
+
+X
+<span style="color:#75715e">##   GENDER  ID   NAME Height</span>
+<span style="color:#75715e">## 1      F 123   Mary    170</span>
+<span style="color:#75715e">## 2      M 234  James    180</span>
+<span style="color:#75715e">## 3      M 345  James    185</span>
+<span style="color:#75715e">## 4      F 456 Olivia    160</span>
+Y
+<span style="color:#75715e">##   GENDER  ID   NAME Weight</span>
+<span style="color:#75715e">## 1      M 345  James     80</span>
+<span style="color:#75715e">## 2      F 456 Olivia     50</span>
+<span style="color:#75715e">## 3      F 123   Mary     70</span>
+<span style="color:#75715e">## 4      M 234  James     60</span>
+<span style="color:#a6e22e">cbind</span>(X,Y)
+<span style="color:#75715e">##   GENDER  ID   NAME Height GENDER  ID   NAME Weight</span>
+<span style="color:#75715e">## 1      F 123   Mary    170      M 345  James     80</span>
+<span style="color:#75715e">## 2      M 234  James    180      F 456 Olivia     50</span>
+<span style="color:#75715e">## 3      M 345  James    185      F 123   Mary     70</span>
+<span style="color:#75715e">## 4      F 456 Olivia    160      M 234  James     60</span>
+<span style="color:#a6e22e">merge</span>(X,Y, by<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;NAME&#34;</span>)) <span style="color:#75715e"># Not good, because NAME is not unique among rows</span>
+<span style="color:#75715e">##     NAME GENDER.x ID.x Height GENDER.y ID.y Weight</span>
+<span style="color:#75715e">## 1  James        M  234    180        M  345     80</span>
+<span style="color:#75715e">## 2  James        M  234    180        M  234     60</span>
+<span style="color:#75715e">## 3  James        M  345    185        M  345     80</span>
+<span style="color:#75715e">## 4  James        M  345    185        M  234     60</span>
+<span style="color:#75715e">## 5   Mary        F  123    170        F  123     70</span>
+<span style="color:#75715e">## 6 Olivia        F  456    160        F  456     50</span>
+<span style="color:#a6e22e">merge</span>(X,Y, by<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;ID&#34;</span>)) <span style="color:#75715e"># Better</span>
+<span style="color:#75715e">##    ID GENDER.x NAME.x Height GENDER.y NAME.y Weight</span>
+<span style="color:#75715e">## 1 123        F   Mary    170        F   Mary     70</span>
+<span style="color:#75715e">## 2 234        M  James    180        M  James     60</span>
+<span style="color:#75715e">## 3 345        M  James    185        M  James     80</span>
+<span style="color:#75715e">## 4 456        F Olivia    160        F Olivia     50</span>
+<span style="color:#a6e22e">merge</span>(X,Y)  <span style="color:#75715e"># Does not replicate variables present in both data sets</span>
+<span style="color:#75715e">##   GENDER  ID   NAME Height Weight</span>
+<span style="color:#75715e">## 1      F 123   Mary    170     70</span>
+<span style="color:#75715e">## 2      F 456 Olivia    160     50</span>
+<span style="color:#75715e">## 3      M 234  James    180     60</span>
+<span style="color:#75715e">## 4      M 345  James    185     80</span>
+</code></pre></div><h2 id="merging---example">
+  Merging - Example
+  <a class="anchor" href="#merging---example">#</a>
+</h2>
+<p>One can use the all.x argument to include the rows where the values of the by argument are not shared in both datasets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">current_courses <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>( Course_Code <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;ACTL1101&#34;</span>, <span style="color:#e6db74">&#34;MATH1251&#34;</span>, <span style="color:#e6db74">&#34;ACCT1511&#34;</span>, <span style="color:#e6db74">&#34;ECON1102&#34;</span>))
+
+actl_info <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(Course_Code  <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;ACTL1101&#34;</span>, <span style="color:#e6db74">&#34;ACTL2111&#34;</span>, <span style="color:#e6db74">&#34;ACTL2131&#34;</span>, <span style="color:#e6db74">&#34;ACTL2102&#34;</span>), 
+                        Course_Name <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Introduction to Actuarial Studies&#34;</span>, 
+                                        <span style="color:#e6db74">&#34;Financial Mathematics for Actuaries&#34;</span>, 
+                                        <span style="color:#e6db74">&#34;Probability and Mathematical Statistics&#34;</span>, 
+                                        <span style="color:#e6db74">&#34;Foundations of Actuarial Models&#34;</span>))
+
+<span style="color:#a6e22e">merge</span>(x<span style="color:#f92672">=</span>current_courses, y<span style="color:#f92672">=</span>actl_info, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Course_Code&#34;</span>, all.x <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e">##   Course_Code                       Course_Name</span>
+<span style="color:#75715e">## 1    ACCT1511                              &lt;NA&gt;</span>
+<span style="color:#75715e">## 2    ACTL1101 Introduction to Actuarial Studies</span>
+<span style="color:#75715e">## 3    ECON1102                              &lt;NA&gt;</span>
+<span style="color:#75715e">## 4    MATH1251                              &lt;NA&gt;</span>
+
+<span style="color:#a6e22e">merge</span>(x<span style="color:#f92672">=</span>current_courses, y<span style="color:#f92672">=</span>actl_info, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Course_Code&#34;</span>)
+<span style="color:#75715e">##   Course_Code                       Course_Name</span>
+<span style="color:#75715e">## 1    ACTL1101 Introduction to Actuarial Studies</span>
+</code></pre></div><h2 id="data-structure---factors">
+  Data structure - Factors
+  <a class="anchor" href="#data-structure---factors">#</a>
+</h2>
+<p>A factor can be used to store character strings</p>
+<ul>
+<li>each element is treated as a factor (even if the input is a real number)</li>
+<li>some functions require data structured as a factor</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;blue&#34;</span>,<span style="color:#e6db74">&#34;green&#34;</span>,<span style="color:#e6db74">&#34;blue&#34;</span>,<span style="color:#e6db74">&#34;red&#34;</span>,<span style="color:#e6db74">&#34;blue&#34;</span>,<span style="color:#e6db74">&#34;green&#34;</span>,<span style="color:#e6db74">&#34;green&#34;</span>))
+<span style="color:#a6e22e">levels</span>(x)
+<span style="color:#75715e">## [1] &#34;blue&#34;  &#34;green&#34; &#34;red&#34;</span>
+<span style="color:#a6e22e">class</span>(x)
+<span style="color:#75715e">## [1] &#34;factor&#34;</span>
+</code></pre></div><p>Note: Function &lsquo;levels()&rsquo; shows you all unique factors, which can be handy.</p>
+<h2 id="data-structure---summary">
+  Data structure - Summary
+  <a class="anchor" href="#data-structure---summary">#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Data structure</strong></th>
+<th style="text-align:left"><strong>Instruction in R</strong></th>
+<th style="text-align:left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vector</td>
+<td style="text-align:left">c()</td>
+<td style="text-align:left">Sequence of elements of the same nature</td>
+</tr>
+<tr>
+<td style="text-align:left">matrix</td>
+<td style="text-align:left">matrix()</td>
+<td style="text-align:left">Two-dimensional table of elements of the  same nature</td>
+</tr>
+<tr>
+<td style="text-align:left">array</td>
+<td style="text-align:left">array()</td>
+<td style="text-align:left">More general than a matrix; table with several dimensions</td>
+</tr>
+<tr>
+<td style="text-align:left">list</td>
+<td style="text-align:left">list()</td>
+<td style="text-align:left">Sequence of R structures of any (and possibly different) nature.</td>
+</tr>
+<tr>
+<td style="text-align:left">data frame</td>
+<td style="text-align:left">data.frame()</td>
+<td style="text-align:left">Two-dimensional table. The columns can be of different natures, but must have the same length.</td>
+</tr>
+<tr>
+<td style="text-align:left">factor</td>
+<td style="text-align:left">factor()</td>
+<td style="text-align:left">Vector of character strings associated with a modality table</td>
+</tr>
+<tr>
+<td style="text-align:left">dates</td>
+<td style="text-align:left">as.Date()</td>
+<td style="text-align:left">Vector of dates</td>
+</tr>
+<tr>
+<td style="text-align:left">time series</td>
+<td style="text-align:left">ts()</td>
+<td style="text-align:left">Values of a variable observed at several time points</td>
+</tr>
+</tbody>
+</table>
+<h2 id="importing-data---text-files---page-64">
+  Importing data - text files - Page 64
+  <a class="anchor" href="#importing-data---text-files---page-64">#</a>
+</h2>
+<ul>
+<li>R is a great tool to analyse data&hellip; but we first need to get our data into R!</li>
+<li>There are three main R functions to import data from a text file. Here we focus on the read.table and read.csv functions, which are widely used to import excel and csv files.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Function name</strong></th>
+<th style="text-align:left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">read.table()</td>
+<td style="text-align:left">best suited for data sets presented as tables, as it is often the case in statistics</td>
+</tr>
+<tr>
+<td style="text-align:left">read.ftable()</td>
+<td style="text-align:left">reads contingency tables</td>
+</tr>
+<tr>
+<td style="text-align:left">scan()</td>
+<td style="text-align:left">much more flexible and powerful. Use this in all other cases</td>
+</tr>
+</tbody>
+</table>
+<h2 id="importing-data---readtable---pages-64-65">
+  Importing data - read.table() - Pages 64-65
+  <a class="anchor" href="#importing-data---readtable---pages-64-65">#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Argument name</strong></th>
+<th style="text-align:left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">file=path/to/file</td>
+<td style="text-align:left">Location and name of the file to be read</td>
+</tr>
+<tr>
+<td style="text-align:left">header=TRUE</td>
+<td style="text-align:left">Indicates whether the variable names are given on the first line of the file</td>
+</tr>
+<tr>
+<td style="text-align:left">sep=&quot;&quot;</td>
+<td style="text-align:left">This is the field separator character. Values on each line of the file are separated by this character. (e.g.  &quot;&quot; = whitespace, &ldquo;,&rdquo; = comma, &ldquo;$\backslash$t&rdquo; = tabulation)</td>
+</tr>
+<tr>
+<td style="text-align:left">dec=&quot;.&quot;</td>
+<td style="text-align:left">Decimal mark for numbers (&quot;.&quot; or &ldquo;,&quot;)</td>
+</tr>
+<tr>
+<td style="text-align:left">row.names=1</td>
+<td style="text-align:left">1st column of the file gives the individuals' names</td>
+</tr>
+</tbody>
+</table>
+<p>To read data from a text file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">my.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(file<span style="color:#f92672">=</span><span style="color:#a6e22e">file.choose</span>(), header<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>, dec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.&#34;</span>, row.names<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div><p>The path can be specified explicitly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">my.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;C:/MyFolder/somedata.txt&#34;</span>)
+</code></pre></div><p>Alternatively, you can use double back slash \\ instead of /.</p>
+<h2 id="importing-data---readtable---pages-64-66">
+  Importing data - read.table() - Pages 64-66
+  <a class="anchor" href="#importing-data---readtable---pages-64-66">#</a>
+</h2>
+<p>Note:</p>
+<ul>
+<li>If the file is located in your current working directory, you do not need to specify the full path</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mydata.txt&#34;</span>)
+</code></pre></div><ul>
+<li>You can visualise the beginning or end of your data by using head(data) or tail(data)</li>
+</ul>
+<h2 id="importing-data---exercise---page-66">
+  Importing data - Exercise - Page 66
+  <a class="anchor" href="#importing-data---exercise---page-66">#</a>
+</h2>
+<ul>
+<li>Download the Danish fire data from Moodle and save it to your working directory (set up the working directory somewhere on your computer, or start a new project in RStudio). Name it danishfire.txt.</li>
+<li>Use the function readLines() to visualize the beginning of the data. Why should we do so?</li>
+<li>Import the data and store it in a data frame called danish_fire.</li>
+<li>Display the first few records of danish_fire by using the head() function.</li>
+<li>Display the structure of danish_fire.</li>
+<li>Calculate the mean of the building losses, as well as the correlation between the building losses and contents losses. Hint: Use functions mean() and cor().</li>
+</ul>
+<h2 id="importing-data---solution---page-66">
+  Importing data - Solution - Page 66
+  <a class="anchor" href="#importing-data---solution---page-66">#</a>
+</h2>
+<p>Use the function readLines() to visualize the beginning of the data file <strong>before</strong> you read the data, so you know the structure of the data and are able to determine the arguments of the function read.table()</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#Careful: this line will be different for you, enter the path of where &#39;danishfire.txt&#39; is for you</span>
+<span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:/Users/z3519303/Dropbox/ACTL1101 2019/R_lab_2019/Week 2&#34;</span>) 
+<span style="color:#a6e22e">readLines</span>(<span style="color:#e6db74">&#34;danishfire.txt&#34;</span>,n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</code></pre></div><p>Now let&rsquo;s import the data (note the first row is the header)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># import data, note that the header argument is TRUE</span>
+danish_fire <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;danishfire.txt&#34;</span>, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">head</span>(danish_fire)
+<span style="color:#a6e22e">class</span>(danish_fire)
+<span style="color:#a6e22e">str</span>(danish_fire)
+<span style="color:#75715e"># some numerical analysis</span>
+<span style="color:#a6e22e">mean</span>(danish_fire<span style="color:#f92672">$</span>building)
+<span style="color:#a6e22e">cor</span>(danish_fire<span style="color:#f92672">$</span>building, danish_fire<span style="color:#f92672">$</span>contents)
+</code></pre></div><h2 id="importing-data---standard-formats-eg-csv---page-67">
+  Importing data - Standard formats (e.g. csv) - Page 67
+  <a class="anchor" href="#importing-data---standard-formats-eg-csv---page-67">#</a>
+</h2>
+<p>With standard formats, most of the arguments of the function read.table() are fixed. There are some functions that are designed to be equivalent to read.table() with several arguments filled with pre-determined values:</p>
+<ul>
+<li>read.csv(): .csv format (csv stands for comma separated values)</li>
+<li>read.delim(): Tab-separated data</li>
+</ul>
+<h2 id="exporting-data---pages-72-73">
+  Exporting data - Pages 72-73
+  <a class="anchor" href="#exporting-data---pages-72-73">#</a>
+</h2>
+<p>Now try to export the danish fire data you have imported to R.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Exporting data to a text file</span>
+<span style="color:#a6e22e">write.table</span>(danish_fire, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;myfile.txt&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>)
+<span style="color:#75715e"># Exporting data to a csv file</span>
+<span style="color:#a6e22e">write.csv</span>(danish_fire, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;myfile.csv&#34;</span>)
+</code></pre></div><p>You can also save data to the clipboard and then paste them into your spreadsheet.</p>
+<h2 id="additional-notes---data-structures">
+  Additional notes - data structures
+  <a class="anchor" href="#additional-notes---data-structures">#</a>
+</h2>
+<p>There are many functions related to data structures in R, and it is practically impossible to go through them all in class. We have summarised some useful contents below.</p>
+<ul>
+<li>Replicating elements (see Pages 73-74)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>)
+<span style="color:#75715e">## [1] 1 1 1 1</span>
+<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## [1] 1 2 3 4 1 2 3 4</span>
+<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, each <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## [1] 1 1 2 2 3 3 4 4</span>
+<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>))
+<span style="color:#75715e">## [1] 1 1 2 3 3 4 4 4</span>
+<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>, each <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, len <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>) 
+<span style="color:#75715e">## [1] 1 1 2 2</span>
+<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, each <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, times <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">##  [1] 1 1 2 2 3 3 1 1 2 2 3 3 1 1 2 2 3 3</span>
+</code></pre></div><ul>
+<li>Naming the elements of a vector using the function names (see Page 51)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">vec <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+<span style="color:#a6e22e">names</span>(vec) <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">letters</span>[1<span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>]
+vec
+<span style="color:#75715e">##  a  b  c  d  e  f  g  h  i  j </span>
+<span style="color:#75715e">##  1  2  3  4  5  6  7  8  9 10</span>
+</code></pre></div><p>Here, the built-in constants letters[1:10] return the first 10 letters of the alphabet.</p>
+<ul>
+<li>
+<p>There are other data structures we haven&rsquo;t introduced yet. Two common ones are the date structure and time series structure.</p>
+<ul>
+<li>You can use the as.Date() function for dates</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dates <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;92/27/02&#34;</span>,<span style="color:#e6db74">&#34;92/02/27&#34;</span>)
+<span style="color:#a6e22e">as.Date</span>(dates,<span style="color:#e6db74">&#34;%y/%m/%d&#34;</span>)
+<span style="color:#75715e">## [1] NA           &#34;1992-02-27&#34;</span>
+</code></pre></div><pre><code>- You can also create a time series structure
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ts</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>, frequency<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, start<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1959</span>,<span style="color:#ae81ff">2</span>))
+<span style="color:#75715e">##      Qtr1 Qtr2 Qtr3 Qtr4</span>
+<span style="color:#75715e">## 1959         1    2    3</span>
+<span style="color:#75715e">## 1960    4    5    6    7</span>
+<span style="color:#75715e">## 1961    8    9   10</span>
+</code></pre></div><h2 id="additional-notes---readftable---see-page-67">
+  Additional notes - read.ftable - see Page 67
+  <a class="anchor" href="#additional-notes---readftable---see-page-67">#</a>
+</h2>
+<p>Following is an example of a contingency table</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"><strong>&ldquo;alcohol&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;never&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;occasional&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;regular&rdquo;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&ldquo;GENDER&rdquo;</td>
+<td style="text-align:left">&ldquo;tobacco&rdquo;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&ldquo;M&rdquo;</td>
+<td style="text-align:left">&ldquo;non-smoker&rdquo;</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">19</td>
+<td style="text-align:left">7</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&ldquo;former smoker&rdquo;</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&ldquo;smoker&rdquo;</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">&ldquo;F&rdquo;</td>
+<td style="text-align:left">&ldquo;non-smoker&rdquo;</td>
+<td style="text-align:left">12</td>
+<td style="text-align:left">26</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&ldquo;former smoker&rdquo;</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&ldquo;smoker&rdquo;</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">Intima.table <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.ftable</span>(<span style="color:#e6db74">&#34;Intima_ftable.txt&#34;</span>,row.var.names<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;GENDER&#34;</span>,<span style="color:#e6db74">&#34;tobacco&#34;</span>),col.vars<span style="color:#f92672">=</span><span style="color:#a6e22e">list</span>(<span style="color:#e6db74">&#34;alcohol&#34;</span><span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;never&#34;</span>,<span style="color:#e6db74">&#34;occasional&#34;</span>,<span style="color:#e6db74">&#34;regular&#34;</span>))) 
+Intima.table
+</code></pre></div><h2 id="additional-notes---scan---see-page-68">
+  Additional notes - scan - see Page 68
+  <a class="anchor" href="#additional-notes---scan---see-page-68">#</a>
+</h2>
+<p>Function scan() should be used when the data are not organized as a rectangular table.For example, suppose your data file contains the following lines:</p>
+<p>
+  <img src="IntimaPic.png" alt="" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Reading variable names:</span>
+variable.name <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scan</span>(<span style="color:#e6db74">&#34;Intima_Media2.txt&#34;</span>,skip<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,nlines<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,what<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#75715e"># Reading data:</span>
+data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scan</span>(<span style="color:#e6db74">&#34;Intima_Media2.txt&#34;</span>,skip<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>,dec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+mytable <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">matrix</span>(data,ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">9</span>,byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>))
+<span style="color:#a6e22e">colnames</span>(mytable) <span style="color:#f92672">&lt;-</span> variable.name
+
+mytable
+</code></pre></div><p>Note</p>
+<ul>
+<li>The argument skip=n is used to omit reading the first n lines of the file</li>
+<li>You can read data files directly from Internet with read.table() and scan()</li>
+</ul>
+<h2 id="additional-notes---importing-data-from-excel-see-pages-69-70">
+  Additional notes - Importing data from Excel (see Pages 69-70)
+  <a class="anchor" href="#additional-notes---importing-data-from-excel-see-pages-69-70">#</a>
+</h2>
+<ul>
+<li>
+<p>Approach One: Using copy-paste:</p>
+<ul>
+<li>
+<p>Using the mouse, select the range of the data (in the spreadsheet) which you wish to incorporate into R. Once the data are selected, copy them to the clipboard (from the Edit menu, or with the keyboard shortcuts Ctrl+C on Windows or Command+C on a Mac)</p>
+</li>
+<li>
+<p>All you need to do now is type the following instructions in the R console to transfer the data from the clipboard.</p>
+<ul>
+<li>x &lt;- read.table(file(&ldquo;clipboard&rdquo;),sep=&quot;\t&rdquo;,header=TRUE,dec=&quot;,&quot;)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Approach Two: Using an intermediary text file:</p>
+<p>-Save your file as a csv file or tab-separated file,  then you can use the procedures we discussed in the previous slides.</p>
+</li>
+</ul>
+<h2 id="additional-notes---importing-data-from-some-other-software---page-71">
+  Additional notes - Importing data from some other software - Page 71
+  <a class="anchor" href="#additional-notes---importing-data-from-some-other-software---page-71">#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Software</strong></th>
+<th style="text-align:left"><strong>&ldquo;Package&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;R function&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;File extension&rdquo;</strong></th>
+<th style="text-align:left"><strong>&ldquo;Output format&rdquo;</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPSS</td>
+<td style="text-align:left">foreign</td>
+<td style="text-align:left">read.spss()</td>
+<td style="text-align:left">*.sav</td>
+<td style="text-align:left">list</td>
+</tr>
+<tr>
+<td style="text-align:left">Minitab</td>
+<td style="text-align:left">foreign</td>
+<td style="text-align:left">read.mtp()</td>
+<td style="text-align:left">*.mtp</td>
+<td style="text-align:left">list</td>
+</tr>
+<tr>
+<td style="text-align:left">SAS</td>
+<td style="text-align:left">foreign</td>
+<td style="text-align:left">read.xport()</td>
+<td style="text-align:left">*.xpt</td>
+<td style="text-align:left">data.frame</td>
+</tr>
+<tr>
+<td style="text-align:left">Matlab</td>
+<td style="text-align:left">R.matlab</td>
+<td style="text-align:left">readMat()</td>
+<td style="text-align:left">*.mat</td>
+<td style="text-align:left">list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-notes---importing-large-data-files---page-71">
+  Additional notes - Importing large data files - Page 71
+  <a class="anchor" href="#additional-notes---importing-large-data-files---page-71">#</a>
+</h2>
+<p>R can handle large data sets quickly and efficiently. For this, you need to specify explicitly the type of each column using the argument colClasses of the function read.table().</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">tm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Sys.time</span>() <span style="color:#75715e"># Gets the current time.</span>
+dbsnp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;dbsnp123.dat&#34;</span>)
+<span style="color:#a6e22e">Sys.time</span>() <span style="color:#f92672">-</span> tm
+
+tm <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Sys.time</span>()
+dbsnp2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;dbsnp123.dat&#34;</span>,
+colClasses<span style="color:#f92672">=</span><span style="color:#a6e22e">rep</span>(<span style="color:#e6db74">&#34;character&#34;</span>,<span style="color:#ae81ff">3</span>))
+<span style="color:#a6e22e">Sys.time</span>() <span style="color:#f92672">-</span> tm
+</code></pre></div><h2 id="additional-notes---matrix-operations---diagonals-upper-and-lower-matrices---page-319">
+  Additional notes - Matrix operations - Diagonals, upper and lower matrices - Page 319
+  <a class="anchor" href="#additional-notes---matrix-operations---diagonals-upper-and-lower-matrices---page-319">#</a>
+</h2>
+<p>Execute the following instructions. What are the mathematical meaning of the operations?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">M <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>,nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">diag</span>(M)
+<span style="color:#75715e">## [1] 1 5 9</span>
+M<span style="color:#a6e22e">[lower.tri</span>(M)]
+<span style="color:#75715e">## [1] 2 3 6</span>
+M<span style="color:#a6e22e">[lower.tri</span>(M)] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+M<span style="color:#a6e22e">[upper.tri</span>(M)] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+M
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    0    0</span>
+<span style="color:#75715e">## [2,]    0    5    0</span>
+<span style="color:#75715e">## [3,]    0    0    9</span>
+</code></pre></div><h2 id="additional-notes---merging-rows---pages-92-93">
+  Additional notes - Merging rows - Pages 92-93
+  <a class="anchor" href="#additional-notes---merging-rows---pages-92-93">#</a>
+</h2>
+<ul>
+<li>Method 1: The generic function is rbind().</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">rbind</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>)
+<span style="color:#75715e">##      [,1] [,2] [,3] [,4]</span>
+<span style="color:#75715e">## [1,]    1    2    3    4</span>
+<span style="color:#75715e">## [2,]    5    6    7    8</span>
+</code></pre></div><ul>
+<li>Method 2: Alternatively, you can install the gtools package (via the Packages windows in Rstudio) and use the smartbind() function</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(A<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, B<span style="color:#f92672">=</span><span style="color:#66d9ef">LETTERS</span>[1<span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>])
+df2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(A<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>, E<span style="color:#f92672">=</span><span style="color:#66d9ef">letters</span>[1<span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>])
+<span style="color:#a6e22e">smartbind</span>(df1, df2)
+</code></pre></div><h2 id="additional-notes---set-operations">
+  Additional notes - Set operations
+  <a class="anchor" href="#additional-notes---set-operations">#</a>
+</h2>
+<ul>
+<li>R allows for set operations - Page 99</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">A <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>)
+B <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">3</span>)
+C <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>)
+<span style="color:#a6e22e">is.element</span>(C,A)
+<span style="color:#75715e">## [1]  TRUE FALSE  TRUE</span>
+<span style="color:#a6e22e">all</span>(A<span style="color:#f92672">%in%</span>B)
+<span style="color:#75715e">## [1] FALSE</span>
+<span style="color:#a6e22e">intersect</span>(A,B)
+<span style="color:#75715e">## [1] 2 7</span>
+<span style="color:#a6e22e">union</span>(A,B)
+<span style="color:#75715e">## [1] 4 5 2 7 1 3</span>
+<span style="color:#a6e22e">setdiff</span>(A,B)
+<span style="color:#75715e">## [1] 4 5</span>
+</code></pre></div><ul>
+<li>Exercises</li>
+</ul>
+<p>Given that</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">A <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">7</span>)
+B <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">3</span>)
+C <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>)
+</code></pre></div><p>Calculate</p>
+<pre><code>- the collection of elements of A and B that only belong to one set	
+- the number of elements that belong to A, B and C
+</code></pre>
+<ul>
+<li>Solutions</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># the collection of elements of A and B that only belong to one set</span>
+<span style="color:#a6e22e">union</span>(<span style="color:#a6e22e">setdiff</span>(A,B), <span style="color:#a6e22e">setdiff</span>(B,A))
+<span style="color:#75715e">## [1] 4 5 1 3</span>
+
+<span style="color:#75715e"># the number of elements that belong to A, B and C</span>
+<span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">intersect</span>(<span style="color:#a6e22e">intersect</span>(A,B), C))
+<span style="color:#75715e">## [1] 2</span>
+</code></pre></div><h2 id="relevant-exercises">
+  Relevant exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h2>
+<ul>
+<li>3.14, 3.15, 4.1-4.15, 5.2, 5.4, 5.5, 10.1, 10.3, 10.5-10.10</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/datastructures/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-structures-mathematical-operations-importation-and-exportation-in-base-r">Data structures, mathematical operations, importation and exportation in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#data-structure---vectors---page-51">Data structure - Vectors - page 51</a></li>
+        <li><a href="#vector-operations---some-basic-functions---page-87">Vector operations - Some basic functions - Page 87</a></li>
+        <li><a href="#vector-operations---examples---page-87-88">Vector operations - Examples - Page 87-88</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-51">Data structure - Matrices and arrays - page 51</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-52">Data structure - Matrices and arrays - page 52</a></li>
+        <li><a href="#data-structure---matrices-and-arrays---page-53">Data structure - Matrices and arrays - page 53</a></li>
+        <li><a href="#recycling---pages-86-87">Recycling - Pages 86-87</a></li>
+        <li><a href="#merging---merging-columns---page-89">Merging - Merging columns - Page 89</a></li>
+        <li><a href="#matrix-operations---pages-315-316-317">Matrix operations - Pages 315-316-317</a></li>
+        <li><a href="#matrix-operations---the-solve-function---pages-316-317">Matrix operations - the solve() function - Pages 316-317</a></li>
+        <li><a href="#matrix-operations---the-function-apply---page-93">Matrix operations - The function apply() - Page 93</a></li>
+        <li><a href="#important-note-on-data-structures">Important note on data structures</a></li>
+        <li><a href="#data-structure---lists---page-53">Data structure - Lists - page 53</a></li>
+        <li><a href="#data-structure---data-frames---page-54">Data structure - Data frames - page 54</a></li>
+        <li><a href="#data-structure---data-frames">Data structure - Data frames</a></li>
+        <li><a href="#merging---merging-columns-of-data-frames---page-89-91">Merging - Merging columns of data frames - Page 89-91</a></li>
+        <li><a href="#merging---example">Merging - Example</a></li>
+        <li><a href="#data-structure---factors">Data structure - Factors</a></li>
+        <li><a href="#data-structure---summary">Data structure - Summary</a></li>
+        <li><a href="#importing-data---text-files---page-64">Importing data - text files - Page 64</a></li>
+        <li><a href="#importing-data---readtable---pages-64-65">Importing data - read.table() - Pages 64-65</a></li>
+        <li><a href="#importing-data---readtable---pages-64-66">Importing data - read.table() - Pages 64-66</a></li>
+        <li><a href="#importing-data---exercise---page-66">Importing data - Exercise - Page 66</a></li>
+        <li><a href="#importing-data---solution---page-66">Importing data - Solution - Page 66</a></li>
+        <li><a href="#importing-data---standard-formats-eg-csv---page-67">Importing data - Standard formats (e.g. csv) - Page 67</a></li>
+        <li><a href="#exporting-data---pages-72-73">Exporting data - Pages 72-73</a></li>
+        <li><a href="#additional-notes---data-structures">Additional notes - data structures</a></li>
+        <li><a href="#additional-notes---readftable---see-page-67">Additional notes - read.ftable - see Page 67</a></li>
+        <li><a href="#additional-notes---scan---see-page-68">Additional notes - scan - see Page 68</a></li>
+        <li><a href="#additional-notes---importing-data-from-excel-see-pages-69-70">Additional notes - Importing data from Excel (see Pages 69-70)</a></li>
+        <li><a href="#additional-notes---importing-data-from-some-other-software---page-71">Additional notes - Importing data from some other software - Page 71</a></li>
+        <li><a href="#additional-notes---importing-large-data-files---page-71">Additional notes - Importing large data files - Page 71</a></li>
+        <li><a href="#additional-notes---matrix-operations---diagonals-upper-and-lower-matrices---page-319">Additional notes - Matrix operations - Diagonals, upper and lower matrices - Page 319</a></li>
+        <li><a href="#additional-notes---merging-rows---pages-92-93">Additional notes - Merging rows - Pages 92-93</a></li>
+        <li><a href="#additional-notes---set-operations">Additional notes - Set operations</a></li>
+        <li><a href="#relevant-exercises">Relevant exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

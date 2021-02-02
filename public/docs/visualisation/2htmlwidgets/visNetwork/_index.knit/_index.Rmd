@@ -1,0 +1,654 @@
+---
+title: "htmlwidgets - visNetwork"
+author: "UNSW"
+date: "2019"
+output: 
+  html_document:
+    self_contained: false
+css: html-styles.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, message=TRUE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      out.width = "80%")
+```
+
+# The Bigger Picture
+
+In this document we learn how to create interactive networks with visNetwork. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+
+# What is visNetwork?
+
+> [Lynda 5.1](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/what-is-the-visnetwork-library?u=2087740)
+
+```{r library-visNetwork, echo = TRUE, message = FALSE}
+library("tidyverse")
+library("visNetwork")
+```
+
+- An htmlwidget used to make interactive networks from data frames and tibbles
+- It is a package which allows for a unique (and fun) interactive visualisation of the connections within data
+- Networks can visualise relationships, such as in the following predator-prey example:
+
+```{r example0, echo=FALSE}
+
+load("example")
+example
+
+```
+
+- It is essentially the best package for visualising networks
+- The package is bound to the vis.js library in JavaScript
+
+# Creating Very Basic Networks
+> [Lynda 5.2](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-basic-network-diagrams?u=2087740)
+
+The very first thing we will do is create a network based on some very easy data. The data is easy because everything will be provided for us.
+
+Whenever we create a visNetwork chart, **the network requires two data frames** (or tibbles)
+
+- One of these contains information about the "nodes" of the data. The nodes are the things we are trying to find a relationship between.
+    - Eg cities
+- One of these contains information about the "edges" of the data. The edges connect the nodes, and represent some relationship between the nodes.
+    - Eg distance between the cities
+
+We explain how to create these in R using an example: we have 5 people, and we wish to graphically represent which people know which other people. In our example, a person is a node, and an edge represents that two people know each other.
+
+We will use the `readxl` package to read in our data from two Excel files:
+
+```{r basic1}
+library("readxl")
+net_nodes <- read_xlsx("Sample_network/nodes.xlsx")
+net_edges <- read_xlsx("Sample_network/edges.xlsx")
+```
+
+Let's take a look at each dataframe more closely:
+
+```{r basic2}
+net_nodes
+```
+
+The "nodes" dataframe contains two columns: `id` and `label`. `id` numbers each observation 1-5. `label` labels each observation with their name. 
+
+```{r basic3}
+net_edges
+```
+
+The "edges" dataframe contains two columns, `from` and `to`. Each row represents a connection from one node to another. The first row, "from 2 to 3", corresponds to a connection from Sarah to Thomas. They know each other.
+
+These four columns, `id`, `label`, `from` and `to` are all we need to create a basic graph. We discuss other optional columns further along. Now we just use visNetwork to create the interactive graph:
+
+- We use the `visNetwork()` function
+- The `nodes` argument is our nodes dataframe
+- The `edges` argument is our edges dataframe
+
+visNetwork then knows that `label` will be the name of the nodes. Automatically, visNetwork establishes the given connections and makes a graph.
+
+```{r basic4}
+visNetwork(nodes = net_nodes,
+           edges = net_edges)
+```
+
+We can click on a node to highlight it and all its nearest neighbours. We can also click-drag on nodes and move them around.
+
+Notice that since we have a `from` and `to` column, we can also make our network directed. We do this by:
+
+- Piping the entire visualisation into the `visEdges()` function
+- Setting the `arrows` argument of this function to "to"
+
+```{r basic5}
+visNetwork(nodes = net_nodes,
+           edges = net_edges) %>%
+  visEdges(arrows = "to")
+```
+
+We now explicitly see the direction of our graph.
+
+# Building Our Own Networks
+
+This was all well and good for a very specific set of data frames, but what if we don't have a convenient `id`, `label`, `to` and `from` column? We make them ourselves. In this section we will run through a complicated example of turning a regular dataset into a network.
+
+# Example: Predator-Prey Food Chain
+
+We begin with the dataset, courtesy of [the Interaction Web DataBase](https://www.nceas.ucsb.edu/interactionweb/resources.html#predator_prey) (we are using the Coweeta1 food web). It has been slightly manipulated to indicate whether a species is a predator or prey. We have a matrix of species. The grid is binary, with a 1 representing that the column-head-species eats the row-head-species.
+
+```{r chain_manipulation, message=FALSE}
+chain_data <- readxl::read_xls("predator_prey/Coweeta1.xls")
+
+isPrey <- function(colno) {
+  ret = "Predator"
+  if (sum(chain_data[colno]) == 0) {
+    ret = "Prey"
+  }
+  return(ret)
+}
+
+chain_data <- chain_data %>%
+  mutate(Class = "NA")
+
+for (i in 1:58) {
+  chain_data$Class[i] = isPrey(i+1)
+}
+```
+
+This is a small section of the dataset, since it is too large to render:
+
+```{r chain1}
+chain_data[1:5, 1:5]
+```
+
+We seek to build our "nodes" data frame and "edges" data frame. The nodes are easy:
+
+- The `label` is just the name of the species (ie the first column of our data)
+- The `id` column can just be the row number, so each species has an id
+- We do this by `mutate()`ing the relevant columns and selecting them
+- Note we are also selecting the column `Class` for later use - it categorises whether a species is a predator or prey
+
+```{r chain2}
+chain_nodes <- chain_data %>%
+  mutate(id = row_number(),
+         label = ...1) %>%
+  select(id, label, Class)
+```
+
+Building the edges is slightly harder. First we need a data frame:
+
+```{r chain3}
+chain_edges <- tibble(from = NA, to = NA)
+```
+
+Now we add edges to it. We add an edge `i, j` (using `rbind()`) if species `i` is eaten by species `j`, ie if the entry in our table `[i, j+1]` is 1. (**Note**: we use `j+1` because the first column is the type name column.)
+
+```{r chain4}
+for (i in 1:nrow(chain_data)) {
+  for (j in 1:nrow(chain_data)) {
+    if(chain_data[i,j+1] == "1") {
+      chain_edges = rbind(chain_edges, c(i,j))
+    }
+  }
+}
+chain_edges
+```
+
+We also remove that first `NA` entry in our table. We only had it in the first place so that `rbind()` would work.
+
+```{r chain5}
+chain_edges <- chain_edges[-1,]
+```
+
+All that's left is to create the network with arrows:
+
+- We use the `visNetwork()` function
+- We set the `nodes` argument to our nodes data frame
+- We set the `edges` argument to our edges data frame
+- We pipe the visualisation into `visEdges()` and set `arrows` to "to"
+
+```{r chain6}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "to")
+```
+
+
+# Example: Pokémon Type Matchup Chart
+
+We begin with the dataset, which was found [here](https://github.com/zonination/pokemon-chart):
+
+```{r types1}
+library("tidyverse")
+library("visNetwork")
+
+types <- read_csv("Pokemon/chart.csv")
+types
+```
+
+The table represents Pokémon type effectiveness. We have the 'attacking' type as the row names, and the 'defending' type as the column names. The number represents the damage multiplier the attack will deal when hit.
+
+We wish to build a network in which each node is a type, and each connection is a "super-effective" relationship (a "super-effective" type is one which will deal damage with a modifier of 2). For example, an arrow from the "Water" node to the "Fire" node represents that Water-type attacks are super-effective on Fire-type Pokémon.
+
+We seek to build our "nodes" data frame and "edges" data frame. The nodes are easy:
+
+- The `label` is just the name of the type (ie the first column of our data)
+- The `id` column can just be the row number, so each type has an id
+- We do this by `mutate()`ing the relevant columns and selecting them
+
+```{r types2}
+type_nodes <- types %>%
+  mutate(id = row_number(),
+         label = Attacking) %>%
+  select(id, label)
+type_nodes
+```
+
+Building the edges is slightly harder. First we need a data frame:
+
+```{r types3}
+type_edges <- tibble(from = NA, to = NA)
+```
+
+Now we add edges to it. We add an edge `i, j` (using `rbind()`) if type `i` is super-effective on type `j`, ie if the entry in our table `[i, j+1]` is 2. (**Note**: we use `j+1` because the first column is the type name column.)
+
+```{r types4}
+for (i in 1:18) {
+  for (j in 1:18) {
+    if(types[i,j+1] == 2) {
+      type_edges = rbind(type_edges, c(i,j))
+    }
+  }
+}
+type_edges
+```
+
+We also remove that first `NA` entry in our table. We only had it in the first place so that `rbind()` would work.
+
+```{r types5}
+type_edges <- type_edges[-1,]
+```
+
+All that's left is to create the network with arrows:
+
+- We use the `visNetwork()` function
+- We set the `nodes` argument to our nodes data frame
+- We set the `edges` argument to our edges data frame
+- We pipe the visualisation into `visEdges()` and set `arrows` to "to"
+
+```{r types6}
+visNetwork(nodes = type_nodes,
+           edges = type_edges) %>%
+  visEdges(arrows = "to")
+```
+
+
+# Styling Networks
+> [Lynda 5.3](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/style-visnetwork-graph?u=2087740)
+
+One immediate change to note is the `arrows` argument of `visEdges()` can be set to "middle", so that the arrow appears in the middle of the network:
+
+```{r styling1}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We can change the thickness of an edge according to some variable - we need to add a new column to our "edges' data frame called `width`. For our example, let's assume that we want lines from one species thicker if it consumes many other species.
+
+Here is our process:
+
+- Group the edges data frame according to the `to` column
+- `mutate()` the new column, `width`, which is equal to the number of incoming nodes to that specific `to` column
+- `ungroup()` to remove these groupings
+
+```{r styling2}
+thick_chain_edges <- chain_edges %>%
+  group_by(to) %>%
+  mutate(width = n()) %>%
+  ungroup()
+
+visNetwork(nodes = chain_nodes,
+           edges = thick_chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We note our lines are now so thick as to be messy. We repeat the code, but now `width` will be decreased by a factor of 2, say.
+
+```{r styling3}
+thick_chain_edges <- chain_edges %>%
+  group_by(to) %>%
+  mutate(width = n()/2) %>%
+  ungroup()
+
+visNetwork(nodes = chain_nodes,
+           edges = thick_chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We may colour nodes as we like using a new column called `color` (***must*** be spelled 'color'!). For example, we can make it so that we colour our food chain according to whether a species is predator or prey:
+
+```{r styling3andahalf}
+colour_chain_nodes <- chain_nodes %>%
+  mutate(color = plyr::mapvalues(Class,
+                                 from = c("Predator",
+                                          "Prey"),
+                                 to = c("Red",
+                                        "Green")))
+
+visNetwork(nodes = colour_chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We can also use `mutate()` to change the colours of types. We can use the `plyr::mapvalues()` function to directly map types to colours:
+
+```{r styling4}
+colour_type_nodes <- type_nodes %>%
+  mutate(color = plyr::mapvalues(label,
+                                 from = c("Fire",
+                                          "Water",
+                                          "Grass",
+                                          "Electric",
+                                          "Fairy",
+                                          "Poison",
+                                          "Ghost",
+                                          "Dark",
+                                          "Psychic",
+                                          "Fighting",
+                                          "Normal",
+                                          "Bug",
+                                          "Steel",
+                                          "Flying",
+                                          "Rock",
+                                          "Ground",
+                                          "Ice",
+                                          "Dragon"),
+                                 to = c("Red",
+                                        "Darkblue",
+                                        "Green",
+                                        "Yellow",
+                                        "Pink",
+                                        "Purple",
+                                        "Gray",
+                                        "Black",
+                                        "Magenta",
+                                        "Darkred",
+                                        "Tan",
+                                        "Lightgreen",
+                                        "Silver",
+                                        "Blue",
+                                        "Brown",
+                                        "Orange",
+                                        "Lightblue",
+                                        "Violet")))
+
+visNetwork(nodes = colour_type_nodes,
+           edges = type_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We can change the shape of nodes:
+
+- We pipe our visualisation into the `visEdges()` function
+- We set the `shapes` argument as we please ("square" and "triangle" are useful)
+
+```{r styling5}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visNodes(shape = "square")
+```
+
+# visNetwork and igraph
+> [Lynda 5.4](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/use-visnetwork-with-igraph?u=2087740)
+
+`igraph` is a collection of network analysis tools. We can take data frames we use for visNetwork and transform it into an igraph object. We can then use this to tweak our networks in new ways.
+
+Consider the slightly modified version of our food web:
+
+```{r igraph1, echo=FALSE}
+new_chain_nodes <- rbind(chain_nodes, c(100, "A"))
+new_chain_nodes <- rbind(new_chain_nodes, c(101, "B"))
+new_chain_nodes <- rbind(new_chain_nodes, c(102, "C"))
+
+new_chain_edges = rbind(chain_edges, c(100,101))
+new_chain_edges = rbind(new_chain_edges, c(101,102))
+new_chain_edges = rbind(new_chain_edges, c(102,100))
+```
+
+```{r igraph2}
+visNetwork(nodes = new_chain_nodes,
+           edges = new_chain_edges) %>%
+  visEdges(arrows = "to")
+```
+
+We now have a smaller disconnected component of our network. One feature of igraph is that it allows us to separate disconnected network components. We achieve this by first transforming our network into an igraph:
+
+```{r igraph3}
+library("igraph")
+chain_igraph <- graph.data.frame(new_chain_edges,
+                                 vertices = new_chain_nodes)
+class(chain_igraph)
+```
+
+Now that we have an igraph object, we can use `decompose()` to break it down into its disconnected components. The result is a collection of igraph objects.
+
+```{r igraph4}
+chain_decomp <- decompose(chain_igraph)
+chain_decomp[[1]]
+chain_decomp[[2]]
+```
+
+We can plot igraph objects with visNetwork by piping the igraph objects using `visIgraph()`:
+
+```{r igraph5}
+chain_decomp[[1]] %>%
+  visIgraph()
+chain_decomp[[2]] %>%
+  visIgraph()
+```
+
+We notice the node names have been replaced with their IDs. We can return to our `label` names using the `idToLabel` argument of `visIgraph()` and making this `FALSE`:
+
+```{r igraph6}
+chain_decomp[[2]] %>%
+  visIgraph(idToLabel = FALSE)
+```
+
+# Selecting Graph Layouts
+> [Lynda 5.5](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/choose-graph-layouts-and-embeddings?u=2087740)
+
+This section discusses how networks are rendered on one's computer. We note that so far, whenever we have asked visNetwork to generate a graph, R has run a simulation to 'randomly' place certain nodes on the screen. The graph will not look exactly the same each time the code is run, nor on different computers, unless we use the same seed. For example:
+
+This graph will be slightly different, despite running the same code twice:
+
+```{r seed1}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+However if we keep the seed constant, the graphs will in fact appear identical:
+
+```{r seed2}
+set.seed(1)
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+
+set.seed(1)
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We now learn how to use different styles of rendering our network.
+
+First note that we can immediately pipe existing visNetwork networks into the function `visIgraphLayout()` to make it render faster:
+
+```{r layout1}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout()
+```
+
+The graph appears slightly different, and we also note that the physics when we click and drag are slightly different. This is because we are taking advantage of igraphs.
+
+Next we note the `layout` argument of `visIgraphLayout()` can be used to change the style in which graphs are rendered. We try "layout.star"
+
+```{r layout2}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout.star")
+```
+
+This iteration of the graph uses a circle pattern and places "Unidentified detrius" at the center. Take note that for this layout it is always going to be the first node which is at the center of the star!
+
+Here are some other layout styles:
+
+- "layout_nicely" (default)
+
+```{r layout3, echo=FALSE}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout_nicely")
+```
+
+- "layout_with_gem"
+
+```{r layout4, echo=FALSE}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout_with_gem")
+```
+
+- "layout.graphopt"
+
+```{r layout5, echo=FALSE}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout.graphopt")
+```
+
+- "layout_on_grid"
+
+```{r layout6, echo=FALSE}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout_on_grid")
+```
+
+- "layout_on_sphere"
+
+```{r layout7, echo=FALSE}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout(layout = "layout_on_sphere")
+```
+
+# Clustering Nodes
+> [Lynda 5.6](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/cluster-nodes-in-visnetwork-using-groups?u=2087740)
+
+We can 'cluster' nodes. That is, we can make it so that nodes of a given category are all conglomerated into a single nodes until we wish to expand it. This is easier demonstrated than explained.
+
+Let's say we wish to 'cluster' according to whether a species is predator or prey:
+
+- We first `mutate()` a column to our nodes data frame
+- This column will be called `group` and it will be equal to our categorical grouping variable, in this case the `Class` of our species
+
+```{r cluster1}
+chain_nodes <- chain_nodes %>%
+  mutate(group = Class)
+```
+
+Then:
+
+- We pipe our visualisation into `visIgraphLayout()`
+- We then pipe this into `visClusteringByGroup()`
+- We then set the `groups` argument of this to the unique elements of the group column
+    - In other words, this argument will take `unique(data$group)`, where `data` is our data frame
+    
+```{r cluster2}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visIgraphLayout() %>%
+  visClusteringByGroup(groups = unique(chain_nodes$group))
+```
+
+This is a cluster. Try double clicking on the "Predator" or "Prey" nodes!
+
+# Legends
+> [Lynda 5.7](https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/add-legends-to-visnetwork?u=2087740)
+
+Let's assume we have some network coloured by a categorical variable, in our case, species are coloured according to their status as 'Predator' or 'Prey' (note that the "group" column does this automatically for us):
+
+```{r legend1}
+chain_nodes <- chain_nodes %>%
+  mutate(group = Class)
+
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle")
+```
+
+We can instantly add a legend by piping our visualisation into the `visLegend()` function:
+
+```{r legend2}
+chain_nodes <- chain_nodes %>%
+  mutate(group = Class)
+
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visLegend()
+```
+
+Note that this function has an `ncol` argument which specifies how many columns we use for our legend. This may be useful if the legend is very long!
+
+```{r legend3}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visLegend(ncol = 2)
+```
+
+We may also choose to label only particular groups:
+
+- Instead of using `visLegend()` immediately, we pipe our visualisation into `visGroups()`
+- We set the `groupname` argument to the group(s) we wish to label
+- We also set the `color` argument to the colour we wish to use
+- We then pipe this all into `visLegend()`
+- We specify that the `useGroups` argument of `visLegend()` is `FALSE`
+- We also specify the `addNodes` argument of `visLegend()`
+  - This argument takes a list of lists
+  - For each particular group we wish to display, the sub-list contains its own two arguments, `label` and `color`
+  - `label` is the name of the particular group
+  - `color` is its colour
+
+```{r legend4}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visGroups(groupname = "Predator",
+            color = "red") %>%
+  visLegend(useGroups = FALSE,
+            addNodes = list(list(label = "Predator",
+                                 color = "red")))
+```
+
+If we wish to display more than one group, we use:
+
+- Multiple pipings into of `visGroups()`
+- Multiple sub-list arguments of the list for `addNodes`:
+
+```{r legend5}
+visNetwork(nodes = chain_nodes,
+           edges = chain_edges) %>%
+  visEdges(arrows = "middle") %>%
+  visGroups(groupname = "Predator",
+            color = "red") %>%
+  visGroups(groupname = "Prey",
+            color = "green") %>%
+  visLegend(useGroups = FALSE,
+            addNodes = list(list(label = "Predator",
+                                 color = "red"),
+                            list(label = "Prey",
+                                 color = "green")))
+```

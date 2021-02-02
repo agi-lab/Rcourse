@@ -3,37 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/table-of-contents/with-toc/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/table-of-contents/without-toc/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://a-first-r-course.netlify.app/posts/creating-a-new-theme/</loc>
     <lastmod>2021-02-01T12:33:40+11:00</lastmod>
   </url>
   
   <url>
     <loc>https://a-first-r-course.netlify.app/posts/migrate-from-jekyll/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/table-of-contents/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/collapsed/</loc>
     <lastmod>2021-02-01T12:33:40+11:00</lastmod>
   </url>
   
@@ -123,78 +98,7 @@
   </url>
   
   <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/4th-level/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/example/hidden/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/buttons/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/columns/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/details/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/expand/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/hints/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/katex/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/mermaid/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/section/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/section/page1/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/section/page2/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://a-first-r-course.netlify.app/docs/shortcodes/tabs/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egBeamer/</loc>
   </url>
   
   <url>
@@ -203,13 +107,110 @@
   </url>
   
   <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/blogdown/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/controlflows/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/datamanipulations/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/datastructures/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/datavisualistationinbaseR/</loc>
+  </url>
+  
+  <url>
     <loc>https://a-first-r-course.netlify.app/docs/</loc>
-    <lastmod>2021-02-01T12:33:40+11:00</lastmod>
+    <lastmod>2021-02-01T14:11:38+11:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/foreword/</loc>
+    <lastmod>2021-02-01T14:11:38+11:00</lastmod>
   </url>
   
   <url>
     <loc>https://a-first-r-course.netlify.app/</loc>
     <lastmod>2021-02-01T12:33:40+11:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/DT/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/highcharter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/leaflet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/plotly/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/visNetwork/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/Example/OurFirstRmd/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/RMarkdown.utf8/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egSlidy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/statisticalanalysis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/test/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/tidyverse/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/visualisation/1ggplot/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/test/</loc>
+  </url>
+  
+  <url>
+    <loc>https://a-first-r-course.netlify.app/docs/baseR/workingprojects/</loc>
   </url>
   
 </urlset>

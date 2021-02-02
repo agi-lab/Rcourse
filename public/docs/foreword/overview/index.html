@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Overview of contents #  Rationale #  In many cases, R will be used to communicate data.
+A whole course (or suite of courses) could be dedicated to data communication.
+When using R, this will involve the following steps:
+ Extract raw data from sources Tidy data Analyse data and create visualisation Produce them in a chose medium for communication  On this website we explain the basics of how some of those steps can be performed:">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Overview" />
+<meta property="og:description" content="Overview of contents #  Rationale #  In many cases, R will be used to communicate data.
+A whole course (or suite of courses) could be dedicated to data communication.
+When using R, this will involve the following steps:
+ Extract raw data from sources Tidy data Analyse data and create visualisation Produce them in a chose medium for communication  On this website we explain the basics of how some of those steps can be performed:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/foreword/overview/" />
+
+<title>Overview | A First R Course</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.66e216a44f17f8a9877f05910a91ff9391b62ea5e1cf97c36b1ceab2e9cffb83.js" integrity="sha256-ZuIWpE8X&#43;KmHfwWRCpH/k5G2LqXhz5fDaxzqsunP&#43;4M="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First R Course</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/docs/foreword/"><strong>Foreword</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/foreword/overview/"class=active>Overview</a></li>
+<li>
+  <a href="/docs/foreword/">Credentials</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/docs/baseR/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="">Data structures</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/docs/example/"><strong>Example Site b</strong></a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/example/table-of-contents/">Table of Contents</a></p>
+<ul>
+<li>
+  <a href="/docs/example/table-of-contents/with-toc/">With ToC</a></li>
+<li>
+  <a href="/docs/example/table-of-contents/without-toc/">Without ToC</a></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/docs/example/collapsed/">Collapsed</a></p>
+<ul>
+<li>
+  <a href="/docs/example/collapsed/3rd-level/">3rd</a>
+<ul>
+<li>
+  <a href="/docs/example/collapsed/3rd-level/4th-level/">4th</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Shortcodes</strong></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/buttons/">Buttons</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/columns/">Columns</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/expand/">Expand</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/hints/">Hints</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/katex/">Katex</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/mermaid/">Mermaid</a></p>
+</li>
+<li>
+<p>
+  <a href="/docs/shortcodes/tabs/">Tabs</a>
+<br /></p>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Overview</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview-of-contents">Overview of contents</a>
+      <ul>
+        <li><a href="#rationale">Rationale</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="overview-of-contents">
+  Overview of contents
+  <a class="anchor" href="#overview-of-contents">#</a>
+</h1>
+<h2 id="rationale">
+  Rationale
+  <a class="anchor" href="#rationale">#</a>
+</h2>
+<p>In many cases, R will be used to communicate data.</p>
+<p>A whole course (or suite of courses) could be dedicated to data communication.</p>
+<p>When using R, this will involve the following steps:</p>
+<ol>
+<li>Extract raw data from sources</li>
+<li>Tidy data</li>
+<li>Analyse data and create visualisation</li>
+<li>Produce them in a chose medium for communication</li>
+</ol>
+<p>On this website we explain the basics of how some of those steps can be performed:</p>
+<ol>
+<li>bla</li>
+<li>Using tidyverse</li>
+<li>Create visualisations</li>
+<li>Produce media</li>
+</ol>
+<p>Of course, this all starts with understanding R, so we start with Base R. The structure</p>
+<h2 id="references">
+  References
+  <a class="anchor" href="#references">#</a>
+</h2>
+<p>Main references are:</p>
+<ul>
+<li>Base R:
+<ul>
+<li>
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R Software</a></li>
+<li>some LinkedIn Learning videos which are referenced in the materials</li>
+</ul>
+</li>
+<li>tidyverse and advanced data visualisation:
+<ul>
+<li>
+  <a href="https://www.tidyverse.org">tidyverse</a></li>
+<li>
+  <a href="https://r4ds.had.co.nz">R for Data Science</a></li>
+<li>some LinkedIn Learning videos which are referenced in the materials</li>
+</ul>
+</li>
+<li>advanced data visualisation:
+<ul>
+<li>
+  <a href="https://r4ds.had.co.nz">R for Data Science, &ldquo;Communicate&rdquo; section</a></li>
+<li>
+  <a href="https://bookdown.org">bookdown</a></li>
+<li>
+  <a href="https://bookdown.org/yihui/blogdown/">blogdown</a></li>
+<li>some LinkedIn Learning videos which are referenced in the materials</li>
+</ul>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/foreword/overview.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview-of-contents">Overview of contents</a>
+      <ul>
+        <li><a href="#rationale">Rationale</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

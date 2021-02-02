@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Control flows and functions in Base R #  Learning outcomes #  By the end of this topic, you should be able to
+ create control flows in R understand the concept and benefit of vectorization call functions in R with specified arguments create R functions without default values create R functions with default values debug functions in R  Note that page numbers refer to the book The R Software.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Control flows and functions in Base R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/controlflows/" />
+
+<title>Control flows and functions in Base R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/controlflows/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/"class=active>Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Control flows and functions in Base R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#control-flows-and-functions-in-base-r">Control flows and functions in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#control-flow---introduction">Control Flow - Introduction</a></li>
+        <li><a href="#control-flow---instructions-if-and-else---page-117">Control Flow - Instructions if and else - Page 117</a></li>
+        <li><a href="#control-flow---instructions-for---page-119">Control Flow - Instructions for - Page 119</a></li>
+        <li><a href="#control-flow---instructions-while---page-119">Control Flow - Instructions while - Page 119</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#vectorization---pages-85-86">Vectorization - Pages 85-86</a></li>
+        <li><a href="#vectorization---example---pages-86">Vectorization - Example - Pages 86</a></li>
+        <li><a href="#functions---calling-functions---pages-43-44">Functions - calling functions - pages 43-44</a></li>
+        <li><a href="#functions---calling-functions---page-44">Functions - calling functions - page 44</a></li>
+        <li><a href="#functions---arguments---page-45">Functions - Arguments - page 45</a></li>
+        <li><a href="#developing-functions---creating-a-function---page-194">Developing functions - Creating a function - Page 194</a></li>
+        <li><a href="#developing-functions---calling-a-function---pages-194-195">Developing functions - Calling a function - Pages 194-195</a></li>
+        <li><a href="#developing-functions---body-of-a-function---page-195">Developing functions - Body of a function - Page 195</a></li>
+        <li><a href="#functions---multiple-arguments-example">Functions - Multiple arguments example</a></li>
+        <li><a href="#developing-functions---default-argument-values---page-195">Developing functions - Default argument values - Page 195</a></li>
+        <li><a href="#developing-functions---adding-default-values---page-196">Developing functions - Adding default values - Page 196</a></li>
+        <li><a href="#developing-functions---partial-naming-of-effective-arguments---pages-196-197">Developing functions - Partial naming of effective arguments - Pages 196-197</a></li>
+        <li><a href="#developing-functions---object-returned-by-a-function---pages-198-199">Developing functions - Object returned by a function - Pages 198-199</a></li>
+        <li><a href="#developing-functions---variable-scope-in-the-body-of-a-function---page-200-201">Developing functions - Variable scope in the body of a function - Page 200-201</a></li>
+        <li><a href="#functions---storing-functions-in-your-r-codes">Functions - Storing functions in your R codes</a></li>
+        <li><a href="#debugging-functions---browser---pages-255-256">Debugging functions - browser() - Pages 255-256</a></li>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#debugging-functions---debug---pages-257">Debugging functions - debug() - Pages 257</a></li>
+        <li><a href="#relevant-exercises">Relevant exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="control-flows-and-functions-in-base-r">
+  Control flows and functions in Base R
+  <a class="anchor" href="#control-flows-and-functions-in-base-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this topic, you should be able to</p>
+<ul>
+<li>create control flows in R</li>
+<li>understand the concept and benefit of vectorization</li>
+<li>call functions in R with specified arguments</li>
+<li>create R functions without default values</li>
+<li>create R functions with default values</li>
+<li>debug functions in R</li>
+</ul>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R
+Software</a>.</p>
+<h2 id="control-flow---introduction">
+  Control Flow - Introduction
+  <a class="anchor" href="#control-flow---introduction">#</a>
+</h2>
+<p>Control flows connect several building blocks of your code together</p>
+<ul>
+<li>
+<p>A loop can be used to repeat the same portion of code (or block of code) for a number of times</p>
+</li>
+<li>
+<p>In an algorithm, logical operations are used to decide whether a loop should continue or not</p>
+<ul>
+<li>
+<p>An &lsquo;if&rsquo; statement can be used to execute a command if some condition is satisfied</p>
+</li>
+<li>
+<p>A &lsquo;for&rsquo; loop is used to repeat a building block for a pre-determined number of times</p>
+</li>
+<li>
+<p>A &lsquo;while&rsquo; loop is used to repeat a building block until some condition fails</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="control-flow---instructions-if-and-else---page-117">
+  Control Flow - Instructions if and else - Page 117
+  <a class="anchor" href="#control-flow---instructions-if-and-else---page-117">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">3</span>
+y <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+<span style="color:#a6e22e">if </span>(x<span style="color:#f92672">&lt;=</span>y) {
+  <span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;x smaller than y&#34;</span>)
+  } else {
+  <span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;x larger than y&#34;</span>)
+}
+<span style="color:#75715e">## [1] &#34;x larger than y&#34;</span>
+</code></pre></div><h2 id="control-flow---instructions-for---page-119">
+  Control Flow - Instructions for - Page 119
+  <a class="anchor" href="#control-flow---instructions-for---page-119">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">j <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>){
+  j <span style="color:#f92672">&lt;-</span> i<span style="color:#f92672">+</span>j}
+  j
+<span style="color:#75715e">## [1] 6</span>
+<span style="color:#75715e"># i=1,j=1 -&gt; i=2,j=3 -&gt; i=3,j=6</span>
+x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">for </span>(var in x){ 
+  <span style="color:#a6e22e">print</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>var)}
+<span style="color:#75715e">## [1] 2</span>
+<span style="color:#75715e">## [1] 6</span>
+<span style="color:#75715e">## [1] 14</span>
+<span style="color:#75715e">## [1] 4</span>
+<span style="color:#75715e"># var=1 -&gt; var=3 -&gt; var=7 -&gt; var=2</span>
+</code></pre></div><p>
+  <img src="forflow.png" alt="" /></p>
+<h2 id="control-flow---instructions-while---page-119">
+  Control Flow - Instructions while - Page 119
+  <a class="anchor" href="#control-flow---instructions-while---page-119">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+y <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">while</span>(x<span style="color:#f92672">+</span>y<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">6</span>){
+  x<span style="color:#f92672">&lt;-</span>x<span style="color:#f92672">+</span>y
+  <span style="color:#a6e22e">print</span>(x<span style="color:#f92672">+</span>y)}
+<span style="color:#75715e">## [1] 4</span>
+<span style="color:#75715e">## [1] 5</span>
+<span style="color:#75715e">## [1] 6</span>
+x
+<span style="color:#75715e">## [1] 5</span>
+<span style="color:#75715e"># (x=2,y=1) -&gt; (x+y=3&lt;6) -&gt; (x=3,y=1) -&gt; (x+y=4&lt;6) -&gt; </span>
+<span style="color:#75715e">#(x=4,y=1) -&gt; (x+y=5&lt;6) -&gt; (x=5,y=1) -&gt; (x+y=6) -&gt; End</span>
+</code></pre></div><p>
+  <img src="whileflow.png" alt="" /></p>
+<h2 id="notes">
+  Notes
+  <a class="anchor" href="#notes">#</a>
+</h2>
+<ul>
+<li>
+<p>Loops can be inefficient and, <strong>if possible</strong>, you should avoid them. See next slide (and an example on Page 120).</p>
+</li>
+<li>
+<p>Another common control flow instruction is repeat (see example on Page 120)</p>
+</li>
+<li>
+<p>You can use break to exit a for, while or repeat loop (see R help file and example on Pages 119-120)</p>
+</li>
+<li>
+<p>You can use &ldquo;next&rdquo; to move to the next loop (see example on Pages 119-120)</p>
+</li>
+</ul>
+<h2 id="vectorization---pages-85-86">
+  Vectorization - Pages 85-86
+  <a class="anchor" href="#vectorization---pages-85-86">#</a>
+</h2>
+<ul>
+<li>As we have already seen, R &lsquo;naturally&rsquo; operates on vectors and matrices, applying operations element-by-element</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)
+y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+x<span style="color:#f92672">+</span>y
+<span style="color:#75715e">## [1] 5 7 9</span>
+M <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">exp</span>(M)
+<span style="color:#75715e">##           [,1]      [,2]     [,3]</span>
+<span style="color:#75715e">## [1,]  2.718282  54.59815 1096.633</span>
+<span style="color:#75715e">## [2,]  7.389056 148.41316 2980.958</span>
+<span style="color:#75715e">## [3,] 20.085537 403.42879 8103.084</span>
+</code></pre></div><ul>
+<li>We call this behaviour &lsquo;vectorization&rsquo;, and it is one of the main strengths of R</li>
+<li>Vectorization is much quicker than using loops!</li>
+</ul>
+<h2 id="vectorization---example---pages-86">
+  Vectorization - Example - Pages 86
+  <a class="anchor" href="#vectorization---example---pages-86">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5000000</span>) <span style="color:#75715e"># Generate 5 million random elements</span>
+z <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#a6e22e">system.time</span>(<span style="color:#a6e22e">for</span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5000000</span>) z <span style="color:#f92672">&lt;-</span> z <span style="color:#f92672">+</span> x[i])
+<span style="color:#75715e">##    user  system elapsed </span>
+<span style="color:#75715e">##   0.101   0.001   0.104</span>
+z
+<span style="color:#75715e">## [1] 2500481</span>
+<span style="color:#a6e22e">system.time</span>(zz <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sum</span>(x))
+<span style="color:#75715e">##    user  system elapsed </span>
+<span style="color:#75715e">##   0.004   0.000   0.005</span>
+zz
+<span style="color:#75715e">## [1] 2500481</span>
+</code></pre></div><h2 id="functions---calling-functions---pages-43-44">
+  Functions - calling functions - pages 43-44
+  <a class="anchor" href="#functions---calling-functions---pages-43-44">#</a>
+</h2>
+<ul>
+<li>
+<p>A function in R is defined by its name and by the list of its parameters (or arguments). Most functions output a value.</p>
+</li>
+<li>
+<p>Using a function (or calling or executing it) is done by typing its name followed, in brackets, by the list of arguments to be used. Arguments are separated by commas. Each argument can be followed by the sign = and the value to be given to the argument.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>functionname(arg1 = value1, arg2 = value2, arg3 = value3)</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Note that you do not necessarily need to indicate the names of the arguments, but only their values, as long as you follow their order.</p>
+</li>
+<li>
+<p>For any R function, some arguments must be specified and others are optional (because a default value is already given in the code of the function).</p>
+</li>
+<li>
+<p>Can you name some functions you already know and that we have seen?</p>
+</li>
+</ul>
+<h2 id="functions---calling-functions---page-44">
+  Functions - calling functions - page 44
+  <a class="anchor" href="#functions---calling-functions---page-44">#</a>
+</h2>
+<p>If one executes the name of a function without the brackets (), then R will display the contents of the function.</p>
+<p>What do you learn from the following examples?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">factorial
+<span style="color:#75715e">## function (x) </span>
+<span style="color:#75715e">## gamma(x + 1)</span>
+<span style="color:#75715e">## &lt;bytecode: 0x7fce37948e00&gt;</span>
+<span style="color:#75715e">## &lt;environment: namespace:base&gt;</span>
+<span style="color:#a6e22e">factorial</span>(<span style="color:#ae81ff">6</span>)
+<span style="color:#75715e">## [1] 720</span>
+date
+<span style="color:#75715e">## function () </span>
+<span style="color:#75715e">## .Internal(date())</span>
+<span style="color:#75715e">## &lt;bytecode: 0x7fcdf7755858&gt;</span>
+<span style="color:#75715e">## &lt;environment: namespace:base&gt;</span>
+<span style="color:#a6e22e">date</span>()
+<span style="color:#75715e">## [1] &#34;Mon Feb  1 17:02:18 2021&#34;</span>
+</code></pre></div><h2 id="functions---arguments---page-45">
+  Functions - Arguments - page 45
+  <a class="anchor" href="#functions---arguments---page-45">#</a>
+</h2>
+<p>The function log(x, base = exp(1)) can take two arguments: x (its value must be specified) and base (optional, because a default value is provided as exp(1)).</p>
+<p>You can call a function by playing with the arguments in several different ways. This is an important feature of R which makes it easier to use. All the following commands will execute the same calculations</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, base <span style="color:#f92672">=</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>))
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>))
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span>, base <span style="color:#f92672">=</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>))
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>))
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(base <span style="color:#f92672">=</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1.098612</span>
+<span style="color:#a6e22e">log</span>(base <span style="color:#f92672">=</span> <span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>), x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1.098612</span>
+</code></pre></div><h2 id="developing-functions---creating-a-function---page-194">
+  Developing functions - Creating a function - Page 194
+  <a class="anchor" href="#developing-functions---creating-a-function---page-194">#</a>
+</h2>
+<p>An important part of coding in R is creating your own functions.</p>
+<p>Creating a function is done following the general syntax: function(&lt;list of arguments&gt;) &lt;body of the function&gt;, where</p>
+<ul>
+<li>
+<p>&lt;list of arguments&gt; is a list of named arguments (also called formal arguments) ;</p>
+</li>
+<li>
+<p>&lt;body of the function&gt; represents, as the name suggests, the contents of the code to execute when the function is called.</p>
+</li>
+</ul>
+<p>Note: For R, a function is a specific object.</p>
+<h2 id="developing-functions---calling-a-function---pages-194-195">
+  Developing functions - Calling a function - Pages 194-195
+  <a class="anchor" href="#developing-functions---calling-a-function---pages-194-195">#</a>
+</h2>
+<p>To execute it, the user needs to call the function, followed by the effective arguments listed between parenthesis() and separated by commas. Here an effective argument is the value affected to a formal argument.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># This line creates a function called &#39;hello&#39; with one argument called &#39;name&#39;</span>
+hello <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(name){<span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;Hello, my dear&#34;</span>, name, <span style="color:#e6db74">&#34;!&#34;</span>)}
+<span style="color:#75715e"># This line executes the function, with the the effective argument &#39;Josephine&#39;</span>
+<span style="color:#a6e22e">hello</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Josephine&#34;</span>)
+<span style="color:#75715e">## Hello, my dear Josephine !</span>
+</code></pre></div><h2 id="developing-functions---body-of-a-function---page-195">
+  Developing functions - Body of a function - Page 195
+  <a class="anchor" href="#developing-functions---body-of-a-function---page-195">#</a>
+</h2>
+<ul>
+<li>
+<p>The body of a function can be a simple R instruction, or a sequence of R instructions. In the latter case, the instructions must be enclosed between the characters { and } to delimit the beginning and end of the body of the function.</p>
+</li>
+<li>
+<p>Several R instructions can be written on the same line as long as they are separated by a semicolon &lsquo;;&rsquo;</p>
+</li>
+</ul>
+<h2 id="functions---multiple-arguments-example">
+  Functions - Multiple arguments example
+  <a class="anchor" href="#functions---multiple-arguments-example">#</a>
+</h2>
+<p>Of course, a function can have more than one argument. Here, function CDF.pois() has two arguments, <strong>x</strong> and <strong>lambda</strong>. It calculates the CDF <code>\(F_X(x)\)</code> at <strong>x</strong> of a Poisson random variable with parameter equal to <strong>lambda</strong>. Note the use a <strong>for loop</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">CDF.pois <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, lambda){
+  <span style="color:#75715e"># Initialise the cdf to 0</span>
+  cdf <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+  <span style="color:#75715e"># For k from 0 to x, add together the probablity masses p(k)</span>
+  <span style="color:#a6e22e">for </span>(k in <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>x){
+    cdf <span style="color:#f92672">=</span> cdf <span style="color:#f92672">+</span> <span style="color:#a6e22e">exp</span>(<span style="color:#f92672">-</span>lambda)<span style="color:#f92672">*</span>lambda^k<span style="color:#f92672">/</span><span style="color:#a6e22e">factorial</span>(k)
+  }
+  <span style="color:#75715e"># Return the result</span>
+  <span style="color:#a6e22e">return</span>(cdf)
+}
+<span style="color:#a6e22e">CDF.pois</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, lambda <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
+<span style="color:#75715e">## [1] 0.4334701</span>
+</code></pre></div><p>Note: we have every right to use a function within a function. For instance, here we use the (already defined) function factorial() inside our new function CDF.pois().</p>
+<h2 id="developing-functions---default-argument-values---page-195">
+  Developing functions - Default argument values - Page 195
+  <a class="anchor" href="#developing-functions---default-argument-values---page-195">#</a>
+</h2>
+<ul>
+<li>
+<p>When declaring a function, all arguments are identified by a unique name.</p>
+</li>
+<li>
+<p>Each argument can be associated with a <strong>default value</strong>. To specify a default value, use the character <strong>=</strong> followed by the default value.</p>
+</li>
+<li>
+<p>When the function is called with no effective argument for that argument, the default value will be used.</p>
+</li>
+</ul>
+<h2 id="developing-functions---adding-default-values---page-196">
+  Developing functions - Adding default values - Page 196
+  <a class="anchor" href="#developing-functions---adding-default-values---page-196">#</a>
+</h2>
+<ul>
+<li>Let us add to our function hello() the possibility of choosing a language with &lsquo;eng&rsquo; as the default, and see a few calls of this function.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hello <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Peter&#34;</span>,language<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;eng&#34;</span>) {
+  <span style="color:#a6e22e">cat</span>(<span style="color:#a6e22e">switch</span>(language,fr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Bonjour&#34;</span>,sp<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hola&#34;</span>,
+             eng<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello&#34;</span>),name,<span style="color:#e6db74">&#34;!&#34;</span>)
+}
+
+<span style="color:#a6e22e">hello</span>()
+<span style="color:#75715e">## Hello Peter !</span>
+
+<span style="color:#a6e22e">hello</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ben&#34;</span>)
+<span style="color:#75715e">## Hello Ben !</span>
+
+<span style="color:#a6e22e">hello</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Pedro&#34;</span>, language<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sp&#34;</span>)
+<span style="color:#75715e">## Hola Pedro !</span>
+</code></pre></div><p>Note: the command <code>help('switch')</code> will navigate you to the help file of the &lsquo;switch&rsquo; function. What does it do?</p>
+<h2 id="developing-functions---partial-naming-of-effective-arguments---pages-196-197">
+  Developing functions - Partial naming of effective arguments - Pages 196-197
+  <a class="anchor" href="#developing-functions---partial-naming-of-effective-arguments---pages-196-197">#</a>
+</h2>
+<p>R allows calling a function without typing in the complete name of a formal argument:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hello <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Peter&#34;</span>,language<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;eng&#34;</span>) {
+  <span style="color:#a6e22e">cat</span>(<span style="color:#a6e22e">switch</span>(language,fr<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Bonjour&#34;</span>,sp<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hola&#34;</span>,
+             eng<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello&#34;</span>),name,<span style="color:#e6db74">&#34;!&#34;</span>)
+}
+
+<span style="color:#a6e22e">hello</span>(lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fr&#34;</span>)
+<span style="color:#75715e">## Bonjour Peter !</span>
+
+<span style="color:#a6e22e">hello</span>(l<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fr&#34;</span>)
+<span style="color:#75715e">## Bonjour Peter !</span>
+</code></pre></div><p>Rule: in the ordered list of formal arguments of the function, the selected formal argument is the first formal argument for which there is a match between the first letters of the argument name and the partial name given by the user.</p>
+<h2 id="developing-functions---object-returned-by-a-function---pages-198-199">
+  Developing functions - Object returned by a function - Pages 198-199
+  <a class="anchor" href="#developing-functions---object-returned-by-a-function---pages-198-199">#</a>
+</h2>
+<p>A way to explicitly tell an R function what object to return is to use the function return(). This instruction halts the execution of the code in the body of the function and returns the object between brackets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">hello <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Peter&#34;</span>) {
+  <span style="color:#a6e22e">return</span>(<span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>,name,<span style="color:#e6db74">&#34;!&#34;</span>))}
+
+<span style="color:#a6e22e">hello</span>()
+<span style="color:#75715e">## [1] &#34;Hello Peter !&#34;</span>
+</code></pre></div><p>Note that if there is no &lsquo;return()&rsquo; in the body of the function, then the function will return the result of the last evaluated expression. See help(&ldquo;function&rdquo;) for details.</p>
+<h2 id="developing-functions---variable-scope-in-the-body-of-a-function---page-200-201">
+  Developing functions - Variable scope in the body of a function - Page 200-201
+  <a class="anchor" href="#developing-functions---variable-scope-in-the-body-of-a-function---page-200-201">#</a>
+</h2>
+<ul>
+<li>
+<p>Variables defined inside the body of a function have a local scope during function execution. This means that a variable inside the body of a function is physically different from another variable with the same name, but defined in the workspace of your R session.</p>
+</li>
+<li>
+<p>Generally speaking, local scope means that a variable only exists inside the body of the function. After the execution of the function, the variable is thus automatically deleted from the memory of the computer.</p>
+</li>
+</ul>
+<h2 id="functions---storing-functions-in-your-r-codes">
+  Functions - Storing functions in your R codes
+  <a class="anchor" href="#functions---storing-functions-in-your-r-codes">#</a>
+</h2>
+<p>You may not want to define all your functions in a single R script</p>
+<ul>
+<li>the file can get too long, hence inefficient to manage</li>
+<li>you may want to use the same function(s) in many different projects</li>
+</ul>
+<p>It is good practice to:</p>
+<ul>
+<li>store all functions in a single script, or separate scripts;</li>
+<li>use the source() function to use them in the main script of a project.</li>
+</ul>
+<p>Note: Functions would still need to be included in the &lsquo;R code Appendix&rsquo; of an assignment.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">source</span>(<span style="color:#e6db74">&#34;C:/Users/ACTL1101/R_lab_2018/my_functions.r&#34;</span>)
+<span style="color:#75715e"># in my current script, I can now use all functions declared in file &#34;my_functions.r&#34;</span>
+</code></pre></div><h2 id="debugging-functions---browser---pages-255-256">
+  Debugging functions - browser() - Pages 255-256
+  <a class="anchor" href="#debugging-functions---browser---pages-255-256">#</a>
+</h2>
+<p>A useful debugging function in R is the function browser(). If you insert the instruction browser() in the source of your function, the program will stop at the place where it was inserted.</p>
+<p>By typing the letter <code>n</code> (for next), you can inspect the code and the contents of variables sequentially. To leave the inspection mode, type <code>Q</code> (for Quit).</p>
+<h2 id="example">
+  Example
+  <a class="anchor" href="#example">#</a>
+</h2>
+<p>Create the following function</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">bin_func <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(n,m){
+  num <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factorial</span>(n)
+  den <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factorial</span>(m)<span style="color:#f92672">*</span><span style="color:#a6e22e">factorial</span>(n<span style="color:#f92672">-</span>m)
+  <span style="color:#a6e22e">browser</span>()
+  res <span style="color:#f92672">&lt;-</span> num<span style="color:#f92672">/</span>den
+  <span style="color:#a6e22e">return</span>(res)}
+</code></pre></div><p>
+  <img src="Capture.png" alt="" /></p>
+<h2 id="debugging-functions---debug---pages-257">
+  Debugging functions - debug() - Pages 257
+  <a class="anchor" href="#debugging-functions---debug---pages-257">#</a>
+</h2>
+<p>Another interesting function is debug() which is equivalent to putting the instruction browser() at the top of a function. Thus debug(bin_func) marks the functions bin_func as debuggable. Any subsequent call of this function will launch the debugger.</p>
+<p>To get rid of this mark, use the function undebug().</p>
+<h2 id="relevant-exercises">
+  Relevant exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h2>
+<p>5.12, 5.13, 8.1-8.11</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/controlflows/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#control-flows-and-functions-in-base-r">Control flows and functions in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#control-flow---introduction">Control Flow - Introduction</a></li>
+        <li><a href="#control-flow---instructions-if-and-else---page-117">Control Flow - Instructions if and else - Page 117</a></li>
+        <li><a href="#control-flow---instructions-for---page-119">Control Flow - Instructions for - Page 119</a></li>
+        <li><a href="#control-flow---instructions-while---page-119">Control Flow - Instructions while - Page 119</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#vectorization---pages-85-86">Vectorization - Pages 85-86</a></li>
+        <li><a href="#vectorization---example---pages-86">Vectorization - Example - Pages 86</a></li>
+        <li><a href="#functions---calling-functions---pages-43-44">Functions - calling functions - pages 43-44</a></li>
+        <li><a href="#functions---calling-functions---page-44">Functions - calling functions - page 44</a></li>
+        <li><a href="#functions---arguments---page-45">Functions - Arguments - page 45</a></li>
+        <li><a href="#developing-functions---creating-a-function---page-194">Developing functions - Creating a function - Page 194</a></li>
+        <li><a href="#developing-functions---calling-a-function---pages-194-195">Developing functions - Calling a function - Pages 194-195</a></li>
+        <li><a href="#developing-functions---body-of-a-function---page-195">Developing functions - Body of a function - Page 195</a></li>
+        <li><a href="#functions---multiple-arguments-example">Functions - Multiple arguments example</a></li>
+        <li><a href="#developing-functions---default-argument-values---page-195">Developing functions - Default argument values - Page 195</a></li>
+        <li><a href="#developing-functions---adding-default-values---page-196">Developing functions - Adding default values - Page 196</a></li>
+        <li><a href="#developing-functions---partial-naming-of-effective-arguments---pages-196-197">Developing functions - Partial naming of effective arguments - Pages 196-197</a></li>
+        <li><a href="#developing-functions---object-returned-by-a-function---pages-198-199">Developing functions - Object returned by a function - Pages 198-199</a></li>
+        <li><a href="#developing-functions---variable-scope-in-the-body-of-a-function---page-200-201">Developing functions - Variable scope in the body of a function - Page 200-201</a></li>
+        <li><a href="#functions---storing-functions-in-your-r-codes">Functions - Storing functions in your R codes</a></li>
+        <li><a href="#debugging-functions---browser---pages-255-256">Debugging functions - browser() - Pages 255-256</a></li>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#debugging-functions---debug---pages-257">Debugging functions - debug() - Pages 257</a></li>
+        <li><a href="#relevant-exercises">Relevant exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

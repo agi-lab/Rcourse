@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Introduction to Base R #  Learning outcomes #  By the end of this Section, you should be able to
+ perform basic calculations with R perform relational and logical operations in R define variables in R recognise and create data of different types in R  Note that page numbers refer to the book The R Software.
+R is a calculator - page 38 #  R can easily replace all the functionalities of a (sophisticated!">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Introduction to Base R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/" />
+
+<title>Introduction to Base R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/"class=active>Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Introduction to Base R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-to-base-r">Introduction to Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#r-is-a-calculator---page-38">R is a calculator - page 38</a></li>
+        <li><a href="#assignment-operation---page-39">Assignment operation - page 39</a></li>
+        <li><a href="#continuation-symbol---page-39">Continuation symbol - page 39</a></li>
+        <li><a href="#vectors---page-51">Vectors - page 51</a></li>
+        <li><a href="#relational-operations---pages-97-98">Relational operations - Pages 97-98</a></li>
+        <li><a href="#logical-operations---pages-97-98">Logical operations - Pages 97-98</a></li>
+        <li><a href="#variables-in-r---page-40">Variables in R - page 40</a></li>
+        <li><a href="#data-types---page-50">Data types - page 50</a>
+          <ul>
+            <li><a href="#examples---pages-46-48">Examples - pages 46-48</a></li>
+            <li><a href="#missing-data---pages-48-49">Missing data - pages 48-49</a></li>
+            <li><a href="#character-strings---page-49">Character strings - page 49</a></li>
+            <li><a href="#differences-between-typeof-and-mode">Differences between typeof() and mode()</a></li>
+          </ul>
+        </li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+        <li><a href="#comments-on-some-examples-of-variable-names">Comments on some examples of variable names</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="introduction-to-base-r">
+  Introduction to Base R
+  <a class="anchor" href="#introduction-to-base-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this Section, you should be able to</p>
+<ul>
+<li>perform basic calculations with R</li>
+<li>perform relational and logical operations in R</li>
+<li>define variables in R</li>
+<li>recognise and create data of different types in R</li>
+</ul>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R Software</a>.</p>
+<h2 id="r-is-a-calculator---page-38">
+  R is a calculator - page 38
+  <a class="anchor" href="#r-is-a-calculator---page-38">#</a>
+</h2>
+<p>R can easily replace all the functionalities of a (sophisticated!) calculator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">sin</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#66d9ef">pi</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>)     <span style="color:#75715e"># &lt;--- this symbol is for comments.</span>
+<span style="color:#75715e">## [1] 0.8660254</span>
+<span style="color:#ae81ff">5</span>^2             <span style="color:#75715e"># Same as 5*5.</span>
+<span style="color:#75715e">## [1] 25</span>
+<span style="color:#a6e22e">sqrt</span>(<span style="color:#ae81ff">4</span>)         <span style="color:#75715e"># Square root of 4.</span>
+<span style="color:#75715e">## [1] 2</span>
+<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">1</span>)          <span style="color:#75715e"># Natural logarithm of 1.</span>
+<span style="color:#75715e">## [1] 0</span>
+<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>)    <span style="color:#75715e"># Collection of the first 5 integers.</span>
+<span style="color:#75715e">## [1] 1 2 3 4 5</span>
+<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e"># First five even numbers.</span>
+<span style="color:#75715e">## [1]  2  4  6  8 10</span>
+</code></pre></div><h2 id="assignment-operation---page-39">
+  Assignment operation - page 39
+  <a class="anchor" href="#assignment-operation---page-39">#</a>
+</h2>
+<p>R responds to your requests by displaying the result obtained after evaluation. However, this result is displayed, then lost.</p>
+<p>To store values, one can use the \assignment arrows: &lt;- or -&gt;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># Assignment.</span>
+x <span style="color:#75715e"># Display.</span>
+<span style="color:#75715e">## [1] 1</span>
+<span style="color:#ae81ff">2</span> <span style="color:#f92672">-&gt;</span> x <span style="color:#75715e"># Assignment (in the other direction).</span>
+x <span style="color:#75715e"># Display.</span>
+<span style="color:#75715e">## [1] 2</span>
+(x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># Assignment AND display.</span>
+<span style="color:#75715e">## [1] 1</span>
+</code></pre></div><h2 id="continuation-symbol---page-39">
+  Continuation symbol - page 39
+  <a class="anchor" href="#continuation-symbol---page-39">#</a>
+</h2>
+<p>If a command is not complete at the end of a line, R will display a different prompt symbol, by default the plus sign <code>\(+\)</code>, on the second line and on following lines. R will wait for instructions until the command is syntactically complete.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">8</span><span style="color:#f92672">*</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span><span style="color:#a6e22e">exp</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">## [1] 162.7183</span>
+
+<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span><span style="color:#ae81ff">8</span><span style="color:#f92672">*</span>    <span style="color:#75715e"># If you run only this line: R displays the &#39;+&#39; symbol and waits</span>
+<span style="color:#ae81ff">10</span><span style="color:#f92672">+</span><span style="color:#a6e22e">exp</span>( <span style="color:#75715e"># Again, the command is not complete so R will display &#39;+&#39;</span>
+<span style="color:#ae81ff">1</span>)      <span style="color:#75715e"># The command is complete, R displays the result</span>
+<span style="color:#75715e">## [1] 162.7183</span>
+</code></pre></div><h2 id="vectors---page-51">
+  Vectors - page 51
+  <a class="anchor" href="#vectors---page-51">#</a>
+</h2>
+<ul>
+<li>
+<p>Vectors are a very important type of <strong>data structure</strong> in R. We will see other types of data structures in Week 2, but for now we concentrate on vectors.</p>
+</li>
+<li>
+<p>A vector is a <strong>sequence of data points</strong> of the same type.</p>
+</li>
+<li>
+<p>You can create a vector in different ways. For instance, the function c() produces a vector.</p>
+</li>
+<li>
+<p>Operations performed on vectors are done <strong>element by element</strong>.</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] 1 2 3</span>
+<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+<span style="color:#75715e">## [1] 5 7 9</span>
+<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+<span style="color:#75715e">## [1]  4 10 18</span>
+</code></pre></div><ul>
+<li>To produce a vector, you can also use function seq()</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">seq</span>(from<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, by<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>)
+<span style="color:#75715e">##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</span>
+<span style="color:#a6e22e">seq</span>(from<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, to<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, length<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<span style="color:#75715e">## [1]  0  5 10 15 20</span>
+</code></pre></div><ul>
+<li>Or simply use the colon :</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">vec <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+vec
+<span style="color:#75715e">## [1]  2  3  4  5  6  7  8  9 10</span>
+</code></pre></div><h2 id="relational-operations---pages-97-98">
+  Relational operations - Pages 97-98
+  <a class="anchor" href="#relational-operations---pages-97-98">#</a>
+</h2>
+<p>You can perform relational operations in R, which will output logical values (TRUE/FALSE)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Striclty greater</span>
+<span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>
+<span style="color:#75715e">## [1] FALSE</span>
+<span style="color:#75715e"># Greater or equal</span>
+<span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#75715e"># Equal  </span>
+<span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#75715e"># Not equal</span>
+<span style="color:#ae81ff">1</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#75715e">## [1] FALSE</span>
+<span style="color:#75715e"># Equal, for vectors</span>
+<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)<span style="color:#f92672">==</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1]  TRUE FALSE  TRUE</span>
+</code></pre></div><p>Note that in the last case, since two vectors are compared, three results are given, one for each individual relation.</p>
+<h2 id="logical-operations---pages-97-98">
+  Logical operations - Pages 97-98
+  <a class="anchor" href="#logical-operations---pages-97-98">#</a>
+</h2>
+<p>You can perform logical operations in R, which will output logical values. We start from the logical AND operators &amp; and &amp;&amp;</p>
+<ul>
+<li>The elementwise comparison &amp;
+<ul>
+<li>compares the first element of the first vector to the first element of the second vector, then the second element of the first vector to the second element of the second vector, and so on</li>
+<li>returns a vector of logical values</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
+<span style="color:#75715e">## [1] FALSE  TRUE</span>
+
+<span style="color:#75715e"># c(2&gt;1,4&gt;2) will give c(T,T)</span>
+<span style="color:#75715e"># c(1&gt;2,3&gt;0) will give c(F,T)</span>
+<span style="color:#75715e"># c(T,T)&amp;c(F,T) will give c(F,T) since T&amp;F is F and T&amp;T is T</span>
+</code></pre></div><ul>
+<li>The short-circuit evaluation &amp;&amp;
+<ul>
+<li>evaluates left to right examining only the first element of each vector</li>
+<li>returns a <strong>single</strong> logical value</li>
+<li>typically used in programming control-flows (more on this in Week 3)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">&amp;&amp;</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">&amp;&amp;</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">9</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">## [1] FALSE</span>
+
+<span style="color:#75715e"># only the first elements of each vector is considered</span>
+<span style="color:#75715e"># hence it is equivalent to (2&gt;1)&amp;&amp;(1&gt;2)&amp;&amp;(9&gt;5)</span>
+<span style="color:#75715e"># since (2&gt;1)&amp;&amp;(1&gt;2) necessarily leads to F, (9&gt;5) is not even considered</span>
+</code></pre></div><p>Same principles apply to the logical OR operators | and ||.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">any</span>(<span style="color:#a6e22e">c</span>(T,F))
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#a6e22e">all</span>(<span style="color:#a6e22e">c</span>(T,F))
+<span style="color:#75715e">## [1] FALSE</span>
+</code></pre></div><h2 id="variables-in-r---page-40">
+  Variables in R - page 40
+  <a class="anchor" href="#variables-in-r---page-40">#</a>
+</h2>
+<p>A variable is an object in R. There are rules for choosing a variable name:</p>
+<ul>
+<li>a variable name can only include alphanumerical characters, underscore (_) and the dot (.);</li>
+<li>variable names are case sensitive, which means that R distinguishes upper and lower case;</li>
+<li>a variable name may not include white space or start with a digit.</li>
+</ul>
+<p>Note: use meaningful names for your variables to improve the readability of your codes.</p>
+<h2 id="data-types---page-50">
+  Data types - page 50
+  <a class="anchor" href="#data-types---page-50">#</a>
+</h2>
+<p>One of the main strengths of R is its ability to organise data in a structured way. This will turn out to be very useful for many statistical procedures.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Data type</strong></th>
+<th style="text-align:left"><strong>Type in R</strong></th>
+<th style="text-align:left"><strong>Display</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">real number (integer or not)</td>
+<td style="text-align:left">numeric (double)</td>
+<td style="text-align:left">3.27</td>
+</tr>
+<tr>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">numeric (integer)</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">complex number</td>
+<td style="text-align:left">complex</td>
+<td style="text-align:left">3+2i</td>
+</tr>
+<tr>
+<td style="text-align:left">logical (true/false)</td>
+<td style="text-align:left">logical</td>
+<td style="text-align:left">TRUE or FALSE</td>
+</tr>
+<tr>
+<td style="text-align:left">missing</td>
+<td style="text-align:left">logical</td>
+<td style="text-align:left">NA</td>
+</tr>
+<tr>
+<td style="text-align:left">text (string)</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">&ldquo;text&rdquo;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples---pages-46-48">
+  Examples - pages 46-48
+  <a class="anchor" href="#examples---pages-46-48">#</a>
+</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">typeof</span>(a)
+<span style="color:#75715e">## [1] &#34;double&#34;</span>
+c <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.integer</span>(a)
+<span style="color:#a6e22e">typeof</span>(c)
+<span style="color:#75715e">## [1] &#34;integer&#34;</span>
+b <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">3.4</span>
+<span style="color:#a6e22e">c</span>(b<span style="color:#f92672">&gt;</span>a,a<span style="color:#f92672">==</span>b)
+<span style="color:#75715e">## [1]  TRUE FALSE</span>
+<span style="color:#a6e22e">is.numeric</span>(a)
+<span style="color:#75715e">## [1] TRUE</span>
+<span style="color:#a6e22e">is.integer</span>(a)
+<span style="color:#75715e">## [1] FALSE</span>
+x <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">TRUE</span> <span style="color:#75715e"># same as: x &lt;- T</span>
+<span style="color:#a6e22e">is.logical</span>(x)	
+<span style="color:#75715e">## [1] TRUE</span>
+</code></pre></div><h3 id="missing-data---pages-48-49">
+  Missing data - pages 48-49
+  <a class="anchor" href="#missing-data---pages-48-49">#</a>
+</h3>
+<p>A missing or undefined value is indicated by the instruction NA (for Non Available).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#66d9ef">NA</span>,<span style="color:#ae81ff">6</span>)
+<span style="color:#a6e22e">is.na</span>(x)
+<span style="color:#75715e">## [1] FALSE  TRUE FALSE</span>
+<span style="color:#a6e22e">mean</span>(x)
+<span style="color:#75715e">## [1] NA</span>
+<span style="color:#a6e22e">mean</span>(x,na.rm<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e">## [1] 4.5</span>
+</code></pre></div><h3 id="character-strings---page-49">
+  Character strings - page 49
+  <a class="anchor" href="#character-strings---page-49">#</a>
+</h3>
+<p>Any information between quotation marks (single '' or double &ldquo;&quot;) corresponds to a character string. Try the following commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">a <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;R is my friend&#34;</span>
+<span style="color:#a6e22e">mode</span>(a)
+<span style="color:#75715e">## [1] &#34;character&#34;</span>
+<span style="color:#a6e22e">is.character</span>(a)
+<span style="color:#75715e">## [1] TRUE</span>
+</code></pre></div><h3 id="differences-between-typeof-and-mode">
+  Differences between typeof() and mode()
+  <a class="anchor" href="#differences-between-typeof-and-mode">#</a>
+</h3>
+<ul>
+<li>mode() relies on the output of typeof</li>
+<li>mode() also allows you to set the type</li>
+<li>sometimes, mode may return different names of types (e.g. &lsquo;numeric&rsquo; vs. &lsquo;double&rsquo;)
+<ul>
+<li>search for mode in the help window</li>
+</ul>
+</li>
+</ul>
+<h2 id="relevant-exercises">
+  Relevant Exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h2>
+<ul>
+<li>3.1 - 3.13, 6.1, 6.5-6.7</li>
+</ul>
+<h2 id="comments-on-some-examples-of-variable-names">
+  Comments on some examples of variable names
+  <a class="anchor" href="#comments-on-some-examples-of-variable-names">#</a>
+</h2>
+<ul>
+<li>
+<p>delaytime</p>
+<ul>
+<li>
+<p>Confusing to read, it&rsquo;s good practice to separate words with dots &ldquo;(.)&rdquo; or</p>
+</li>
+<li>
+<p>Alternative(s): delayTime, delay.time</p>
+</li>
+</ul>
+</li>
+<li>
+<p>the_number_of_marks_higher_than_50</p>
+<ul>
+<li>
+<p>Too long</p>
+</li>
+<li>
+<p>Alternative: marks.passed</p>
+</li>
+</ul>
+</li>
+<li>
+<p>20_day_limit</p>
+<ul>
+<li>
+<p>Starts with a number</p>
+</li>
+<li>
+<p>Alternative: twenty.day.limit</p>
+</li>
+</ul>
+</li>
+<li>
+<p>child/adult</p>
+<ul>
+<li>
+<p>Can&rsquo;t have forward slash character &ldquo;/&rdquo;</p>
+</li>
+<li>
+<p>Alternative(s): child.or.adult, child.adult</p>
+</li>
+</ul>
+</li>
+<li>
+<p>pi</p>
+<ul>
+<li>
+<p>Already a specially defined constant (3.1415&hellip;)</p>
+</li>
+<li>
+<p>Alternative: Depends on how the variable is used</p>
+</li>
+</ul>
+</li>
+<li>
+<p>variable1</p>
+<ul>
+<li>
+<p>Not descriptive enough</p>
+</li>
+<li>
+<p>Alternative: Something related to what the variable represents</p>
+</li>
+</ul>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-to-base-r">Introduction to Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#r-is-a-calculator---page-38">R is a calculator - page 38</a></li>
+        <li><a href="#assignment-operation---page-39">Assignment operation - page 39</a></li>
+        <li><a href="#continuation-symbol---page-39">Continuation symbol - page 39</a></li>
+        <li><a href="#vectors---page-51">Vectors - page 51</a></li>
+        <li><a href="#relational-operations---pages-97-98">Relational operations - Pages 97-98</a></li>
+        <li><a href="#logical-operations---pages-97-98">Logical operations - Pages 97-98</a></li>
+        <li><a href="#variables-in-r---page-40">Variables in R - page 40</a></li>
+        <li><a href="#data-types---page-50">Data types - page 50</a>
+          <ul>
+            <li><a href="#examples---pages-46-48">Examples - pages 46-48</a></li>
+            <li><a href="#missing-data---pages-48-49">Missing data - pages 48-49</a></li>
+            <li><a href="#character-strings---page-49">Character strings - page 49</a></li>
+            <li><a href="#differences-between-typeof-and-mode">Differences between typeof() and mode()</a></li>
+          </ul>
+        </li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+        <li><a href="#comments-on-some-examples-of-variable-names">Comments on some examples of variable names</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

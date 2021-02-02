@@ -1,0 +1,387 @@
+---
+title: 'Statistical analysis in R'
+---
+
+```{r setup, include=FALSE}
+# install the lubridate package first
+knitr::opts_chunk$set(eval=TRUE,echo = TRUE,collapse=TRUE,out.width = '80%')
+library('dplyr')
+```
+
+# Statistical analysis in R
+
+## Learning outcomes
+
+By the end of this topic, you should be able to
+
+
+- summarise data in contingency tables
+- calculate basic statistics from data
+    - in particular, calculate dependency measures of two variables
+- simulate random observations 
+
+**Warning:** the materials here are so-called "Base R". There are easier (and often better) ways of doing things with the "tidyverse" ecosystem (see next section).
+
+Note that page numbers refer to the book [The R
+Software](http://biostatisticien.eu/springeR/index-en.html).
+
+## Understanding your data - Importing data - Pages 339-343
+
+We will use the sample\_data.csv data throughout this module
+
+- download the data from Moodle
+- set-up the working directory and import the data (recommended to save the data in the folder you set as working directory)
+- use the attach() function to gain direct access to the variables
+
+```{r import,eval=TRUE,echo=TRUE}
+sample_data <- read.csv("sample_data.csv", header=TRUE)
+attach(sample_data)
+head(sample_data)
+```		
+			
+## Understanding your data - Variables - Pages 339-343
+
+13 variables (columns) of 226 individuals (rows)
+
+- qualitative: gender, situation and fat
+
+- ordinal: meat, fish, raw\_fruit, cooked\_fruit\_veg and chocol
+
+- discrete quantitative: tea, coffee
+
+- continuous quantitative: height, weight and age
+
+Notes
+
+- The sample\_data.csv is created based from the nutrition\_elderly.csv spreadsheet downloaded from [http://www.biostatisticien.eu/springeR/nutrition_elderly.xls](http://www.biostatisticien.eu/springeR/nutrition_elderly.xls). See Page 339.
+
+- Variables of nutrition\_elderly.csv have been structured following the steps from Pages 340-343 and a new data frame was created and saved as sample\_data.csv.
+
+## Frequency tables
+
+### Frequency table - discrete variables - Pages 343-344
+
+For qualitative variable fat:
+
+```{r fretab_dis,eval=TRUE,echo=TRUE}
+(tc <- table(fat))
+(tf <- tc/length(fat))
+nlevels(fat)
+```	
+
+A similar table can be obtained using dplyr:
+```{r fretab_dis_dplyr,eval=TRUE,echo=TRUE}
+sample_data %>% group_by(fat) %>% summarise(n = n())
+```	
+
+
+
+### Frequency table - continuous variables - Page 344
+
+For the continuous variable 'height', using dplyr functions (and function cut() to create intervals of 'height'), we get:
+
+```{r fretab_con_dplyr,eval=TRUE,echo=TRUE}
+sample_data %>% 
+  mutate(ints = cut(height, breaks= c(140,150, 160, 170, 180, 190), right = F)) %>%
+  group_by(ints) %>%
+  summarise(n = n())
+```	
+
+A similar table can be obtained in base R (but it's hard to get appropriate names for categories!):
+```{r fretab_con,eval=TRUE,echo=TRUE}
+res <- hist(height, plot=FALSE, breaks = c(140,150,160,170,180,190), right = F) # put the data in 5 categories
+x   <- as.table(res$counts) # create the table
+nn  <- as.character(res$breaks)
+dimnames(x) <- list(paste(nn[-length(nn)], nn[-1],sep="-")) # add names to categories: this step is not straightforward!
+x
+```	
+
+### Frequency table - Choice of the interval brackets
+
+The choice of the interval brackets is arbitrary. There are no specific rules to choose the break points, but the choice should make practical sense. It mainly depends on the dataset, and the objective of the analysis.
+```{r fretab_con_dplyr1,eval=TRUE,echo=TRUE}
+sample_data %>% 
+  mutate(ints = cut(height, breaks= c(140,145,150,155,160,
+    165,170,175,180,185,190), right = F)) %>%
+  group_by(ints) %>%
+  summarise(n = n())
+```	
+```{r fretab_con_dplyr2,eval=TRUE,echo=TRUE}
+sample_data %>% 
+  mutate(ints = cut(height, breaks= c(140,160,180,200), right = F)) %>%
+  group_by(ints) %>%
+  summarise(n = n())
+```	
+ 
+### Frequency table - joint observations - Pages 344-345
+
+For the paired observations of gender and situation:
+
+```{r fretab_joint,eval=TRUE,echo=TRUE}
+(mytable <- table(gender,situation))
+(table.complete <- addmargins(mytable, FUN=sum, quiet=TRUE))
+```	
+
+
+## Numerical statistics - Pages 347-352
+
+Some useful statistics for a preliminary analysis (of variable 'weight' in this example): 
+
+```{r fretab_stats,eval=TRUE,echo=TRUE}
+mean(weight)
+median(weight)
+sd(weight)
+max(weight)-min(weight)
+IQR(weight)
+mean(abs(weight-mean(weight)))
+quantile(weight, probs=c(0.1,0.9))
+```	
+
+
+
+
+
+
+### Numerical statistics - Notes - Pages 347-352
+
+- We've seen some examples of statistical functions, but there exists many more and with what you now know you can create your own functions to perform analysis.
+- Always make sure you understand the outcome of your codes.
+- An important problem in real data sets is that of missing data. In R you can check for missing data using the function na.fail(), and remove the missing data with na.omit() (see Page 347).
+- You should also inspect whether your data is 'valid'. For example, if there is a human height of 3 meters, then it is most likely an invalid data point.
+
+
+## Discussion - Spot data problems
+
+Do you see any problems in the data set below?
+
+```{r, echo = TRUE}
+(my.data <- data.frame(
+             StudentID =c("001", "002", "008", "007", "002"), 
+             First_Name =c("01iver", "Emily", "Sofia", "Alex", "Emilia"), 
+             Last_Name =c("Smith", "Jones", "Williams", "Brown", "Jones"), 
+             BirthDate =c("M", "F", "F", "W", "F"), 
+             DateOfBirth=as.Date(c("18/01/1998","29/02/1998","11/12/1997","05/07/1998","19/03/1998"),"%d/%m/%Y"),
+             DateOfEnrollment=as.Date(c("31/01/2018","02/02/2016","01/07/2016","02/07/2019","05/02/1997"),"%d/%m/%Y"),
+             University =c("UNSW",NA,"UNSW","UNSW","UNSW"),
+             WAM=c(52,67,76,87,92),
+             Grade=c('P','C','D','HD','D'),
+             Books_Borrowed=c(15,6,7,2.3,9),
+             Lib_Fines_Incurred=c("$20","$0","$0","$24","$0")
+            )
+           )
+```
+
+Furthermore, what functions can you use to check for these mistakes?
+
+### Discussion - Solution 
+
+- Oliver spelt with zero and one instead of 'Ol'
+- Different names with same StudentId
+- Gender: value 'W' is not consistent
+- Invalid DateOfBirth: There is no 29th in February in 1998
+- DateOfEnrollment before DateOfBirth
+- University: Missing data
+- Invalid value of Grade: WAM of 92 should correspond to HD rather than D
+- Books_Borrowed: Decimal numbers
+- Lib_Fines_Incurred are character variables rather than numeric
+
+To check for mistakes, one can:
+
+- Statistical functions: minimum, maximum, frequency table, mean, etc.
+- str(), typeof() to check format
+- is.na(my.data)
+- na.omit(my.data) to remove rows with missing values 
+
+
+## Dependency (association) measures - Pages 354-355
+
+- We introduce the cor() function which allows one to calculate three dependency measures. 
+
+- As an example, we compute the correlation between two variables: 'GDP per Capita' and 'Corruption Perception Index'. This index ranks countries by 'their perceived levels of public sector corruption according to experts and business people' ([reference](https://www.transparency.org/news/feature/corruption_perceptions_index_2017)). Note that the *lower* this index, the *more* corrupt a country is (or is perceived to be).
+
+```{r cor2,eval=TRUE,echo=TRUE}
+# Load dataset
+cor.example <- read.csv("correlation.csv", header = T)
+
+#Compute association measures
+cor(cor.example$GDP.Per.Capita, cor.example$Corruption.Perception.Index, method="pearson")
+cor(cor.example$GDP.Per.Capita, cor.example$Corruption.Perception.Index, method="kendall")
+cor(cor.example$GDP.Per.Capita, cor.example$Corruption.Perception.Index, method="spearman")
+```	
+We note a  high correlation between GDP per Capita (in US$) and Corruption Perception Index.  That being said, from the graph we see that the relationship is not linear but convave.
+
+```{r corplot2,eval=TRUE,echo=FALSE}
+#Plot one variable vs the other
+plot(cor.example$GDP.Per.Capita, cor.example$Corruption.Perception.Index, main = "Corruption Perception Index vs GDP Per Capita",xlab="GDP Per Capita",ylab ="Corruption Perception Index")
+```	
+
+Notes:
+
+- All three measures yield values ranging from -1 to 1.
+
+- Pearson's correlation is probably the most widely used dependency measure. However, one should be aware that it only measures linear association.
+
+- Although Kendall's tau and Spearman's rho are related to correlation, they measure non-linear dependencies. You will learn the theoretical details of these dependency measures in more advanced courses.
+
+- Data for this example comes from: [transparency.org](https://www.transparency.org/news/feature/corruption_perceptions_index_2017#table) and [data.worldbank.org](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?view=map).
+
+
+
+
+## Case Study: 'Big Data' Example
+
+We introduce here two 'big' data sets, which contain insurance data. Those are the files
+
+- $\verb|file_policy_building.csv|$, which contain information on all policies sold
+- $\verb|file_claim_building.csv|$ , which contain information on all claims made, from the policies sold
+
+Additional information on these data sets can be found in the file $\verb|data_note.pdf|$.
+
+Here we want to analyse this data to get insights on it. As a first step, import both data sets in $\verb|R|$, and check what they look like.
+
+*Hint*: use function $\verb|head()|$.
+
+### Case Study: Import and check
+
+```{r}
+# Import files
+building_policy <- read.csv("file_policy_building.csv")
+building_claim <- read.csv("file_claim_building.csv")
+
+# Check the first few rows of both files
+head(building_policy)
+head(building_claim)
+```
+What do you see? Can you describe the information contained in those data sets? 
+
+### Case Study: Exploration Questions
+
+Using $\verb|R|$, try to answer the following questions:
+
+1. How many different policies are there?
+2. How many claims were made?
+3. How many distinct policies generated claims?
+4. Why are the answers to question $2.$ and $3.$ different?
+
+### Exploration Questions: Solution
+
+```{r}
+# Number of policies in total
+length(building_policy$PolicyID)
+# Number of claims in total
+length(building_claim$PolicyID)
+# Number of DISTINCT policies with a claim
+length(unique(building_claim$PolicyID))
+
+```
+
+- We see that there are much more policies than claims; this makes sense as not all insured will make claims.
+
+- Also, there are fewer distinct policies making claims than the total number of claims. This also makes sense, as it is possible that the same policy generates more than one claim.
+
+## Advanced Questions
+
+You may have noticed that each policy has a 'GeoRisk' category, either 'Low Risk', 'Normal', or 'High Risk'. We want to know if these risk categories are appropriate. That is, are there more claims on average for policies categorised as 'High Risk'? And are those claims bigger than for lower risk categories?
+
+**Questions**: 
+
+1. For each category of 'GeoRisk', find the average number of claims per policy. 
+2. For each category of 'GeoRisk', find the mean and standard deviation of the total claim amount per policy (so if the same policy generates many claims, we want the total amount)
+
+
+*Hint*: you will have to merge the two files. Also, don't forget your new friend $\verb|dplyr|$!
+
+### Advanced Questions: Solution
+
+``` {r}
+# We first merge the files
+# The 'all.y = TRUE' is very important, because it will keep the policies with more than one claim
+building_all <- merge(x=building_claim, y=building_policy, by = "PolicyID", all.y=TRUE)
+
+# Our solution uses dplyr:
+building_all %>%
+  # Create a variable 'claim_ind' which is 1 if there is a claim (for a given policy), 0 otherwise
+  # Create a variable 'claim_amount' equal to the claim amount (GrossLossBuilding) if there is a claim, 0 otherwise
+  mutate(claim_ind = ifelse(is.na(building_all$AccidentDay), 0, 1), 
+         claim_amount = ifelse(is.na(building_all$AccidentDay), 0, GrossLossBuilding)) %>%
+  # Group all rows that are the same policy, count the number of claims in each, and the total claim amount
+  group_by(PolicyID) %>% mutate(num_claim = sum(claim_ind), sum_claim = sum(claim_amount)) %>% 
+  # Keep only one row per PolicyID
+  distinct(PolicyID, .keep_all = T) %>%
+  # Finally, group by GeoRisk and find the statistics
+  group_by(GeoRisk) %>% summarise(mean.nb = mean(num_claim), mean.amount = mean(sum_claim), sd.dev = sd(sum_claim))
+```
+
+Do you think the risk categories are appropriate?
+
+
+### Advanced Questions: Discussion
+
+- The risk categories do seem appropriate, since both the frequency (number of claims) and severity (size of claims) are the highest for the 'High Risk' category, and the lowest for the 'Low Risk' category.
+
+- The standard deviation for the 'High Risk' category is also much higher, indicating a lot of variability in the claim size.
+
+- Can you think of any other analysis you would want to do with this dataset? Maybe check if there is a link between the 'Age' of an insured and their number/size of claims? What else?
+
+
+## Probability distributions and random variables in R
+
+- As seen in the prerequisite course ZZBU6501 (Introductory Data Analysis), statistical analysis is concerned with understanding and modelling random variables. This is important, as random variables are mathematical descriptions of the random phenomena encountered in everyday life 
+
+-  Many probability distributions are implemented in base R. There are typically four functions you can use for each distribution. For the Normal distribution they are `dnorm` (density function), `pnorm` (CDF), `qnorm` (quantile function) and `rnorm` (random generator)   
+
+
+```{r create_norm, eval=TRUE,echo=TRUE}
+dnorm(1.96, mean = 0 , sd = 1)
+pnorm(1.96, mean = 0 , sd = 1)
+qnorm(0.975, mean = 0 , sd = 1)
+rnorm(1, mean = 0, sd = 1)
+```	
+
+- Many more probability distributions are implemented in R. For instance, can you guess what `dexp()` does? Or `pgamma()`?
+
+## Generating random variables in R - Page 74
+
+- To conduct statistical analysis, it is often useful to be able to generate realisations from random variables, and R is an apt tool to do so throught the use of functions `runif()`, `rnorm()`, `rgamma()`, etc...
+
+```{r create_unif,eval=TRUE,echo=TRUE}
+# Generate two random obervations from a Uniform[0,1]
+runif(n = 2)
+# Generate four random observations from a Uniform[2,7]
+runif(n = 4, min=2, max=7)
+```	
+
+
+
+### Generate random variables in R - set.seed() 
+
+- R cannot generate observations that are completely random. The simulated values are generated with an algorithm that 'imitates' randomness. It looks random, and is random in the sense that if you don't know the algorithm (and where it starts), there is no way you can predict the numbers that will come out. But if you do know the algorithm (and where it starts), then you can predict the numbers precisely. 
+
+- Hence, it is possible to replicate simulated 'random' values, provided you start the algorithm at the same place as before.
+
+- To do so, use function `set.seed()`. When setting the seed to any particular value and then generating a random number, you are guaranteed to obtain the same result. Have a look at this example: 
+
+```{r,eval=TRUE,echo=TRUE}
+# I don't set the seed:
+rnorm(1)
+rnorm(1)
+
+# I set the seed
+set.seed(7)
+rnorm(1)
+set.seed(7)
+rnorm(1)
+
+# I set a different seed
+set.seed(3)
+rnorm(1)
+set.seed(3)
+rnorm(1)
+```	
+
+
+
+## Relevant Exercises
+
+- 5.14-5.19, 11.1-11.13
+

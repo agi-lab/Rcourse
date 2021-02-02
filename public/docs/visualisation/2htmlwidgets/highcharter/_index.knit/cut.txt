@@ -1,0 +1,20 @@
+## Why do we use bar charts?
+
+- Bar charts one useful form of quantitative data visualisation.
+- For each pair of variables, a bar represents one observation, meaning we can easily compare observations by seeing which one is taller
+- For example, it becomes easy to visualise the heights of some different coloured aliens with a bar graph!
+
+```{r example, echo = FALSE}
+alien_data <- read_csv("sample_data/alien_data.csv") 
+library("RColorBrewer")
+alien_data %>%
+  mutate(colour2 = plyr::mapvalues(
+    colour,
+    from = c("Red", "Blue", "Green"),
+    to = c("#FF0000", "#0040FF", "#01D200")
+  )) %>%
+  hchart(type = "bar", 
+         hcaes(x = name,
+               y = height,
+               color = colour2))
+```

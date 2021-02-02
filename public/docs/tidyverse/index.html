@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Tidyverse #  The Bigger Picture #  In this document we learn how to manipulate data with the Tidyverse. Simply put, we are learning how to transform raw data into clean, easy-to-work-with tidy data. In the overall context of the workflow, this falls into the category of wrangling raw data into something more useable.
+ \    Note: LinkedIn Learning videos ...  There are references to LinkedIn Learning videos.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="The Tidyverse" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/tidyverse/" />
+
+<title>The Tidyverse | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/tidyverse/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/"class=active>tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>The Tidyverse</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-tidyverse">The Tidyverse</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#what-is-the-tidyverse">What is the Tidyverse?</a></li>
+        <li><a href="#using-the-pipeline-operator-in-the-tidyverse">Using the pipeline operator in the Tidyverse</a></li>
+        <li><a href="#packages-for-reading-data">Packages for reading data</a>
+          <ul>
+            <li><a href="#the-readxl-package">The &lsquo;readxl&rsquo; package</a></li>
+            <li><a href="#a-caution-for-readxl">A caution for readxl</a></li>
+            <li><a href="#the-readr-package">The &lsquo;readr&rsquo; package</a></li>
+          </ul>
+        </li>
+        <li><a href="#what-are-tibbles">What are tibbles?</a></li>
+        <li><a href="#what-is-dplyr">What is dplyr?</a>
+          <ul>
+            <li><a href="#a-note-on-using-dplyr">A note on using dplyr</a></li>
+            <li><a href="#arrange">arrange()</a></li>
+            <li><a href="#select">select()</a></li>
+            <li><a href="#filter">filter()</a></li>
+            <li><a href="#mutate">mutate()</a></li>
+            <li><a href="#separate">separate()</a></li>
+            <li><a href="#merge">merge()</a></li>
+          </ul>
+        </li>
+        <li><a href="#data-sampling">Data Sampling</a>
+          <ul>
+            <li><a href="#group_by">group_by()</a></li>
+          </ul>
+        </li>
+        <li><a href="#cumulative-functions">Cumulative functions</a>
+          <ul>
+            <li><a href="#cumsum">cumsum()</a></li>
+            <li><a href="#cummean">cummean()</a></li>
+            <li><a href="#cumall-and-cumany">cumall() and cumany()</a></li>
+            <li><a href="#whats-the-difference">What&rsquo;s the difference?</a></li>
+          </ul>
+        </li>
+        <li><a href="#summarise">summarise()</a>
+          <ul>
+            <li><a href="#sumarise_all">sumarise_all()</a></li>
+            <li><a href="#summarise_if">summarise_if()</a></li>
+          </ul>
+        </li>
+        <li><a href="#recode">recode()</a></li>
+        <li><a href="#data-cleaning">Data Cleaning</a>
+          <ul>
+            <li><a href="#what-is-data-cleaning">What is data cleaning?</a></li>
+            <li><a href="#take-note">Take note</a></li>
+            <li><a href="#example---data-cleaning-with-a-messy-file">Example - data cleaning with a messy file</a></li>
+            <li><a href="#extra-example----one-function-to-clean-four-files">Extra example &ndash; one function to clean four files</a></li>
+          </ul>
+        </li>
+        <li><a href="#a-bonus">A bonus!</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-tidyverse">
+  The Tidyverse
+  <a class="anchor" href="#the-tidyverse">#</a>
+</h1>
+<h2 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h2>
+<p>In this document we learn how to manipulate data with the Tidyverse. Simply put, we are learning how to transform raw data into clean, easy-to-work-with tidy data. In the overall context of the workflow, this falls into the category of wrangling raw data into something more useable.</p>
+<center><img src = "images/workflowschematic.JPG" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.JPG" width="80%" class="ImageBorder"> </img></center>
+<p><code>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>Note: LinkedIn Learning videos</span>
+      <span>...</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      There are references to LinkedIn Learning videos. These are complementary but not really required as the notes below are meant to be self-contained. Some students and staff would have access for free. Do not purchase access unless you are sure you don’t have access through your organisation already.
+    </div>
+  </label>
+</div>
+</code></p>
+<h2 id="what-is-the-tidyverse">
+  What is the Tidyverse?
+  <a class="anchor" href="#what-is-the-tidyverse">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/what-is-the-tidyverse">LinkedIn Learning 1.1 - 1.3</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+<span style="color:#75715e"># Loads the tidyverse packages</span>
+</code></pre></div><ul>
+<li>
+<p>A series of R packages that can be used together</p>
+</li>
+<li>
+<p>The aim is to create data which is &lsquo;tidy&rsquo;</p>
+</li>
+<li>
+<p>Uses</p>
+<ul>
+<li>Formatting raw data in a more readable form</li>
+<li>Preparing data for use with other packages</li>
+<li>&lsquo;Wrangling&rsquo; data (manipulating parts of datasets)</li>
+<li>Visualising data with static graphs (ggplot2)</li>
+</ul>
+</li>
+<li>
+<p>Note: if you do not have the tidyverse (or any package described in these notes) installed, you can do so by running <code>install.packages(&quot;tidyverse&quot;)</code> in the R terminal</p>
+</li>
+</ul>
+<h2 id="using-the-pipeline-operator-in-the-tidyverse">
+  Using the pipeline operator in the Tidyverse
+  <a class="anchor" href="#using-the-pipeline-operator-in-the-tidyverse">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/648985">LinkedIn Learning 3.1 - 3.3</a></p>
+</blockquote>
+<p>Some of you would be familiar with how young children tell a story: &ldquo;she did that, and then he did that, and then she did that, and then he did that, etc etc&rdquo;. Well, the structure with <code>%&gt;%</code> operators is exactly the same, and often makes the coding more natural when things are done sequentially.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>)
+n <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mean</span>()
+</code></pre></div><pre><code>## [1] 5
+</code></pre><ul>
+<li>The above is the equivalent of mean(n)</li>
+<li>The <code>%&gt;%</code> operator can be thought of as &ldquo;and then&rdquo;.</li>
+<li>The operator takes the left hand side of it and &lsquo;forces&rsquo; it into the first argument of the right hand side</li>
+</ul>
+<p>But what if we don&rsquo;t want to force everything into the <em>first</em> argument? What if we want to force everything into another argument?</p>
+<ul>
+<li>We use a dot (<code>.</code>) where the argument we want goes</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">n <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mean</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">replicate</span>(<span style="color:#e6db74">&#34;HELLO&#34;</span>, n <span style="color:#f92672">=</span> .)
+</code></pre></div><pre><code>## [1] &quot;HELLO&quot; &quot;HELLO&quot; &quot;HELLO&quot; &quot;HELLO&quot; &quot;HELLO&quot;
+</code></pre><p>The above example is the equivalent of saying:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">temp <span style="color:#f92672">&lt;-</span> n <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mean</span>()
+
+<span style="color:#a6e22e">replicate</span>(<span style="color:#e6db74">&#34;HELLO&#34;</span>, n <span style="color:#f92672">=</span> temp)
+</code></pre></div><h2 id="packages-for-reading-data">
+  Packages for reading data
+  <a class="anchor" href="#packages-for-reading-data">#</a>
+</h2>
+<p>Base R (R without any packages) comes with several functions designed for reading and writing files. However, we use packages to read files in a smarter way than base R.</p>
+<h3 id="the-readxl-package">
+  The &lsquo;readxl&rsquo; package
+  <a class="anchor" href="#the-readxl-package">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/import-xlsx-files-with-readxl-in-r">LinkedIn Learning 4.2</a></p>
+</blockquote>
+<ul>
+<li>A package which easily imports Excel data</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;readxl&#34;</span>)
+<span style="color:#75715e"># Note: readr comes with the Tidyverse but readxl must be loaded separately</span>
+alien_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;sample_data/alien_data.csv&#34;</span>)
+<span style="color:#a6e22e">head</span>(alien_data, <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Bordo Blue       29     13
+## 3 Jango Red        43     23
+## 4 Tommy Green      82     15
+## 5 Zed   Red        80     21
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;sample_data/student_data.csv&#34;</span>)
+<span style="color:#a6e22e">head</span>(student_data, <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 4
+##   name          gender test1 test2
+##   &lt;chr&gt;         &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 John Smith    m         23    47
+## 2 Billy Fleck   m         21    52
+## 3 Jenna Smith   f         30    38
+## 4 Taylor Jones  f         21    42
+## 5 Blake Johnson m         15    35
+</code></pre><ul>
+<li>The <code>read_csv()</code> and <code>read_xlsx</code> functions, among others, are very useful</li>
+</ul>
+<h3 id="a-caution-for-readxl">
+  A caution for readxl
+  <a class="anchor" href="#a-caution-for-readxl">#</a>
+</h3>
+<ul>
+<li><code>read_csv()</code> and <code>write_csv()</code> are two functions that readxl introduces to read and write csv files</li>
+<li><code>read.csv()</code> and <code>write.csv()</code> are two functions built into base R to read and write csv files</li>
+</ul>
+<p>The readxl functions are much smarter and faster when it comes to csv and xlsx manipulation with R. Don&rsquo;t be confused with the base R functions!</p>
+<h3 id="the-readr-package">
+  The &lsquo;readr&rsquo; package
+  <a class="anchor" href="#the-readr-package">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/import-csv-files-with-readr-into-r">LinkedIn Learning 4.3</a></p>
+</blockquote>
+<ul>
+<li>A package with superior file reading than base R</li>
+<li>Automatic conversion of dates, times, numbers, among other features</li>
+<li>Full command list found: <a href="https://cran.r-project.org/web/packages/readr/readr.pdf">https://cran.r-project.org/web/packages/readr/readr.pdf</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">read_file</span>(<span style="color:#e6db74">&#34;sample_data/secret_message.txt&#34;</span>)
+</code></pre></div><pre><code>## [1] &quot;R is a great language!&quot;
+</code></pre><h2 id="what-are-tibbles">
+  What are tibbles?
+  <a class="anchor" href="#what-are-tibbles">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/is-it-a-data-frame-or-a-tibble">LinkedIn Learning 4.4</a></p>
+</blockquote>
+<p>That table we just saw was called &ldquo;A tibble&rdquo; by R.</p>
+<ul>
+<li>Tibbles are the standard tables of the Tidyverse</li>
+<li>They are like data.frames but better</li>
+<li>They store info about attributes of column data (such as their class)</li>
+<li>Appending data to tibbles is easy as they are designed to work with Tidyverse packages</li>
+<li><code>as_tibble()</code> can be used to convert data.frames</li>
+</ul>
+<h2 id="what-is-dplyr">
+  What is dplyr?
+  <a class="anchor" href="#what-is-dplyr">#</a>
+</h2>
+<p><code>dplyr</code> is one of the packages contained in the Tidyverse and is our main tool for manipulating data</p>
+<ul>
+<li>Uses the pipeline operator <code>%&gt;%</code></li>
+<li>The pipeline operator makes manipulating data easy to format</li>
+<li><code>dplyr</code> contains many tools for selecting sub-sections of data</li>
+<li><code>dplyr</code> contains many tools for modifying or providing interpretation of data</li>
+<li><code>dplyr</code> can prepare data to be graphed more easily by other packages</li>
+</ul>
+<h3 id="a-note-on-using-dplyr">
+  A note on using dplyr
+  <a class="anchor" href="#a-note-on-using-dplyr">#</a>
+</h3>
+<ul>
+<li><code>dplyr</code> functions are to be used primarily with data tables
+<ul>
+<li>Includes data.frames and tibbles</li>
+</ul>
+</li>
+<li><code>dplyr</code> functions expect the first argument to be a table</li>
+<li>We typically use the functions by &lsquo;piping&rsquo; data into them:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(colour)
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+## # Groups:   colour [3]
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Bordo Blue       29     13
+## 3 Jango Red        43     23
+## 4 Tommy Green      82     15
+## 5 Zed   Red        80     21
+## 6 Wobbo Blue       54     16
+## 7 Tobbi Green      24     19
+## 8 Grob  Red        26     26
+</code></pre><ul>
+<li>If we want to create a new table with our modifications complete, we simply assign it</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">grouped_alien_data <span style="color:#f92672">&lt;-</span> alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(colour)
+</code></pre></div><h3 id="arrange">
+  arrange()
+  <a class="anchor" href="#arrange">#</a>
+</h3>
+<ul>
+<li>This function orders our data according to a variable</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(height))
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Tommy Green      82     15
+## 3 Zed   Red        80     21
+## 4 Wobbo Blue       54     16
+## 5 Jango Red        43     23
+## 6 Bordo Blue       29     13
+## 7 Grob  Red        26     26
+## 8 Tobbi Green      24     19
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">arrange</span>(name)
+</code></pre></div><pre><code>## # A tibble: 17 x 4
+##    name            gender test1 test2
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 Billy Fleck     m         21    52
+##  2 Blake Johnson   m         15    35
+##  3 Charlie Doorman f         27    43
+##  4 Derek Corne     m         28    34
+##  5 Gabby Nelson    f         30    36
+##  6 Jack Smith      m         21    37
+##  7 Jackie Ericson  f         24    38
+##  8 Jenna Smith     f         30    38
+##  9 Jeremy Lewis    m         23    26
+## 10 Joanne Denny    f         33    35
+## 11 John Douglas    m         24    34
+## 12 John Smith      m         23    47
+## 13 Maddy Jacobson  f         24    39
+## 14 Marcel Dutch    m         22    36
+## 15 Samuel Kant     m         29    46
+## 16 Sean Blake      m         26    40
+## 17 Taylor Jones    f         21    42
+</code></pre><ul>
+<li>In the above example, we see that <code>arrange()</code> can apply to character variables as well as numeric variables</li>
+</ul>
+<h3 id="select">
+  select()
+  <a class="anchor" href="#select">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/select-and-filter-data">LinkedIn Learning 4.5</a></p>
+</blockquote>
+<p>This function can be used to retrieve only certain columns of that data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Bordo Blue       29     13
+## 3 Jango Red        43     23
+## 4 Tommy Green      82     15
+## 5 Zed   Red        80     21
+## 6 Wobbo Blue       54     16
+## 7 Tobbi Green      24     19
+## 8 Grob  Red        26     26
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(name, colour)
+</code></pre></div><pre><code>## # A tibble: 8 x 2
+##   name  colour
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 Alphy Red   
+## 2 Bordo Blue  
+## 3 Jango Red   
+## 4 Tommy Green 
+## 5 Zed   Red   
+## 6 Wobbo Blue  
+## 7 Tobbi Green 
+## 8 Grob  Red
+</code></pre><p>We can specify with <code>select(-column)</code> to remove columns.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>height)
+</code></pre></div><pre><code>## # A tibble: 8 x 3
+##   name  colour weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 Alphy Red        20
+## 2 Bordo Blue       13
+## 3 Jango Red        23
+## 4 Tommy Green      15
+## 5 Zed   Red        21
+## 6 Wobbo Blue       16
+## 7 Tobbi Green      19
+## 8 Grob  Red        26
+</code></pre><p>We can specify filtering only columns with a given string in their name.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#34;eight&#34;</span>))
+</code></pre></div><pre><code>## # A tibble: 8 x 2
+##   height weight
+##    &lt;dbl&gt;  &lt;dbl&gt;
+## 1    184     20
+## 2     29     13
+## 3     43     23
+## 4     82     15
+## 5     80     21
+## 6     54     16
+## 7     24     19
+## 8     26     26
+</code></pre><p>We can also use the <code>everything()</code> functon to select &ldquo;everything else&rdquo;. This can be used to rearrange our data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(colour, <span style="color:#a6e22e">everything</span>())
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+##   colour name  height weight
+##   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Red    Alphy    184     20
+## 2 Blue   Bordo     29     13
+## 3 Red    Jango     43     23
+## 4 Green  Tommy     82     15
+## 5 Red    Zed       80     21
+## 6 Blue   Wobbo     54     16
+## 7 Green  Tobbi     24     19
+## 8 Red    Grob      26     26
+</code></pre><h3 id="filter">
+  filter()
+  <a class="anchor" href="#filter">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/select-and-filter-data">LinkedIn Learning 4.5</a></p>
+</blockquote>
+<p>This function sifts through our data with a condition - we are left with only the data that satisfies this condition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(height <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>)
+</code></pre></div><pre><code>## # A tibble: 4 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Tommy Green      82     15
+## 3 Zed   Red        80     21
+## 4 Wobbo Blue       54     16
+</code></pre><p>We can also have compound conditions using:</p>
+<ul>
+<li>The <code>&amp;</code> (and) operator</li>
+<li>The &lsquo;|&rsquo; (or) operator</li>
+<li>Filter two or more times</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(height <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span> <span style="color:#f92672">&amp;</span> weight <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>)
+</code></pre></div><pre><code>## # A tibble: 3 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Zed   Red        80     21
+## 3 Wobbo Blue       54     16
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(colour <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Blue&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(weight <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>)
+</code></pre></div><pre><code>## # A tibble: 1 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Wobbo Blue       54     16
+</code></pre><h3 id="mutate">
+  mutate()
+  <a class="anchor" href="#mutate">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/convert-strings-to-dates-with-mutate">LinkedIn Learning 4.6</a></p>
+</blockquote>
+<p>This function creates new columns based on a certain condition. It can also modify existing columns. To use it:</p>
+<ul>
+<li>Specify the name of the column to create</li>
+<li>Include an equals (<code>=</code>)</li>
+<li>Specify how we define this column</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data
+</code></pre></div><pre><code>## # A tibble: 17 x 4
+##    name            gender test1 test2
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 John Smith      m         23    47
+##  2 Billy Fleck     m         21    52
+##  3 Jenna Smith     f         30    38
+##  4 Taylor Jones    f         21    42
+##  5 Blake Johnson   m         15    35
+##  6 Gabby Nelson    f         30    36
+##  7 John Douglas    m         24    34
+##  8 Samuel Kant     m         29    46
+##  9 Derek Corne     m         28    34
+## 10 Maddy Jacobson  f         24    39
+## 11 Sean Blake      m         26    40
+## 12 Jack Smith      m         21    37
+## 13 Joanne Denny    f         33    35
+## 14 Marcel Dutch    m         22    36
+## 15 Jeremy Lewis    m         23    26
+## 16 Charlie Doorman f         27    43
+## 17 Jackie Ericson  f         24    38
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(final_mark <span style="color:#f92672">=</span> test1 <span style="color:#f92672">+</span> test2)
+</code></pre></div><pre><code>## # A tibble: 17 x 5
+##    name            gender test1 test2 final_mark
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1 John Smith      m         23    47         70
+##  2 Billy Fleck     m         21    52         73
+##  3 Jenna Smith     f         30    38         68
+##  4 Taylor Jones    f         21    42         63
+##  5 Blake Johnson   m         15    35         50
+##  6 Gabby Nelson    f         30    36         66
+##  7 John Douglas    m         24    34         58
+##  8 Samuel Kant     m         29    46         75
+##  9 Derek Corne     m         28    34         62
+## 10 Maddy Jacobson  f         24    39         63
+## 11 Sean Blake      m         26    40         66
+## 12 Jack Smith      m         21    37         58
+## 13 Joanne Denny    f         33    35         68
+## 14 Marcel Dutch    m         22    36         58
+## 15 Jeremy Lewis    m         23    26         49
+## 16 Charlie Doorman f         27    43         70
+## 17 Jackie Ericson  f         24    38         62
+</code></pre><h3 id="separate">
+  separate()
+  <a class="anchor" href="#separate">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/separating-columns-into-multiple-columns">LinkedIn Learning 4.7</a></p>
+</blockquote>
+<p>This function takes one column and splits it into more than one. It is especially useful when manipulating data which is rather unorganised, for example, data in <code>.txt</code> files without columns.</p>
+<ul>
+<li>First argument is the target column</li>
+<li>Second argument is a vector of column names to split it into</li>
+<li>Third argument is the separator by which to split the data</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data
+</code></pre></div><pre><code>## # A tibble: 17 x 4
+##    name            gender test1 test2
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 John Smith      m         23    47
+##  2 Billy Fleck     m         21    52
+##  3 Jenna Smith     f         30    38
+##  4 Taylor Jones    f         21    42
+##  5 Blake Johnson   m         15    35
+##  6 Gabby Nelson    f         30    36
+##  7 John Douglas    m         24    34
+##  8 Samuel Kant     m         29    46
+##  9 Derek Corne     m         28    34
+## 10 Maddy Jacobson  f         24    39
+## 11 Sean Blake      m         26    40
+## 12 Jack Smith      m         21    37
+## 13 Joanne Denny    f         33    35
+## 14 Marcel Dutch    m         22    36
+## 15 Jeremy Lewis    m         23    26
+## 16 Charlie Doorman f         27    43
+## 17 Jackie Ericson  f         24    38
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">separate</span>(name, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;First&#34;</span>, <span style="color:#e6db74">&#34;Last&#34;</span>), sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>)
+</code></pre></div><pre><code>## # A tibble: 17 x 5
+##    First   Last     gender test1 test2
+##    &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 John    Smith    m         23    47
+##  2 Billy   Fleck    m         21    52
+##  3 Jenna   Smith    f         30    38
+##  4 Taylor  Jones    f         21    42
+##  5 Blake   Johnson  m         15    35
+##  6 Gabby   Nelson   f         30    36
+##  7 John    Douglas  m         24    34
+##  8 Samuel  Kant     m         29    46
+##  9 Derek   Corne    m         28    34
+## 10 Maddy   Jacobson f         24    39
+## 11 Sean    Blake    m         26    40
+## 12 Jack    Smith    m         21    37
+## 13 Joanne  Denny    f         33    35
+## 14 Marcel  Dutch    m         22    36
+## 15 Jeremy  Lewis    m         23    26
+## 16 Charlie Doorman  f         27    43
+## 17 Jackie  Ericson  f         24    38
+</code></pre><h3 id="merge">
+  merge()
+  <a class="anchor" href="#merge">#</a>
+</h3>
+<ul>
+<li>This is a very powerful function</li>
+<li>merge() takes two data sets and combines them into one by using a common column</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Red       184     20
+## 2 Bordo Blue       29     13
+## 3 Jango Red        43     23
+## 4 Tommy Green      82     15
+## 5 Zed   Red        80     21
+## 6 Wobbo Blue       54     16
+## 7 Tobbi Green      24     19
+## 8 Grob  Red        26     26
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data2
+</code></pre></div><pre><code>## # A tibble: 8 x 2
+##   name  `favourite food`
+##   &lt;chr&gt; &lt;chr&gt;           
+## 1 Alphy jelly beans     
+## 2 Bordo cereal          
+## 3 Jango hamburger       
+## 4 Tommy spaghetti       
+## 5 Zed   jelly beans     
+## 6 Wobbo donuts          
+## 7 Tobbi milkshake       
+## 8 Grob  banana
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">merge</span>(alien_data, alien_data2, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;name&#34;</span>)
+</code></pre></div><pre><code>##    name colour height weight favourite food
+## 1 Alphy    Red    184     20    jelly beans
+## 2 Bordo   Blue     29     13         cereal
+## 3  Grob    Red     26     26         banana
+## 4 Jango    Red     43     23      hamburger
+## 5 Tobbi  Green     24     19      milkshake
+## 6 Tommy  Green     82     15      spaghetti
+## 7 Wobbo   Blue     54     16         donuts
+## 8   Zed    Red     80     21    jelly beans
+</code></pre><p>Be very careful when merging, as all elements must be a perfect match in the &ldquo;by&rdquo; column!</p>
+<h2 id="data-sampling">
+  Data Sampling
+  <a class="anchor" href="#data-sampling">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/sample-data-and-cross-validation-with-dplyr">LinkedIn Learning 5.1</a></p>
+</blockquote>
+<ul>
+<li><code>sample_frac()</code> takes a proportion as its argument, and returns a subsection of our data containing a random proportion of the data</li>
+<li><code>sample_n()</code> takes a number as its argument, and returns a subsection of our data containing that many random points from the data</li>
+<li>Both functions can take the optional argument <code>replace = FALSE</code> to allow for repeats</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">sample_n</span>(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 4
+##   name            gender test1 test2
+##   &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 Derek Corne     m         28    34
+## 2 Charlie Doorman f         27    43
+## 3 Billy Fleck     m         21    52
+## 4 Jack Smith      m         21    37
+## 5 Blake Johnson   m         15    35
+</code></pre><h3 id="group_by">
+  group_by()
+  <a class="anchor" href="#group_by">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/categorizing-data-with-group-by">LinkedIn Learning 5.2, 5.3</a></p>
+</blockquote>
+<ul>
+<li><code>group_by()</code> is a very powerful function</li>
+<li>We can use it to create &ldquo;groups&rdquo; in a tibble</li>
+</ul>
+<p>We can imagine that our data is like a school of students. We &ldquo;group&rdquo; our data by putting different students into different classes. The data doesn&rsquo;t change, but we can interact with each class separately. This makes it easy if we want to, for example, count the number of students in a class, or find out which class gets the highest marks.</p>
+<p>When we are making groups:</p>
+<ul>
+<li><strong>Any operation we perform on the data will be done according to groups</strong></li>
+<li>Creating new groups overrides old groups</li>
+<li>`ungroup()' removes groups</li>
+</ul>
+<p>How many aliens are there of each colour?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">colour_count <span style="color:#f92672">&lt;-</span> alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(colour) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(count <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>()) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(colour, count)
+
+colour_count
+</code></pre></div><pre><code>## # A tibble: 8 x 2
+## # Groups:   colour [3]
+##   colour count
+##   &lt;chr&gt;  &lt;int&gt;
+## 1 Red        4
+## 2 Blue       2
+## 3 Red        4
+## 4 Green      2
+## 5 Red        4
+## 6 Blue       2
+## 7 Green      2
+## 8 Red        4
+</code></pre><p><strong>Note</strong>: n() is a funtion with no arguments that counts the number of observations in a group.</p>
+<ul>
+<li>We have the correct counts per colour, but we are displaying too much information.</li>
+<li>The <code>unique()</code> function only includes unique data based on some variable</li>
+<li>Because we are grouped by colour, `unique()' will apply on the colour variable</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">colour_count <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">unique</span>()
+</code></pre></div><pre><code>## # A tibble: 3 x 2
+## # Groups:   colour [3]
+##   colour count
+##   &lt;chr&gt;  &lt;int&gt;
+## 1 Red        4
+## 2 Blue       2
+## 3 Green      2
+</code></pre><p>Example: Did males or females perform better on their test?
+(Data was randomly generated!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data
+</code></pre></div><pre><code>## # A tibble: 17 x 4
+##    name            gender test1 test2
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 John Smith      m         23    47
+##  2 Billy Fleck     m         21    52
+##  3 Jenna Smith     f         30    38
+##  4 Taylor Jones    f         21    42
+##  5 Blake Johnson   m         15    35
+##  6 Gabby Nelson    f         30    36
+##  7 John Douglas    m         24    34
+##  8 Samuel Kant     m         29    46
+##  9 Derek Corne     m         28    34
+## 10 Maddy Jacobson  f         24    39
+## 11 Sean Blake      m         26    40
+## 12 Jack Smith      m         21    37
+## 13 Joanne Denny    f         33    35
+## 14 Marcel Dutch    m         22    36
+## 15 Jeremy Lewis    m         23    26
+## 16 Charlie Doorman f         27    43
+## 17 Jackie Ericson  f         24    38
+</code></pre><p>We must:</p>
+<ul>
+<li>Add the final mark column</li>
+<li>Group data by gender</li>
+<li>Create (mutate) an average mark column according to gender</li>
+<li>Select the data we want</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(final_mark <span style="color:#f92672">=</span> test1 <span style="color:#f92672">+</span> test2) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(gender) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(average_mark <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(final_mark) <span style="color:#f92672">/</span> <span style="color:#a6e22e">n</span>()) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(gender, average_mark) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">unique</span>()
+</code></pre></div><pre><code>## # A tibble: 2 x 2
+## # Groups:   gender [2]
+##   gender average_mark
+##   &lt;chr&gt;         &lt;dbl&gt;
+## 1 m              61.9
+## 2 f              65.7
+</code></pre><p>Note: sum() and n() apply by group &ndash; this is why groups are so useful!</p>
+<h2 id="cumulative-functions">
+  Cumulative functions
+  <a class="anchor" href="#cumulative-functions">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/cumulative-sums-and-more-cumsum-cumall-and-cumany">LinkedIn Learning 5.4</a></p>
+</blockquote>
+<ul>
+<li>Sometimes we need to add all the values of a certain data column up to current point</li>
+<li>Usually this takes the form of a running total with respect to time</li>
+</ul>
+<h3 id="cumsum">
+  cumsum()
+  <a class="anchor" href="#cumsum">#</a>
+</h3>
+<p>Provides the cumulative sum.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">music_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;sample_data/music_data.csv&#34;</span>)
+</code></pre></div><p>Introducing a new dataset - a student&rsquo;s log of daily practice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(music_data, <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 5
+##   date      begin  end    hours description
+##   &lt;chr&gt;     &lt;time&gt; &lt;time&gt; &lt;dbl&gt; &lt;chr&gt;      
+## 1 1/06/2019 21:30  22:30    1   Mozart     
+## 2 2/06/2019 10:00  11:00    1   Chopin     
+## 3 2/06/2019 16:00  17:30    1.5 Mozart     
+## 4 3/06/2019 10:00  11:00    1   Chopin     
+## 5 4/06/2019 10:00  11:30    1.5 Beethoven
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(running_total <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumsum</span>(hours))
+</code></pre></div><pre><code>## # A tibble: 24 x 6
+##    date      begin  end    hours description running_total
+##    &lt;chr&gt;     &lt;time&gt; &lt;time&gt; &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+##  1 1/06/2019 21:30  22:30    1   Mozart                1  
+##  2 2/06/2019 10:00  11:00    1   Chopin                2  
+##  3 2/06/2019 16:00  17:30    1.5 Mozart                3.5
+##  4 3/06/2019 10:00  11:00    1   Chopin                4.5
+##  5 4/06/2019 10:00  11:30    1.5 Beethoven             6  
+##  6 4/06/2019 12:00  13:30    1.5 Mozart                7.5
+##  7 4/06/2019 15:30  16:30    1   Chopin                8.5
+##  8 5/06/2019 12:30  13:30    1   Chopin                9.5
+##  9 5/06/2019 14:30  16:30    2   Chopin               11.5
+## 10 5/06/2019 17:00  17:30    0.5 Mozart               12  
+## # … with 14 more rows
+</code></pre><ul>
+<li>This provides us with a cumulative total hours practice after each practice session</li>
+</ul>
+<p><strong>[Harder example]:</strong> What if we want the daily total?</p>
+<ul>
+<li>Recall if we want the daily total we can use grouping and <code>unique()</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">&lt;-</span> music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Establish date groups</span>
+  <span style="color:#a6e22e">group_by</span>(date) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Find daily total by summing within the date groups</span>
+  <span style="color:#a6e22e">mutate</span>(daily_total <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(hours)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># Select just our date and daily total</span>
+  <span style="color:#a6e22e">select</span>(date, daily_total) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># unique() acts only on &#39;date&#39; due to groups</span>
+  <span style="color:#a6e22e">unique</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># ungroup() so other functions do not act on date groups</span>
+  <span style="color:#a6e22e">ungroup</span>()
+
+daily_music_data
+</code></pre></div><pre><code>## # A tibble: 13 x 2
+##    date       daily_total
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 1/06/2019         1   
+##  2 2/06/2019         2.5 
+##  3 3/06/2019         1   
+##  4 4/06/2019         4   
+##  5 5/06/2019         3.5 
+##  6 6/06/2019         1.5 
+##  7 7/06/2019         4.5 
+##  8 8/06/2019         0.75
+##  9 9/06/2019         4.25
+## 10 10/06/2019        1   
+## 11 11/06/2019        5   
+## 12 12/06/2019        1   
+## 13 14/06/2019        0.5
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#75715e"># cumsum() now acts on the whole data, since we ungrouped</span>
+  <span style="color:#a6e22e">mutate</span>(running_total <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumsum</span>(daily_total))
+</code></pre></div><pre><code>## # A tibble: 13 x 3
+##    date       daily_total running_total
+##    &lt;chr&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+##  1 1/06/2019         1              1  
+##  2 2/06/2019         2.5            3.5
+##  3 3/06/2019         1              4.5
+##  4 4/06/2019         4              8.5
+##  5 5/06/2019         3.5           12  
+##  6 6/06/2019         1.5           13.5
+##  7 7/06/2019         4.5           18  
+##  8 8/06/2019         0.75          18.8
+##  9 9/06/2019         4.25          23  
+## 10 10/06/2019        1             24  
+## 11 11/06/2019        5             29  
+## 12 12/06/2019        1             30  
+## 13 14/06/2019        0.5           30.5
+</code></pre><h3 id="cummean">
+  cummean()
+  <a class="anchor" href="#cummean">#</a>
+</h3>
+<ul>
+<li>Provides the cumulative mean</li>
+<li>The cumulative mean is the average of all values up to and including that point</li>
+<li>In our practice example, the cumulative mean hours practiced will be an average of all <em>non-future</em> sessions at a given date</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(cumulative_mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">cummean</span>(daily_total))
+</code></pre></div><pre><code>## # A tibble: 13 x 3
+##    date       daily_total cumulative_mean
+##    &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+##  1 1/06/2019         1               1   
+##  2 2/06/2019         2.5             1.75
+##  3 3/06/2019         1               1.5 
+##  4 4/06/2019         4               2.12
+##  5 5/06/2019         3.5             2.4 
+##  6 6/06/2019         1.5             2.25
+##  7 7/06/2019         4.5             2.57
+##  8 8/06/2019         0.75            2.34
+##  9 9/06/2019         4.25            2.56
+## 10 10/06/2019        1               2.4 
+## 11 11/06/2019        5               2.64
+## 12 12/06/2019        1               2.5 
+## 13 14/06/2019        0.5             2.35
+</code></pre><h3 id="cumall-and-cumany">
+  cumall() and cumany()
+  <a class="anchor" href="#cumall-and-cumany">#</a>
+</h3>
+<ul>
+<li>Each function provides a different type of cumulation</li>
+<li>Each function takes its argument to be a logical expression</li>
+<li>Each function outputs a vector of logical values</li>
+</ul>
+<h3 id="whats-the-difference">
+  What&rsquo;s the difference?
+  <a class="anchor" href="#whats-the-difference">#</a>
+</h3>
+<ul>
+<li><code>cumall()</code> returns <code>TRUE</code> for every case until the first <code>FALSE</code>, then <code>FALSE</code> for all cases after</li>
+<li><code>cumany()</code> returns <code>FALSE</code> for every case until the first <code>TRUE</code>, then <code>TRUE</code> for all cases after</li>
+<li>Both are typically combined with the <code>filter()</code> function for cumulation <em>before</em> or <em>after</em> a certain point in our data</li>
+</ul>
+<p>Let&rsquo;s say we want to select every practice session <em>before</em> the longest one:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(is_before_longest <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumall</span>(daily_total <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">max</span>(daily_total)))
+</code></pre></div><pre><code>## # A tibble: 13 x 3
+##    date       daily_total is_before_longest
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;lgl&gt;            
+##  1 1/06/2019         1    TRUE             
+##  2 2/06/2019         2.5  TRUE             
+##  3 3/06/2019         1    TRUE             
+##  4 4/06/2019         4    TRUE             
+##  5 5/06/2019         3.5  TRUE             
+##  6 6/06/2019         1.5  TRUE             
+##  7 7/06/2019         4.5  TRUE             
+##  8 8/06/2019         0.75 TRUE             
+##  9 9/06/2019         4.25 TRUE             
+## 10 10/06/2019        1    TRUE             
+## 11 11/06/2019        5    FALSE            
+## 12 12/06/2019        1    FALSE            
+## 13 14/06/2019        0.5  FALSE
+</code></pre><ul>
+<li>We can see that on 11/06/19, our longest day, we fail the condition for the first time</li>
+<li>All logical values afterwards are <code>FALSE</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">cumall</span>(daily_total <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">max</span>(daily_total)))
+</code></pre></div><pre><code>## # A tibble: 10 x 2
+##    date       daily_total
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 1/06/2019         1   
+##  2 2/06/2019         2.5 
+##  3 3/06/2019         1   
+##  4 4/06/2019         4   
+##  5 5/06/2019         3.5 
+##  6 6/06/2019         1.5 
+##  7 7/06/2019         4.5 
+##  8 8/06/2019         0.75
+##  9 9/06/2019         4.25
+## 10 10/06/2019        1
+</code></pre><p>Let&rsquo;s say we want to select every practice session <em>after</em> the longest one</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(is_after_longest <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumany</span>(daily_total <span style="color:#f92672">==</span> <span style="color:#a6e22e">max</span>(daily_total)))
+</code></pre></div><pre><code>## # A tibble: 13 x 3
+##    date       daily_total is_after_longest
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;lgl&gt;           
+##  1 1/06/2019         1    FALSE           
+##  2 2/06/2019         2.5  FALSE           
+##  3 3/06/2019         1    FALSE           
+##  4 4/06/2019         4    FALSE           
+##  5 5/06/2019         3.5  FALSE           
+##  6 6/06/2019         1.5  FALSE           
+##  7 7/06/2019         4.5  FALSE           
+##  8 8/06/2019         0.75 FALSE           
+##  9 9/06/2019         4.25 FALSE           
+## 10 10/06/2019        1    FALSE           
+## 11 11/06/2019        5    TRUE            
+## 12 12/06/2019        1    TRUE            
+## 13 14/06/2019        0.5  TRUE
+</code></pre><ul>
+<li>We can see that on 11/06/19, our longest day, we pass the condition for the first time</li>
+<li>All logical values afterwards are <code>TRUE</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">daily_music_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">cumany</span>(daily_total <span style="color:#f92672">==</span> <span style="color:#a6e22e">max</span>(daily_total)))
+</code></pre></div><pre><code>## # A tibble: 3 x 2
+##   date       daily_total
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 11/06/2019         5  
+## 2 12/06/2019         1  
+## 3 14/06/2019         0.5
+</code></pre><h2 id="summarise">
+  summarise()
+  <a class="anchor" href="#summarise">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/create-group-summaries">LinkedIn Learning 5.5, 5.6</a></p>
+</blockquote>
+<ul>
+<li>This function is like a stronger version of <code>mutate()</code></li>
+<li>We throw away all columns except those that are grouped</li>
+<li>We also add columns according to the argument of <code>summarise()</code></li>
+</ul>
+<p>Counting aliens by colour is something we have done previously with <code>group_by()</code>, then <code>mutate()</code>, then <code>select()</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(colour) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(number <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>())
+</code></pre></div><pre><code>## `summarise()` ungrouping output (override with `.groups` argument)
+</code></pre><pre><code>## # A tibble: 3 x 2
+##   colour number
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Blue        2
+## 2 Green       2
+## 3 Red         4
+</code></pre><h3 id="sumarise_all">
+  sumarise_all()
+  <a class="anchor" href="#sumarise_all">#</a>
+</h3>
+<ul>
+<li>This version of <code>summarise()</code> applies one summary function on every column variable</li>
+<li>Here we are given errors as there is no &lsquo;mean&rsquo; of the name column</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise_all</span>(mean)
+</code></pre></div><pre><code>## Warning in mean.default(name): argument is not numeric or logical: returning NA
+</code></pre><pre><code>## Warning in mean.default(gender): argument is not numeric or logical: returning
+## NA
+</code></pre><pre><code>## # A tibble: 1 x 4
+##    name gender test1 test2
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    NA     NA  24.8  38.7
+</code></pre><h3 id="summarise_if">
+  summarise_if()
+  <a class="anchor" href="#summarise_if">#</a>
+</h3>
+<ul>
+<li>This version of <code>summarise()</code> gives us more precision, applying one summary function to certain column variables</li>
+<li>It takes a logical argument and only summarises variables which pass this logic</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">student_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise_if</span>(is.numeric,
+               mean)
+</code></pre></div><pre><code>## # A tibble: 1 x 2
+##   test1 test2
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  24.8  38.7
+</code></pre><h2 id="recode">
+  recode()
+  <a class="anchor" href="#recode">#</a>
+</h2>
+<ul>
+<li>This funtion is like a key which is used to replace values with other values</li>
+<li>We first specify the vector to modify, then we give the replacement key</li>
+</ul>
+<p>We can change the colour of aliens:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">alien_data<span style="color:#f92672">$</span>colour <span style="color:#f92672">=</span> <span style="color:#a6e22e">recode</span>(alien_data<span style="color:#f92672">$</span>colour,
+                           <span style="color:#e6db74">&#34;Red&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Orange&#34;</span>,
+                           <span style="color:#e6db74">&#34;Blue&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Violet&#34;</span>,
+                           <span style="color:#e6db74">&#34;Green&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Brown&#34;</span>)
+alien_data
+</code></pre></div><pre><code>## # A tibble: 8 x 4
+##   name  colour height weight
+##   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Alphy Orange    184     20
+## 2 Bordo Violet     29     13
+## 3 Jango Orange     43     23
+## 4 Tommy Brown      82     15
+## 5 Zed   Orange     80     21
+## 6 Wobbo Violet     54     16
+## 7 Tobbi Brown      24     19
+## 8 Grob  Orange     26     26
+</code></pre><h2 id="data-cleaning">
+  Data Cleaning
+  <a class="anchor" href="#data-cleaning">#</a>
+</h2>
+<h3 id="what-is-data-cleaning">
+  What is data cleaning?
+  <a class="anchor" href="#what-is-data-cleaning">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/separate-raw-and-clean-data-folders">LinkedIn Learning 4.1</a></p>
+</blockquote>
+<ul>
+<li>We now know enough about <code>dplyr</code> to perform some data cleaning</li>
+<li>Data cleaning is where we take some data that isn&rsquo;t formatted how we want, and format it how we want</li>
+<li>Generally the final result should be a tibble</li>
+</ul>
+<h3 id="take-note">
+  Take note
+  <a class="anchor" href="#take-note">#</a>
+</h3>
+<ul>
+<li>This section will contain several new functions</li>
+<li>Often in R you will require a specific function you have never seen before</li>
+<li>Make use of online resources such as 
+  <a href="https://stackoverflow.com/">Stack Overflow</a> to find solutions!</li>
+</ul>
+<h3 id="example---data-cleaning-with-a-messy-file">
+  Example - data cleaning with a messy file
+  <a class="anchor" href="#example---data-cleaning-with-a-messy-file">#</a>
+</h3>
+<blockquote>
+<p>&ldquo;Tidy datasets are all alike but every messy dataset is messy in its own way.&rdquo; &ndash;Hadley Wickham</p>
+</blockquote>
+<p>When we clean data, we can make it extremely useful, however every data set must be cleaned in its own way. <em>There is no magic formula that will work every time, but the general ideas will usually be the same.</em></p>
+<ul>
+<li>Here is a dataset containing the average yearly temperature as recorded by an Australian weather station over 100 years</li>
+<li>Data courtesy of the 
+  <a href="http://www.bom.gov.au/climate/change/datasets/datasets.shtml">Bureau of Meteorology</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.delim</span>(<span style="color:#e6db74">&#34;bom_data/tmeanahq.002012.annual.txt&#34;</span>)
+<span style="color:#a6e22e">head</span>(station1, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>##   MEAN.TEMP..002012.19100101.20121231.missing_value.99999.9....HALLS.CREEK.AIRPORT
+## 1                                                        19100101 19101231    26.4
+## 2                                                        19110101 19111231    26.3
+## 3                                                        19120101 19121231    26.0
+## 4                                                        19130101 19131231    25.2
+## 5                                                        19140101 19141231    25.8
+</code></pre><ul>
+<li><code>read.delim()</code> is a base R function which reads data line by line and formats into a single column table</li>
+<li>If we look at this particular data, it is a .txt document, and so we will need extensive formatting to make it a readable tibble</li>
+</ul>
+<p>The first column of the data is the start date or measurements, the second column is the end, and the third is the temperature data. For this task, let&rsquo;s assume we only need the year and the temperature stat.</p>
+<p>First we&rsquo;ll use <code>read_delim()</code>, the improved version of <code>read.delim()</code> from the <code>readr</code> package to separate our data into columns.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_delim</span>(<span style="color:#e6db74">&#34;bom_data/tmeanahq.002012.annual.txt&#34;</span>,
+                       delim <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>)
+<span style="color:#a6e22e">head</span>(station1, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 9
+##     MEAN   TEMP ` 002012` `19100101` `20121231` `missing_value=… `   HALLS`
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;     
+## 1 1.91e7 1.91e7 &quot;   26.4&quot; &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;      
+## 2 1.91e7 1.91e7 &quot;   26.3&quot; &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;      
+## 3 1.91e7 1.91e7 &quot;   26.0&quot; &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;      
+## 4 1.91e7 1.91e7 &quot;   25.2&quot; &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;      
+## 5 1.91e7 1.91e7 &quot;   25.8&quot; &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;             &lt;NA&gt;      
+## # … with 2 more variables: CREEK &lt;chr&gt;, AIRPORT &lt;chr&gt;
+</code></pre><p>We now have columns, but our data is still a mess.</p>
+<ul>
+<li>Our column names make no sense</li>
+<li>Our dates are formatted as numbers</li>
+<li>Our temperatures are formatted as characters</li>
+<li>Our station name is actually split across three separate columns</li>
+</ul>
+<p>First we isolate location. Take note that <code>make.names()</code> is a function which improves the formatting of column names.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colnames</span>(station1) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">make.names</span>(<span style="color:#a6e22e">colnames</span>(station1))
+location_name <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">colnames</span>(station1)[7<span style="color:#f92672">:</span><span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">colnames</span>(station1))], collapse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span>)
+location_name
+</code></pre></div><pre><code>## [1] &quot;X...HALLS CREEK AIRPORT&quot;
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">location_name <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(<span style="color:#a6e22e">substring</span>(location_name, <span style="color:#ae81ff">5</span>))
+location_name
+</code></pre></div><pre><code>## [1] &quot;HALLS CREEK AIRPORT&quot;
+</code></pre><ul>
+<li>length() returns the length of a string</li>
+<li>paste() concatenates strings</li>
+<li>We have asked the location_name variable to store the concatenation of all the column names of our data after the 6th column</li>
+<li>We have gone the extra mile to make this work for station names that are more or less than three words long - this is good coding practice!</li>
+<li>as.character() and substring() are used to tweak the name to remove the file&rsquo;s unsightly formating</li>
+</ul>
+<p>Now we <code>mutate()</code> our location column and year column.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station1 <span style="color:#f92672">&lt;-</span> station1 <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(location <span style="color:#f92672">=</span> (location_name)) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(year <span style="color:#f92672">=</span> <span style="color:#a6e22e">substr</span>(MEAN, start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, stop <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>))
+  <span style="color:#75715e"># Our year is just the first four characters in our misnamed start date column</span>
+station1
+</code></pre></div><pre><code>## # A tibble: 103 x 11
+##      MEAN   TEMP X.002012 X19100101 X20121231 missing_value.9… X...HALLS CREEK
+##     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;
+##  1 1.91e7 1.91e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  2 1.91e7 1.91e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  3 1.91e7 1.91e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  4 1.91e7 1.91e7 &quot;   25.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  5 1.91e7 1.91e7 &quot;   25.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  6 1.92e7 1.92e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  7 1.92e7 1.92e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  8 1.92e7 1.92e7 &quot;   25.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+##  9 1.92e7 1.92e7 &quot;   25.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+## 10 1.92e7 1.92e7 &quot;   26.… &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt; 
+## # … with 93 more rows, and 3 more variables: AIRPORT &lt;chr&gt;, location &lt;chr&gt;,
+## #   year &lt;chr&gt;
+</code></pre><ul>
+<li>Let&rsquo;s also rename our temperature column from the string of numbers it currently is, and convert the data to numbers (not characters)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">colnames</span>(station1)[3] <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;average.temp&#34;</span>
+station1<span style="color:#f92672">$</span>average.temp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.numeric</span>(station1<span style="color:#f92672">$</span>average.temp)
+</code></pre></div><ul>
+<li>Finally we <code>select()</code> to get only the data we want</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station1 <span style="color:#f92672">&lt;-</span> station1 <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(year,
+         average.temp,
+         location)
+station1
+</code></pre></div><pre><code>## # A tibble: 103 x 3
+##    year  average.temp location           
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;              
+##  1 1910          26.4 HALLS CREEK AIRPORT
+##  2 1911          26.3 HALLS CREEK AIRPORT
+##  3 1912          26   HALLS CREEK AIRPORT
+##  4 1913          25.2 HALLS CREEK AIRPORT
+##  5 1914          25.8 HALLS CREEK AIRPORT
+##  6 1915          26.4 HALLS CREEK AIRPORT
+##  7 1916          26.2 HALLS CREEK AIRPORT
+##  8 1917          25.5 HALLS CREEK AIRPORT
+##  9 1918          25.4 HALLS CREEK AIRPORT
+## 10 1919          26   HALLS CREEK AIRPORT
+## # … with 93 more rows
+</code></pre><h3 id="extra-example----one-function-to-clean-four-files">
+  Extra example &ndash; one function to clean four files
+  <a class="anchor" href="#extra-example----one-function-to-clean-four-files">#</a>
+</h3>
+<ul>
+<li>This isn&rsquo;t the only file we have that is formatted the same way - we have four files
+<ul>
+<li>&ldquo;tmeanahq.002012.annual.txt&rdquo;</li>
+<li>&ldquo;tmeanahq.003003.annual.txt&rdquo;</li>
+<li>&ldquo;tmeanahq.003032.annual.txt&rdquo;</li>
+<li>&ldquo;tmeanahq.004020.annual.txt&rdquo;</li>
+</ul>
+</li>
+<li>We wish to format them in the same way as above, so we write a function to do this</li>
+<li>The function uses steps identical to those given above, but takes its argument to be the name of the file</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">clean_station_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(FILE_NAME) {
+  station <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_delim</span>(FILE_NAME, delim <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>)
+  
+  <span style="color:#a6e22e">colnames</span>(station) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">make.names</span>(<span style="color:#a6e22e">colnames</span>(station))
+  location_name <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">colnames</span>(station)[7<span style="color:#f92672">:</span><span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">colnames</span>(station))], collapse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span>)
+  location_name <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(<span style="color:#a6e22e">substring</span>(location_name, <span style="color:#ae81ff">5</span>))
+  
+  station <span style="color:#f92672">&lt;-</span> station <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">mutate</span>(location <span style="color:#f92672">=</span> (location_name)) <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">mutate</span>(year <span style="color:#f92672">=</span> <span style="color:#a6e22e">substr</span>(MEAN, start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, stop <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>))
+  
+  <span style="color:#a6e22e">colnames</span>(station)[3] <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;average.temp&#34;</span>
+  station<span style="color:#f92672">$</span>average.temp <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.numeric</span>(station<span style="color:#f92672">$</span>average.temp)
+  
+  station <span style="color:#f92672">&lt;-</span> station <span style="color:#f92672">%&gt;%</span>
+    <span style="color:#a6e22e">filter</span>(average.temp <span style="color:#f92672">!=</span> <span style="color:#ae81ff">99999.9</span>)
+  <span style="color:#75715e"># This was a line added according to the data&#39;s specification, that this value represents missing data</span>
+  
+  station <span style="color:#f92672">&lt;-</span> station <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(year,
+         average.temp,
+         location)
+  
+  <span style="color:#a6e22e">return</span>(station)
+}
+</code></pre></div><ul>
+<li>We obtain a list of file names</li>
+<li>We then apply our function to all of these files and combine them into one table</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">file_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list.files</span>(pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tmean*&#34;</span>)
+station_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bind_rows</span>(<span style="color:#a6e22e">lapply</span>(file_list, clean_station_data))
+<span style="color:#75715e"># The lapply() function applied the specified function to every element of a specified list</span>
+<span style="color:#75715e"># The bind_rows() function is provided by dplyr</span>
+<span style="color:#a6e22e">head</span>(station_data, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 3
+##   year  average.temp location           
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;              
+## 1 1910          26.4 HALLS CREEK AIRPORT
+## 2 1911          26.3 HALLS CREEK AIRPORT
+## 3 1912          26   HALLS CREEK AIRPORT
+## 4 1913          25.2 HALLS CREEK AIRPORT
+## 5 1914          25.8 HALLS CREEK AIRPORT
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">tail</span>(station_data, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>## # A tibble: 5 x 3
+##   year  average.temp location           
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;              
+## 1 1998          28.8 MARBLE BAR COMPARIS
+## 2 1999          26.8 MARBLE BAR COMPARIS
+## 3 2002          27.8 MARBLE BAR COMPARIS
+## 4 2003          28   MARBLE BAR COMPARIS
+## 5 2004          27.8 MARBLE BAR COMPARIS
+</code></pre><p>The result is beautiful, tidy data! The process was long, and required the use of several niche functions. If you ever want to accomplish something with R, chances are there&rsquo;s a function that exists that you may not know about. Try searching the web for helpful functions to deal with difficult tasks like this one.</p>
+<h2 id="a-bonus">
+  A bonus!
+  <a class="anchor" href="#a-bonus">#</a>
+</h2>
+<p>[Here&rsquo;s a cheat sheet for working with the &ldquo;Data Wrangling&rdquo; components of the Tidyverse. Good luck!] (<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a>)</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/tidyverse/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-tidyverse">The Tidyverse</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#what-is-the-tidyverse">What is the Tidyverse?</a></li>
+        <li><a href="#using-the-pipeline-operator-in-the-tidyverse">Using the pipeline operator in the Tidyverse</a></li>
+        <li><a href="#packages-for-reading-data">Packages for reading data</a>
+          <ul>
+            <li><a href="#the-readxl-package">The &lsquo;readxl&rsquo; package</a></li>
+            <li><a href="#a-caution-for-readxl">A caution for readxl</a></li>
+            <li><a href="#the-readr-package">The &lsquo;readr&rsquo; package</a></li>
+          </ul>
+        </li>
+        <li><a href="#what-are-tibbles">What are tibbles?</a></li>
+        <li><a href="#what-is-dplyr">What is dplyr?</a>
+          <ul>
+            <li><a href="#a-note-on-using-dplyr">A note on using dplyr</a></li>
+            <li><a href="#arrange">arrange()</a></li>
+            <li><a href="#select">select()</a></li>
+            <li><a href="#filter">filter()</a></li>
+            <li><a href="#mutate">mutate()</a></li>
+            <li><a href="#separate">separate()</a></li>
+            <li><a href="#merge">merge()</a></li>
+          </ul>
+        </li>
+        <li><a href="#data-sampling">Data Sampling</a>
+          <ul>
+            <li><a href="#group_by">group_by()</a></li>
+          </ul>
+        </li>
+        <li><a href="#cumulative-functions">Cumulative functions</a>
+          <ul>
+            <li><a href="#cumsum">cumsum()</a></li>
+            <li><a href="#cummean">cummean()</a></li>
+            <li><a href="#cumall-and-cumany">cumall() and cumany()</a></li>
+            <li><a href="#whats-the-difference">What&rsquo;s the difference?</a></li>
+          </ul>
+        </li>
+        <li><a href="#summarise">summarise()</a>
+          <ul>
+            <li><a href="#sumarise_all">sumarise_all()</a></li>
+            <li><a href="#summarise_if">summarise_if()</a></li>
+          </ul>
+        </li>
+        <li><a href="#recode">recode()</a></li>
+        <li><a href="#data-cleaning">Data Cleaning</a>
+          <ul>
+            <li><a href="#what-is-data-cleaning">What is data cleaning?</a></li>
+            <li><a href="#take-note">Take note</a></li>
+            <li><a href="#example---data-cleaning-with-a-messy-file">Example - data cleaning with a messy file</a></li>
+            <li><a href="#extra-example----one-function-to-clean-four-files">Extra example &ndash; one function to clean four files</a></li>
+          </ul>
+        </li>
+        <li><a href="#a-bonus">A bonus!</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

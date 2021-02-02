@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Working with R Projects #  The Bigger Picture #  In this document we learn how to use projects to help work in R Studio more efficiently. This skill has broad application in many aread of the data visualisation and communication workflow.
+ References #  This content refers to the Tidyverse LinkedIn Learning tutorial 2.1 - 2.3
+What are R projects? #   R projects are a type of file which function with RStudio They have the .">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Working with Projects" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/workingprojects/" />
+
+<title>Working with Projects | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/workingprojects/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/"class=active>R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Working with Projects</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#working-with-r-projects">Working with R Projects</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#what-are-r-projects">What are R projects?</a></li>
+        <li><a href="#what-do-they-do">What do they do?</a></li>
+        <li><a href="#how-to-create-projects">How to create projects</a></li>
+        <li><a href="#how-to-navigate-existing-projects">How to navigate existing projects</a></li>
+        <li><a href="#structuring-r-projects">Structuring R projects</a></li>
+        <li><a href="#save-and-load">save() and load()</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="working-with-r-projects">
+  Working with R Projects
+  <a class="anchor" href="#working-with-r-projects">#</a>
+</h1>
+<h2 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h2>
+<p>In this document we learn how to use projects to help work in R Studio more efficiently. This skill has broad application in many aread of the data visualisation and communication workflow.</p>
+<center><img src = "images/workflowschematic.JPG" width="80%" class="ImageBorder"> </img></center>
+<h2 id="references">
+  References
+  <a class="anchor" href="#references">#</a>
+</h2>
+<p>This content refers to 
+  <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio">the Tidyverse LinkedIn Learning tutorial 2.1 - 2.3</a></p>
+<h2 id="what-are-r-projects">
+  What are R projects?
+  <a class="anchor" href="#what-are-r-projects">#</a>
+</h2>
+<ul>
+<li>R projects are a type of file which function with <code>RStudio</code></li>
+<li>They have the <code>.Rproj</code> file extension</li>
+<li>R projects are each associated with a directory</li>
+<li>They are useful when working with many files for one purpose, hence the name &ldquo;project&rdquo;</li>
+<li>A great feature is that they &ldquo;know&rdquo; which files are relevant to a project, when you open the project <code>RStudio</code> will load those files automatically.</li>
+</ul>
+<h2 id="what-do-they-do">
+  What do they do?
+  <a class="anchor" href="#what-do-they-do">#</a>
+</h2>
+<ul>
+<li>If we are working in an R project, we automatically have our working directory set as the folder that the project is associated with</li>
+<li>The RMarkdown file used to produce these notes is within a project, so we can call on images from the image folder without specifying the full file path</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">include_graphics</span>(<span style="color:#e6db74">&#34;images/RStudio-Ball.png&#34;</span>)
+</code></pre></div><p><img src="images/RStudio-Ball.png" width="200px" height="200px" /></p>
+<ul>
+<li>In this example, we only need to specify the sub-folder &ldquo;images&rdquo; and the image &ldquo;Rstudio-Ball.png&rdquo;</li>
+</ul>
+<h2 id="how-to-create-projects">
+  How to create projects
+  <a class="anchor" href="#how-to-create-projects">#</a>
+</h2>
+<ul>
+<li>At the top right of our <code>RStudio</code> workspace, there is a project button</li>
+<li>You can select an existing project or create a new one</li>
+<li>This button will also tell you which project is currently open</li>
+</ul>
+<center><img src = "images/create_new.JPG" width="70%" class="ImageBorder"> </img></center>
+<ul>
+<li>If we are creating a new project, we may select a new or existing directory</li>
+</ul>
+<center><img src = "images/directories.JPG" width="50%" class="ImageBorder"> </img></center>
+<h2 id="how-to-navigate-existing-projects">
+  How to navigate existing projects
+  <a class="anchor" href="#how-to-navigate-existing-projects">#</a>
+</h2>
+<ul>
+<li>The &ldquo;Files&rdquo; tab of <code>RStudio</code> will automatically view the project directory when the project is loaded</li>
+<li>From here we can navigate files</li>
+</ul>
+<center><img src = "images/navigation.JPG" width="45%" class="ImageBorder"> </img></center>
+<ul>
+<li><code>.R</code> files (R script files) can be created in our project directory as normal</li>
+<li>Clicking a <code>.R</code> file in the project viewer opens it</li>
+<li><code>.Rmd</code> files (<code>RMarkdown</code> files) can likewise be created and opened</li>
+</ul>
+<h2 id="structuring-r-projects">
+  Structuring R projects
+  <a class="anchor" href="#structuring-r-projects">#</a>
+</h2>
+<ul>
+<li>Keeping files neat and tidy in R is an art form</li>
+<li>It is suggested folders are used to keep separate components of data separate</li>
+<li>In this example our directory separates raw and tidied data</li>
+<li>One can still access files from these folders without issue</li>
+</ul>
+<h2 id="save-and-load">
+  save() and load()
+  <a class="anchor" href="#save-and-load">#</a>
+</h2>
+<ul>
+<li>Notice that in this project, we keep raw and tidy versions of the same data in different folders</li>
+<li>This is possible because we can save R objects in one file and reload them in another file</li>
+<li>For example, the <code>raw_data</code> folder contains a file called <code>survey.txt</code> which looks like this:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;readr&#34;</span>)
+<span style="color:#a6e22e">read_file</span>(<span style="color:#e6db74">&#34;raw_data/survey.txt&#34;</span>)
+</code></pre></div><pre><code>## [1] &quot;Who in my family likes cereal? June 18/06/2019\r\n\r\nMe No\r\nMum Yes\r\nDad No\r\nSister Yes\r\nBrother No\r\nGrandma Yes\r\nGrandpa Yes&quot;
+</code></pre><ul>
+<li>In the file <code>data_tidying.R</code> (in which the data was tidied up), the <code>save()</code> function was used as below:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save</span>(data, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tidy_data/data.rdata&#34;</span>)
+</code></pre></div><ul>
+<li>Note the first argument is the object to save (<code>data</code>) and the second is the file path</li>
+<li><em>The file <strong>must</strong> be named the same as the name of the object</em></li>
+<li><em>The <code>.rdata</code> extension <strong>must</strong> be included</em></li>
+<li>We may want to load this data later in another file (for example, this <code>.Rmd</code> file) with <code>load()</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+<span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;tidy_data/survey_data.rdata&#34;</span>)
+survey_data
+</code></pre></div><pre><code>## # A tibble: 7 x 2
+##   family_member cereal_preference
+##   &lt;chr&gt;         &lt;chr&gt;            
+## 1 Me            No               
+## 2 Mum           Yes              
+## 3 Dad           No               
+## 4 Sister        Yes              
+## 5 Brother       No               
+## 6 Grandma       Yes              
+## 7 Grandpa       Yes
+</code></pre><ul>
+<li>The loaded file automatically takes the name of the original file</li>
+</ul>
+<p><strong>Side note</strong>: in practice never name your data &ldquo;<code>data</code>&rdquo;. It may lead to errors when loading the file, and you should use something more descriptive (such as &ldquo;<code>fam_cereal</code>&rdquo;. We only used it here for demonstration purposes.</p>
+<p>So to summarise, with <code>save()</code> and <code>load()</code> we can split up our R projects into several script files for different purposes.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/workingprojects/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#working-with-r-projects">Working with R Projects</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#what-are-r-projects">What are R projects?</a></li>
+        <li><a href="#what-do-they-do">What do they do?</a></li>
+        <li><a href="#how-to-create-projects">How to create projects</a></li>
+        <li><a href="#how-to-navigate-existing-projects">How to navigate existing projects</a></li>
+        <li><a href="#structuring-r-projects">Structuring R projects</a></li>
+        <li><a href="#save-and-load">save() and load()</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

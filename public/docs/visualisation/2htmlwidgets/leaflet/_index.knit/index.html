@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Bigger Picture #  In this document we learn how to create interactive charts with leaflet. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is Leaflet? #    Lynda 2.1
+ library(&#34;leaflet&#34;)  An htmlwidget used to make interactive maps The package is bound to the Leaflet library in JavaScript Can create:  Geoplots Choropleths Geolines maps   Like the Tidyverse, leaflet heavily depends on the pipeline (%&gt;%) operator to create charts  Creating basic geoplots #    Lynda 2.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="htmlwidgets - Leaflet" />
+<meta property="og:description" content="The Bigger Picture #  In this document we learn how to create interactive charts with leaflet. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is Leaflet? #    Lynda 2.1
+ library(&#34;leaflet&#34;)  An htmlwidget used to make interactive maps The package is bound to the Leaflet library in JavaScript Can create:  Geoplots Choropleths Geolines maps   Like the Tidyverse, leaflet heavily depends on the pipeline (%&gt;%) operator to create charts  Creating basic geoplots #    Lynda 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/leaflet/_index.knit/" />
+
+<title>htmlwidgets - Leaflet | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.365af13e903255891b4e8f0c7d566f2733fca621c254c49dc159520fac03ec84.js" integrity="sha256-NlrxPpAyVYkbTo8MfVZvJzP8piHCVMSdwVlSD6wD7IQ="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/docs/baseR/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href=""><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href=""><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/_index.knit/"class=active>leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/_index.knit/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/_index.knit/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/_index.knit/">visNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>htmlwidgets - Leaflet</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-leaflet">What is Leaflet?</a></li>
+    <li><a href="#creating-basic-geoplots">Creating basic geoplots</a></li>
+    <li><a href="#geoplot-options">Geoplot options</a></li>
+    <li><a href="#a-note-on-leaflet-formatting">A note on Leaflet formatting</a></li>
+    <li><a href="#creating-circle-marker-geoplots">Creating circle marker geoplots</a></li>
+    <li><a href="#leaflet-choropleths">Leaflet Choropleths</a></li>
+    <li><a href="#preparing-shapefiles">Preparing shapefiles</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h1>
+<p>In this document we learn how to create interactive charts with leaflet. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.</p>
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+<h1 id="what-is-leaflet">
+  What is Leaflet?
+  <a class="anchor" href="#what-is-leaflet">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/what-is-the-leaflet-library?u=2087740">Lynda 2.1</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;leaflet&#34;</span>)
+</code></pre></div><ul>
+<li>An htmlwidget used to make interactive maps</li>
+<li>The package is bound to the Leaflet library in JavaScript</li>
+<li>Can create:
+<ul>
+<li>Geoplots</li>
+<li>Choropleths</li>
+<li>Geolines maps</li>
+</ul>
+</li>
+<li>Like the Tidyverse, leaflet heavily depends on the pipeline (<code>%&gt;%</code>) operator to create charts</li>
+</ul>
+<h1 id="creating-basic-geoplots">
+  Creating basic geoplots
+  <a class="anchor" href="#creating-basic-geoplots">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740">Lynda 2.2, 2.3</a></p>
+</blockquote>
+<p>The example data used is from the 
+  <a href="http://www.bom.gov.au/climate/data/acorn-sat/#tabs=Data-and-networks">ACORN-SAT dataset</a>. The dataset spans 112 Australian stations recording temperature measurements for over 100 years. We will use data from the year 2000.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">sample_n</span>(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>##   Number year average.temp  Station.name Latitude Longitude Elevation Start
+## 1  69018 2000         16.4  Moruya Heads   -35.91    150.15        17  1910
+## 2  16001 2000         20.0       Woomera   -31.16    136.81       166  1949
+## 3  36031 2000         22.8     Longreach   -23.44    144.28       192  1910
+## 4   9021 2000         18.8 Perth Airport   -31.93    115.98        15  1910
+## 5  16098 2000         20.0      Tarcoola   -30.71    134.58       123  1921
+</code></pre><ul>
+<li>We begin by piping our data into the <code>leaflet()</code> function to begin any leaflet chart</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>()
+</code></pre></div><ul>
+<li>We may then pipe this data into a variety of &ldquo;functions&rdquo; to customise the graph we create</li>
+<li>Since we first want a geoplot, we use <code>addTiles()</code> to get a default map</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot <span style="color:#f92672">&lt;-</span> station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>()
+widgetframe<span style="color:#f92672">::</span><span style="color:#a6e22e">frameWidget</span>(plot)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-c7c1625c63fd4764e44a&quot; style=&quot;width:100%;height:480px;&quot; class=&quot;widgetframe html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-c7c1625c63fd4764e44a&quot;&gt;{&quot;x&quot;:{&quot;url&quot;:&quot;_index_files/figure-html//widgets/widget_basic_geoplot4.html&quot;,&quot;options&quot;:{&quot;xdomain&quot;:&quot;*&quot;,&quot;allowfullscreen&quot;:false,&quot;lazyload&quot;:false}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><p>Notice how we can move around and zoom in &ndash; Leaflet is very interactive!</p>
+<ul>
+<li>We could also use<code>addProviderTiles()</code> to use a custom map</li>
+<li>Maps available from <a href="https://rstudio.github.io/leaflet/basemaps.html">https://rstudio.github.io/leaflet/basemaps.html</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">plot <span style="color:#f92672">&lt;-</span> station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addProviderTiles</span>(providers<span style="color:#f92672">$</span>Esri.NatGeoWorldMap)
+widgetframe<span style="color:#f92672">::</span><span style="color:#a6e22e">frameWidget</span>(plot)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-4c00c938ecbb15fc1093&quot; style=&quot;width:100%;height:480px;&quot; class=&quot;widgetframe html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-4c00c938ecbb15fc1093&quot;&gt;{&quot;x&quot;:{&quot;url&quot;:&quot;_index_files/figure-html//widgets/widget_basic_geoplot5.html&quot;,&quot;options&quot;:{&quot;xdomain&quot;:&quot;*&quot;,&quot;allowfullscreen&quot;:false,&quot;lazyload&quot;:false}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><ul>
+<li>We may now pipe into <code>addMarkers()</code> to place our geographical data</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addMarkers</span>(lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+             lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-4ccac2a2a5b18c475cea&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;leaflet html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-4ccac2a2a5b18c475cea&quot;&gt;{&quot;x&quot;:{&quot;options&quot;:{&quot;crs&quot;:{&quot;crsClass&quot;:&quot;L.CRS.EPSG3857&quot;,&quot;code&quot;:null,&quot;proj4def&quot;:null,&quot;projectedBounds&quot;:null,&quot;options&quot;:{}}},&quot;calls&quot;:[{&quot;method&quot;:&quot;addTiles&quot;,&quot;args&quot;:[&quot;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,null,null,{&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256,&quot;subdomains&quot;:&quot;abc&quot;,&quot;errorTileUrl&quot;:&quot;&quot;,&quot;tms&quot;:false,&quot;noWrap&quot;:false,&quot;zoomOffset&quot;:0,&quot;zoomReverse&quot;:false,&quot;opacity&quot;:1,&quot;zIndex&quot;:1,&quot;detectRetina&quot;:false,&quot;attribution&quot;:&quot;&amp;copy; &lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&quot;http://creativecommons.org/licenses/by-sa/2.0/\&quot;&gt;CC-BY-SA&lt;\/a&gt;&quot;}]},{&quot;method&quot;:&quot;addMarkers&quot;,&quot;args&quot;:[[-18.23,-17.95,-20.37,-24.89,-26.61,-31.93,-34.37,-33.83,-31.48,-32.67,-30.78,-25.03,-12.42,-19.64,-23.8,-31.16,-30.71,-32.13,-34.6,-33.77,-34.92,-37.75,-37.16,-16,-17.69,-20.73,-16.87,-21.12,-20.05,-23.55,-23.44,-19.92,-22.91,-23.38,-27.63,-27.03,-27.39,-26.66,-26.41,-31.48,-30.04,-30.04,-29.49,-29.78,-29.43,-33.43,-32.22,-33.86,-35.91,-35.16,-34.24,-35.72,-36.1,-37.57,-38.12,-39.13,-37.86,-38.86,-41.05,-42.89],[127.66,122.24,118.63,113.67,118.54,115.98,115.14,121.89,118.28,116.67,121.45,128.3,130.89,134.18,133.89,136.81,134.58,133.7,135.88,138.22,138.62,140.77,139.76,144.08,141.07,143.14,145.75,149.22,146.27,145.29,144.28,138.12,139.9,150.48,152.71,153.47,153.13,150.18,146.26,145.83,145.95,148.12,149.85,151.11,153.36,149.56,148.58,151.21,150.15,147.46,142.09,143.92,146.51,149.92,147.13,146.42,144.76,143.51,146.79,147.33],null,null,null,{&quot;interactive&quot;:true,&quot;draggable&quot;:false,&quot;keyboard&quot;:true,&quot;title&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;zIndexOffset&quot;:0,&quot;opacity&quot;:1,&quot;riseOnHover&quot;:false,&quot;riseOffset&quot;:250},null,null,null,null,null,{&quot;interactive&quot;:false,&quot;permanent&quot;:false,&quot;direction&quot;:&quot;auto&quot;,&quot;opacity&quot;:1,&quot;offset&quot;:[0,0],&quot;textsize&quot;:&quot;10px&quot;,&quot;textOnly&quot;:false,&quot;className&quot;:&quot;&quot;,&quot;sticky&quot;:true},null]}],&quot;limits&quot;:{&quot;lat&quot;:[-42.89,-12.42],&quot;lng&quot;:[113.67,153.47]}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><p>If we have numeric latitude and longitude columns in our data, <code>addMarkers()</code> will automatically use these. If your columns aren&rsquo;t automatically detected, try using <code>lat = ~as.numeric(Latitude)</code>. The error may be caused by numeric data stored as a character variable!</p>
+<h1 id="geoplot-options">
+  Geoplot options
+  <a class="anchor" href="#geoplot-options">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740">Lynda 2.2, 2.3</a></p>
+</blockquote>
+<ul>
+<li>We can display data if we hover over our points, or if we click on them</li>
+<li>Hover data is given by the <code>label</code> argument of <code>addMarkers()</code></li>
+<li>Click data is given by the <code>popup</code> argument of <code>addMarkets()</code></li>
+<li>For each, we can display multiple variables or lines of text by adding arguments to <code>paste0()</code> or <code>paste()</code>
+<ul>
+<li>If we type this special string &ldquo;<br/>&rdquo;, our following text begins on a new line</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addMarkers</span>(label <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Station.name,
+             popup <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Altitude: &#34;</span>,
+                             Elevation,
+                             <span style="color:#e6db74">&#34;&lt;br/&gt;&#34;</span>,
+                             <span style="color:#e6db74">&#34;&lt;br/&gt;&#34;</span>,
+                             <span style="color:#e6db74">&#34;Isn&#39;t Leaflet neat?&#34;</span>),
+             lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+             lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-4c19cd36779d00e0eccf&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;leaflet html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-4c19cd36779d00e0eccf&quot;&gt;{&quot;x&quot;:{&quot;options&quot;:{&quot;crs&quot;:{&quot;crsClass&quot;:&quot;L.CRS.EPSG3857&quot;,&quot;code&quot;:null,&quot;proj4def&quot;:null,&quot;projectedBounds&quot;:null,&quot;options&quot;:{}}},&quot;calls&quot;:[{&quot;method&quot;:&quot;addTiles&quot;,&quot;args&quot;:[&quot;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,null,null,{&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256,&quot;subdomains&quot;:&quot;abc&quot;,&quot;errorTileUrl&quot;:&quot;&quot;,&quot;tms&quot;:false,&quot;noWrap&quot;:false,&quot;zoomOffset&quot;:0,&quot;zoomReverse&quot;:false,&quot;opacity&quot;:1,&quot;zIndex&quot;:1,&quot;detectRetina&quot;:false,&quot;attribution&quot;:&quot;&amp;copy; &lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&quot;http://creativecommons.org/licenses/by-sa/2.0/\&quot;&gt;CC-BY-SA&lt;\/a&gt;&quot;}]},{&quot;method&quot;:&quot;addMarkers&quot;,&quot;args&quot;:[[-18.23,-17.95,-20.37,-24.89,-26.61,-31.93,-34.37,-33.83,-31.48,-32.67,-30.78,-25.03,-12.42,-19.64,-23.8,-31.16,-30.71,-32.13,-34.6,-33.77,-34.92,-37.75,-37.16,-16,-17.69,-20.73,-16.87,-21.12,-20.05,-23.55,-23.44,-19.92,-22.91,-23.38,-27.63,-27.03,-27.39,-26.66,-26.41,-31.48,-30.04,-30.04,-29.49,-29.78,-29.43,-33.43,-32.22,-33.86,-35.91,-35.16,-34.24,-35.72,-36.1,-37.57,-38.12,-39.13,-37.86,-38.86,-41.05,-42.89],[127.66,122.24,118.63,113.67,118.54,115.98,115.14,121.89,118.28,116.67,121.45,128.3,130.89,134.18,133.89,136.81,134.58,133.7,135.88,138.22,138.62,140.77,139.76,144.08,141.07,143.14,145.75,149.22,146.27,145.29,144.28,138.12,139.9,150.48,152.71,153.47,153.13,150.18,146.26,145.83,145.95,148.12,149.85,151.11,153.36,149.56,148.58,151.21,150.15,147.46,142.09,143.92,146.51,149.92,147.13,146.42,144.76,143.51,146.79,147.33],null,null,null,{&quot;interactive&quot;:true,&quot;draggable&quot;:false,&quot;keyboard&quot;:true,&quot;title&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;zIndexOffset&quot;:0,&quot;opacity&quot;:1,&quot;riseOnHover&quot;:false,&quot;riseOffset&quot;:250},[&quot;Altitude: 422&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 7&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 6&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 4&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 517&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 15&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 13&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 25&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 315&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 275&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 365&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 598&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 30&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 375&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 546&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 166&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 123&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 15&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 8&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 109&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 48&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 63&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 3&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 203&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 18&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 211&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 2&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 30&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 289&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 266&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 192&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 231&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 161&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 10&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 24&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 99&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 4&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 304&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 301&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 260&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 107&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 133&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 213&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 582&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 27&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 713&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 284&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 39&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 17&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 212&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 50&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 77&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 175&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 15&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 4&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 95&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 20&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 82&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 3&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;,&quot;Altitude: 50&lt;br/&gt;&lt;br/&gt;Isn't Leaflet neat?&quot;],null,null,null,[&quot;Halls Creek&quot;,&quot;Broome&quot;,&quot;Port Hedland&quot;,&quot;Carnarvon&quot;,&quot;Meekatharra&quot;,&quot;Perth Airport&quot;,&quot;Cape Leeuwin&quot;,&quot;Esperance&quot;,&quot;Merredin&quot;,&quot;Wandering&quot;,&quot;Kalgoorlie-Boulder&quot;,&quot;Giles&quot;,&quot;Darwin&quot;,&quot;Tennant Creek&quot;,&quot;Alice Springs&quot;,&quot;Woomera&quot;,&quot;Tarcoola&quot;,&quot;Ceduna&quot;,&quot;Port Lincoln&quot;,&quot;Snowtown&quot;,&quot;Adelaide&quot;,&quot;Mount Gambier&quot;,&quot;Robe&quot;,&quot;Palmerville&quot;,&quot;Normanton&quot;,&quot;Richmond (Qld)&quot;,&quot;Cairns&quot;,&quot;Mackay&quot;,&quot;Charters Towers&quot;,&quot;Barcaldine&quot;,&quot;Longreach&quot;,&quot;Camooweal&quot;,&quot;Boulia&quot;,&quot;Rockhampton&quot;,&quot;Amberley&quot;,&quot;Cape Moreton&quot;,&quot;Brisbane Airport&quot;,&quot;Miles&quot;,&quot;Charleville&quot;,&quot;Cobar&quot;,&quot;Bourke&quot;,&quot;Walgett&quot;,&quot;Moree&quot;,&quot;Inverell&quot;,&quot;Yamba&quot;,&quot;Bathurst&quot;,&quot;Dubbo&quot;,&quot;Sydney&quot;,&quot;Moruya Heads&quot;,&quot;Wagga Wagga&quot;,&quot;Mildura&quot;,&quot;Kerang&quot;,&quot;Rutherglen&quot;,&quot;Gabo Island&quot;,&quot;Sale&quot;,&quot;Wilsons Promontory&quot;,&quot;Laverton&quot;,&quot;Cape Otway&quot;,&quot;Low Head&quot;,&quot;Hobart&quot;],{&quot;interactive&quot;:false,&quot;permanent&quot;:false,&quot;direction&quot;:&quot;auto&quot;,&quot;opacity&quot;:1,&quot;offset&quot;:[0,0],&quot;textsize&quot;:&quot;10px&quot;,&quot;textOnly&quot;:false,&quot;className&quot;:&quot;&quot;,&quot;sticky&quot;:true},null]}],&quot;limits&quot;:{&quot;lat&quot;:[-42.89,-12.42],&quot;lng&quot;:[113.67,153.47]}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><p>Click on the markers!</p>
+<h1 id="a-note-on-leaflet-formatting">
+  A note on Leaflet formatting
+  <a class="anchor" href="#a-note-on-leaflet-formatting">#</a>
+</h1>
+<p>Notice in the previous section, our arguments used a tilde (&quot;<code>~</code>&quot;) before we called on our column names. This even occured when we called them within a formula.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addMarkers</span>(label <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Station.name,
+             popup <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Altitude: &#34;</span>, Elevation),
+             lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+             lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-8baf6031f00d2cf7bf03&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;leaflet html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-8baf6031f00d2cf7bf03&quot;&gt;{&quot;x&quot;:{&quot;options&quot;:{&quot;crs&quot;:{&quot;crsClass&quot;:&quot;L.CRS.EPSG3857&quot;,&quot;code&quot;:null,&quot;proj4def&quot;:null,&quot;projectedBounds&quot;:null,&quot;options&quot;:{}}},&quot;calls&quot;:[{&quot;method&quot;:&quot;addTiles&quot;,&quot;args&quot;:[&quot;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,null,null,{&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256,&quot;subdomains&quot;:&quot;abc&quot;,&quot;errorTileUrl&quot;:&quot;&quot;,&quot;tms&quot;:false,&quot;noWrap&quot;:false,&quot;zoomOffset&quot;:0,&quot;zoomReverse&quot;:false,&quot;opacity&quot;:1,&quot;zIndex&quot;:1,&quot;detectRetina&quot;:false,&quot;attribution&quot;:&quot;&amp;copy; &lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&quot;http://creativecommons.org/licenses/by-sa/2.0/\&quot;&gt;CC-BY-SA&lt;\/a&gt;&quot;}]},{&quot;method&quot;:&quot;addMarkers&quot;,&quot;args&quot;:[[-18.23,-17.95,-20.37,-24.89,-26.61,-31.93,-34.37,-33.83,-31.48,-32.67,-30.78,-25.03,-12.42,-19.64,-23.8,-31.16,-30.71,-32.13,-34.6,-33.77,-34.92,-37.75,-37.16,-16,-17.69,-20.73,-16.87,-21.12,-20.05,-23.55,-23.44,-19.92,-22.91,-23.38,-27.63,-27.03,-27.39,-26.66,-26.41,-31.48,-30.04,-30.04,-29.49,-29.78,-29.43,-33.43,-32.22,-33.86,-35.91,-35.16,-34.24,-35.72,-36.1,-37.57,-38.12,-39.13,-37.86,-38.86,-41.05,-42.89],[127.66,122.24,118.63,113.67,118.54,115.98,115.14,121.89,118.28,116.67,121.45,128.3,130.89,134.18,133.89,136.81,134.58,133.7,135.88,138.22,138.62,140.77,139.76,144.08,141.07,143.14,145.75,149.22,146.27,145.29,144.28,138.12,139.9,150.48,152.71,153.47,153.13,150.18,146.26,145.83,145.95,148.12,149.85,151.11,153.36,149.56,148.58,151.21,150.15,147.46,142.09,143.92,146.51,149.92,147.13,146.42,144.76,143.51,146.79,147.33],null,null,null,{&quot;interactive&quot;:true,&quot;draggable&quot;:false,&quot;keyboard&quot;:true,&quot;title&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;zIndexOffset&quot;:0,&quot;opacity&quot;:1,&quot;riseOnHover&quot;:false,&quot;riseOffset&quot;:250},[&quot;Altitude: 422&quot;,&quot;Altitude: 7&quot;,&quot;Altitude: 6&quot;,&quot;Altitude: 4&quot;,&quot;Altitude: 517&quot;,&quot;Altitude: 15&quot;,&quot;Altitude: 13&quot;,&quot;Altitude: 25&quot;,&quot;Altitude: 315&quot;,&quot;Altitude: 275&quot;,&quot;Altitude: 365&quot;,&quot;Altitude: 598&quot;,&quot;Altitude: 30&quot;,&quot;Altitude: 375&quot;,&quot;Altitude: 546&quot;,&quot;Altitude: 166&quot;,&quot;Altitude: 123&quot;,&quot;Altitude: 15&quot;,&quot;Altitude: 8&quot;,&quot;Altitude: 109&quot;,&quot;Altitude: 48&quot;,&quot;Altitude: 63&quot;,&quot;Altitude: 3&quot;,&quot;Altitude: 203&quot;,&quot;Altitude: 18&quot;,&quot;Altitude: 211&quot;,&quot;Altitude: 2&quot;,&quot;Altitude: 30&quot;,&quot;Altitude: 289&quot;,&quot;Altitude: 266&quot;,&quot;Altitude: 192&quot;,&quot;Altitude: 231&quot;,&quot;Altitude: 161&quot;,&quot;Altitude: 10&quot;,&quot;Altitude: 24&quot;,&quot;Altitude: 99&quot;,&quot;Altitude: 4&quot;,&quot;Altitude: 304&quot;,&quot;Altitude: 301&quot;,&quot;Altitude: 260&quot;,&quot;Altitude: 107&quot;,&quot;Altitude: 133&quot;,&quot;Altitude: 213&quot;,&quot;Altitude: 582&quot;,&quot;Altitude: 27&quot;,&quot;Altitude: 713&quot;,&quot;Altitude: 284&quot;,&quot;Altitude: 39&quot;,&quot;Altitude: 17&quot;,&quot;Altitude: 212&quot;,&quot;Altitude: 50&quot;,&quot;Altitude: 77&quot;,&quot;Altitude: 175&quot;,&quot;Altitude: 15&quot;,&quot;Altitude: 4&quot;,&quot;Altitude: 95&quot;,&quot;Altitude: 20&quot;,&quot;Altitude: 82&quot;,&quot;Altitude: 3&quot;,&quot;Altitude: 50&quot;],null,null,null,[&quot;Halls Creek&quot;,&quot;Broome&quot;,&quot;Port Hedland&quot;,&quot;Carnarvon&quot;,&quot;Meekatharra&quot;,&quot;Perth Airport&quot;,&quot;Cape Leeuwin&quot;,&quot;Esperance&quot;,&quot;Merredin&quot;,&quot;Wandering&quot;,&quot;Kalgoorlie-Boulder&quot;,&quot;Giles&quot;,&quot;Darwin&quot;,&quot;Tennant Creek&quot;,&quot;Alice Springs&quot;,&quot;Woomera&quot;,&quot;Tarcoola&quot;,&quot;Ceduna&quot;,&quot;Port Lincoln&quot;,&quot;Snowtown&quot;,&quot;Adelaide&quot;,&quot;Mount Gambier&quot;,&quot;Robe&quot;,&quot;Palmerville&quot;,&quot;Normanton&quot;,&quot;Richmond (Qld)&quot;,&quot;Cairns&quot;,&quot;Mackay&quot;,&quot;Charters Towers&quot;,&quot;Barcaldine&quot;,&quot;Longreach&quot;,&quot;Camooweal&quot;,&quot;Boulia&quot;,&quot;Rockhampton&quot;,&quot;Amberley&quot;,&quot;Cape Moreton&quot;,&quot;Brisbane Airport&quot;,&quot;Miles&quot;,&quot;Charleville&quot;,&quot;Cobar&quot;,&quot;Bourke&quot;,&quot;Walgett&quot;,&quot;Moree&quot;,&quot;Inverell&quot;,&quot;Yamba&quot;,&quot;Bathurst&quot;,&quot;Dubbo&quot;,&quot;Sydney&quot;,&quot;Moruya Heads&quot;,&quot;Wagga Wagga&quot;,&quot;Mildura&quot;,&quot;Kerang&quot;,&quot;Rutherglen&quot;,&quot;Gabo Island&quot;,&quot;Sale&quot;,&quot;Wilsons Promontory&quot;,&quot;Laverton&quot;,&quot;Cape Otway&quot;,&quot;Low Head&quot;,&quot;Hobart&quot;],{&quot;interactive&quot;:false,&quot;permanent&quot;:false,&quot;direction&quot;:&quot;auto&quot;,&quot;opacity&quot;:1,&quot;offset&quot;:[0,0],&quot;textsize&quot;:&quot;10px&quot;,&quot;textOnly&quot;:false,&quot;className&quot;:&quot;&quot;,&quot;sticky&quot;:true},null]}],&quot;limits&quot;:{&quot;lat&quot;:[-42.89,-12.42],&quot;lng&quot;:[113.67,153.47]}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><p>We must do this, as this is the format Leaflet demands. It&rsquo;s how Leaflet detects column names and converts them to lists of variables.</p>
+<h1 id="creating-circle-marker-geoplots">
+  Creating circle marker geoplots
+  <a class="anchor" href="#creating-circle-marker-geoplots">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-interactive-scattergeo-maps?u=2087740">Lynda 2.2, 2.3</a></p>
+</blockquote>
+<ul>
+<li>We simply use <code>addCircleMarkers()</code> instead of just <code>addMarkers()</code></li>
+<li>We also gain access to a number of additional options, some of which are shown here</li>
+</ul>
+<p>Radius changes the size of circle plots according to a variable. Here we&rsquo;d like the size to represent temperature.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addCircleMarkers</span>(label <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;The&#34;</span>, Station.name, <span style="color:#e6db74">&#34;circle!&#34;</span>),
+                   radius <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>average.temp,
+                   lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+                   lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-c000386cf58398ccfba8&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;leaflet html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-c000386cf58398ccfba8&quot;&gt;{&quot;x&quot;:{&quot;options&quot;:{&quot;crs&quot;:{&quot;crsClass&quot;:&quot;L.CRS.EPSG3857&quot;,&quot;code&quot;:null,&quot;proj4def&quot;:null,&quot;projectedBounds&quot;:null,&quot;options&quot;:{}}},&quot;calls&quot;:[{&quot;method&quot;:&quot;addTiles&quot;,&quot;args&quot;:[&quot;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,null,null,{&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256,&quot;subdomains&quot;:&quot;abc&quot;,&quot;errorTileUrl&quot;:&quot;&quot;,&quot;tms&quot;:false,&quot;noWrap&quot;:false,&quot;zoomOffset&quot;:0,&quot;zoomReverse&quot;:false,&quot;opacity&quot;:1,&quot;zIndex&quot;:1,&quot;detectRetina&quot;:false,&quot;attribution&quot;:&quot;&amp;copy; &lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&quot;http://creativecommons.org/licenses/by-sa/2.0/\&quot;&gt;CC-BY-SA&lt;\/a&gt;&quot;}]},{&quot;method&quot;:&quot;addCircleMarkers&quot;,&quot;args&quot;:[[-18.23,-17.95,-20.37,-24.89,-26.61,-31.93,-34.37,-33.83,-31.48,-32.67,-30.78,-25.03,-12.42,-19.64,-23.8,-31.16,-30.71,-32.13,-34.6,-33.77,-34.92,-37.75,-37.16,-16,-17.69,-20.73,-16.87,-21.12,-20.05,-23.55,-23.44,-19.92,-22.91,-23.38,-27.63,-27.03,-27.39,-26.66,-26.41,-31.48,-30.04,-30.04,-29.49,-29.78,-29.43,-33.43,-32.22,-33.86,-35.91,-35.16,-34.24,-35.72,-36.1,-37.57,-38.12,-39.13,-37.86,-38.86,-41.05,-42.89],[127.66,122.24,118.63,113.67,118.54,115.98,115.14,121.89,118.28,116.67,121.45,128.3,130.89,134.18,133.89,136.81,134.58,133.7,135.88,138.22,138.62,140.77,139.76,144.08,141.07,143.14,145.75,149.22,146.27,145.29,144.28,138.12,139.9,150.48,152.71,153.47,153.13,150.18,146.26,145.83,145.95,148.12,149.85,151.11,153.36,149.56,148.58,151.21,150.15,147.46,142.09,143.92,146.51,149.92,147.13,146.42,144.76,143.51,146.79,147.33],[25.6,25.9,25.8,22.6,21.5,18.8,17.5,16.9,18.1,15.9,17.9,21.4,27.3,24.8,20.5,20,20,17.6,16.4,16.8,17.8,14.4,15.4,25.6,26.8,24.6,24.7,22.4,22.8,23,22.8,25,24.2,22.2,19.8,20.8,20.1,20.1,20.7,18.7,19.8,19.2,19.3,15.6,19.4,13.3,16.5,18.6,16.4,15.8,17.5,16.5,14.6,15.8,14.1,14.6,15,14.3,13.8,13.6],null,null,{&quot;interactive&quot;:true,&quot;className&quot;:&quot;&quot;,&quot;stroke&quot;:true,&quot;color&quot;:&quot;#03F&quot;,&quot;weight&quot;:5,&quot;opacity&quot;:0.5,&quot;fill&quot;:true,&quot;fillColor&quot;:&quot;#03F&quot;,&quot;fillOpacity&quot;:0.2},null,null,null,null,[&quot;The Halls Creek circle!&quot;,&quot;The Broome circle!&quot;,&quot;The Port Hedland circle!&quot;,&quot;The Carnarvon circle!&quot;,&quot;The Meekatharra circle!&quot;,&quot;The Perth Airport circle!&quot;,&quot;The Cape Leeuwin circle!&quot;,&quot;The Esperance circle!&quot;,&quot;The Merredin circle!&quot;,&quot;The Wandering circle!&quot;,&quot;The Kalgoorlie-Boulder circle!&quot;,&quot;The Giles circle!&quot;,&quot;The Darwin circle!&quot;,&quot;The Tennant Creek circle!&quot;,&quot;The Alice Springs circle!&quot;,&quot;The Woomera circle!&quot;,&quot;The Tarcoola circle!&quot;,&quot;The Ceduna circle!&quot;,&quot;The Port Lincoln circle!&quot;,&quot;The Snowtown circle!&quot;,&quot;The Adelaide circle!&quot;,&quot;The Mount Gambier circle!&quot;,&quot;The Robe circle!&quot;,&quot;The Palmerville circle!&quot;,&quot;The Normanton circle!&quot;,&quot;The Richmond (Qld) circle!&quot;,&quot;The Cairns circle!&quot;,&quot;The Mackay circle!&quot;,&quot;The Charters Towers circle!&quot;,&quot;The Barcaldine circle!&quot;,&quot;The Longreach circle!&quot;,&quot;The Camooweal circle!&quot;,&quot;The Boulia circle!&quot;,&quot;The Rockhampton circle!&quot;,&quot;The Amberley circle!&quot;,&quot;The Cape Moreton circle!&quot;,&quot;The Brisbane Airport circle!&quot;,&quot;The Miles circle!&quot;,&quot;The Charleville circle!&quot;,&quot;The Cobar circle!&quot;,&quot;The Bourke circle!&quot;,&quot;The Walgett circle!&quot;,&quot;The Moree circle!&quot;,&quot;The Inverell circle!&quot;,&quot;The Yamba circle!&quot;,&quot;The Bathurst circle!&quot;,&quot;The Dubbo circle!&quot;,&quot;The Sydney circle!&quot;,&quot;The Moruya Heads circle!&quot;,&quot;The Wagga Wagga circle!&quot;,&quot;The Mildura circle!&quot;,&quot;The Kerang circle!&quot;,&quot;The Rutherglen circle!&quot;,&quot;The Gabo Island circle!&quot;,&quot;The Sale circle!&quot;,&quot;The Wilsons Promontory circle!&quot;,&quot;The Laverton circle!&quot;,&quot;The Cape Otway circle!&quot;,&quot;The Low Head circle!&quot;,&quot;The Hobart circle!&quot;],{&quot;interactive&quot;:false,&quot;permanent&quot;:false,&quot;direction&quot;:&quot;auto&quot;,&quot;opacity&quot;:1,&quot;offset&quot;:[0,0],&quot;textsize&quot;:&quot;10px&quot;,&quot;textOnly&quot;:false,&quot;className&quot;:&quot;&quot;,&quot;sticky&quot;:true},null]}],&quot;limits&quot;:{&quot;lat&quot;:[-42.89,-12.42],&quot;lng&quot;:[113.67,153.47]}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><p>We can also change the colour of the circle markers according to a variable, although this requires some setup.</p>
+<ul>
+<li>First we define a palette with the <code>colorNumeric()</code> function</li>
+<li>The <code>palette</code> argument specifies the colours we move on a gradient between</li>
+<li>The <code>domain</code> argument is the list of numeric values we map to the gradient</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorNumeric</span>(
+  palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;YlOrRd&#34;</span>,
+  domain <span style="color:#f92672">=</span> station_data<span style="color:#f92672">$</span>average.temp)
+</code></pre></div><ul>
+<li>We can then use this in the <code>color</code> argument of <code>addCircleMarkers()</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addCircleMarkers</span>(label <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;The&#34;</span>, Station.name, <span style="color:#e6db74">&#34;circle!&#34;</span>),
+                   color <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">pal</span>(average.temp),
+                   lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+                   lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+</code></pre></div><pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-909220d81ab3140fb496&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;leaflet html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-909220d81ab3140fb496&quot;&gt;{&quot;x&quot;:{&quot;options&quot;:{&quot;crs&quot;:{&quot;crsClass&quot;:&quot;L.CRS.EPSG3857&quot;,&quot;code&quot;:null,&quot;proj4def&quot;:null,&quot;projectedBounds&quot;:null,&quot;options&quot;:{}}},&quot;calls&quot;:[{&quot;method&quot;:&quot;addTiles&quot;,&quot;args&quot;:[&quot;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,null,null,{&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256,&quot;subdomains&quot;:&quot;abc&quot;,&quot;errorTileUrl&quot;:&quot;&quot;,&quot;tms&quot;:false,&quot;noWrap&quot;:false,&quot;zoomOffset&quot;:0,&quot;zoomReverse&quot;:false,&quot;opacity&quot;:1,&quot;zIndex&quot;:1,&quot;detectRetina&quot;:false,&quot;attribution&quot;:&quot;&amp;copy; &lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&quot;http://creativecommons.org/licenses/by-sa/2.0/\&quot;&gt;CC-BY-SA&lt;\/a&gt;&quot;}]},{&quot;method&quot;:&quot;addCircleMarkers&quot;,&quot;args&quot;:[[-18.23,-17.95,-20.37,-24.89,-26.61,-31.93,-34.37,-33.83,-31.48,-32.67,-30.78,-25.03,-12.42,-19.64,-23.8,-31.16,-30.71,-32.13,-34.6,-33.77,-34.92,-37.75,-37.16,-16,-17.69,-20.73,-16.87,-21.12,-20.05,-23.55,-23.44,-19.92,-22.91,-23.38,-27.63,-27.03,-27.39,-26.66,-26.41,-31.48,-30.04,-30.04,-29.49,-29.78,-29.43,-33.43,-32.22,-33.86,-35.91,-35.16,-34.24,-35.72,-36.1,-37.57,-38.12,-39.13,-37.86,-38.86,-41.05,-42.89],[127.66,122.24,118.63,113.67,118.54,115.98,115.14,121.89,118.28,116.67,121.45,128.3,130.89,134.18,133.89,136.81,134.58,133.7,135.88,138.22,138.62,140.77,139.76,144.08,141.07,143.14,145.75,149.22,146.27,145.29,144.28,138.12,139.9,150.48,152.71,153.47,153.13,150.18,146.26,145.83,145.95,148.12,149.85,151.11,153.36,149.56,148.58,151.21,150.15,147.46,142.09,143.92,146.51,149.92,147.13,146.42,144.76,143.51,146.79,147.33],10,null,null,{&quot;interactive&quot;:true,&quot;className&quot;:&quot;&quot;,&quot;stroke&quot;:true,&quot;color&quot;:[&quot;#BB0026&quot;,&quot;#B10026&quot;,&quot;#B40026&quot;,&quot;#F44125&quot;,&quot;#FD652F&quot;,&quot;#FEAD4A&quot;,&quot;#FFC965&quot;,&quot;#FED774&quot;,&quot;#FEBC57&quot;,&quot;#FFE38C&quot;,&quot;#FFC15C&quot;,&quot;#FD6830&quot;,&quot;#800026&quot;,&quot;#CD0C22&quot;,&quot;#FD873A&quot;,&quot;#FD943F&quot;,&quot;#FD943F&quot;,&quot;#FFC763&quot;,&quot;#FEDE80&quot;,&quot;#FED976&quot;,&quot;#FFC35E&quot;,&quot;#FFF4B0&quot;,&quot;#FFE998&quot;,&quot;#BB0026&quot;,&quot;#910026&quot;,&quot;#D20F21&quot;,&quot;#CF0E22&quot;,&quot;#F74627&quot;,&quot;#F13C24&quot;,&quot;#EE3622&quot;,&quot;#F13C24&quot;,&quot;#C90923&quot;,&quot;#DA151F&quot;,&quot;#FA4A29&quot;,&quot;#FE9840&quot;,&quot;#FD7D37&quot;,&quot;#FD913E&quot;,&quot;#FD913E&quot;,&quot;#FD8038&quot;,&quot;#FEAF4B&quot;,&quot;#FE9840&quot;,&quot;#FEA546&quot;,&quot;#FEA245&quot;,&quot;#FFE793&quot;,&quot;#FEA044&quot;,&quot;#FFFFCC&quot;,&quot;#FEDC7D&quot;,&quot;#FEB14C&quot;,&quot;#FEDE80&quot;,&quot;#FFE48E&quot;,&quot;#FFC965&quot;,&quot;#FEDC7D&quot;,&quot;#FFF2AB&quot;,&quot;#FFE48E&quot;,&quot;#FFF7B8&quot;,&quot;#FFF2AB&quot;,&quot;#FFEEA1&quot;,&quot;#FFF5B3&quot;,&quot;#FFFABF&quot;,&quot;#FFFCC4&quot;],&quot;weight&quot;:5,&quot;opacity&quot;:0.5,&quot;fill&quot;:true,&quot;fillColor&quot;:[&quot;#BB0026&quot;,&quot;#B10026&quot;,&quot;#B40026&quot;,&quot;#F44125&quot;,&quot;#FD652F&quot;,&quot;#FEAD4A&quot;,&quot;#FFC965&quot;,&quot;#FED774&quot;,&quot;#FEBC57&quot;,&quot;#FFE38C&quot;,&quot;#FFC15C&quot;,&quot;#FD6830&quot;,&quot;#800026&quot;,&quot;#CD0C22&quot;,&quot;#FD873A&quot;,&quot;#FD943F&quot;,&quot;#FD943F&quot;,&quot;#FFC763&quot;,&quot;#FEDE80&quot;,&quot;#FED976&quot;,&quot;#FFC35E&quot;,&quot;#FFF4B0&quot;,&quot;#FFE998&quot;,&quot;#BB0026&quot;,&quot;#910026&quot;,&quot;#D20F21&quot;,&quot;#CF0E22&quot;,&quot;#F74627&quot;,&quot;#F13C24&quot;,&quot;#EE3622&quot;,&quot;#F13C24&quot;,&quot;#C90923&quot;,&quot;#DA151F&quot;,&quot;#FA4A29&quot;,&quot;#FE9840&quot;,&quot;#FD7D37&quot;,&quot;#FD913E&quot;,&quot;#FD913E&quot;,&quot;#FD8038&quot;,&quot;#FEAF4B&quot;,&quot;#FE9840&quot;,&quot;#FEA546&quot;,&quot;#FEA245&quot;,&quot;#FFE793&quot;,&quot;#FEA044&quot;,&quot;#FFFFCC&quot;,&quot;#FEDC7D&quot;,&quot;#FEB14C&quot;,&quot;#FEDE80&quot;,&quot;#FFE48E&quot;,&quot;#FFC965&quot;,&quot;#FEDC7D&quot;,&quot;#FFF2AB&quot;,&quot;#FFE48E&quot;,&quot;#FFF7B8&quot;,&quot;#FFF2AB&quot;,&quot;#FFEEA1&quot;,&quot;#FFF5B3&quot;,&quot;#FFFABF&quot;,&quot;#FFFCC4&quot;],&quot;fillOpacity&quot;:0.2},null,null,null,null,[&quot;The Halls Creek circle!&quot;,&quot;The Broome circle!&quot;,&quot;The Port Hedland circle!&quot;,&quot;The Carnarvon circle!&quot;,&quot;The Meekatharra circle!&quot;,&quot;The Perth Airport circle!&quot;,&quot;The Cape Leeuwin circle!&quot;,&quot;The Esperance circle!&quot;,&quot;The Merredin circle!&quot;,&quot;The Wandering circle!&quot;,&quot;The Kalgoorlie-Boulder circle!&quot;,&quot;The Giles circle!&quot;,&quot;The Darwin circle!&quot;,&quot;The Tennant Creek circle!&quot;,&quot;The Alice Springs circle!&quot;,&quot;The Woomera circle!&quot;,&quot;The Tarcoola circle!&quot;,&quot;The Ceduna circle!&quot;,&quot;The Port Lincoln circle!&quot;,&quot;The Snowtown circle!&quot;,&quot;The Adelaide circle!&quot;,&quot;The Mount Gambier circle!&quot;,&quot;The Robe circle!&quot;,&quot;The Palmerville circle!&quot;,&quot;The Normanton circle!&quot;,&quot;The Richmond (Qld) circle!&quot;,&quot;The Cairns circle!&quot;,&quot;The Mackay circle!&quot;,&quot;The Charters Towers circle!&quot;,&quot;The Barcaldine circle!&quot;,&quot;The Longreach circle!&quot;,&quot;The Camooweal circle!&quot;,&quot;The Boulia circle!&quot;,&quot;The Rockhampton circle!&quot;,&quot;The Amberley circle!&quot;,&quot;The Cape Moreton circle!&quot;,&quot;The Brisbane Airport circle!&quot;,&quot;The Miles circle!&quot;,&quot;The Charleville circle!&quot;,&quot;The Cobar circle!&quot;,&quot;The Bourke circle!&quot;,&quot;The Walgett circle!&quot;,&quot;The Moree circle!&quot;,&quot;The Inverell circle!&quot;,&quot;The Yamba circle!&quot;,&quot;The Bathurst circle!&quot;,&quot;The Dubbo circle!&quot;,&quot;The Sydney circle!&quot;,&quot;The Moruya Heads circle!&quot;,&quot;The Wagga Wagga circle!&quot;,&quot;The Mildura circle!&quot;,&quot;The Kerang circle!&quot;,&quot;The Rutherglen circle!&quot;,&quot;The Gabo Island circle!&quot;,&quot;The Sale circle!&quot;,&quot;The Wilsons Promontory circle!&quot;,&quot;The Laverton circle!&quot;,&quot;The Cape Otway circle!&quot;,&quot;The Low Head circle!&quot;,&quot;The Hobart circle!&quot;],{&quot;interactive&quot;:false,&quot;permanent&quot;:false,&quot;direction&quot;:&quot;auto&quot;,&quot;opacity&quot;:1,&quot;offset&quot;:[0,0],&quot;textsize&quot;:&quot;10px&quot;,&quot;textOnly&quot;:false,&quot;className&quot;:&quot;&quot;,&quot;sticky&quot;:true},null]}],&quot;limits&quot;:{&quot;lat&quot;:[-42.89,-12.42],&quot;lng&quot;:[113.67,153.47]}},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><ul>
+<li>R comes with several pre-built palettes such as &ldquo;YlOrRd&rdquo; and &ldquo;Blues&rdquo; to help <code>colorNumeric()</code></li>
+<li>Take note that using the <code>colorRampPalette()</code> function, it is possible to create custom palettes</li>
+<li>In this example, the <code>palette</code> argument of <code>colorNumeric()</code> is defined using this special <code>colorRampPalette()</code> call</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorNumeric</span>(
+  palette <span style="color:#f92672">=</span> <span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;green&#34;</span>, <span style="color:#e6db74">&#34;purple&#34;</span>))(<span style="color:#a6e22e">length</span>(station_data<span style="color:#f92672">$</span>average.temp)),
+  domain <span style="color:#f92672">=</span> station_data<span style="color:#f92672">$</span>average.temp)
+</code></pre></div><h1 id="leaflet-choropleths">
+  Leaflet Choropleths
+  <a class="anchor" href="#leaflet-choropleths">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/prepare-data-for-a-choropleth-plot?u=2087740">Lynda 2.4, 2.5</a></p>
+</blockquote>
+<p>A choropleth is a map-based chart in which regions are shaded with colours to reflect some variable. Creating choropleths with Leaflet requires us to manipulate &lsquo;shapefiles&rsquo;. These are files which contain information about points, lines, polygons (etc) necessary to visually depict shapes, such as countries of the world. Before we can create a choropleth, we must learn how to prepare these shape files</p>
+<p>\</p>
+<p>There are two types of shapefiles</p>
+<ul>
+<li>ESRI shapefiles - the older standard for shapefiles
+<ul>
+<li>To use them we must have (at least) one of all of the below:</li>
+<li>A <code>.dbf</code> file</li>
+<li>A <code>.shp</code> file</li>
+<li>A <code>.shx</code> file</li>
+</ul>
+</li>
+<li>GeoJson shapefiles - a newer type
+<ul>
+<li>To use them we only require one <code>.json</code> file</li>
+</ul>
+</li>
+</ul>
+<p>A good sources of global shapefiles are 
+  <a href="http://www.naturalearthdata.com/downloads/">NaturalEarthData.com</a> and 
+  <a href="https://gitgub.com/johan/world.geo.json">Johan&rsquo;s repository</a></p>
+<h1 id="preparing-shapefiles">
+  Preparing shapefiles
+  <a class="anchor" href="#preparing-shapefiles">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/prepare-data-for-a-choropleth-plot?u=2087740">Lynda 2.4</a></p>
+</blockquote>
+<ul>
+<li>We require the library &ldquo;<code>sf</code>&rdquo;</li>
+<li>We call upon <code>read_sf()</code> to read an entire directory of shapefiles and save the result</li>
+<li>For our example we will use an Australian shapefile released by the 
+  <a href="http://data.daff.gov.au/anrdl/metadata_files/pa_nsaasr9nnd_02211a04.xml">Australian Government</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/visualisation/2htmlwidgets/leaflet/_index.knit.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-leaflet">What is Leaflet?</a></li>
+    <li><a href="#creating-basic-geoplots">Creating basic geoplots</a></li>
+    <li><a href="#geoplot-options">Geoplot options</a></li>
+    <li><a href="#a-note-on-leaflet-formatting">A note on Leaflet formatting</a></li>
+    <li><a href="#creating-circle-marker-geoplots">Creating circle marker geoplots</a></li>
+    <li><a href="#leaflet-choropleths">Leaflet Choropleths</a></li>
+    <li><a href="#preparing-shapefiles">Preparing shapefiles</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Bigger Picture #  In this document we learn how to create and manipulate R Markdown documents. Simply put, we are learning how to create documents, slideshows, websites and reports to produce and communicate the visualisations created earlier on. In the overall context of the workflow, this falls into the category of producing our presentations.
+ \  What is R Markdown? #    Lynda 1.1
+   Lynda 1.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="R Markdown" />
+<meta property="og:description" content="The Bigger Picture #  In this document we learn how to create and manipulate R Markdown documents. Simply put, we are learning how to create documents, slideshows, websites and reports to produce and communicate the visualisations created earlier on. In the overall context of the workflow, this falls into the category of producing our presentations.
+ \  What is R Markdown? #    Lynda 1.1
+   Lynda 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/RMarkdown.utf8/" />
+
+<title>R Markdown | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>R Markdown</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-r-markdown">What is R Markdown?</a>
+      <ul>
+        <li><a href="#markup-languages">Markup Languages</a></li>
+        <li><a href="#how-does-r-markdown-work">How does R Markdown work?</a></li>
+        <li><a href="#what-can-r-markdown-do">What can R Markdown do?</a>
+          <ul>
+            <li><a href="#pdf">PDF</a></li>
+            <li><a href="#html-reports">HTML Reports</a></li>
+            <li><a href="#html-presentations">HTML Presentations</a></li>
+            <li><a href="#other-media">Other Media</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#latex-bibtex-and-tex">LaTeX, BibTeX and TeX</a>
+      <ul>
+        <li><a href="#latex">LaTeX</a></li>
+        <li><a href="#bibtex">BibTeX</a></li>
+        <li><a href="#tex">TeX</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-tex">Installing TeX</a></li>
+    <li><a href="#installing-pandoc">Installing Pandoc</a></li>
+    <li><a href="#the-r-markdown-package">The R Markdown Package</a></li>
+    <li><a href="#the-r-markdown-interface">The R Markdown interface</a></li>
+    <li><a href="#the-yaml-header">The YAML Header</a>
+      <ul>
+        <li><a href="#basic-options">Basic options:</a></li>
+        <li><a href="#additional-options">Additional options:</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-chunks">Code Chunks</a>
+      <ul>
+        <li><a href="#creating-code-chunks">Creating Code Chunks</a></li>
+        <li><a href="#code-chunk-options">Code Chunk options</a>
+          <ul>
+            <li><a href="#global-chunk-options">Global Chunk options</a></li>
+            <li><a href="#local-chunk-options">Local Chunk options</a></li>
+            <li><a href="#list-of-options">List of options</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#running-code-in-r-markdown-documents">Running code in R Markdown documents</a>
+      <ul>
+        <li><a href="#specifying-output">Specifying output</a></li>
+        <li><a href="#running-individual-lines">Running individual lines</a></li>
+        <li><a href="#running-from-chunks">Running from chunks</a></li>
+        <li><a href="#the-run-button">The Run button</a></li>
+      </ul>
+    </li>
+    <li><a href="#sectioning-r-markdown-documents">Sectioning R Markdown documents</a>
+      <ul>
+        <li><a href="#sectioning-in-standard-documents">Sectioning in standard documents</a></li>
+        <li><a href="#sectioning-in-slides">Sectioning in slides</a></li>
+      </ul>
+    </li>
+    <li><a href="#tabsets">Tabsets</a></li>
+    <li><a href="#r-markdown-text-options">R Markdown text options</a></li>
+    <li><a href="#referencing">Referencing</a></li>
+    <li><a href="#code-chunk-navigation-and-naming-convention">Code Chunk Navigation and Naming Convention</a></li>
+    <li><a href="#including-code-from-script-files">Including Code from Script Files</a></li>
+    <li><a href="#different-slide-formats">Different Slide Formats</a>
+      <ul>
+        <li><a href="#ioslides">Ioslides</a></li>
+        <li><a href="#slidy">Slidy</a></li>
+        <li><a href="#beamer">Beamer</a></li>
+      </ul>
+    </li>
+    <li><a href="#controlling-chart-output">Controlling Chart Output</a></li>
+    <li><a href="#images-and-r-markdown">Images and R Markdown</a>
+      <ul>
+        <li><a href="#images-with-knitr">Images with Knitr</a></li>
+        <li><a href="#images-with-raw-html">Images with Raw HTML</a></li>
+        <li><a href="#images-with-raw-latex">Images with Raw LaTeX</a></li>
+      </ul>
+    </li>
+    <li><a href="#tables">Tables</a>
+      <ul>
+        <li><a href="#r-markdown-formatted-tables">R Markdown Formatted Tables</a></li>
+      </ul>
+    </li>
+    <li><a href="#kable-tables-and-other-tables">Kable Tables and other tables</a></li>
+    <li><a href="#captions-with-bookdown">Captions with Bookdown</a></li>
+    <li><a href="#custom-styles">Custom Styles</a></li>
+    <li><a href="#custom-html-with-css">Custom HTML with CSS</a></li>
+    <li><a href="#custom-pdf-with-tex">Custom PDF with TeX</a></li>
+    <li><a href="#displaying-other-languages">Displaying Other Languages</a></li>
+    <li><a href="#calling-on-latex-in-r-markdown">Calling on LaTeX in R Markdown</a>
+      <ul>
+        <li><a href="#latex-code">LaTeX Code</a></li>
+        <li><a href="#latex-formatting">LaTeX Formatting</a></li>
+      </ul>
+    </li>
+    <li><a href="#calling-on-html-in-r-markdown">Calling on HTML in R Markdown</a></li>
+    <li><a href="#pubishing-html-documents-to-the-web">Pubishing HTML Documents to the Web</a>
+      <ul>
+        <li><a href="#using-rpubs">Using RPubs</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h1>
+<p>In this document we learn how to create and manipulate R Markdown documents. Simply put, we are learning how to create documents, slideshows, websites and reports to produce and communicate the visualisations created earlier on. In the overall context of the workflow, this falls into the category of producing our presentations.</p>
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+<h1 id="what-is-r-markdown">
+  What is R Markdown?
+  <a class="anchor" href="#what-is-r-markdown">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/what-is-markdown?u=2087740">Lynda 1.1</a></p>
+</blockquote>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/what-is-r-markdown?u=2087740">Lynda 1.2</a></p>
+</blockquote>
+<h2 id="markup-languages">
+  Markup Languages
+  <a class="anchor" href="#markup-languages">#</a>
+</h2>
+<ul>
+<li>R Markdown is a markup language</li>
+<li>Markup langages are systems for annotating documents and other media</li>
+<li>Some other markup languages are:
+<ul>
+<li>Markdown (different from R Markdown!)</li>
+<li>LaTeX</li>
+<li>HTML</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-does-r-markdown-work">
+  How does R Markdown work?
+  <a class="anchor" href="#how-does-r-markdown-work">#</a>
+</h2>
+<ul>
+<li>R Markdown begins by looking like a weird R script with its own special syntax</li>
+<li>R Markdown documents have the special file extension <code>.Rmd</code></li>
+<li>It includes chunks of R code, and possibly some snippets of other languages</li>
+<li>After we &ldquo;knit&rdquo; the document together (according to how we specify), it looks like a nicely rendered form of media</li>
+<li>The document you are currently reading was built in R Markdown!</li>
+</ul>
+<center><img src = "images/thisdocument.jpg" width="50%" class="ImageBorder"> </img></center>
+<h2 id="what-can-r-markdown-do">
+  What can R Markdown do?
+  <a class="anchor" href="#what-can-r-markdown-do">#</a>
+</h2>
+<p>There are three broad types of documents R Markdown can produce. Note that each have sub-categories, and other document types exist. See 
+  <a href="https://rmarkdown.rstudio.com/lesson-9.html">here</a> for more information.</p>
+<h3 id="pdf">
+  PDF
+  <a class="anchor" href="#pdf">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/writing-pdf-reports-in-r-markdown?u=2087740">Lynda 1.3</a></p>
+</blockquote>
+<ul>
+<li>These documents always look the same</li>
+<li>They cannot be edited without leaving a &lsquo;footprint&rsquo; (the edits will be noticeable!)</li>
+<li>They can be password protected</li>
+</ul>
+<h3 id="html-reports">
+  HTML Reports
+  <a class="anchor" href="#html-reports">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/writing-html-reports-in-r-markdown?u=2087740">Lynda 1.4</a></p>
+</blockquote>
+<ul>
+<li>Documents which can be put online</li>
+<li>They are easily viewable on mobile</li>
+<li>These reports can interact with htmlwidgets (moving objects, responsive to the viewer&rsquo;s behaviour!)</li>
+</ul>
+<h3 id="html-presentations">
+  HTML Presentations
+  <a class="anchor" href="#html-presentations">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/writing-html-presentations-in-r-markdown?u=2087740">Lynda 1.5</a></p>
+</blockquote>
+<ul>
+<li>These are HTML documents comparable to a slideshow presentation</li>
+<li>There are several preset styles</li>
+<li>Some styles are very customisable</li>
+</ul>
+<h3 id="other-media">
+  Other Media
+  <a class="anchor" href="#other-media">#</a>
+</h3>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/what-else-can-you-build-with-r-markdown?u=2087740">Lynda 1.6</a></p>
+</blockquote>
+<p>R Markdown can also produce:</p>
+<ul>
+<li>Microsoft PowerPoint presentations</li>
+<li>Microsoft Word documents</li>
+<li>Blog-style webpages (Blogdown)</li>
+<li>Multi-chapter books and reference documents (Bookdown)</li>
+</ul>
+<h1 id="latex-bibtex-and-tex">
+  LaTeX, BibTeX and TeX
+  <a class="anchor" href="#latex-bibtex-and-tex">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/what-are-latex-and-bibtex?u=2087740">Lynda 2.1</a></p>
+</blockquote>
+<h2 id="latex">
+  LaTeX
+  <a class="anchor" href="#latex">#</a>
+</h2>
+<ul>
+<li>LaTeX is a markup language like R Markdown</li>
+<li>It is heavily used in academia for its ability to create mathematical formulae with ease and precision</li>
+<li>We can call LaTeX in R Markdown if we configure RStudio correctly</li>
+</ul>
+<h2 id="bibtex">
+  BibTeX
+  <a class="anchor" href="#bibtex">#</a>
+</h2>
+<ul>
+<li>A reference management software for LaTeX</li>
+<li>It is required to customise the appearance and layout of all PDF documents in R Markdown</li>
+</ul>
+<h2 id="tex">
+  TeX
+  <a class="anchor" href="#tex">#</a>
+</h2>
+<ul>
+<li>A typesetting system which encompasses LaTeX</li>
+<li>Developed with LaTeX partly to process mathematical formulae</li>
+<li>LaTeX is <strong>one distribution</strong> of TeX</li>
+</ul>
+<h1 id="installing-tex">
+  Installing TeX
+  <a class="anchor" href="#installing-tex">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/setting-up-tex-for-generating-r-markdown-reports?u=2087740">Lynda 2.2</a></p>
+</blockquote>
+<p>This installation is needed to call upon several functions of R Markdown. Depending on your operating system, the installation for TeX will be one of these options:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">macOS</th>
+<th style="text-align:center">Linux</th>
+<th style="text-align:center">Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Go to 
+  <a href="http://www.tug.org/mactex">http://www.tug.org/mactex</a> and install TeX</td>
+<td style="text-align:center">Run <code>sudo apt-get install texlive-full</code></td>
+<td style="text-align:center">Go to 
+  <a href="https://miktex.org/download">https://miktex.org/download</a> and install TeX</td>
+</tr>
+</tbody>
+</table>
+<p>After the installation, RStudio will automatically be able to detect TeX on your computer.</p>
+<h1 id="installing-pandoc">
+  Installing Pandoc
+  <a class="anchor" href="#installing-pandoc">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/installing-pandoc?u=2087740">Lynda 2.3</a></p>
+</blockquote>
+<ul>
+<li>Pandoc is a software which can convert files from one markup format to another</li>
+<li>This is what will convert our <code>.Rmd</code> (R Markdown) files to other, more useful formats</li>
+<li>Make sure the latest version of Pandoc is installed on your computer by visiting 
+  <a href="https://pandoc.org/installing.html">https://pandoc.org/installing.html</a></li>
+</ul>
+<h1 id="the-r-markdown-package">
+  The R Markdown Package
+  <a class="anchor" href="#the-r-markdown-package">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/installing-r-markdown?u=2087740">Lynda 3.1</a></p>
+</blockquote>
+<p>R Markdown must be installed as a package through R Studio by running the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;rmarkdown&#34;</span>)
+</code></pre></div><ul>
+<li>R Markdown is now almost up and running</li>
+<li>The final step is to watch for RStudio warning that extra packages need to be installed for R Markdown to operate</li>
+<li>A pop-up may or may not appear, depending on the current version of <code>rmarkdown</code></li>
+</ul>
+<center><img src = "images/install.png" width="40%" class="ImageBorder"> </img></center>
+<p>Once these are installed, R Markdown is ready for use!</p>
+<h1 id="the-r-markdown-interface">
+  The R Markdown interface
+  <a class="anchor" href="#the-r-markdown-interface">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/r-markdown-knitting-and-generating-outputs?u=2087740">Lynda 3.2</a></p>
+</blockquote>
+<p><strong>Reminder: R Markdown files are of the type <code>.Rmd</code></strong></p>
+<ul>
+<li>When we&rsquo;re in RStudio, we create a new R Markdown document</li>
+<li>It is recommended to do this in a new (or existing) <em>R Project</em></li>
+<li>Navigate to <code>File</code>(\rightarrow)<code>New File</code>(\rightarrow)<code>Rmarkdown...</code></li>
+<li>This menu will appear.</li>
+</ul>
+<center><img src = "images/newrmd.jpg" width="40%" class="ImageBorder"> </img></center>
+<ul>
+<li>We are immediately forced to make a choice, however, no selection we make is permanent</li>
+<li>By default, we will begin by working in an HTML document</li>
+<li>When we select OK, we have an R Markdown document in front of us</li>
+</ul>
+<center><img src = "images/newrmd2.jpg" width="40%" class="ImageBorder"> </img></center>
+<ul>
+<li>If we save this document, it will appear in our files tab</li>
+</ul>
+<center><img src = "images/newrmd3.jpg" width="30%" class="ImageBorder"> </img></center>
+<ul>
+<li>The document currently appears to look like a script</li>
+<li>We use the &ldquo;Knit&rdquo; button to compile this script into the document type we chose</li>
+</ul>
+<center><img src = "images/newrmd4.jpg" width="30%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/newrmd5.jpg" width="40%" class="ImageBorder"> </img></center>
+<ul>
+<li>We are also able to freely modify the text in the <code>.Rmd</code> file</li>
+<li>This is our first step to creating our own reports</li>
+</ul>
+<center><img src = "images/newrmd6.jpg" width="30%" class="column"> </img></center>
+<center><img src = "images/newrmd7.jpg" width="40%" class="column"> </img></center>
+<div style="clear: both;">
+<h1 id="the-yaml-header">
+  The YAML Header
+  <a class="anchor" href="#the-yaml-header">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/the-yaml-header-of-an-rmd-file?u=2087740">Lynda 3.3</a></p>
+</blockquote>
+<ul>
+<li>YAML is a standard for configuration files</li>
+<li>By modifying the &ldquo;YAML header&rdquo;, we configure our R Markdown file</li>
+<li>The YAML header is everything between the two <code>---</code></li>
+<li>It is automatically generated when we create a document</li>
+<li>In this format, indentation matters, so when we modify our headers we must be careful</li>
+</ul>
+<h2 id="basic-options">
+  Basic options:
+  <a class="anchor" href="#basic-options">#</a>
+</h2>
+<ul>
+<li>The <code>title</code>, <code>author</code> and <code>date</code> options are self-explanatory</li>
+<li>The <code>output</code> option dictates the document we produce when we Knit (by default it is set to whatever we selected when creating the document)</li>
+<li>Some output styles (which we will cover) are:
+<ul>
+<li><code>html_document</code> and <code>bookdown::html_document2</code></li>
+<li><code>pdf_document</code> and <code>bookdown::pdf_document2</code></li>
+<li><code>slidy_presentation</code></li>
+<li><code>ioslides_presentation</code></li>
+<li><code>beamer_presentation</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="additional-options">
+  Additional options:
+  <a class="anchor" href="#additional-options">#</a>
+</h2>
+<ul>
+<li>There are very many different fields we can add to the YAML header</li>
+<li>Some are simple to include and require only one line, such as the <code>subtitle</code> field added below</li>
+<li>Others are more complex and must be formatted by several layers of indentation, such as the <code>toc</code> field</li>
+</ul>
+<center><img src = "images/yaml1.jpg" width="40%" class="column"> </img></center>
+<center><img src = "images/yaml2.jpg" width="40%" class="column"> </img></center>
+<ul>
+<li>We will introduce a few more fields later on, but here are lists of 
+  <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">useful PDF-relevant fields</a> and 
+  <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">useful HTML-relevant fields</a></li>
+</ul>
+<h1 id="code-chunks">
+  Code Chunks
+  <a class="anchor" href="#code-chunks">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/code-chunks-and-global-code-chunk-settings?u=2087740">Lynda 3.4</a></p>
+</blockquote>
+<p>R Markdown is enormously useful for its ability to display and run code.</p>
+<h2 id="creating-code-chunks">
+  Creating Code Chunks
+  <a class="anchor" href="#creating-code-chunks">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">text <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;R Markdown is cool&#34;</span>
+<span style="color:#a6e22e">print</span>(text)
+</code></pre></div><pre><code>## [1] &quot;R Markdown is cool&quot;
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">-5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0.1</span>)
+y <span style="color:#f92672">=</span> x^2
+<span style="color:#a6e22e">plot</span>(x,y)
+</code></pre></div><div class="figure" style="text-align: center">
+<img src="RMarkdown_files/figure-html/code1-1.png" alt="*Fig 1: A nice parabola.*" width="40%" />
+<p class="caption">(\#fig:code1)*Fig 1: A nice parabola.*</p>
+</div>
+<ul>
+<li>&ldquo;Code chunks&rdquo; are small, dedicated sections of the R Markdown document which come with their own options for displaying or running code</li>
+<li>We begin a code chunk with three backticks (`s) and end it with three backticks</li>
+<li>After the three backticks we have a section of curly brackets (<code>{ }</code>)</li>
+<li>In these backticks, we state the language we are coding in, then type a space, then name the code chunk</li>
+<li><strong>Warning</strong>: never give two code chunks in the same document the same name, or the document will not compile</li>
+</ul>
+<center><img src = "images/codechunks1.jpg" width="40%" class="ImageBorder"> </img></center>
+<ul>
+<li>The above code runs and produces the code shown above</li>
+</ul>
+<h2 id="code-chunk-options">
+  Code Chunk options
+  <a class="anchor" href="#code-chunk-options">#</a>
+</h2>
+<h3 id="global-chunk-options">
+  Global Chunk options
+  <a class="anchor" href="#global-chunk-options">#</a>
+</h3>
+<ul>
+<li>When creating chunks, all options are set to a &ldquo;global&rdquo; default which spans the entire document</li>
+<li>These default options are specified in the chunk called <code>setup</code>, which is automatically generated at the beginning of our <code>.Rmd</code> file</li>
+<li>The <code>opts_chunk$set()</code> function can set any default chunk options, and we can modify this to include whatever options we need</li>
+</ul>
+<center><img src = "images/codechunks2.jpg" width="40%" class="column"> </img></center>
+<center><img src = "images/codechunks3.jpg" width="40%" class="column"> </img></center>
+<div style="clear: both;">
+<h3 id="local-chunk-options">
+  Local Chunk options
+  <a class="anchor" href="#local-chunk-options">#</a>
+</h3>
+<ul>
+<li>Local chunk options are specified from within one chunk and are listed in the curly brackets (<code>{ }</code>)</li>
+<li>They overwrite global options (that means that any local chunk option is obeyed, rather than the default)</li>
+</ul>
+<center><img src = "images/codechunks4.jpg" width="40%" class="ImageBorder"> </img></center>
+<h3 id="list-of-options">
+  List of options
+  <a class="anchor" href="#list-of-options">#</a>
+</h3>
+<p>| Option | Argument | Use |
+| :-: | :-: |
+| <code>include</code> | TRUE or FALSE | Specifies whether code and results appears in knitted document |
+| <code>echo</code> | TRUE or FALSE | Specifies whether code is displayed in knitted document |
+| <code>message</code> | TRUE or FALSE | Specifies whether messages generated from the code appear in knitted document |
+| <code>warning</code> | TRUE or FALSE | Specifies whether warnings generated by the code appear in knitted document |
+| <code>out.width</code> | &ldquo;40%&rdquo; or 300px | Specifies the width of figures output from the code |
+| <code>fig.cap</code> | &ldquo;Caption&rdquo; | Adds a caption to a figure |
+| <code>fig.align</code> | &lsquo;center&rsquo;, etc | Specifies how figures should be aligned when output |</p>
+<p>
+  <a href="https://yihui.name/knitr/options/#plots">For the long, full list of options, see this link.</a></p>
+<h1 id="running-code-in-r-markdown-documents">
+  Running code in R Markdown documents
+  <a class="anchor" href="#running-code-in-r-markdown-documents">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/writing-and-running-r-code-in-r-markdown-files?u=2087740">Lynda 3.5</a></p>
+</blockquote>
+<h2 id="specifying-output">
+  Specifying output
+  <a class="anchor" href="#specifying-output">#</a>
+</h2>
+<p>We can choose how code output is displayed in RStudio.</p>
+<ul>
+<li>We go to the &ldquo;cog&rdquo; icon and we can select from displaying output inline or in console</li>
+</ul>
+<center><img src = "images/output1.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>Output inline VS output in console:</p>
+<p><img src = "images/output2.jpg" class="column"> </img>
+<img src = "images/output3.jpg" class="column"> </img></p>
+<div style="clear: both;">
+<h2 id="running-individual-lines">
+  Running individual lines
+  <a class="anchor" href="#running-individual-lines">#</a>
+</h2>
+<ul>
+<li>To run individual lines is the same as in an R script</li>
+<li>If a line has been selected, CTRL+ENTER will run the line</li>
+</ul>
+<h2 id="running-from-chunks">
+  Running from chunks
+  <a class="anchor" href="#running-from-chunks">#</a>
+</h2>
+<ul>
+<li>There are two buttons in every code chunk</li>
+<li>The first runs all code above a chunk
+<ul>
+<li>This is very useful if lots of our code is inter-dependent</li>
+</ul>
+</li>
+<li>The second runs just the current chunk</li>
+</ul>
+<center><img src = "images/runchunks1.jpg" width="40%" class="ImageBorder"> </img></center>
+<h2 id="the-run-button">
+  The Run button
+  <a class="anchor" href="#the-run-button">#</a>
+</h2>
+<ul>
+<li>This button prodivdes a list of options for running chunks</li>
+</ul>
+<center><img src = "images/runchunks2.jpg" width="40%" class="ImageBorder"> </img></center>
+<h1 id="sectioning-r-markdown-documents">
+  Sectioning R Markdown documents
+  <a class="anchor" href="#sectioning-r-markdown-documents">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/splitting-documents-into-sections-or-slides-in-r-markdown?u=2087740">Lynda 3.6</a></p>
+</blockquote>
+<h2 id="sectioning-in-standard-documents">
+  Sectioning in standard documents
+  <a class="anchor" href="#sectioning-in-standard-documents">#</a>
+</h2>
+<ul>
+<li>In R Markdown, the hash (<code>#</code>) symbol is used for headings</li>
+<li>One hash, #, is an &lsquo;h1&rsquo; heading (the largest)</li>
+<li>Two hashes, ##, is an &lsquo;h2&rsquo; heading (slightly less large)</li>
+<li>This goes all the way to six hashes, ######, for the smallest subheading</li>
+<li>Each heading can be formatted to be different (see <code>.css</code> files below), but by default, the more &ldquo;sub&rdquo; the heading is, the smaller the font</li>
+</ul>
+<p>Our R Markdown code VS its PDF output VS its HTML output</p>
+<img src = "images/heading1.jpg" width="30%" class="triple">
+<img src = "images/heading2.jpg" width="30%" class="triple">
+<img src = "images/heading3.jpg" width="30%" class="triple">
+<div style="clear: both;">
+<h2 id="sectioning-in-slides">
+  Sectioning in slides
+  <a class="anchor" href="#sectioning-in-slides">#</a>
+</h2>
+<ul>
+<li>If we are working with a slideshow document, headings and the hash (<code>#</code>) symbol also serve as slide headings</li>
+<li>As an example, we can do this in the <code>slidy_presentation</code> format (discussed below)</li>
+</ul>
+<center><img src = "images/slides1.jpg" width="40%" class="column" > </img></center>
+<center><img src = "images/slides2.jpg" width="40%" class="column" > </img></center>
+<div style="clear: both;">
+<h1 id="tabsets">
+  Tabsets
+  <a class="anchor" href="#tabsets">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/tabbed-sections-in-r-markdown-html-reports?u=2087740">Lynda 3.7</a></p>
+</blockquote>
+<ul>
+<li><strong>Note</strong>: this will <em><strong>only</strong></em> work with the <code>html_document</code> formatting</li>
+<li>Tabset options can create sophisticated headings</li>
+<li>If we write <code>{.tabset}</code> immediately after a heading, the subheadings will be condensed into a selection bar</li>
+</ul>
+<p><img src = "images/tabset1.jpg" class="column" > </img>
+<img src = "images/tabset2.jpg" class="column" > </img></p>
+<div style="clear: both;">
+<ul>
+<li>If we write <code>{.tabset .tabset-dropdown}</code>, this selection bar will be a dropdown menu instead</li>
+</ul>
+<p><img src = "images/tabset3.jpg" class="column" > </img>
+<img src = "images/tabset4.jpg" class="column" > </img></p>
+<div style="clear: both;">
+<h1 id="r-markdown-text-options">
+  R Markdown text options
+  <a class="anchor" href="#r-markdown-text-options">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/formatting-text-in-r-markdown-files?u=2087740">Lynda 3.8</a> and</p>
+</blockquote>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/bullets-and-lists-in-r-markdown?u=2087740">Lynda 3.9</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature</th>
+<th style="text-align:left">Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Bold</td>
+<td style="text-align:left">Surround text by <code>**</code> or <code>__</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Italics</td>
+<td style="text-align:left">Surround text by <code>*</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Strikethrough</td>
+<td style="text-align:left">Surround text by <code>~~</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Superscript</td>
+<td style="text-align:left">Surround text by <code>^</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Code font</td>
+<td style="text-align:left">Surround text by backticks (`s)</td>
+</tr>
+<tr>
+<td style="text-align:left">Bullet points</td>
+<td style="text-align:left"><code>-</code> then space at the beginning of a line, and repeat on the next line</td>
+</tr>
+<tr>
+<td style="text-align:left">Sub-bullet points</td>
+<td style="text-align:left">Four spaces, then <code>-</code> at the beginning of a line, and repeat on the next line</td>
+</tr>
+<tr>
+<td style="text-align:left">Numbered list</td>
+<td style="text-align:left"><code>1.</code> then space at the beginning of the line, and repeat on the next line (type the number one (1) repeatedly!)</td>
+</tr>
+<tr>
+<td style="text-align:left">New paragraph</td>
+<td style="text-align:left">Two spaces at the end of a line</td>
+</tr>
+</tbody>
+</table>
+<p><img src = "images/text1.jpg" class="column" > </img>
+<img src = "images/text2.jpg" class="column" > </img></p>
+<div style="clear: both;">
+<p>Here&rsquo;s an 
+  <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown cheat sheet</a> to help remember all these formats!</p>
+<h1 id="referencing">
+  Referencing
+  <a class="anchor" href="#referencing">#</a>
+</h1>
+<p>References in R Markdown is done by placing a caret (<code>^</code>) wherever we desire to put a reference, then typing the reference in square brackets immediately after.</p>
+<pre><code class="language-null" data-lang="null">A reference may look like this!^[Mann, H. (2019)]
+</code></pre><p>A reference may look like this!^[Mann, H. (2019)]</p>
+<h1 id="code-chunk-navigation-and-naming-convention">
+  Code Chunk Navigation and Naming Convention
+  <a class="anchor" href="#code-chunk-navigation-and-naming-convention">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/name-your-code-chunks-sensibly?u=2087740">Lynda 4.1</a></p>
+</blockquote>
+<ul>
+<li>Technically, R Markdown does not require any code chunks to be named</li>
+<li>It is, however, always a good idea to name code chunks for debugging and readability purposes</li>
+<li>The <code>namer</code> package can be installed to automatically name chunks in a script</li>
+<li>However, for large scripts, naming code chunks appropriately is the recommended approach</li>
+<li>This makes navigation through an <code>.Rmd</code> file much easier</li>
+</ul>
+<p>As an example, consider a very large <code>.Rmd</code> file containing material on the <code>ggplot</code> package:</p>
+<center><img src = "images/codechunknavigation.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>The button at the bottom of the script tab provides instand navigation between headings and code chunks in an <code>.Rmd</code> file. This navigation becomes much clearer with appropriate code chunk names.</p>
+<h1 id="including-code-from-script-files">
+  Including Code from Script Files
+  <a class="anchor" href="#including-code-from-script-files">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/including-code-from-script-files?u=2087740">Lynda 4.2</a></p>
+</blockquote>
+<ul>
+<li>If we have a script file saved in our project folder, we can call on it with the <code>source()</code> command</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">source</span>(<span style="color:#e6db74">&#34;script.R&#34;</span>)
+</code></pre></div><pre><code>## [1] &quot;I have been called from script.R!&quot;
+</code></pre><h1 id="different-slide-formats">
+  Different Slide Formats
+  <a class="anchor" href="#different-slide-formats">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/what-are-slidy-ioslides-and-beamer?u=2087740">Lynda 5.1</a></p>
+</blockquote>
+<p>There are three types of slides formats R Markdown, with their own strengths and weaknesses:</p>
+<ul>
+<li>Ioslides (<code>output: ioslides_presentation</code>)</li>
+<li>Slidy (<code>output: slidy_presentation</code>)</li>
+<li>Beamer (<code>output: beamer_presentation</code>)</li>
+</ul>
+<p>Ioslides and Slidy produce HTML output whereas Beamer produces PDF output.</p>
+<h2 id="ioslides">
+  Ioslides
+  <a class="anchor" href="#ioslides">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/features-of-ioslides-presentations?u=2087740">Lynda 5.2</a></p>
+</blockquote>
+<img src = "images/ioslides.jpg" width = "50%" class="ImageBorder">
+<ul>
+<li>Creates HTML slides</li>
+<li>Designed by Google for their 2010 I/O conference</li>
+<li>Almost no customisability</li>
+<li>Works well on mobile</li>
+<li>Built in with hotkey functions:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Hotkey</th>
+<th style="text-align:center">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>w</code></td>
+<td style="text-align:center">Toggle to widescreen</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>o</code></td>
+<td style="text-align:center">Toggle to overview</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>h</code></td>
+<td style="text-align:center">Highlight code line</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>p</code></td>
+<td style="text-align:center">Include presenter notes</td>
+</tr>
+</tbody>
+</table>
+<p>Highlighting lines of code requires the use of this unique syntax:</p>
+<img src = "images/highlight1.jpg" class="triple">
+<img src = "images/highlight2.jpg" class="triple">
+<img src = "images/highlight3.jpg" class="triple">
+<div style="clear: both;">
+<p>Creating presenter notes (slides that can only be shown by pressing <code>p</code>) requires wrapping the content by some HTML:</p>
+<img src = "images/presenter1.jpg" class="triple">
+<img src = "images/presenter2.jpg" class="triple">
+<img src = "images/presenter3.jpg" class="triple">
+<div style="clear: both;">
+<h2 id="slidy">
+  Slidy
+  <a class="anchor" href="#slidy">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/features-of-slidy-presentations?u=2087740">Lynda 5.3</a></p>
+</blockquote>
+<ul>
+<li>Creates HTML slides</li>
+<li>Slidy is the best choice for making custom HTML slides with custom <code>.css</code> files</li>
+<li>By default they are very minimal</li>
+<li>Also built with hotkeys</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Hotkey</th>
+<th style="text-align:center">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>c</code></td>
+<td style="text-align:center">Opens a table of contents</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>a</code></td>
+<td style="text-align:center">Converts the slides to a linear document</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>s</code></td>
+<td style="text-align:center">Makes font smaller</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>b</code></td>
+<td style="text-align:center">Makes font bigger</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>f</code></td>
+<td style="text-align:center">Removes the footer</td>
+</tr>
+</tbody>
+</table>
+<p>By manipulating the YAML header, we can add a timer to the footer:</p>
+<pre><code class="language-null" data-lang="null">output:
+  slidy_presentation:
+    duration: 2
+</code></pre><p>Here is a set of Slidy slides produced with and without custom <code>.css</code> styles:</p>
+<img src = "images/slidy1.jpg" class="column">
+<img src = "images/slidy2.jpg" class="column">
+<div style="clear: both;">
+<p>
+  <a href="https://github.com/alblaine/countess/blob/master/styles.css">Credit to alblaine</a> for the style!</p>
+<h2 id="beamer">
+  Beamer
+  <a class="anchor" href="#beamer">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/pdf-presentations-with-beamer?u=2087740">Lynda 5.4</a></p>
+</blockquote>
+<ul>
+<li>Creates PDF slides</li>
+<li>Based on the LaTeX class &ldquo;Beamer&rdquo;</li>
+<li>Many different styles are available online</li>
+<li>Knowledge of LaTeX is required to do certain features, such as including slide numbers</li>
+</ul>
+<p>Here is the default Beamer VS one with custom styles:</p>
+<img src = "images/beamer1.jpg" class="column">
+<img src = "images/beamer2.jpg" class="column">
+<div style="clear: both;">
+<p>Including custom styles is achieved in two steps:</p>
+<ol>
+<li>Modifying the YAML header as such</li>
+</ol>
+<pre><code class="language-null" data-lang="null">output:
+  beamer_presentation:
+    includes:
+      in_header: styles/styles.tex
+</code></pre><ol start="2">
+<li>Creating a <code>.tex</code> file in our project in the directory <code>slides/styles.tex</code></li>
+</ol>
+<p>These few commands (written in your LaTeX file) will allow you to make a few changes to your slides:</p>
+<ul>
+<li>Add custom colours and themes to your slides</li>
+<li>Go to 
+  <a href="http://deic.uab.es/~iblanes/beamer_gallery/">the Beamer gallery</a> to find themes and colours you like!</li>
+</ul>
+<pre><code class="language-null" data-lang="null">\usetheme{THEME_NAME}
+\usecolortheme{COLOUR_THEME_NAME}
+</code></pre><ul>
+<li>Add slide numbers to your slides</li>
+</ul>
+<pre><code class="language-null" data-lang="null">\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+</code></pre><h1 id="controlling-chart-output">
+  Controlling Chart Output
+  <a class="anchor" href="#controlling-chart-output">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/ggplot2-and-plots-in-r-markdown-documents?u=2087740">Lynda 6.1 - 6.3</a></p>
+</blockquote>
+<ul>
+<li>We produce graphs in R Markdown by putting the relevant code in code chunks and then running them</li>
+<li>This works with normal code and <code>ggplot2</code> code</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Base R plot</span>
+x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">-5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0.1</span>)
+y <span style="color:#f92672">=</span> x^2
+<span style="color:#a6e22e">plot</span>(x,y)
+
+<span style="color:#75715e"># ggplot2 plot</span>
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+</code></pre></div><p><img src="RMarkdown_files/figure-html/chart_output1-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;tidy_EnvAcc_data/consumption.rdata&#34;</span>)
+consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_col</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> year,
+               y <span style="color:#f92672">=</span> water_consumption,
+               fill <span style="color:#f92672">=</span> State))
+</code></pre></div><p><img src="RMarkdown_files/figure-html/chart_output1-2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><code>fig.width</code> and <code>fig.height</code> can only take numeric arguments, and one or both can be specified. Measurements are in inches. Generally used for PDF.</p>
+<img src = "images/chart_output1.jpg" width = "50%" class="ImageBorder">
+<p><img src="RMarkdown_files/figure-html/chart_output2-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><code>fig.width</code> and <code>fig.asp</code> (also numeric, often between 0 and 1) can both be specified, and figure height will be determined based on <code>fig.asp</code>.</p>
+<img src = "images/chart_output2.jpg" width = "50%" class="ImageBorder">
+<p><img src="RMarkdown_files/figure-html/chart_output3-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><code>out.width</code> and <code>out.height</code> can take several arguments. Generally we use a character string to specify percentage or pixel measurement (eg out.width = &ldquo;40%&rdquo; or out.width = &ldquo;480px&rdquo;). However, <code>out.height</code> cannot overwrite the aspect ratio, and so it has limited usefulness.</p>
+<p>Take note that these options can take some special LaTeX arguments as well. See 
+  <a href="https://yihui.name/knitr/options/#plots">here under &ldquo;out.width, out.height&rdquo;</a>.</p>
+<img src = "images/chart_output3.jpg" width = "50%" class="ImageBorder">
+<p><img src="RMarkdown_files/figure-html/chart_output4-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Of course, all chunk options can also be modified globally.</p>
+<h1 id="images-and-r-markdown">
+  Images and R Markdown
+  <a class="anchor" href="#images-and-r-markdown">#</a>
+</h1>
+<h2 id="images-with-knitr">
+  Images with Knitr
+  <a class="anchor" href="#images-with-knitr">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/inserting-images-with-include-graphics?u=2087740">Lynda 7.1</a></p>
+</blockquote>
+<p>If you know the directory to your image, you can use <code>include_graphics()</code> from the <code>knitr</code> package to output the image as a figure. It will be responsive to chunk figure options.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">include_graphics</span>(<span style="color:#e6db74">&#34;images/Rlogo.svg&#34;</span>)
+</code></pre></div><p><img src="images/Rlogo.svg" width="20%" style="display: block; margin: auto;" /></p>
+<h2 id="images-with-raw-html">
+  Images with Raw HTML
+  <a class="anchor" href="#images-with-raw-html">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/inserting-images-using-raw-html?u=2087740">Lynda 7.2</a></p>
+</blockquote>
+<p><strong>Keep in mind</strong>: HTML images (that is, images included using this html code) can only be inserted into HTML documents.</p>
+<p>With even no understanding of HTML, inserting images is very simple. HTML can be pasted directly into an R Markdown file.</p>
+<p><code>src</code> specifies the file path of the image.</p>
+<pre><code class="language-null" data-lang="null">&lt;img src = &quot;images/Rlogo.svg&quot; width = &quot;20%&quot;&gt;
+</code></pre><img src = "images/Rlogo.svg" width = "20%">
+<p>The image can easily be centred with the centre tag.</p>
+<pre><code class="language-null" data-lang="null">&lt;center&gt; &lt;img src = &quot;images/Rlogo.svg&quot; width = &quot;20%&quot;&gt; &lt;/center&gt;
+</code></pre><center> <img src = "images/Rlogo.svg" width = "20%"> </center>
+<p>HTML images are extremely tweakable, but require knowledge of HTML!</p>
+<h2 id="images-with-raw-latex">
+  Images with Raw LaTeX
+  <a class="anchor" href="#images-with-raw-latex">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/inserting-images-using-raw-latex?u=2087740">Lynda 7.3</a></p>
+</blockquote>
+<p><strong>Keep in mind</strong>: LaTeX insertion can only be done in PDF documents.</p>
+<p>LaTeX insertion, like HTML, is relatively simple to use. With LaTeX knowledged, images become extremely tweakable. This LaTeX can be pasted directly into an R Markdown script and run.</p>
+<p>The argument in curly brackets specifies the file path of the image.</p>
+<pre><code class="language-null" data-lang="null">\includegraphics{images/Rlogo.jpg}
+</code></pre><center> <img src = "images/lateximage.jpg" width = "30%"> </center>
+<p>We can adjust the size using some LaTeX as well.</p>
+<pre><code class="language-null" data-lang="null">\includegraphics[width = 5cm]{images/Rlogo.jpg}
+</code></pre><h1 id="tables">
+  Tables
+  <a class="anchor" href="#tables">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/displaying-tables-in-r-markdown?u=2087740">Lynda 8.1</a></p>
+</blockquote>
+<p>We can display tables in R Markdown in two ways.</p>
+<ol>
+<li>As an R Markdown formatted table</li>
+<li>As the output from code</li>
+</ol>
+<p>The first option is fixed: there is only one method for creating R Markdown formatted tables. However, code output can be configured in several ways.</p>
+<h2 id="r-markdown-formatted-tables">
+  R Markdown Formatted Tables
+  <a class="anchor" href="#r-markdown-formatted-tables">#</a>
+</h2>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/markdown-tables-in-rmd?u=2087740">Lynda 8.2</a></p>
+</blockquote>
+<p>Let&rsquo;s consider a table and how it is formatted. The following table describes the capabilities of HTMLwidgets packages in R:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Library</th>
+<th style="text-align:center">Charts</th>
+<th style="text-align:center">Maps</th>
+<th style="text-align:center">Networks</th>
+<th style="text-align:center">Tables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DT</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Highcharter</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">Leaflet</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">Plotly</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td style="text-align:left">visNetwork</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">No</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Formatting tables relies heavily on the vertical bar (<code>|</code>) key</li>
+<li>First we write the column headings</li>
+<li>Then we specify the alignment of column words</li>
+<li>Lastly we fill our final rows with data</li>
+</ul>
+<p>Using our example, the first line of the table looks like this:</p>
+<pre><code class="language-null" data-lang="null">| Library | Charts | Maps | Networks | Tables |
+</code></pre><ul>
+<li>We simply separate our column headings with bars</li>
+</ul>
+<p>Our second line will have the same number of entries as our table above, spaced with bars. In each entry we type one of:</p>
+<ul>
+<li><code>:-:</code> (centre text for the column)</li>
+<li><code>:-</code> (text wraps left)</li>
+<li><code>-:</code> (text wraps right)</li>
+</ul>
+<p>In our example, the &ldquo;Library&rdquo; column wraps left, and the remaining table entries are cetred, so our second line looks like this:</p>
+<pre><code class="language-null" data-lang="null">| :- | :-: | :-: | :-: | :-: |
+</code></pre><p>We then simply enter our data, spacing with bars. The whole table looks like this:</p>
+<pre><code class="language-null" data-lang="null">| Library | Charts | Maps | Networks | Tables |
+| :- | :-: | :-: | :-: | :-: |
+| DT | No | No | No | Yes |
+| Highcharter | Yes | Yes | No | No |
+| Leaflet | No | Yes | No | No |
+| Plotly | Yes | Yes | No | No |
+| visNetwork | No | No | Yes | No |
+</code></pre><h1 id="kable-tables-and-other-tables">
+  Kable Tables and other tables
+  <a class="anchor" href="#kable-tables-and-other-tables">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/formatting-printed-data-frames-and-tibbles?u=2087740">Lynda 8.3 - 8.5</a>,</p>
+</blockquote>
+<p>We can print out tables using R code in R Markdown. <code>consumption</code> is a tibble created using the Tidyverse package:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(consumption)
+</code></pre></div><pre><code>## # A tibble: 6 x 3
+##   State year    water_consumption
+##   &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;
+## 1 NSW   2008–09              4555
+## 2 VIC   2008–09              2951
+## 3 QLD   2008–09              3341
+## 4 SA    2008–09              1179
+## 5 WA    2008–09              1361
+## 6 TAS   2008–09               466
+</code></pre><p>We can also use the <code>kable()</code> function from <code>knitr</code> to print tables that appear to be much nicer in R Markdown. We simply pipe our data through the function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(consumption) <span style="color:#f92672">%&gt;%</span>
+  knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">kable</span>()
+</code></pre></div><p>State   year       water_consumption</p>
+<hr>
+<p>NSW     2008–09                 4555
+VIC     2008–09                 2951
+QLD     2008–09                 3341
+SA      2008–09                 1179
+WA      2008–09                 1361
+TAS     2008–09                  466</p>
+<p>We can also customise the way these tables look if we install the <code>kableExtra</code> package:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;knitr&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;kableExtra&#34;</span>)
+
+<span style="color:#a6e22e">head</span>(consumption) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">kable</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">kable_styling</span>(bootstrap_options <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;striped&#34;</span>)
+</code></pre></div><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> State </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:right;"> water_consumption </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> NSW </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 4555 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> VIC </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 2951 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> QLD </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 3341 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SA </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 1179 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> WA </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 1361 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> TAS </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 466 </td>
+  </tr>
+</tbody>
+</table>
+<p><code>bootstrap_options</code> is just one modification we can make to our kable tables. See 
+  <a href="https://www.rdocumentation.org/packages/kableExtra/versions/1.1.0/topics/kable_styling">here</a> for the full argument breakdown.</p>
+<p>Lastly we note there is a way to make formating tables as kable tables automatic in a document. That is by modifying the YAML header. The <code>output: html_document</code> (etc) line should be removed and replaced with:</p>
+<pre><code class="language-null" data-lang="null">output:
+  html_document:
+    df_print: kable
+</code></pre><p>Remember that indentation matters!</p>
+<p><strong>Note</strong>: <code>df_print: tibble</code> formats tables as tibbles (from the Tidyverse package) and <code>df_print: paged</code> formats tables as HTML tables which support pagination over rows and columns.</p>
+<p>As one final option, the <code>DT</code> package is able to produce interactive tables we can use with R Markdown. Using the package, we can pipe tibbles or data.frames into the <code>datatable()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;DT&#34;</span>)
+consumption <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">datatable</span>()
+</code></pre></div><p>preserve1411c0034efa7364</p>
+<h1 id="captions-with-bookdown">
+  Captions with Bookdown
+  <a class="anchor" href="#captions-with-bookdown">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/captions-in-r-markdown?u=2087740">Lynda 9.1</a> and</p>
+</blockquote>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/captions-with-bookdown?u=2087740">Lynda 9.2</a></p>
+</blockquote>
+<p>Bookdown is an R package that facilitates writing books and long-form media with R Markdown. We use it for for the useful captioning solutions it provides. To use them, however, we must change our output type in the YAML header to special Bookdown outputs. One of:</p>
+<ul>
+<li><code>output: bookdown::pdf_document2</code></li>
+<li><code>output: bookdown::html_document2</code></li>
+</ul>
+<p>For captioning figures, we use the <code>fig.cap</code> code chunk option as normal. This will now automatically number figures.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">text <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;R Markdown is cool&#34;</span>
+<span style="color:#a6e22e">print</span>(text)
+</code></pre></div><pre><code>## [1] &quot;R Markdown is cool&quot;
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">-5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0.1</span>)
+y <span style="color:#f92672">=</span> x^2
+<span style="color:#a6e22e">plot</span>(x,y)
+</code></pre></div><div class="figure" style="text-align: center">
+<img src="RMarkdown_files/figure-html/caption1-1.png" alt="*A nice parabola.*" width="60%" />
+<p class="caption">(\#fig:caption1)*A nice parabola.*</p>
+</div>
+<p>For captioning tables, we use the <code>caption</code> argument of the <code>kable</code> function</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">head</span>(consumption) <span style="color:#f92672">%&gt;%</span>
+  knitr<span style="color:#f92672">::</span><span style="color:#a6e22e">kable</span>(caption <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Water Consumption in Australia&#34;</span>)
+</code></pre></div><table>
+<caption>(\#tab:caption2)Water Consumption in Australia</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> State </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:right;"> water_consumption </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> NSW </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 4555 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> VIC </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 2951 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> QLD </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 3341 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SA </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 1179 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> WA </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 1361 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> TAS </td>
+   <td style="text-align:left;"> 2008–09 </td>
+   <td style="text-align:right;"> 466 </td>
+  </tr>
+</tbody>
+</table>
+<p>For referring to figures or tables, we use the special Bookdown notation <code>\@ref</code>. We then specify that we are referencing either a figure or a table, and finally we specify the code chunk we are referencing. In the below examples, replace &ldquo;label&rdquo; with the name of the relevant code chunk.</p>
+<pre><code class="language-null" data-lang="null">\@ref(fig:label)
+\@ref(tab:label)
+</code></pre><p>Here is a reference to the above Figure @ref(fig:caption1) , and here is one to the above Table @ref(tab:caption2).</p>
+<h1 id="custom-styles">
+  Custom Styles
+  <a class="anchor" href="#custom-styles">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/using-custom-styles-in-r-markdown?u=2087740">Lynda 10.1</a></p>
+</blockquote>
+<p>There are two ways to style R Markdown documents.</p>
+<ul>
+<li>HTML output types require CSS options in a <code>.css</code> file
+<ul>
+<li>Recall this includes <code>html_document</code>, <code>bookdown::html_document2</code> and <code>slidy_presentation</code> output</li>
+</ul>
+</li>
+<li>PDF output types require LaTeX options in a <code>.tex</code> file
+<ul>
+<li>Recall this includes <code>pdf_document</code>, <code>bookdown::pdf_document2</code> and <code>beamer_presentation</code> output</li>
+</ul>
+</li>
+</ul>
+<h1 id="custom-html-with-css">
+  Custom HTML with CSS
+  <a class="anchor" href="#custom-html-with-css">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/styling-html-reports-in-r-markdown?u=2087740">Lynda 10.2</a></p>
+</blockquote>
+<p>CSS is a stylesheet language. We use it to specify the presentation of documents written in HTML or XML. It is simple to find the right code to do whatever you need, online, but we consider the basics here.</p>
+<p>Before we format our file, we must create a new <code>.css</code> file. The steps to do this are:</p>
+<ol>
+<li>In RStudio navigate <code>File</code>(\rightarrow)<code>New File</code>(\rightarrow)<code>Text File</code></li>
+<li>Save the new file to the relevant project folder</li>
+<li>Name the file with the <code>.css</code> extension, eg <code>styles.css</code></li>
+</ol>
+<p>We must also specify in the YAML header that we will be using these styles in our document. We add the  line:</p>
+<pre><code class="language-null" data-lang="null">css: styles.css
+</code></pre><p>We now add to the <code>.css</code> file. We use CSS syntax to target parts of our document we wish to modify.</p>
+<pre><code class="language-null" data-lang="null">body {
+  font-size: 14px; 
+  font-family: &quot;Times New Roman&quot;;
+  background-color: #e0fbff;
+} 
+</code></pre><p>Here is an example of modifying an element of our document We type <code>body</code> to specify we are making changes to the main text. We open our curly brackets (<code>{ }</code>) and specify each option on a new line. Each line ends with a semi-colon (<code>;</code>). We have changed these options:</p>
+<ul>
+<li><code>font-size</code> is now 14 pixels</li>
+<li><code>font-family</code> is now in Times New Roman (ie we have changed the text font)</li>
+<li><code>background-color</code> is now a shade of light blue selected using 
+  <a href="https://htmlcolorcodes.com/color-picker/">HTML colour codes</a></li>
+</ul>
+<p>Of course, each element has its own options, meaning there are many, many options we can modify altogether. Here are a few in action:</p>
+<center><img src = "images/css1.jpg" class="column"> </img></center>
+<center><img src = "images/css2.jpg" class="column"> </img></center>
+<div style="clear: both;">
+<h1 id="custom-pdf-with-tex">
+  Custom PDF with TeX
+  <a class="anchor" href="#custom-pdf-with-tex">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/styling-pdf-reports-in-r-markdown?u=2087740">Lynda 10.3</a></p>
+</blockquote>
+<p>We already know that TeX is the underlying force behind the configuration of PDF documents with R Markdown, so it&rsquo;s unsurprising that we call on it for our PDF styles.</p>
+<p>Before we format our file, we must create a new <code>.tex</code> file. The steps to do this are:</p>
+<ol>
+<li>In RStudio navigate <code>File</code>(\rightarrow)<code>New File</code>(\rightarrow)<code>Text File</code></li>
+<li>Save the new file to the relevant project folder</li>
+<li>Name the file with the <code>.sty</code> extension, eg <code>pdf_styles.sty</code></li>
+</ol>
+<p>We must also specify in the YAML header that we will be using these styles in our document. We add the lines:</p>
+<pre><code class="language-null" data-lang="null">header-includes:
+  - \usepackage{&quot;pdf_styles.sty&quot;}
+</code></pre><p><strong>Note</strong>: if we wanted to use multiple <code>.sty</code> files, we can do this with:</p>
+<pre><code class="language-null" data-lang="null">header-includes:
+  - \usepackage{&quot;pdf_styles.sty&quot;}
+  - \usepackage{&quot;other_styles.sty&quot;}
+</code></pre><p>It takes some knowledge of LaTeX to be able to implement options. Here are a few:</p>
+<pre><code class="language-null" data-lang="null">\usepackage{sectsty}            % Call on a package to modify styles
+
+\sectionfont{\color{red}}       % Change header font
+\subsectionfont{\color{blue}}   % Change subheader font
+
+\usepackage{helvet}             % Change font type to Helvetica
+</code></pre><center><img src = "images/tex2.jpg" width = 60% class="ImageBorder"> </img></center>
+<h1 id="displaying-other-languages">
+  Displaying Other Languages
+  <a class="anchor" href="#displaying-other-languages">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/display-latex-or-html-in-rmd-files?u=2087740">Lynda 11.2</a></p>
+</blockquote>
+<p>To display HTML, we simply copy some HTML into a code chunk and set the language as <code>html</code>. This works for other languages, including <code>latex</code> and <code>markdown</code> itself.</p>
+<center> <img src = "images/languages1.jpg" width = "40%"> </center>
+\  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-6&#34;</span>&gt;
+    Hello
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-6&#34;</span>&gt;
+    World!
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#66d9ef">\usepackage</span>{my_package}
+<span style="color:#75715e">% latex
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"># Example Heading
+
+Here is an example of some text I could put in R Markdown. My <span style="font-weight:bold">**italics**</span> and <span style="font-style:italic">*bold*</span> won&#39;t display in a code chunk!
+</code></pre></div><p>
+  <a href="https://rmarkdown.rstudio.com/authoring_knitr_engines.html%23sql">See here for some other possible languages</a>.</p>
+<h1 id="calling-on-latex-in-r-markdown">
+  Calling on LaTeX in R Markdown
+  <a class="anchor" href="#calling-on-latex-in-r-markdown">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/run-latex-in-pdf-documents?u=2087740">Lynda 11.3</a></p>
+</blockquote>
+<h2 id="latex-code">
+  LaTeX Code
+  <a class="anchor" href="#latex-code">#</a>
+</h2>
+<ul>
+<li>If we call on LaTeX code, we can paste it directly</li>
+<li>R Markdown handles almost all of it fine, but not the following:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">LaTeX symbol</th>
+<th style="text-align:center">We must write</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\#</code></td>
+<td style="text-align:center"><code>\\#</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\</code></td>
+<td style="text-align:center"><code>\\\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Also if we are in a code chunk and using LaTeX, we must put a <code>\\</code> before the following:
+<ul>
+<li><code>$</code>, <code>%</code>, <code>&amp;</code>, <code>~</code>, <code>_</code>, <code>^</code>, <code>{, }</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="latex-formatting">
+  LaTeX Formatting
+  <a class="anchor" href="#latex-formatting">#</a>
+</h2>
+<p>To call upon (LaTeX) formatting, we have two options.</p>
+<ul>
+<li>If we wish to call on a formula in a line, we surround the line with <code>\(</code> and <code>\)</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#e6db74">\(</span>X_{t} <span style="color:#f92672">=</span> \theta X_{t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>} <span style="color:#f92672">+</span> Z_t <span style="color:#f92672">+</span> \phi Z_{t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}<span style="color:#e6db74">\)</span>
+</code></pre></div><p>(X_{t} = \theta X_{t-1} + Z_t + \phi Z_{t-1})</p>
+<ul>
+<li>We may also frame a section of LaTeX code with <code>$$</code> to render entire sections of formatting</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-latex" data-lang="latex"><span style="color:#e6db74">$$</span>
+\quad
+\begin{pmatrix} 
+<span style="color:#ae81ff">12</span> &amp; <span style="color:#ae81ff">4</span> &amp; <span style="color:#ae81ff">1</span> \\
+<span style="color:#ae81ff">4</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span> &amp; <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span> &amp; e \\
+\pi &amp; <span style="color:#ae81ff">0</span> &amp; <span style="color:#ae81ff">8</span> \\
+\end{pmatrix}
+\quad
+<span style="color:#e6db74">$$</span>
+</code></pre></div><p>$$
+\quad
+\begin{pmatrix}
+12 &amp; 4 &amp; 1 \<br>
+4/3 &amp; 0.9 &amp; e \<br>
+\pi &amp; 0 &amp; 8 \<br>
+\end{pmatrix}
+\quad
+$$</p>
+<h1 id="calling-on-html-in-r-markdown">
+  Calling on HTML in R Markdown
+  <a class="anchor" href="#calling-on-html-in-r-markdown">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/run-html-in-r-markdown?u=2087740">Lynda 11.4</a></p>
+</blockquote>
+<p>Note that this is only possible in HTML document formats.</p>
+<p>Some HTML will run fine and without the need for formatting after being pasted into R Markdown. If this is not the case, code can be framed with special &ldquo;html_preserve&rdquo; framing.</p>
+<center><img src = "images/rainbow.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>preserveea302db25903ba8c</p>
+<h1 id="pubishing-html-documents-to-the-web">
+  Pubishing HTML Documents to the Web
+  <a class="anchor" href="#pubishing-html-documents-to-the-web">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/publishing-with-rpubs-com?u=2087740">Lynda 13</a></p>
+</blockquote>
+<p>There are two main ways to publish:</p>
+<ul>
+<li>
+  <a href="https://rpubs.com/">RPubs</a> is a free platform provided by RStudio</li>
+<li>
+  <a href="https://pages.github.com/">GitHub Pages</a> is a free-to-use platform, but requires knowledge of Git</li>
+</ul>
+<h2 id="using-rpubs">
+  Using RPubs
+  <a class="anchor" href="#using-rpubs">#</a>
+</h2>
+<p><strong>1.</strong> Connect to the 
+  <a href="https://rpubs.com/">RPubs website</a> and register an account</p>
+<center><img src = "images/rpubs.jpg" width="50%" class="ImageBorder"> </img></center>
+<p><strong>2.</strong> Click the &ldquo;Publish&rdquo; button from within R Studio. This can be done either from the <code>.Rmd</code> file or from the knitted document</p>
+<center><img src = "images/publish1.jpg" class="column"> </img></center>
+<center><img src = "images/publish2.jpg" class="column"> </img></center>
+<div style="clear: both;">
+<p><strong>3.</strong> Select &ldquo;Publish&rdquo;</p>
+<center><img src = "images/publish3.jpg" width="40%" class="ImageBorder"> </img></center>
+<p><strong>4.</strong> Set a title, description, and choose a slug (the slug is the last part of the URL)</p>
+<center><img src = "images/publish4.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>Your document is now public at the available URL!</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/communicate/RMarkdown/RMarkdown.utf8.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-r-markdown">What is R Markdown?</a>
+      <ul>
+        <li><a href="#markup-languages">Markup Languages</a></li>
+        <li><a href="#how-does-r-markdown-work">How does R Markdown work?</a></li>
+        <li><a href="#what-can-r-markdown-do">What can R Markdown do?</a>
+          <ul>
+            <li><a href="#pdf">PDF</a></li>
+            <li><a href="#html-reports">HTML Reports</a></li>
+            <li><a href="#html-presentations">HTML Presentations</a></li>
+            <li><a href="#other-media">Other Media</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#latex-bibtex-and-tex">LaTeX, BibTeX and TeX</a>
+      <ul>
+        <li><a href="#latex">LaTeX</a></li>
+        <li><a href="#bibtex">BibTeX</a></li>
+        <li><a href="#tex">TeX</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-tex">Installing TeX</a></li>
+    <li><a href="#installing-pandoc">Installing Pandoc</a></li>
+    <li><a href="#the-r-markdown-package">The R Markdown Package</a></li>
+    <li><a href="#the-r-markdown-interface">The R Markdown interface</a></li>
+    <li><a href="#the-yaml-header">The YAML Header</a>
+      <ul>
+        <li><a href="#basic-options">Basic options:</a></li>
+        <li><a href="#additional-options">Additional options:</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-chunks">Code Chunks</a>
+      <ul>
+        <li><a href="#creating-code-chunks">Creating Code Chunks</a></li>
+        <li><a href="#code-chunk-options">Code Chunk options</a>
+          <ul>
+            <li><a href="#global-chunk-options">Global Chunk options</a></li>
+            <li><a href="#local-chunk-options">Local Chunk options</a></li>
+            <li><a href="#list-of-options">List of options</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#running-code-in-r-markdown-documents">Running code in R Markdown documents</a>
+      <ul>
+        <li><a href="#specifying-output">Specifying output</a></li>
+        <li><a href="#running-individual-lines">Running individual lines</a></li>
+        <li><a href="#running-from-chunks">Running from chunks</a></li>
+        <li><a href="#the-run-button">The Run button</a></li>
+      </ul>
+    </li>
+    <li><a href="#sectioning-r-markdown-documents">Sectioning R Markdown documents</a>
+      <ul>
+        <li><a href="#sectioning-in-standard-documents">Sectioning in standard documents</a></li>
+        <li><a href="#sectioning-in-slides">Sectioning in slides</a></li>
+      </ul>
+    </li>
+    <li><a href="#tabsets">Tabsets</a></li>
+    <li><a href="#r-markdown-text-options">R Markdown text options</a></li>
+    <li><a href="#referencing">Referencing</a></li>
+    <li><a href="#code-chunk-navigation-and-naming-convention">Code Chunk Navigation and Naming Convention</a></li>
+    <li><a href="#including-code-from-script-files">Including Code from Script Files</a></li>
+    <li><a href="#different-slide-formats">Different Slide Formats</a>
+      <ul>
+        <li><a href="#ioslides">Ioslides</a></li>
+        <li><a href="#slidy">Slidy</a></li>
+        <li><a href="#beamer">Beamer</a></li>
+      </ul>
+    </li>
+    <li><a href="#controlling-chart-output">Controlling Chart Output</a></li>
+    <li><a href="#images-and-r-markdown">Images and R Markdown</a>
+      <ul>
+        <li><a href="#images-with-knitr">Images with Knitr</a></li>
+        <li><a href="#images-with-raw-html">Images with Raw HTML</a></li>
+        <li><a href="#images-with-raw-latex">Images with Raw LaTeX</a></li>
+      </ul>
+    </li>
+    <li><a href="#tables">Tables</a>
+      <ul>
+        <li><a href="#r-markdown-formatted-tables">R Markdown Formatted Tables</a></li>
+      </ul>
+    </li>
+    <li><a href="#kable-tables-and-other-tables">Kable Tables and other tables</a></li>
+    <li><a href="#captions-with-bookdown">Captions with Bookdown</a></li>
+    <li><a href="#custom-styles">Custom Styles</a></li>
+    <li><a href="#custom-html-with-css">Custom HTML with CSS</a></li>
+    <li><a href="#custom-pdf-with-tex">Custom PDF with TeX</a></li>
+    <li><a href="#displaying-other-languages">Displaying Other Languages</a></li>
+    <li><a href="#calling-on-latex-in-r-markdown">Calling on LaTeX in R Markdown</a>
+      <ul>
+        <li><a href="#latex-code">LaTeX Code</a></li>
+        <li><a href="#latex-formatting">LaTeX Formatting</a></li>
+      </ul>
+    </li>
+    <li><a href="#calling-on-html-in-r-markdown">Calling on HTML in R Markdown</a></li>
+    <li><a href="#pubishing-html-documents-to-the-web">Pubishing HTML Documents to the Web</a>
+      <ul>
+        <li><a href="#using-rpubs">Using RPubs</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

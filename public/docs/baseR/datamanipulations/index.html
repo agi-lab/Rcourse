@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Data manipulation, operations and work strategy in Base R #  Learning outcomes #  By the end of this topic, you should be able to
+  extract elements from different R data structures in an efficient way
+  manipulate different types of R data structures with appropriate R functions
+  implement work strategies of R and R Studio
+  Warning: the materials here are so-called &ldquo;Base R&rdquo;.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Data manipulation, operations and work strategy in Base R" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/baseR/datamanipulations/" />
+
+<title>Data manipulation, operations and work strategy in Base R | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/baseR/datamanipulations/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/"class=active>Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/"class=active>Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Data manipulation, operations and work strategy in Base R</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-manipulation-operations-and-work-strategy-in-base-r">Data manipulation, operations and work strategy in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---method-i---page-100">Vectors - Extracting elements from vectors - Method I - Page 100</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---method-ii---pages-100-101">Vectors - Extracting elements from vectors - Method II - Pages 100-101</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---three-useful-functions---page-101">Vectors - Extracting elements from vectors - Three useful functions - Page 101</a></li>
+        <li><a href="#matrix---extraction-from-matrices--method-i---pages-102-103">Matrix - Extraction from matrices- Method I - Pages 102-103</a></li>
+        <li><a href="#matrix---extraction-from-matrices--method-ii---pages-102-103">Matrix - Extraction from matrices- Method II - Pages 102-103</a></li>
+        <li><a href="#matrix---the-which-function-for-matrices---page-104">Matrix - The which() function for matrices - Page 104</a></li>
+        <li><a href="#data-frame-example">Data frame example</a></li>
+        <li><a href="#the-attach-function">The attach() function</a></li>
+        <li><a href="#dplyr---introduction">dplyr - Introduction</a></li>
+        <li><a href="#dplyr---filter-and-select">dplyr - Filter and Select</a></li>
+        <li><a href="#dplyr---pipeline-operator-arrange-and-mutate">dplyr - Pipeline operator, Arrange and Mutate</a></li>
+        <li><a href="#dplyr---why-use-the-pipeline-operator">dplyr - Why use the pipeline operator?</a></li>
+        <li><a href="#dplyr---summarise-and-group_by">dplyr - summarise and group_by</a></li>
+        <li><a href="#dplyr---why-use-dplyr">dplyr - Why use dplyr?</a></li>
+        <li><a href="#dplyr---more-information">dplyr - More information</a></li>
+        <li><a href="#work-strategy---page-285">Work strategy - page 285</a></li>
+        <li><a href="#work-strategy---page-285-1">Work strategy - page 285</a></li>
+        <li><a href="#work-strategy---page-285-2">Work strategy - page 285</a></li>
+        <li><a href="#work-stategy---exercise">Work stategy - Exercise</a></li>
+        <li><a href="#work-stategy---solution">Work stategy - Solution</a></li>
+        <li><a href="#additional-notes">Additional Notes</a></li>
+        <li><a href="#additional-notes---manipulating-character-strings---page-109">Additional Notes - Manipulating character strings - Page 109</a></li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="data-manipulation-operations-and-work-strategy-in-base-r">
+  Data manipulation, operations and work strategy in Base R
+  <a class="anchor" href="#data-manipulation-operations-and-work-strategy-in-base-r">#</a>
+</h1>
+<h2 id="learning-outcomes">
+  Learning outcomes
+  <a class="anchor" href="#learning-outcomes">#</a>
+</h2>
+<p>By the end of this topic, you should be able to</p>
+<ul>
+<li>
+<p>extract elements from different R data structures in an efficient way</p>
+</li>
+<li>
+<p>manipulate different types of R data structures with appropriate R functions</p>
+</li>
+<li>
+<p>implement work strategies of R and R Studio</p>
+</li>
+</ul>
+<p><strong>Warning:</strong> the materials here are so-called &ldquo;Base R&rdquo;. There are easier (and often better) ways of doing things with the &ldquo;tidyverse&rdquo; ecosystem (see next section).</p>
+<p>Note that page numbers refer to the book 
+  <a href="http://biostatisticien.eu/springeR/index-en.html">The R
+Software</a>.</p>
+<h2 id="vectors---extracting-elements-from-vectors---method-i---page-100">
+  Vectors - Extracting elements from vectors - Method I - Page 100
+  <a class="anchor" href="#vectors---extracting-elements-from-vectors---method-i---page-100">#</a>
+</h2>
+<p>By using the index/indices</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">vec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">3</span>)
+vec[2]
+<span style="color:#75715e">## [1] 4</span>
+vec[<span style="color:#ae81ff">-2</span>]
+<span style="color:#75715e">## [1] 2 6 8 3</span>
+vec[2<span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>]
+<span style="color:#75715e">## [1] 4 6 8 3</span>
+vec[<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>)]
+<span style="color:#75715e">## [1] 4 6 8</span>
+</code></pre></div><h2 id="vectors---extracting-elements-from-vectors---method-ii---pages-100-101">
+  Vectors - Extracting elements from vectors - Method II - Pages 100-101
+  <a class="anchor" href="#vectors---extracting-elements-from-vectors---method-ii---pages-100-101">#</a>
+</h2>
+<p>By using logical masks (that is, by specifying whether each element will be extracted using a logical index):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">vec
+<span style="color:#75715e">## [1] 2 4 6 8 3</span>
+vec<span style="color:#a6e22e">[c</span>(F,F,T,T,F)]
+<span style="color:#75715e">## [1] 6 8</span>
+vec[vec<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">4</span>]
+<span style="color:#75715e">## [1] 6 8</span>
+</code></pre></div><p>Advantages: fast execution and easy communication.</p>
+<h2 id="vectors---extracting-elements-from-vectors---three-useful-functions---page-101">
+  Vectors - Extracting elements from vectors - Three useful functions - Page 101
+  <a class="anchor" href="#vectors---extracting-elements-from-vectors---three-useful-functions---page-101">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">-5</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">-5</span>)
+<span style="color:#a6e22e">which.max</span>(x)
+<span style="color:#75715e">## [1] 2</span>
+<span style="color:#a6e22e">which.min</span>(x)
+<span style="color:#75715e">## [1] 5</span>
+<span style="color:#a6e22e">which</span>(x<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+<span style="color:#75715e">## [1] 3 4</span>
+</code></pre></div><h2 id="matrix---extraction-from-matrices--method-i---pages-102-103">
+  Matrix - Extraction from matrices- Method I - Pages 102-103
+  <a class="anchor" href="#matrix---extraction-from-matrices--method-i---pages-102-103">#</a>
+</h2>
+<p>By using indices <code>X[indr, indc]</code></p>
+<ul>
+<li><code>indr</code> is the vector of indices of rows and  <code>indc</code> is the vector of indices of columns to extract</li>
+<li>omitting <code>indr</code> (respectively <code>indc</code>) means that all rows are selected (respectively all columns)</li>
+<li><code>indr</code> and <code>indc</code> can be preceded by a minus sign (-) to indicate elements not to extract</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">Mat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>,nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+Mat
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    4    5    6</span>
+<span style="color:#75715e">## [3,]    7    8    9</span>
+<span style="color:#75715e">## [4,]   10   11   12</span>
+Mat[2,<span style="color:#ae81ff">3</span>]
+<span style="color:#75715e">## [1] 6</span>
+
+Mat[,<span style="color:#ae81ff">1</span>]
+<span style="color:#75715e">## [1]  1  4  7 10</span>
+
+Mat<span style="color:#a6e22e">[c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>),]
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]   10   11   12</span>
+Mat[3,<span style="color:#f92672">-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>)]
+<span style="color:#75715e">## [1] 8</span>
+</code></pre></div><h2 id="matrix---extraction-from-matrices--method-ii---pages-102-103">
+  Matrix - Extraction from matrices- Method II - Pages 102-103
+  <a class="anchor" href="#matrix---extraction-from-matrices--method-ii---pages-102-103">#</a>
+</h2>
+<p>By using logical masks <code>X[mask]</code></p>
+<ul>
+<li>a mask is a matrix of logical values (TRUE or FALSE) of the same size as X, indicating which elements to extract</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">Mat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>,nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+MatLogical <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#66d9ef">TRUE</span>,<span style="color:#66d9ef">FALSE</span>),nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+Mat
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    4    5    6</span>
+<span style="color:#75715e">## [3,]    7    8    9</span>
+<span style="color:#75715e">## [4,]   10   11   12</span>
+MatLogical
+<span style="color:#75715e">##       [,1]  [,2]  [,3]</span>
+<span style="color:#75715e">## [1,]  TRUE  TRUE  TRUE</span>
+<span style="color:#75715e">## [2,] FALSE FALSE FALSE</span>
+<span style="color:#75715e">## [3,]  TRUE  TRUE  TRUE</span>
+<span style="color:#75715e">## [4,] FALSE FALSE FALSE</span>
+Mat[MatLogical]
+<span style="color:#75715e">## [1] 1 7 2 8 3 9</span>
+</code></pre></div><h2 id="matrix---the-which-function-for-matrices---page-104">
+  Matrix - The which() function for matrices - Page 104
+  <a class="anchor" href="#matrix---the-which-function-for-matrices---page-104">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>),<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>)
+m
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    1    2</span>
+<span style="color:#75715e">## [2,]    2    2    1</span>
+<span style="color:#75715e">## [3,]    3    3    3</span>
+<span style="color:#a6e22e">which</span>(m <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) 
+<span style="color:#75715e">## [1] 1 4 8</span>
+<span style="color:#75715e"># m is seen as the concatenation of its columns</span>
+<span style="color:#a6e22e">which</span>(m <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>,arr.ind<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e">##      row col</span>
+<span style="color:#75715e">## [1,]   1   1</span>
+<span style="color:#75715e">## [2,]   1   2</span>
+<span style="color:#75715e">## [3,]   2   3</span>
+<span style="color:#75715e"># this gives the indices (row and column) of all elements = 1</span>
+</code></pre></div><h2 id="data-frame-example">
+  Data frame example
+  <a class="anchor" href="#data-frame-example">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">X <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(GENDER<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;F&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>),
+Height<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">165</span>,<span style="color:#ae81ff">182</span>,<span style="color:#ae81ff">178</span>,<span style="color:#ae81ff">160</span>),
+Weight<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">65</span>,<span style="color:#ae81ff">67</span>,<span style="color:#ae81ff">55</span>),
+Income<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">80</span>,<span style="color:#ae81ff">90</span>,<span style="color:#ae81ff">60</span>,<span style="color:#ae81ff">50</span>))
+<span style="color:#a6e22e">row.names</span>(X)<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;Aiyana&#39;</span>,<span style="color:#e6db74">&#39;James&#39;</span>,<span style="color:#e6db74">&#39;John&#39;</span>,<span style="color:#e6db74">&#39;Abbey&#39;</span>)
+
+X
+<span style="color:#75715e">##        GENDER Height Weight Income</span>
+<span style="color:#75715e">## Aiyana      F    165     50     80</span>
+<span style="color:#75715e">## James       M    182     65     90</span>
+<span style="color:#75715e">## John        M    178     67     60</span>
+<span style="color:#75715e">## Abbey       F    160     55     50</span>
+X[3,<span style="color:#ae81ff">2</span>]
+<span style="color:#75715e">## [1] 178</span>
+X[<span style="color:#e6db74">&#39;John&#39;</span>,<span style="color:#e6db74">&#39;Height&#39;</span>]
+<span style="color:#75715e">## [1] 178</span>
+
+X<span style="color:#f92672">$</span>Weight
+<span style="color:#75715e">## [1] 50 65 67 55</span>
+X[<span style="color:#e6db74">&#34;John&#34;</span>,]
+<span style="color:#75715e">##      GENDER Height Weight Income</span>
+<span style="color:#75715e">## John      M    178     67     60</span>
+X[,<span style="color:#e6db74">&#34;Height&#34;</span>]
+<span style="color:#75715e">## [1] 165 182 178 160</span>
+</code></pre></div><h2 id="the-attach-function">
+  The attach() function
+  <a class="anchor" href="#the-attach-function">#</a>
+</h2>
+<p>The function <code>attach(some.data.frame)</code> creates a workspace where each variable of the data frame can be accessed directly (without using the dollar sign <code>$</code>). Therefore it can reduce the length of codes. However, this space does not &lsquo;communicate&rsquo; with the working directory. Therefore, if you make a change in the data frame, it will not be effective in this additional workspace. We then recommend to be very careful with the <code>attach()</code> function (especially for large projects).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">attach</span>(X)
+GENDER
+<span style="color:#75715e">## [1] &#34;F&#34; &#34;M&#34; &#34;M&#34; &#34;F&#34;</span>
+<span style="color:#75715e"># We update GENDER in our data frame X</span>
+X<span style="color:#f92672">$</span>GENDER <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>)
+X<span style="color:#f92672">$</span>GENDER
+<span style="color:#75715e">## [1] &#34;F&#34; &#34;F&#34; &#34;F&#34; &#34;F&#34;</span>
+<span style="color:#75715e"># However, the version of X we &#39;attached&#39; has NOT been updated</span>
+GENDER
+<span style="color:#75715e">## [1] &#34;F&#34; &#34;M&#34; &#34;M&#34; &#34;F&#34;</span>
+</code></pre></div><h2 id="dplyr---introduction">
+  dplyr - Introduction
+  <a class="anchor" href="#dplyr---introduction">#</a>
+</h2>
+<p>dplyr is a commonly used package. It makes manipulating dataframes very easy and intuitive. To install (and load) any package, just type</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#39;dplyr&#39;</span>) <span style="color:#75715e"># Installs the package, you need this only once</span>
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#39;dplyr&#39;</span>) <span style="color:#75715e"># Loads the package, you need this every time you use it</span>
+</code></pre></div><p>There are 6 main functions in dplyr:</p>
+<ul>
+<li>
+<p>filter - selects rows</p>
+</li>
+<li>
+<p>select - selects columns</p>
+</li>
+<li>
+<p>arrange - sorts rows by some order</p>
+</li>
+<li>
+<p>mutate - creates new columns</p>
+</li>
+<li>
+<p>group_by - groups certain rows together</p>
+</li>
+<li>
+<p>summarise - provides summaries of grouped rows</p>
+</li>
+</ul>
+<h2 id="dplyr---filter-and-select">
+  dplyr - Filter and Select
+  <a class="anchor" href="#dplyr---filter-and-select">#</a>
+</h2>
+<p>Here some examples using the in-built data frame &lsquo;mtcars&rsquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">
+<span style="color:#75715e"># Filters the dataset for observations with mpg greater than 20</span>
+<span style="color:#a6e22e">filter</span>(mtcars, mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>) 
+<span style="color:#75715e">##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span style="color:#75715e">## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1</span>
+<span style="color:#75715e">## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2</span>
+<span style="color:#75715e">## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1</span>
+<span style="color:#75715e">## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</span>
+
+<span style="color:#75715e"># Returns the dataframe mtcars but only with the 3 specified columns</span>
+<span style="color:#a6e22e">select</span>(mtcars, mpg, cyl, wt) 
+<span style="color:#75715e">##                      mpg cyl    wt</span>
+<span style="color:#75715e">## Mazda RX4           21.0   6 2.620</span>
+<span style="color:#75715e">## Mazda RX4 Wag       21.0   6 2.875</span>
+<span style="color:#75715e">## Datsun 710          22.8   4 2.320</span>
+<span style="color:#75715e">## Hornet 4 Drive      21.4   6 3.215</span>
+<span style="color:#75715e">## Hornet Sportabout   18.7   8 3.440</span>
+<span style="color:#75715e">## Valiant             18.1   6 3.460</span>
+<span style="color:#75715e">## Duster 360          14.3   8 3.570</span>
+<span style="color:#75715e">## Merc 240D           24.4   4 3.190</span>
+<span style="color:#75715e">## Merc 230            22.8   4 3.150</span>
+<span style="color:#75715e">## Merc 280            19.2   6 3.440</span>
+<span style="color:#75715e">## Merc 280C           17.8   6 3.440</span>
+<span style="color:#75715e">## Merc 450SE          16.4   8 4.070</span>
+<span style="color:#75715e">## Merc 450SL          17.3   8 3.730</span>
+<span style="color:#75715e">## Merc 450SLC         15.2   8 3.780</span>
+<span style="color:#75715e">## Cadillac Fleetwood  10.4   8 5.250</span>
+<span style="color:#75715e">## Lincoln Continental 10.4   8 5.424</span>
+<span style="color:#75715e">## Chrysler Imperial   14.7   8 5.345</span>
+<span style="color:#75715e">## Fiat 128            32.4   4 2.200</span>
+<span style="color:#75715e">## Honda Civic         30.4   4 1.615</span>
+<span style="color:#75715e">## Toyota Corolla      33.9   4 1.835</span>
+<span style="color:#75715e">## Toyota Corona       21.5   4 2.465</span>
+<span style="color:#75715e">## Dodge Challenger    15.5   8 3.520</span>
+<span style="color:#75715e">## AMC Javelin         15.2   8 3.435</span>
+<span style="color:#75715e">## Camaro Z28          13.3   8 3.840</span>
+<span style="color:#75715e">## Pontiac Firebird    19.2   8 3.845</span>
+<span style="color:#75715e">## Fiat X1-9           27.3   4 1.935</span>
+<span style="color:#75715e">## Porsche 914-2       26.0   4 2.140</span>
+<span style="color:#75715e">## Lotus Europa        30.4   4 1.513</span>
+<span style="color:#75715e">## Ford Pantera L      15.8   8 3.170</span>
+<span style="color:#75715e">## Ferrari Dino        19.7   6 2.770</span>
+<span style="color:#75715e">## Maserati Bora       15.0   8 3.570</span>
+<span style="color:#75715e">## Volvo 142E          21.4   4 2.780</span>
+
+<span style="color:#75715e"># Returns the columns mpg and cyl for rows with wt greater than 2</span>
+<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">filter</span>(mtcars, wt <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>), mpg, cyl)
+<span style="color:#75715e">##                      mpg cyl</span>
+<span style="color:#75715e">## Mazda RX4           21.0   6</span>
+<span style="color:#75715e">## Mazda RX4 Wag       21.0   6</span>
+<span style="color:#75715e">## Datsun 710          22.8   4</span>
+<span style="color:#75715e">## Hornet 4 Drive      21.4   6</span>
+<span style="color:#75715e">## Hornet Sportabout   18.7   8</span>
+<span style="color:#75715e">## Valiant             18.1   6</span>
+<span style="color:#75715e">## Duster 360          14.3   8</span>
+<span style="color:#75715e">## Merc 240D           24.4   4</span>
+<span style="color:#75715e">## Merc 230            22.8   4</span>
+<span style="color:#75715e">## Merc 280            19.2   6</span>
+<span style="color:#75715e">## Merc 280C           17.8   6</span>
+<span style="color:#75715e">## Merc 450SE          16.4   8</span>
+<span style="color:#75715e">## Merc 450SL          17.3   8</span>
+<span style="color:#75715e">## Merc 450SLC         15.2   8</span>
+<span style="color:#75715e">## Cadillac Fleetwood  10.4   8</span>
+<span style="color:#75715e">## Lincoln Continental 10.4   8</span>
+<span style="color:#75715e">## Chrysler Imperial   14.7   8</span>
+<span style="color:#75715e">## Fiat 128            32.4   4</span>
+<span style="color:#75715e">## Toyota Corona       21.5   4</span>
+<span style="color:#75715e">## Dodge Challenger    15.5   8</span>
+<span style="color:#75715e">## AMC Javelin         15.2   8</span>
+<span style="color:#75715e">## Camaro Z28          13.3   8</span>
+<span style="color:#75715e">## Pontiac Firebird    19.2   8</span>
+<span style="color:#75715e">## Porsche 914-2       26.0   4</span>
+<span style="color:#75715e">## Ford Pantera L      15.8   8</span>
+<span style="color:#75715e">## Ferrari Dino        19.7   6</span>
+<span style="color:#75715e">## Maserati Bora       15.0   8</span>
+<span style="color:#75715e">## Volvo 142E          21.4   4</span>
+</code></pre></div><h2 id="dplyr---pipeline-operator-arrange-and-mutate">
+  dplyr - Pipeline operator, Arrange and Mutate
+  <a class="anchor" href="#dplyr---pipeline-operator-arrange-and-mutate">#</a>
+</h2>
+<p>As you apply more operations to your dataframe, the nested functions you use can get hard to read</p>
+<p>Luckily, the dplyr package includes the useful &lsquo;pipeline&rsquo; operator %&gt;% (<em>orally referred to as &ldquo;pipe&rdquo;, such as in &ldquo;A pipe B&rdquo;</em>). Think of it as &ldquo;and then&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">
+<span style="color:#75715e"># Take the dataframe, and then filter for mpg greater than 20</span>
+mtcars <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(mpg<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">30</span>)
+<span style="color:#75715e">##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span style="color:#75715e">## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1</span>
+<span style="color:#75715e">## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2</span>
+<span style="color:#75715e">## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1</span>
+<span style="color:#75715e">## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</span>
+
+<span style="color:#75715e"># Do the same, and then select certain columns</span>
+mtcars <span style="color:#f92672">%&gt;%</span> 
+  <span style="color:#a6e22e">filter</span>(mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(mpg, wt)
+<span style="color:#75715e">##                 mpg    wt</span>
+<span style="color:#75715e">## Fiat 128       32.4 2.200</span>
+<span style="color:#75715e">## Honda Civic    30.4 1.615</span>
+<span style="color:#75715e">## Toyota Corolla 33.9 1.835</span>
+<span style="color:#75715e">## Lotus Europa   30.4 1.513</span>
+
+<span style="color:#75715e">########################### arrange ##################################</span>
+<span style="color:#75715e"># Sort the rows in ascending order of wt</span>
+mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">arrange</span>(wt)
+<span style="color:#75715e">##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span style="color:#75715e">## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</span>
+<span style="color:#75715e">## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2</span>
+<span style="color:#75715e">## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1</span>
+<span style="color:#75715e">## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1</span>
+
+<span style="color:#75715e"># Sort the rows in descending order of wt</span>
+mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(wt))
+<span style="color:#75715e">##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span style="color:#75715e">## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1</span>
+<span style="color:#75715e">## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1</span>
+<span style="color:#75715e">## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2</span>
+<span style="color:#75715e">## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</span>
+
+<span style="color:#75715e">########################### mutate ###################################</span>
+mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(double_wt <span style="color:#f92672">=</span> wt<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>, <span style="color:#75715e"># Creates a new variable called double_wt</span>
+         kms_per_gallon <span style="color:#f92672">=</span> mpg<span style="color:#f92672">*</span><span style="color:#ae81ff">1.61</span>, <span style="color:#75715e"># Creates a new variable called kms_per_gallon</span>
+         name <span style="color:#f92672">=</span> <span style="color:#a6e22e">row.names</span>(mtcars)) <span style="color:#f92672">%&gt;%</span>  <span style="color:#75715e"># Creates a new variable with names of the cars</span>
+  <span style="color:#a6e22e">select</span>(name, double_wt, kms_per_gallon)
+<span style="color:#75715e">##                   name double_wt kms_per_gallon</span>
+<span style="color:#75715e">## 1            Mazda RX4     5.240         33.810</span>
+<span style="color:#75715e">## 2        Mazda RX4 Wag     5.750         33.810</span>
+<span style="color:#75715e">## 3           Datsun 710     4.640         36.708</span>
+<span style="color:#75715e">## 4       Hornet 4 Drive     6.430         34.454</span>
+<span style="color:#75715e">## 5    Hornet Sportabout     6.880         30.107</span>
+<span style="color:#75715e">## 6              Valiant     6.920         29.141</span>
+<span style="color:#75715e">## 7           Duster 360     7.140         23.023</span>
+<span style="color:#75715e">## 8            Merc 240D     6.380         39.284</span>
+<span style="color:#75715e">## 9             Merc 230     6.300         36.708</span>
+<span style="color:#75715e">## 10            Merc 280     6.880         30.912</span>
+<span style="color:#75715e">## 11           Merc 280C     6.880         28.658</span>
+<span style="color:#75715e">## 12          Merc 450SE     8.140         26.404</span>
+<span style="color:#75715e">## 13          Merc 450SL     7.460         27.853</span>
+<span style="color:#75715e">## 14         Merc 450SLC     7.560         24.472</span>
+<span style="color:#75715e">## 15  Cadillac Fleetwood    10.500         16.744</span>
+<span style="color:#75715e">## 16 Lincoln Continental    10.848         16.744</span>
+<span style="color:#75715e">## 17   Chrysler Imperial    10.690         23.667</span>
+<span style="color:#75715e">## 18            Fiat 128     4.400         52.164</span>
+<span style="color:#75715e">## 19         Honda Civic     3.230         48.944</span>
+<span style="color:#75715e">## 20      Toyota Corolla     3.670         54.579</span>
+<span style="color:#75715e">## 21       Toyota Corona     4.930         34.615</span>
+<span style="color:#75715e">## 22    Dodge Challenger     7.040         24.955</span>
+<span style="color:#75715e">## 23         AMC Javelin     6.870         24.472</span>
+<span style="color:#75715e">## 24          Camaro Z28     7.680         21.413</span>
+<span style="color:#75715e">## 25    Pontiac Firebird     7.690         30.912</span>
+<span style="color:#75715e">## 26           Fiat X1-9     3.870         43.953</span>
+<span style="color:#75715e">## 27       Porsche 914-2     4.280         41.860</span>
+<span style="color:#75715e">## 28        Lotus Europa     3.026         48.944</span>
+<span style="color:#75715e">## 29      Ford Pantera L     6.340         25.438</span>
+<span style="color:#75715e">## 30        Ferrari Dino     5.540         31.717</span>
+<span style="color:#75715e">## 31       Maserati Bora     7.140         24.150</span>
+<span style="color:#75715e">## 32          Volvo 142E     5.560         34.454</span>
+</code></pre></div><h2 id="dplyr---why-use-the-pipeline-operator">
+  dplyr - Why use the pipeline operator?
+  <a class="anchor" href="#dplyr---why-use-the-pipeline-operator">#</a>
+</h2>
+<p>The pipeline operator makes it much easier to read what is going on. Note that the following two pieces of code achieve the same thing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Using base R</span>
+<span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">filter</span>(mtcars, mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>), mpg, wt, cyl), <span style="color:#a6e22e">desc</span>(wt))
+<span style="color:#75715e">##                 mpg    wt cyl</span>
+<span style="color:#75715e">## Fiat 128       32.4 2.200   4</span>
+<span style="color:#75715e">## Toyota Corolla 33.9 1.835   4</span>
+<span style="color:#75715e">## Honda Civic    30.4 1.615   4</span>
+<span style="color:#75715e">## Lotus Europa   30.4 1.513   4</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># Using dplyr</span>
+mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(mpg, wt, cyl) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">arrange</span>(<span style="color:#a6e22e">desc</span>(wt))
+<span style="color:#75715e">##                 mpg    wt cyl</span>
+<span style="color:#75715e">## Fiat 128       32.4 2.200   4</span>
+<span style="color:#75715e">## Toyota Corolla 33.9 1.835   4</span>
+<span style="color:#75715e">## Honda Civic    30.4 1.615   4</span>
+<span style="color:#75715e">## Lotus Europa   30.4 1.513   4</span>
+</code></pre></div><p>It is hard to quickly get what the base R version is doing. In contrast, you can easily interpret the dplyr versions as:</p>
+<ul>
+<li>
+<p>take the mtcars dataset, <strong>and then</strong></p>
+</li>
+<li>
+<p>filter for mpg &gt; 30, <strong>and then</strong></p>
+</li>
+<li>
+<p>select the columns mpg, wt, cyl, <strong>and then</strong></p>
+</li>
+<li>
+<p>arrange them by descending weight</p>
+</li>
+</ul>
+<h2 id="dplyr---summarise-and-group_by">
+  dplyr - summarise and group_by
+  <a class="anchor" href="#dplyr---summarise-and-group_by">#</a>
+</h2>
+<p>summarise() will give you summary statistics</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(mean_mpg <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(mpg),
+            num_cars <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>(),
+            sd_wt <span style="color:#f92672">=</span> <span style="color:#a6e22e">sd</span>(wt))
+<span style="color:#75715e">##   mean_mpg num_cars     sd_wt</span>
+<span style="color:#75715e">## 1 20.09062       32 0.9784574</span>
+</code></pre></div><p>group_by is a very powerful function that will group rows into different categories. You can then use summarise() to find summary statistics of each group</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(cyl) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># Group cars by how many cylinders they have</span>
+  <span style="color:#a6e22e">summarise</span>(avg_mpg <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(mpg)) <span style="color:#75715e"># Find the average mpg for each group (cyl)</span>
+<span style="color:#75715e">## `summarise()` ungrouping output (override with `.groups` argument)</span>
+<span style="color:#75715e">## # A tibble: 3 x 2</span>
+<span style="color:#75715e">##     cyl avg_mpg</span>
+<span style="color:#75715e">##   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span style="color:#75715e">## 1     4    26.7</span>
+<span style="color:#75715e">## 2     6    19.7</span>
+<span style="color:#75715e">## 3     8    15.1</span>
+</code></pre></div><p>Common summary statistics include:</p>
+<ul>
+<li>mean() the average</li>
+<li>sd() the standard deviation</li>
+<li>n() the count</li>
+</ul>
+<h2 id="dplyr---why-use-dplyr">
+  dplyr - Why use dplyr?
+  <a class="anchor" href="#dplyr---why-use-dplyr">#</a>
+</h2>
+<p>dplyr is generally easier to read and write than base R. The following codes do the same thing</p>
+<p><strong>Base R:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">new_df <span style="color:#f92672">&lt;-</span> mtcars[mtcars<span style="color:#f92672">$</span>mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span> <span style="color:#f92672">&amp;</span> mtcars<span style="color:#f92672">$</span>wt <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>,]
+new_df[<span style="color:#e6db74">&#34;kmpl&#34;</span>] <span style="color:#f92672">&lt;-</span> new_df<span style="color:#f92672">$</span>mpg <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.264172</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.60934</span>
+new_df <span style="color:#f92672">&lt;-</span> new_df[, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;kmpl&#34;</span>, <span style="color:#e6db74">&#34;disp&#34;</span>, <span style="color:#e6db74">&#34;wt&#34;</span>)]
+</code></pre></div><p><strong>dplyr:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">new_df <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">mutate</span>(name <span style="color:#f92672">=</span> <span style="color:#a6e22e">rownames</span>(mtcars),
+         kmpl <span style="color:#f92672">=</span> mpg <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.264172</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.60934</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(mpg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span>,
+         wt <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">select</span>(name,
+         kmpl,
+         disp,
+         wt)
+</code></pre></div><p>In particular, group_by and summarise are very easy to write with dplyr. They are significantly harder to write in base R:</p>
+<p><strong>Base R:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">avg_weight <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">aggregate</span>(mtcars<span style="color:#f92672">$</span>wt,
+          by <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(cylinders <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">$</span>cyl, 
+                    gears <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">$</span>gear),
+          FUN <span style="color:#f92672">=</span> mean)
+
+<span style="color:#a6e22e">names</span>(avg_weight)[3] <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;Average_weight&#34;</span>
+
+sd_weight <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">aggregate</span>(mtcars<span style="color:#f92672">$</span>wt,
+           by <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(cylinders <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">$</span>cyl, 
+                     gears <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">$</span>gear),
+           FUN <span style="color:#f92672">=</span> sd)
+
+<span style="color:#a6e22e">names</span>(sd_weight)[3] <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;std_dev_weight&#34;</span>
+
+new_df <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(avg_weight, sd_weight, by <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;cylinders&#34;</span>, <span style="color:#e6db74">&#34;gears&#34;</span>))
+</code></pre></div><p><strong>dplyr:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">new_df <span style="color:#f92672">&lt;-</span> mtcars <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">group_by</span>(cyl, gear) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">summarise</span>(avg_weight <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(wt),
+            sd_weight <span style="color:#f92672">=</span> <span style="color:#a6e22e">sd</span>(wt))
+<span style="color:#75715e">## `summarise()` regrouping output by &#39;cyl&#39; (override with `.groups` argument)</span>
+</code></pre></div><h2 id="dplyr---more-information">
+  dplyr - More information
+  <a class="anchor" href="#dplyr---more-information">#</a>
+</h2>
+<ul>
+<li>
+<p>Cheat sheet for dplyr - <a href="https://ugoproto.github.io/ugo_r_doc/dplyr.pdf">https://ugoproto.github.io/ugo_r_doc/dplyr.pdf</a></p>
+</li>
+<li>
+<p>Online tutorial - <a href="http://genomicsclass.github.io/book/pages/dplyr_tutorial.html">http://genomicsclass.github.io/book/pages/dplyr_tutorial.html</a></p>
+</li>
+<li>
+<p>Pick and choose from this Lynda course on: 
+  <a href="https://www.lynda.com/R-tutorials/Learning-R-Tidyverse/586672-2.html?org=unsw.edu.au">&ldquo;tidyverse&rdquo;</a> </p> <strong>If you complete the Lynda course this will give you a certification that you can them add to your LinkedIn account!</strong></p>
+</li>
+</ul>
+<h2 id="work-strategy---page-285">
+  Work strategy - page 285
+  <a class="anchor" href="#work-strategy---page-285">#</a>
+</h2>
+<p>Recall that to access files directly, you can set up your working directory using:</p>
+<ul>
+<li>setwd(&ldquo;C:/Users/&hellip;&quot;).</li>
+<li>in Rstudio: Go to Session <code>\(\rightarrow\)</code> Set Working Directory</li>
+</ul>
+<p>You can also read and execute the contents of an external R script file using the source() function:</p>
+<ul>
+<li>source(&ldquo;C:/Users/&hellip;/myscript.R&rdquo;)</li>
+</ul>
+<p>Alternatively, you can use the file.choose() function which allows to &lsquo;manually&rsquo; select a file</p>
+<ul>
+<li>source(file.choose())</li>
+</ul>
+<p>Note: a R script file has the extension &lsquo;.R&rsquo;</p>
+<h2 id="work-strategy---page-285-1">
+  Work strategy - page 285
+  <a class="anchor" href="#work-strategy---page-285-1">#</a>
+</h2>
+<p>Workspace and .RData files</p>
+<ul>
+<li>All the objects (vectors, lists, dataframes, functions, etc.) one creates in R are <strong>temporarily</strong> saved in a file on the hard disk, which is called the workspace. When you close your R session those objects are lost.</li>
+<li>Therefore, it is recommended to create separate permanent workspace files for each of your projects.</li>
+<li>These files have the &lsquo;.RData&rsquo; extension.</li>
+<li>Warning: If you load a .RData workspace in your current R session, any object defined in your temporary workspace will be overwritten if there is an object of the same name in the loaded workspace.</li>
+</ul>
+<h2 id="work-strategy---page-285-2">
+  Work strategy - page 285
+  <a class="anchor" href="#work-strategy---page-285-2">#</a>
+</h2>
+<p>To save your workspace .RData file (also called workspace image):</p>
+<ul>
+<li>save.image(&ldquo;C:/Users/&hellip;/myproject.RData&rdquo;)</li>
+<li>or in Rstudio: Go to Session <code>\(\rightarrow\)</code> Save Work Space As&hellip;</li>
+<li>or, when you quit a RStudio session, you are asked whether you want to save your workspace</li>
+</ul>
+<p>To load a (previsously saved) workspace:</p>
+<ul>
+<li>load(&ldquo;C:/Users/&hellip;/myproject.RData&rdquo;)</li>
+<li>in Rstudio: Go to Session <code>\(\rightarrow\)</code> Load Work Space&hellip;</li>
+</ul>
+<p>Note: The instructions above are to save your workspace (all objects produced by your script). <strong>It is not the same as saving your actual R script!</strong></p>
+<h2 id="work-stategy---exercise">
+  Work stategy - Exercise
+  <a class="anchor" href="#work-stategy---exercise">#</a>
+</h2>
+<p>Which of the following R codes saves the workspace image as week_5 in the directory <code>C:\Users\student\Documents\ACTL1101</code> ?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;C:\Users\student\Documents\ACTL1101\week_5.rdata&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;C:/Users/student/Documents/ACTL1101/week_5&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:/Users/student/Documents/ACTL1101&#34;</span>)
+<span style="color:#a6e22e">save.image</span>(week_5.rdata)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:\\Users\\student\\Documents\\ACTL1101&#34;</span>)
+<span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;week_5.rdata&#34;</span>)
+</code></pre></div><h2 id="work-stategy---solution">
+  Work stategy - Solution
+  <a class="anchor" href="#work-stategy---solution">#</a>
+</h2>
+<p>Which of the following R codes saves the workspace image as week_5 in the directory <code>C:\Users\student\Documents\ACTL1101</code> ?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;C:\Users\student\Documents\ACTL1101\week_5.rdata&#34;</span>)
+</code></pre></div><p>no, need to use <code>\\</code> or <code>/</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;C:/Users/student/Documents/ACTL1101/week_5&#34;</span>)
+</code></pre></div><p>no, missing .rdata after week_5</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:/Users/student/Documents/ACTL1101&#34;</span>)
+<span style="color:#a6e22e">save.image</span>(week_5.rdata)
+</code></pre></div><p>no, forgot to put week_5.rdata between quotation marks <code>&quot;&quot;</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;C:\\Users\\student\\Documents\\ACTL1101&#34;</span>)
+<span style="color:#a6e22e">save.image</span>(<span style="color:#e6db74">&#34;week_5.rdata&#34;</span>)
+</code></pre></div><p>yes, full marks!</p>
+<h2 id="additional-notes">
+  Additional Notes
+  <a class="anchor" href="#additional-notes">#</a>
+</h2>
+<p>There are many other vector and matrix operations that you may find useful. You should revise the contents below and refer to the textbook for more details.</p>
+<ul>
+<li>inserting elements into vectors (see Pages 101-102), e.g.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">vecA <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)
+vecB <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(vecA, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>)
+(vecC <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(vecA[1<span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>], <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">5</span>, vecA[5<span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>]))
+<span style="color:#75715e">##  [1] 1 3 6 2 8 5 7 4 8 1 0</span>
+a <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>()
+a <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(a,<span style="color:#ae81ff">2</span>)
+a
+<span style="color:#75715e">## [1] 2</span>
+</code></pre></div><ul>
+<li>modifying the elements in a vector (see Page 101), e.g.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">z<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+z<span style="color:#a6e22e">[c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>)] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+z
+<span style="color:#75715e">## [1] 1 0 0 2 1</span>
+z<span style="color:#a6e22e">[which.max</span>(z)] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+z
+<span style="color:#75715e">## [1] 1 0 0 0 1</span>
+z[z<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">8</span>
+z
+<span style="color:#75715e">## [1] 1 8 8 8 1</span>
+</code></pre></div><ul>
+<li>modifying elements of matrices (see Page 105), e.g.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">m <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>),<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>)
+m[m<span style="color:#f92672">!=</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+m
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    0    0    2</span>
+<span style="color:#75715e">## [2,]    2    2    0</span>
+<span style="color:#75715e">## [3,]    0    0    0</span>
+
+Mat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>,nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+Mat <span style="color:#f92672">&lt;-</span> Mat[<span style="color:#ae81ff">-4</span>,]
+Mat
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    4    5    6</span>
+<span style="color:#75715e">## [3,]    7    8    9</span>
+
+m[Mat<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">7</span>] <span style="color:#f92672">&lt;-</span> Mat[Mat<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">7</span>]
+m
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    0    0    2</span>
+<span style="color:#75715e">## [2,]    2    2    0</span>
+<span style="color:#75715e">## [3,]    0    8    9</span>
+</code></pre></div><ul>
+<li>extracting elements from a list (see Pages 106-108)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">L <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(cars<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;FORD&#34;</span>,<span style="color:#e6db74">&#34;PEUGEOT&#34;</span>),climate<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;Tropical&#34;</span>,<span style="color:#e6db74">&#34;Temperate&#34;</span>))
+L[[<span style="color:#e6db74">&#34;cars&#34;</span>]]
+<span style="color:#75715e">## [1] &#34;FORD&#34;    &#34;PEUGEOT&#34;</span>
+L<span style="color:#f92672">$</span>cars
+<span style="color:#75715e">## [1] &#34;FORD&#34;    &#34;PEUGEOT&#34;</span>
+L<span style="color:#f92672">$</span>climate
+<span style="color:#75715e">## [1] &#34;Tropical&#34;  &#34;Temperate&#34;</span>
+</code></pre></div><p>Note that</p>
+<pre><code>- `\(L[2]\)` returns the second component of L as a list
+
+- `\(L[[2]]\)` returns the second component of L as an element 
+</code></pre>
+<ul>
+<li>insering elements into a list (see Page 108)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">Mat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>,nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,byrow<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+L <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">12</span>,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">34</span>,<span style="color:#ae81ff">67</span>,<span style="color:#ae81ff">8</span>),Mat,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>,<span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">11</span>))
+L[2]
+<span style="color:#75715e">## [[1]]</span>
+<span style="color:#75715e">## [1] 34 67  8</span>
+<span style="color:#a6e22e">class</span>(L[2])
+<span style="color:#75715e">## [1] &#34;list&#34;</span>
+L<span style="color:#a6e22e">[c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)]
+<span style="color:#75715e">## [[1]]</span>
+<span style="color:#75715e">##      [,1] [,2] [,3]</span>
+<span style="color:#75715e">## [1,]    1    2    3</span>
+<span style="color:#75715e">## [2,]    4    5    6</span>
+<span style="color:#75715e">## [3,]    7    8    9</span>
+<span style="color:#75715e">## [4,]   10   11   12</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## [[2]]</span>
+<span style="color:#75715e">## [1] 1 2 3 4 5</span>
+L[[2]]
+<span style="color:#75715e">## [1] 34 67  8</span>
+<span style="color:#a6e22e">class</span>(L[[2]])
+<span style="color:#75715e">## [1] &#34;numeric&#34;</span>
+L[[5]][[2]]
+<span style="color:#75715e">## [1] 11</span>
+</code></pre></div><h2 id="additional-notes---manipulating-character-strings---page-109">
+  Additional Notes - Manipulating character strings - Page 109
+  <a class="anchor" href="#additional-notes---manipulating-character-strings---page-109">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(string <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;one&#34;</span>,<span style="color:#e6db74">&#34;two&#34;</span>,<span style="color:#e6db74">&#34;three&#34;</span>))
+<span style="color:#75715e">## [1] &#34;one&#34;   &#34;two&#34;   &#34;three&#34;</span>
+<span style="color:#a6e22e">as.character</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>)
+<span style="color:#75715e">## [1] &#34;1&#34; &#34;2&#34; &#34;3&#34;</span>
+string1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;B&#34;</span>,<span style="color:#e6db74">&#34;bba&#34;</span>,<span style="color:#e6db74">&#34;!&#34;</span>)
+<span style="color:#a6e22e">nchar</span>(string1)
+<span style="color:#75715e">## [1] 1 1 3 1</span>
+string1<span style="color:#a6e22e">[nchar</span>(string1)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span>]
+<span style="color:#75715e">## [1] &#34;bba&#34;</span>
+
+string2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;e&#34;</span>,<span style="color:#e6db74">&#34;D&#34;</span>)
+
+<span style="color:#a6e22e">paste</span>(string1,string2)
+<span style="color:#75715e">## [1] &#34;a e&#34;   &#34;B D&#34;   &#34;bba e&#34; &#34;! D&#34;</span>
+<span style="color:#a6e22e">paste</span>(string1,string2,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-&#34;</span>)
+<span style="color:#75715e">## [1] &#34;a-e&#34;   &#34;B-D&#34;   &#34;bba-e&#34; &#34;!-D&#34;</span>
+<span style="color:#a6e22e">strsplit</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;05 Jan&#34;</span>,<span style="color:#e6db74">&#34;06 Feb&#34;</span>), split<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+<span style="color:#75715e">## [[1]]</span>
+<span style="color:#75715e">## [1] &#34;05&#34;  &#34;Jan&#34;</span>
+<span style="color:#75715e">## </span>
+<span style="color:#75715e">## [[2]]</span>
+<span style="color:#75715e">## [1] &#34;06&#34;  &#34;Feb&#34;</span>
+</code></pre></div><h2 id="relevant-exercises">
+  Relevant Exercises
+  <a class="anchor" href="#relevant-exercises">#</a>
+</h2>
+<ul>
+<li>5.1, 5.3 5.6 - 5.19, 9.1-9.8, 9.10-9.12</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/baseR/datamanipulations/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-manipulation-operations-and-work-strategy-in-base-r">Data manipulation, operations and work strategy in Base R</a>
+      <ul>
+        <li><a href="#learning-outcomes">Learning outcomes</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---method-i---page-100">Vectors - Extracting elements from vectors - Method I - Page 100</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---method-ii---pages-100-101">Vectors - Extracting elements from vectors - Method II - Pages 100-101</a></li>
+        <li><a href="#vectors---extracting-elements-from-vectors---three-useful-functions---page-101">Vectors - Extracting elements from vectors - Three useful functions - Page 101</a></li>
+        <li><a href="#matrix---extraction-from-matrices--method-i---pages-102-103">Matrix - Extraction from matrices- Method I - Pages 102-103</a></li>
+        <li><a href="#matrix---extraction-from-matrices--method-ii---pages-102-103">Matrix - Extraction from matrices- Method II - Pages 102-103</a></li>
+        <li><a href="#matrix---the-which-function-for-matrices---page-104">Matrix - The which() function for matrices - Page 104</a></li>
+        <li><a href="#data-frame-example">Data frame example</a></li>
+        <li><a href="#the-attach-function">The attach() function</a></li>
+        <li><a href="#dplyr---introduction">dplyr - Introduction</a></li>
+        <li><a href="#dplyr---filter-and-select">dplyr - Filter and Select</a></li>
+        <li><a href="#dplyr---pipeline-operator-arrange-and-mutate">dplyr - Pipeline operator, Arrange and Mutate</a></li>
+        <li><a href="#dplyr---why-use-the-pipeline-operator">dplyr - Why use the pipeline operator?</a></li>
+        <li><a href="#dplyr---summarise-and-group_by">dplyr - summarise and group_by</a></li>
+        <li><a href="#dplyr---why-use-dplyr">dplyr - Why use dplyr?</a></li>
+        <li><a href="#dplyr---more-information">dplyr - More information</a></li>
+        <li><a href="#work-strategy---page-285">Work strategy - page 285</a></li>
+        <li><a href="#work-strategy---page-285-1">Work strategy - page 285</a></li>
+        <li><a href="#work-strategy---page-285-2">Work strategy - page 285</a></li>
+        <li><a href="#work-stategy---exercise">Work stategy - Exercise</a></li>
+        <li><a href="#work-stategy---solution">Work stategy - Solution</a></li>
+        <li><a href="#additional-notes">Additional Notes</a></li>
+        <li><a href="#additional-notes---manipulating-character-strings---page-109">Additional Notes - Manipulating character strings - Page 109</a></li>
+        <li><a href="#relevant-exercises">Relevant Exercises</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

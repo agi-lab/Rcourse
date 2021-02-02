@@ -1,0 +1,4 @@
+https://www.kaggle.com/rounakbanik/pokemon/downloads/pokemon.zip/1
+
+
+types: https://github.com/zonination/pokemon-chart

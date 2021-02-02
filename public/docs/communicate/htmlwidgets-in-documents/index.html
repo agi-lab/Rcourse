@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Bigger Picture #  In this document we learn how to embed html widgets into documents. Simply put, we are learning how to insert graphs into presentations. In the overall context of the workflow, this falls into the category of transforming our data visualisations into a medium of communication.
+    &lt;img src = &ldquo;images/workflow.JPG">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="How to Embed htmlwidgets into Documents" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/" />
+
+<title>How to Embed htmlwidgets into Documents | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/"class=active>htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/">Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>How to Embed htmlwidgets into Documents</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#how-do-you-include-htmlwidgets-in-documents">How do you include htmlwidgets in documents?</a></li>
+    <li><a href="#what-are-iframes">What are iframes?</a></li>
+    <li><a href="#widgetframes">Widgetframes</a>
+      <ul>
+        <li><a href="#what-are-widgetframes">What are widgetframes?</a></li>
+        <li><a href="#and-why-do-we-need-them">And why do we need them?</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use-widgetframes-in-r-markdown">How to use widgetframes in R Markdown</a>
+      <ul>
+        <li><a href="#modify-the-yaml-header">Modify the YAML header</a></li>
+        <li><a href="#use-the-widgetframe-package">Use the widgetframe package</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-store-widgets-rdata-method">How to store widgets (.rdata method)</a></li>
+    <li><a href="#how-to-store-widgets-html-method">How to store widgets (.html method)</a>
+      <ul>
+        <li><a href="#saving-widgets">Saving widgets</a></li>
+        <li><a href="#calling-upon-widgets">Calling upon widgets</a></li>
+      </ul>
+    </li>
+    <li><a href="#solutions-for-word-pdf-and-powerpoint">Solutions for Word, PDF and PowerPoint</a></li>
+    <li><a href="#alternate-solution-for-powerpoint">Alternate solution for PowerPoint</a></li>
+    <li><a href="#other-embeddable-objects">Other embeddable objects</a>
+      <ul>
+        <li><a href="#example---videos">Example - Videos</a></li>
+        <li><a href="#example---playlists">Example - Playlists</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+<h1 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h1>
+<p>In this document we learn how to embed html widgets into documents. Simply put, we are learning how to insert graphs into presentations. In the overall context of the workflow, this falls into the category of transforming our data visualisations into a medium of communication.</p>
+<center>
+<img src = "images/workflowschematic.JPG" width="80%" class="ImageBorder"> </img>
+</center>
+ 
+<center>
+<p>&lt;img src = &ldquo;images/workflow.JPG</p>
+<p><code>
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span>Note: LinkedIn Learning videos</span>
+      <span>...</span>
+    </div>
+    <input type="checkbox" class="hidden" />
+    <div class="book-expand-content markdown-inner">
+      There are references to LinkedIn Learning videos. These are complementary but not really required as the notes below are meant to be self-contained. Some students and staff would have access for free. Do not purchase access unless you are sure you don’t have access through your organisation already.
+    </div>
+  </label>
+</div>
+</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;leaflet&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;plotly&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;highcharter&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;visNetwork&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;DT&#34;</span>)
+<span style="color:#75715e"># Loads five htmlwidget packages</span>
+</code></pre></div><h1 id="how-do-you-include-htmlwidgets-in-documents">
+  How do you include htmlwidgets in documents?
+  <a class="anchor" href="#how-do-you-include-htmlwidgets-in-documents">#</a>
+</h1>
+<p>Typically, how we include a given htmlwidget in a document is dependent on the document we are working with.</p>
+<ul>
+<li>If we are working with an html document in R Markdown, we use widgetframes</li>
+<li>If we are working with an offline document in R Markdown, we use the <code>webshot</code> package</li>
+<li>If we are embedding a non-widget HTML document, we may write our own HTML code</li>
+</ul>
+<h1 id="what-are-iframes">
+  What are iframes?
+  <a class="anchor" href="#what-are-iframes">#</a>
+</h1>
+<ul>
+<li>“iframe” is short for inline frame</li>
+<li>It is an HTML element that enables us to embed external web elements in a given HTML document</li>
+<li>It can be thought of as a window we can build in an HTML browser which shows us part of another document</li>
+<li>We will be using iframes to embed elements into documents we create with R. This is to ensure full functionality and to avoid clashes with other elements in the html page.</li>
+</ul>
+<h1 id="widgetframes">
+  Widgetframes
+  <a class="anchor" href="#widgetframes">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/creating-reports-and-presentations-with-r-markdown-and-rstudio/htmlwidgets-in-html-rmd-documents?u=2087740">R Markdown Lynda 12.3</a></p>
+</blockquote>
+<h2 id="what-are-widgetframes">
+  What are widgetframes?
+  <a class="anchor" href="#what-are-widgetframes">#</a>
+</h2>
+<ul>
+<li>Widgetframes are what we will be using to embed our widgets</li>
+<li>They are iframes which are used to view htmlwidgets</li>
+<li>Think of the window analogy - we build a window that lets us interact with an htmlwidget safely</li>
+</ul>
+<h2 id="and-why-do-we-need-them">
+  And why do we need them?
+  <a class="anchor" href="#and-why-do-we-need-them">#</a>
+</h2>
+<p>When we create htmlwidgets and try to display them in R Markdown, we often run into issues:</p>
+<ul>
+<li>In R Markdown, we have global options and styles which change the way our documents look</li>
+<li>These options call on JavaScrips, CSS and HTML and may affect our widgets if they are unprotected</li>
+<li>Widgetframes wrap our htmlwidgets in a responsive iframe which protects it</li>
+</ul>
+<h1 id="how-to-use-widgetframes-in-r-markdown">
+  How to use widgetframes in R Markdown
+  <a class="anchor" href="#how-to-use-widgetframes-in-r-markdown">#</a>
+</h1>
+<h2 id="modify-the-yaml-header">
+  Modify the YAML header
+  <a class="anchor" href="#modify-the-yaml-header">#</a>
+</h2>
+<ul>
+<li>If we are using htmlwidgets we must set the option <code>self_contained:</code> in the YAML header to <code>false</code></li>
+</ul>
+<pre><code class="language-undef" data-lang="undef">output:
+  slidy_presentation:
+    self_contained: false
+</code></pre><h2 id="use-the-widgetframe-package">
+  Use the widgetframe package
+  <a class="anchor" href="#use-the-widgetframe-package">#</a>
+</h2>
+<ul>
+<li>If we have an htmlwidget, we save it to an object</li>
+<li>We then use the <code>frameWidget()</code> function from the widgetframe package on this object</li>
+<li>This automatically frames our widget and displays it in our R Markdown document</li>
+<li>This will work when we produce any R Markdown html document</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;tidy_ACORN-SAT_data/station_data.rdata&#34;</span>)
+
+pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorNumeric</span>(
+  palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;YlOrRd&#34;</span>,
+  domain <span style="color:#f92672">=</span> station_data<span style="color:#f92672">$</span>average.temp)
+
+station_graph <span style="color:#f92672">&lt;-</span> station_data <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">filter</span>(year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2000</span>) <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">leaflet</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addTiles</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">addCircleMarkers</span>(label <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;Station: &#34;</span>, Station.name),
+                   popup <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;Temperature: &#34;</span>, average.temp),
+                   color <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#a6e22e">pal</span>(average.temp),
+                   lng <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Longitude,
+                   lat <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>Latitude)
+
+widgetframe<span style="color:#f92672">::</span><span style="color:#a6e22e">frameWidget</span>(station_graph)
+</code></pre></div><div id="htmlwidget-1" style="width:100%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"url":"/docs/communicate/htmlwidgets-in-documents/_index_files/figure-html//widgets/widget_widgetframe1.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>We can also fix the height or the width of the graphs using the <code>height</code> and <code>width</code> arguments of <code>frameWidget()</code></li>
+<li>Usually we do this in terms of a percentage of screen width (eg width = &ldquo;80%)</li>
+<li>However the arguments can take numeric values representing pixels on a screen</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">widgetframe<span style="color:#f92672">::</span><span style="color:#a6e22e">frameWidget</span>(station_graph,
+                         width <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;80%&#34;</span>)
+</code></pre></div><div id="htmlwidget-2" style="width:80%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"url":"/docs/communicate/htmlwidgets-in-documents/_index_files/figure-html//widgets/widget_widgetframe2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<h1 id="how-to-store-widgets-rdata-method">
+  How to store widgets (.rdata method)
+  <a class="anchor" href="#how-to-store-widgets-rdata-method">#</a>
+</h1>
+<p>This method is much less elegant than the <code>.html</code> method. The upside is that it requires no HTML.</p>
+<ul>
+<li>We can store widgets like we store any R object, by saving and then loading them</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">unframed_widget <span style="color:#f92672">&lt;-</span> station_graph
+<span style="color:#a6e22e">save</span>(unframed_widget, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;widgets/unframed_widget.rdata&#34;</span>)
+<span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#34;widgets/unframed_widget.rdata&#34;</span>)
+widgetframe<span style="color:#f92672">::</span><span style="color:#a6e22e">frameWidget</span>(unframed_widget)
+</code></pre></div><div id="htmlwidget-3" style="width:100%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"url":"/docs/communicate/htmlwidgets-in-documents/_index_files/figure-html//widgets/widget_store1.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<p>It is critical to note the following:</p>
+<ul>
+<li>We cannot save a framed widget as a <code>.rdata</code> file</li>
+<li>We must save the unframed widget</li>
+<li>We do not need to have the packages which created the widget loaded with <code>library()</code> in order to view the graphs</li>
+<li>We must remember to frame the widget before displaying it in R Markdown</li>
+</ul>
+<h1 id="how-to-store-widgets-html-method">
+  How to store widgets (.html method)
+  <a class="anchor" href="#how-to-store-widgets-html-method">#</a>
+</h1>
+<h2 id="saving-widgets">
+  Saving widgets
+  <a class="anchor" href="#saving-widgets">#</a>
+</h2>
+<ul>
+<li>We store widgets using the <code>saveWidget()</code> function from the <code>htmlwidgets</code> package
+<ul>
+<li>For our purposed, <code>selfcontained</code> should be <code>TRUE</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">htmlwidgets<span style="color:#f92672">::</span><span style="color:#a6e22e">saveWidget</span>(widget <span style="color:#f92672">=</span> station_graph,
+                        file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;station_graph.html&#34;</span>,
+                        selfcontained <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><ul>
+<li>Don’t forget the <code>.html</code>!</li>
+</ul>
+<h2 id="calling-upon-widgets">
+  Calling upon widgets
+  <a class="anchor" href="#calling-upon-widgets">#</a>
+</h2>
+<p>This method requires writing some HTML. The upside is that R is very responsive to HTML and so often our output is cleaner.</p>
+<ul>
+<li>Now that we’ve saved our widget, we can call upon it and put it in an iframe</li>
+<li>In our R file, we write the first line to let R know we are about to write some HTML</li>
+<li>We use the <code>iframe</code> function in HTML, formatted as below</li>
+<li>We finally write the last line to let R know we are done writing HTML</li>
+</ul>
+<p><img src = "images/html1.jpg" width="90%" class="ImageBorder"> </img></p>
+<iframe src="station_graph.html" width="400" height="500">
+</iframe>
+<h1 id="solutions-for-word-pdf-and-powerpoint">
+  Solutions for Word, PDF and PowerPoint
+  <a class="anchor" href="#solutions-for-word-pdf-and-powerpoint">#</a>
+</h1>
+<p>Word, PDF and PowerPoint are non-HTML forms of media, and so we cannot simply call upon our HTML widgets or frame them like we do with other knit-able R Markdown files.</p>
+<ul>
+<li>In Word and PDF outputs, the ‘offline’ nature of these documents means we cannot have interactive widgets</li>
+<li>Our solution is to take a screenshot and embed this into the documents
+<ul>
+<li>We use the <code>webshot</code> package to automate this</li>
+</ul>
+</li>
+</ul>
+<p>In this example we will display a screenshot in this html document. In practice, we would use this method only if we required a Word, PDF or PowerPoint output.</p>
+<ol>
+<li>We save our widget as a <code>.html</code> file with <code>saveWidget()</code> (see previous slide)</li>
+<li>We use webshot to take a screenshot, save it, and display it</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;webshot&#34;</span>)
+webshot<span style="color:#f92672">::</span><span style="color:#a6e22e">install_phantomjs</span>()
+</code></pre></div><pre><code>## It seems that the version of `phantomjs` installed is greater than or equal to the requested version.To install the requested version or downgrade to another version, use `force = TRUE`.
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">webshot</span>(url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;station_graph.html&#34;</span>,
+        file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;images/station_graph.jpg&#34;</span>)
+</code></pre></div><p><img src="/docs/communicate/htmlwidgets-in-documents/_index_files/figure-html/solutions1-1.jpg" width="672" /></p>
+<h1 id="alternate-solution-for-powerpoint">
+  Alternate solution for PowerPoint
+  <a class="anchor" href="#alternate-solution-for-powerpoint">#</a>
+</h1>
+<p>As a note, this solution <strong>requires you to already have your HTML widget uploaded to the web</strong>.</p>
+<ul>
+<li>Go to the 
+  <a href="http://skp.mvps.org/liveweb.htm">LiveWeb downloads page</a></li>
+<li>Install LiveWeb</li>
+<li>Open a PowerPoint document, and under “Insert” will be the LiveWeb tab
+<ul>
+<li>If it does not appear, go to this file location on your computer: “C:Files (x86)Pillai” and open the .ppam file</li>
+</ul>
+</li>
+</ul>
+<p><img src = "images/liveweb.jpg" width="10%"> </img></p>
+<ul>
+<li>Click “Web Page” and follow the prompts to embed your webpage</li>
+</ul>
+<h1 id="other-embeddable-objects">
+  Other embeddable objects
+  <a class="anchor" href="#other-embeddable-objects">#</a>
+</h1>
+<p>HTML widgets are fun and useful, but as a bonus let’s consider all the other objects we can embed using R.</p>
+<p>Many websites will happily provide the HTML code necessary to embed HTML objects. For our purposes, we can simply paste this code, raw if we like, into an R Markdown document.</p>
+<h2 id="example---videos">
+  Example - Videos
+  <a class="anchor" href="#example---videos">#</a>
+</h2>
+<p>We consider the case of embedding YouTube videos into our documents.</p>
+<ol>
+<li>We find the video we require.</li>
+</ol>
+<p><img src = "images/video1.jpg" width="80%" class="ImageBorder"> </img></p>
+<ol>
+<li>We click the “Share” button.</li>
+</ol>
+<p><img src = "images/video2.jpg" width="50%" class="ImageBorder"> </img></p>
+<ol>
+<li>We obtain a piece of HTML code. We can modify the options we are given (such as width and height) if we so wish.</li>
+</ol>
+<p><img src = "images/video3.jpg" width="30%" class="ImageBorder"> </img></p>
+<ol>
+<li>We simpy paste the code raw into R, framed by the same messages we use to declare the use of raw HTML.</li>
+</ol>
+<p><img src = "images/video4.jpg" width="100%" class="ImageBorder"> </img></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2sQuL-hsol8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h2 id="example---playlists">
+  Example - Playlists
+  <a class="anchor" href="#example---playlists">#</a>
+</h2>
+<p>Like YouTube, Spotify has a “Share” button and allows us to copy some HTML code allowing playlists to be embedded into R documents. Pretty cool, right?</p>
+<p>Note that the playlist will only display if you are viewing this HTML document in a browser.</p>
+<iframe src="https://open.spotify.com/embed/playlist/1KToKj6d2W25A1tLNKXhBj" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media">
+</iframe>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/communicate/htmlwidgets-in-documents/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#how-do-you-include-htmlwidgets-in-documents">How do you include htmlwidgets in documents?</a></li>
+    <li><a href="#what-are-iframes">What are iframes?</a></li>
+    <li><a href="#widgetframes">Widgetframes</a>
+      <ul>
+        <li><a href="#what-are-widgetframes">What are widgetframes?</a></li>
+        <li><a href="#and-why-do-we-need-them">And why do we need them?</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use-widgetframes-in-r-markdown">How to use widgetframes in R Markdown</a>
+      <ul>
+        <li><a href="#modify-the-yaml-header">Modify the YAML header</a></li>
+        <li><a href="#use-the-widgetframe-package">Use the widgetframe package</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-store-widgets-rdata-method">How to store widgets (.rdata method)</a></li>
+    <li><a href="#how-to-store-widgets-html-method">How to store widgets (.html method)</a>
+      <ul>
+        <li><a href="#saving-widgets">Saving widgets</a></li>
+        <li><a href="#calling-upon-widgets">Calling upon widgets</a></li>
+      </ul>
+    </li>
+    <li><a href="#solutions-for-word-pdf-and-powerpoint">Solutions for Word, PDF and PowerPoint</a></li>
+    <li><a href="#alternate-solution-for-powerpoint">Alternate solution for PowerPoint</a></li>
+    <li><a href="#other-embeddable-objects">Other embeddable objects</a>
+      <ul>
+        <li><a href="#example---videos">Example - Videos</a></li>
+        <li><a href="#example---playlists">Example - Playlists</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

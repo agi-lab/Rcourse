@@ -1,0 +1,75 @@
+body{ /* Normal  */ 
+  font-size: 14px; 
+  background-color: #F8F1E4;
+} 
+
+td {  /* Table  */ 
+  font-size: 14px; 
+} 
+
+.title { 
+  font-size: 40px; 
+  color: #05104F; 
+} 
+
+h1 { /* Header 1 */ 
+  font-size: 30px; 
+  color: #2B3394; 
+  line-height: 1.8;
+} 
+
+h2 { /* Header 2 */ 
+  font-size: 24px; 
+  color: #5A60A6; 
+  line-height: 1.6;
+} 
+
+h3 { /* Header 3 */ 
+  font-size: 18px; 
+  color: #5A60A6; 
+  line-height: 1.4;
+} 
+
+.r, msg{ /* Code block */ 
+  font-size: 14px; 
+  overflow-x: scroll;
+  word-wrap: break-word;
+} 
+
+pre{ /* Code block - determines code spacing between lines */ 
+  font-size: 14px; 
+  overflow-x: scroll;
+}
+
+pre code {
+  word-wrap: break-word;
+  white-space: pre;
+}
+
+.emphasized {
+  color: white;
+}
+
+.ImageBorder {
+  border-width: 0.5px;
+  border-color: Black;
+  border-style: solid;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px; 
+}
+
+.triple {
+  float: left;
+  width: 33%;
+  padding: 5px; 
+}
+
+.table {
+  width:70%; 
+  margin-left:15%; 
+  margin-right:15%;
+}

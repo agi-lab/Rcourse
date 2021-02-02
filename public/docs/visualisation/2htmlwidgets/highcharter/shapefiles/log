@@ -1,0 +1,8 @@
+20040621 920   0     1     0dyoung shapearc aust_cd66states.shp aust_cd66s poly
+20040621 921   0    28     0dyoung clean aust_cd66s
+20040621 921   0     0    83dyoung copy aust_cd66s ~/aust_cd66s
+200406211041   0     2     0dyoung project cover AUST_CD66_CLP temp /home/nric/dyoung/lws_proj/prj/geowgswgs2alb1836132grsgda.prj
+200406211041   0     7     0dyoung build temp
+200406211041   0     0     0dyoung kill AUST_CD66S all
+200406211041   0     0     0dyoung kill AUST_CD66_CLP all
+200406211041   0     0     0dyoung rename temp AUST_CD66_CLP

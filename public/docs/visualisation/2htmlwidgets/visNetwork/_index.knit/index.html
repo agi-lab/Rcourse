@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Bigger Picture #  In this document we learn how to create interactive networks with visNetwork. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is visNetwork? #    Lynda 5.1
+ library(&#34;tidyverse&#34;) library(&#34;visNetwork&#34;)  An htmlwidget used to make interactive networks from data frames and tibbles It is a package which allows for a unique (and fun) interactive visualisation of the connections within data Networks can visualise relationships, such as in the following predator-prey example:  &lt;div id=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;visNetwork html-widget&quot;&gt;&lt;/div&gt; &lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot;&gt;{&quot;x&quot;:{&quot;nodes&quot;:{&quot;id&quot;:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],&quot;label&quot;:[&quot;Unidentified detritus&quot;,&quot;Terrestrial invertebrates&quot;,&quot;Plant material&quot;,&quot;Achnanthes lanceolata&quot;,&quot;Achnanthes minutissima&quot;,&quot;Audouinella sp.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="htmlwidgets - visNetwork" />
+<meta property="og:description" content="The Bigger Picture #  In this document we learn how to create interactive networks with visNetwork. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.
+ \  What is visNetwork? #    Lynda 5.1
+ library(&#34;tidyverse&#34;) library(&#34;visNetwork&#34;)  An htmlwidget used to make interactive networks from data frames and tibbles It is a package which allows for a unique (and fun) interactive visualisation of the connections within data Networks can visualise relationships, such as in the following predator-prey example:  &lt;div id=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;visNetwork html-widget&quot;&gt;&lt;/div&gt; &lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot;&gt;{&quot;x&quot;:{&quot;nodes&quot;:{&quot;id&quot;:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],&quot;label&quot;:[&quot;Unidentified detritus&quot;,&quot;Terrestrial invertebrates&quot;,&quot;Plant material&quot;,&quot;Achnanthes lanceolata&quot;,&quot;Achnanthes minutissima&quot;,&quot;Audouinella sp." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/visualisation/2htmlwidgets/visNetwork/_index.knit/" />
+
+<title>htmlwidgets - visNetwork | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.03feb7fc732ae2bed6dcfeddd47ed37327be7c83b48131ceaabafba096c33cc3.js" integrity="sha256-A/63/HMq4r7W3P7d1H7Tcye&#43;fIO0gTHOqrr7oJbDPMM="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/docs/baseR/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href=""><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>htmlwidgets - visNetwork</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-visnetwork">What is visNetwork?</a></li>
+    <li><a href="#creating-very-basic-networks">Creating Very Basic Networks</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h1>
+<p>In this document we learn how to create interactive networks with visNetwork. Simply put, we are learning how to transform tidy data into visually clear graphs. In the overall context of the workflow, this falls into the category of transforming our data into data visualisation.</p>
+<center><img src = "images/workflowschematic.jpg" width="80%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/workflow.jpg" width="80%" class="ImageBorder"> </img></center>
+<h1 id="what-is-visnetwork">
+  What is visNetwork?
+  <a class="anchor" href="#what-is-visnetwork">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/what-is-the-visnetwork-library?u=2087740">Lynda 5.1</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;tidyverse&#34;</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;visNetwork&#34;</span>)
+</code></pre></div><ul>
+<li>An htmlwidget used to make interactive networks from data frames and tibbles</li>
+<li>It is a package which allows for a unique (and fun) interactive visualisation of the connections within data</li>
+<li>Networks can visualise relationships, such as in the following predator-prey example:</li>
+</ul>
+<pre><code class="language-{=html}" data-lang="{=html}">&lt;div id=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot; style=&quot;width:80%;height:480px;&quot; class=&quot;visNetwork html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-a3d3c87229fb0a0a00ad&quot;&gt;{&quot;x&quot;:{&quot;nodes&quot;:{&quot;id&quot;:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],&quot;label&quot;:[&quot;Unidentified detritus&quot;,&quot;Terrestrial invertebrates&quot;,&quot;Plant material&quot;,&quot;Achnanthes lanceolata&quot;,&quot;Achnanthes minutissima&quot;,&quot;Audouinella sp.&quot;,&quot;Batrachospermum&quot;,&quot;Blue-green algae&quot;,&quot;Calothrix&quot;,&quot;Cymbella cistula&quot;,&quot;Cymbella mulleri&quot;,&quot;Diatoma heimale&quot;,&quot;Epithemia sorex&quot;,&quot;Epithemia turgida&quot;,&quot;Eunotia pectinalis&quot;,&quot;Eunotia unknown sp.&quot;,&quot;Frustulia rhomboides&quot;,&quot;Gomphoneis herculeana&quot;,&quot;Gomphonema intricatum&quot;,&quot;Gomphonema unknown spp.&quot;,&quot;Meridion circulare&quot;,&quot;Navicula avenacea&quot;,&quot;Pleurotaenium&quot;,&quot;Rhoicosphenia curvata&quot;,&quot;Stigeoclonium&quot;,&quot;Synedra ulna&quot;,&quot;Ulothrix&quot;,&quot;Unknown green algae spp.&quot;,&quot;Aelosoma (CG)&quot;,&quot;Brachycentrus sp. (CG)&quot;,&quot;Cambarus bartoni (O)&quot;,&quot;Chauliodes sp. (P)&quot;,&quot;Cordulegaster maculata (P)&quot;,&quot;Dicranota sp. (P)&quot;,&quot;Ectopria thoracica (Sc)&quot;,&quot;Epeorus dispar (Sc)&quot;,&quot;Glossosoma sp. (Sc)&quot;,&quot;Homoplectra spp. (CF/P)&quot;,&quot;Hudsonimya sp. (P)&quot;,&quot;Hydropsyche spp. (CF/P)&quot;,&quot;Leucrocuta spp. (Sc)&quot;,&quot;Leuctra sp. (Sh)&quot;,&quot;Lumbriculiid oligochaete (CG)&quot;,&quot;Parametriocnemus sp. (CG)&quot;,&quot;Neureclipsis sp. (CG)&quot;,&quot;Ophiogomphus sp. (P)&quot;,&quot;Palpomyia sp. I (P)&quot;,&quot;Palpomyia sp. II (P)&quot;,&quot;Promoresia sp. (CG)&quot;,&quot;Psephenus sp. (Sc)&quot;,&quot;Soliperla sp. (Sh)&quot;,&quot;Stenelmis adult (Sc)&quot;,&quot;Stenelmis spp. (Sc)&quot;,&quot;Suwalia sp. (P)&quot;,&quot;Tallaperla maria (Sh)&quot;,&quot;Thaumalea sp. (Sc)&quot;,&quot;Tipula abdominalis (CG)&quot;,&quot;Salamander&quot;],&quot;Class&quot;:[&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;],&quot;group&quot;:[&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Prey&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;,&quot;Predator&quot;]},&quot;edges&quot;:{&quot;from&quot;:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,5,6,7,8,8,8,8,8,8,9,10,11,12,12,12,12,12,13,13,13,14,15,15,15,16,17,17,18,18,19,20,20,20,20,21,21,21,22,23,24,24,24,25,26,26,26,26,27,28,29,29,29,29,29,38,40,40,40,40,42,43,43,43,43,43,43,43,44,51,52,53,55],&quot;to&quot;:[29,30,31,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,57,58,33,38,40,46,29,31,35,36,37,38,40,41,42,43,44,45,49,50,51,52,55,57,35,36,41,49,50,56,56,36,57,36,38,41,42,49,55,57,36,30,35,36,41,50,53,29,43,44,36,36,49,56,56,41,49,35,50,56,30,36,41,56,29,43,44,45,36,30,49,56,41,40,41,45,49,41,38,31,32,40,51,54,58,31,38,46,58,58,31,33,39,40,46,51,54,58,58,58,40,40]},&quot;nodesToDataframe&quot;:true,&quot;edgesToDataframe&quot;:true,&quot;options&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;,&quot;nodes&quot;:{&quot;shape&quot;:&quot;dot&quot;},&quot;manipulation&quot;:{&quot;enabled&quot;:false},&quot;edges&quot;:{&quot;arrows&quot;:&quot;middle&quot;}},&quot;groups&quot;:[&quot;Prey&quot;,&quot;Predator&quot;],&quot;width&quot;:null,&quot;height&quot;:null,&quot;idselection&quot;:{&quot;enabled&quot;:false},&quot;byselection&quot;:{&quot;enabled&quot;:false},&quot;main&quot;:null,&quot;submain&quot;:null,&quot;footer&quot;:null,&quot;background&quot;:&quot;rgba(0, 0, 0, 0)&quot;},&quot;evals&quot;:[],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+</code></pre><ul>
+<li>It is essentially the best package for visualising networks</li>
+<li>The package is bound to the vis.js library in JavaScript</li>
+</ul>
+<h1 id="creating-very-basic-networks">
+  Creating Very Basic Networks
+  <a class="anchor" href="#creating-very-basic-networks">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://www.linkedin.com/learning/r-interactive-visualizations-with-htmlwidgets/create-basic-network-diagrams?u=2087740">Lynda 5.2</a></p>
+</blockquote>
+<p>The very first thing we will do is create a network based on some very easy data. The data is easy because everything will be provided for us.</p>
+<p>Whenever we create a visNetwork chart, <strong>the network requires two data frames</strong> (or tibbles)</p>
+<ul>
+<li>One of these contains information about the &ldquo;nodes&rdquo; of the data. The nodes are the things we are trying to find a relationship between.
+<ul>
+<li>Eg cities</li>
+</ul>
+</li>
+<li>One of these contains information about the &ldquo;edges&rdquo; of the data. The edges connect the nodes, and represent some relationship between the nodes.
+<ul>
+<li>Eg distance between the cities</li>
+</ul>
+</li>
+</ul>
+<p>We explain how to create these in R using an example: we have 5 people, and we wish to graphically represent which people know which other people. In our example, a person is a node, and an edge represents that two people know each other.</p>
+<p>We will use the <code>readxl</code> package to read in our data from two Excel files:</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/visualisation/2htmlwidgets/visNetwork/_index.knit.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+    <li><a href="#what-is-visnetwork">What is visNetwork?</a></li>
+    <li><a href="#creating-very-basic-networks">Creating Very Basic Networks</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on A First R Course</title>
+    <title>Home on A First Course in R</title>
     <link>https://a-first-r-course.netlify.app/</link>
-    <description>Recent content in Introduction on A First R Course</description>
+    <description>Recent content in Home on A First Course in R</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://a-first-r-course.netlify.app/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>With ToC</title>
-      <link>https://a-first-r-course.netlify.app/docs/example/table-of-contents/with-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/example/table-of-contents/with-toc/</guid>
-      <description>Caput vino delphine in tamen vias #  Cognita laeva illo fracta #  Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
- Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit  Natus quaerere #  Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
-    </item>
-    
-    <item>
-      <title>Without ToC</title>
-      <link>https://a-first-r-course.netlify.app/docs/example/table-of-contents/without-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/example/table-of-contents/without-toc/</guid>
-      <description>At me ipso nepotibus nunc celebratior genus #  Tanto oblite #  Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
-    </item>
-    
     <item>
       <title>Creating a New Theme</title>
       <link>https://a-first-r-course.netlify.app/posts/creating-a-new-theme/</link>
@@ -81,124 +61,66 @@ Follow the following steps:</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/4th-level/</link>
+      <title>Beamer</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egBeamer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/example/collapsed/3rd-level/4th-level/</guid>
-      <description>4th Level of Menu #  Caesorum illa tu sentit micat vestes papyriferi #  Inde aderam facti; Theseus vis de tauri illa peream. Oculos uberaque non regisque vobis cursuque, opus venit quam vulnera. Et maiora necemque, lege modo; gestanda nitidi, vero? Dum ne pectoraque testantur.
-Venasque repulsa Samos qui, exspectatum eram animosque hinc, aut manes, Assyrii. Cupiens auctoribus pariter rubet, profana magni super nocens. Vos ius sibilat inpar turba visae iusto!</description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egBeamer/</guid>
+      <description>Beamer #  Beamer is extremely customisable, but you need to know some LaTeX!
+Or you can just learn the two or three commands necessary to make some cool slides!
+x &amp;lt;- &amp;#34;Beamer uses LaTeX to look awesome!&amp;#34; print(x) ## [1] &amp;quot;Beamer uses LaTeX to look awesome!&amp;quot; </description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/example/hidden/</link>
+      <title>My Report</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/Example/OurFirstRmd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/example/hidden/</guid>
-      <description>This page is hidden in menu #  Quondam non pater est dignior ille Eurotas #  Latent te facies #  Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
- Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor  Cum honorum Latona #  O fallor in sustinui iussorum equidem.</description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/Example/OurFirstRmd/</guid>
+      <description>My First Report #  I&amp;rsquo;m using R Markdown for the first time, and I&amp;rsquo;m writing my own report!
+Including code #  Parabola code #  Look at all the cool code I can include in R Markdown!
+text &amp;lt;- &amp;#34;R Markdown is cool&amp;#34; print(text) ## [1] &amp;quot;R Markdown is cool&amp;quot; x = seq(-5,5,0.1) y = x^2 plot(x,y) Figure 1: A nice parabola!
+ How much I love using R Markdown #  Loads!</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/buttons/</link>
+      <title>R Markdown</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/RMarkdown.utf8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/buttons/</guid>
-      <description>Buttons #  Buttons are styled links that can lead to local page or external link.
-Example #  {{&amp;lt; button relref=&amp;#34;/&amp;#34; [class=&amp;#34;...&amp;#34;] &amp;gt;}}Get Home{{&amp;lt; /button &amp;gt;}} {{&amp;lt; button href=&amp;#34;https://github.com/alex-shpak/hugo-book&amp;#34; &amp;gt;}}Contribute{{&amp;lt; /button &amp;gt;}}  Get Home  Contribute  </description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/RMarkdown.utf8/</guid>
+      <description>The Bigger Picture #  In this document we learn how to create and manipulate R Markdown documents. Simply put, we are learning how to create documents, slideshows, websites and reports to produce and communicate the visualisations created earlier on. In the overall context of the workflow, this falls into the category of producing our presentations.
+ \  What is R Markdown? #    Lynda 1.1
+   Lynda 1.</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/columns/</link>
+      <title>Slidy</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egSlidy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/columns/</guid>
-      <description>Columns #  Columns help organize shorter pieces of content horizontally for readability.
-{{&amp;lt; columns &amp;gt;}} &amp;lt;!-- begin columns block --&amp;gt; # Left Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic separator, between columns --&amp;gt; # Mid Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic separator, between columns --&amp;gt; # Right Content Lorem markdownum insigne... {{&amp;lt; /columns &amp;gt;}} Example #  Left Content Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter!</description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/egSlidy/</guid>
+      <description>Slidy #  This is how Slidy can look with some custom css!
+x &amp;lt;- &amp;#34;Wow, what a cool theme!&amp;#34; print(x) ## [1] &amp;quot;Wow, what a cool theme!&amp;quot; </description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/details/</link>
+      <title>The R Logo</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/details/</guid>
-      <description>Details #  Details shortcode is a helper for details html5 element. It is going to replace expand shortcode.
-Example #  {{&amp;lt; details &amp;#34;Title&amp;#34; [open] &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /details &amp;gt;}} {{&amp;lt; details title=&amp;#34;Title&amp;#34; open=true &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /details &amp;gt;}} Title Markdown content Lorem markdownum insigne&amp;hellip;   </description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/RMarkdown/test/</guid>
+      <description>Parabola #  text &amp;lt;- &amp;#34;R Markdown is cool&amp;#34; print(text) ## [1] &amp;quot;R Markdown is cool&amp;quot; x = seq(-5,5,0.1) y = x^2 plot(x,y) load(&amp;#34;tidy_EnvAcc_data/consumption.rdata&amp;#34;) library(&amp;#34;tidyverse&amp;#34;) ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ── ## ✓ ggplot2 3.3.2 ✓ purrr 0.3.4 ## ✓ tibble 3.0.4 ✓ dplyr 1.0.2 ## ✓ tidyr 1.1.2 ✓ stringr 1.4.0 ## ✓ readr 1.4.0 ✓ forcats 0.5.0 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## x dplyr::filter() masks stats::filter() ## x dplyr::lag() masks stats::lag() Figure 1: *A nice parabola.</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/expand/</link>
+      <title>Untitled</title>
+      <link>https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/expand/</guid>
-      <description>Expand #  Expand shortcode can help to decrease clutter on screen by hiding part of text. Expand content by clicking on it.
-Example #  Default #  {{&amp;lt; expand &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}   Expand ↕  Markdown content Lorem markdownum insigne&amp;hellip;    With Custom Label #  {{&amp;lt; expand &amp;#34;Custom Label&amp;#34; &amp;#34;...&amp;#34; &amp;gt;}} ## Markdown content Lorem markdownum insigne.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/hints/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/hints/</guid>
-      <description>Hints #  Hint shortcode can be used as hint/alerts/notification block.
-There are 3 colors to choose: info, warning and danger.
-{{&amp;lt; hint [info|warning|danger] &amp;gt;}} **Markdown content** Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa {{&amp;lt; /hint &amp;gt;}} Example #  Markdown content
-Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa  Markdown content</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/katex/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/katex/</guid>
-      <description>KaTeX #  KaTeX shortcode let you render math typesetting in markdown document. See KaTeX
-Example #  {{&amp;lt; katex [display] [class=&amp;#34;text-center&amp;#34;] &amp;gt;}} f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi {{&amp;lt; /katex &amp;gt;}}     \[f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi\]    Display Mode Example #  Here is some inline example:  \(\pi(x)\)  , rendered in the same line. And below is display example, having display: block  \[f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi\]  Text continues here.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/mermaid/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/mermaid/</guid>
-      <description>Mermaid Chart #   Mermaid is library for generating svg charts and diagrams from text.
-Example #  {{&amp;lt; mermaid [class=&amp;#34;text-center&amp;#34;]&amp;gt;}} sequenceDiagram Alice-&amp;gt;&amp;gt;Bob: Hello Bob, how are you? alt is sick Bob-&amp;gt;&amp;gt;Alice: Not so good :( else is well Bob-&amp;gt;&amp;gt;Alice: Feeling fresh like a daisy end opt Extra response Bob-&amp;gt;&amp;gt;Alice: Thanks for asking end {{&amp;lt; /mermaid &amp;gt;}}    mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) sequenceDiagram Alice-Bob: Hello Bob, how are you?</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/section/page1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/section/page1/</guid>
-      <description>Page 1 #  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/section/page2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/section/page2/</guid>
-      <description>Page 2 #  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://a-first-r-course.netlify.app/docs/shortcodes/tabs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://a-first-r-course.netlify.app/docs/shortcodes/tabs/</guid>
-      <description>Tabs #  Tabs let you organize content by context, for example installation instructions for each supported platform.
-{{&amp;lt; tabs &amp;#34;uniqueid&amp;#34; &amp;gt;}} {{&amp;lt; tab &amp;#34;MacOS&amp;#34; &amp;gt;}} # MacOS Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Linux&amp;#34; &amp;gt;}} # Linux Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Windows&amp;#34; &amp;gt;}} # Windows Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabs &amp;gt;}} Example #  MacOS MacOS This is tab MacOS content.
-Lorem markdownum insigne. Olympo signis Delphis!</description>
+      <guid>https://a-first-r-course.netlify.app/docs/communicate/htmlwidgets-in-documents/test/</guid>
+      <description>#Test
+ </description>
     </item>
     
   </channel>

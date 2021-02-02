@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Blogdown #  The Bigger Picture #  In this document we learn the process of creating our own websites with Blogdown. Simply put, we are learning how to take our knowledge of R Markdown and use it to structure websites of our own design. In the overall context of the workflow, this falls into the category of producing presentations based on the data visualisation we have performed.
+\ If one wants full flexibility when building a website, professional tools such as Adobe Dreamweaver are excellent, but they would deserve a whole course just for themselves.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Blogdown" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://a-first-r-course.netlify.app/docs/communicate/blogdown/" />
+
+<title>Blogdown | A First Course in R</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.44110be292c9f873dbe57bd8895d52b387519bad9a89a86ed5c3705e11d6b0d5.css" integrity="sha256-RBEL4pLJ&#43;HPb5XvYiV1Ss4dRm62aiahu1cNwXhHWsNU=">
+<script defer src="/en.search.min.cdfa3e4ce47acc9bf8e987afddf637bb00240983b6c1b6803a396a0701d2bc41.js" integrity="sha256-zfo&#43;TOR6zJv46Yev3fY3uwAkCYO2wbaAOjlqBwHSvEE="></script>
+
+<script defer src="/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js" integrity="sha256-dKi7B/C&#43;6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script>
+<link rel="alternate" type="application/rss+xml" href="https://a-first-r-course.netlify.app/docs/communicate/blogdown/index.xml" title="A First Course in R" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>A First Course in R</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+<p>
+  <a href="/"><strong>Base R</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/">Introduction</a></li>
+<li>
+  <a href="/docs/baseR/datastructures/">Data structures</a></li>
+<li>
+  <a href="/docs/baseR/controlflows/">Control flows</a></li>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/baseR/workingprojects/">R projects</a></li>
+<li>
+  <a href="/docs/baseR/statisticalanalysis/">Statistical analysis</a></li>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Munipulate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datamanipulations/">Data manipulations in Base R</a></li>
+<li>
+  <a href="/docs/tidyverse/">tidyverse</a>
+<br /></li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Visualise Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/baseR/datavisualistationinbaseR/">Data visualisation in Base R</a></li>
+<li>
+  <a href="/docs/visualisation/1ggplot/">ggplot2</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/">htmlwidgets</a>
+<ul>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/leaflet/">leaflet</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/plotly/">plotly</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/highcharter/">highcharter</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/visNetwork/">VisNetwork</a></li>
+<li>
+  <a href="/docs/visualisation/2htmlwidgets/DT/">DT</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+  <a href="/"><strong>Communicate Data</strong></a></p>
+<ul>
+<li>
+  <a href="/docs/communicate/RMarkdown/">R Markdown</a></li>
+<li>
+  <a href="/docs/communicate/htmlwidgets-in-documents/">htmlwidgets</a></li>
+<li>
+  <a href="/docs/communicate/blogdown/"class=active>Blogdown</a>
+<br /></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="http://www.benjaminavanzi.com" target="_blank" rel="noopener">
+        Professor Benjamin Avanzi
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/agi-lab" target="_blank" rel="noopener">
+        AGIL
+      </a>
+  </li>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://themes.gohugo.io/hugo-book/" target="_blank" rel="noopener">
+        Hugo Themes
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Blogdown</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#blogdown">Blogdown</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-is-a-blog">What is a blog?</a></li>
+    <li><a href="#what-is-blogdown">What is Blogdown?</a></li>
+    <li><a href="#setting-up">Setting Up</a></li>
+    <li><a href="#how-to-use-blogdown-basic-concepts">How to use Blogdown (basic concepts)</a>
+      <ul>
+        <li><a href="#the-default-website">The Default Website</a></li>
+        <li><a href="#livereload">LiveReload</a></li>
+        <li><a href="#important-hugo-files">Important Hugo Files</a>
+          <ul>
+            <li><a href="#configtoml">config.toml</a></li>
+            <li><a href="#the-content-directory">The <code>content</code> directory</a></li>
+            <li><a href="#the-publishing-directory">The publishing directory</a></li>
+          </ul>
+        </li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#r-studio-addins-with-blogdown">R Studio &lsquo;Addins&rsquo; with Blogdown</a>
+      <ul>
+        <li><a href="#what-is-an-addin">What is an &lsquo;addin&rsquo;?</a></li>
+        <li><a href="#the-serve-site-addin">The &ldquo;Serve Site&rdquo; addin</a></li>
+        <li><a href="#the-new-post-addin">The &ldquo;New Post&rdquo; addin</a></li>
+        <li><a href="#the-update-metadata-addin">The &ldquo;Update Metadata&rdquo; addin</a></li>
+        <li><a href="#the-insert-image-addin">The &ldquo;Insert Image&rdquo; addin</a></li>
+      </ul>
+    </li>
+    <li><a href="#global-options">Global Options</a></li>
+    <li><a href="#a-note-on-markdown">A note on Markdown</a></li>
+    <li><a href="#publishing-websites">Publishing Websites</a></li>
+    <li><a href="#worked-example">Worked Example</a>
+      <ul>
+        <li><a href="#creating-a-website">Creating a Website</a></li>
+        <li><a href="#editing-a-website">Editing a Website</a></li>
+        <li><a href="#adding-an-htmlwidget">Adding an htmlwidget</a></li>
+        <li><a href="#publishing-a-website">Publishing a Website</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary---the-blogdown-workflow-process">Summary - The Blogdown Workflow Process</a></li>
+    <li><a href="#extension---advanced-custom-blogs">Extension - Advanced Custom Blogs</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="blogdown">
+  Blogdown
+  <a class="anchor" href="#blogdown">#</a>
+</h1>
+<h2 id="the-bigger-picture">
+  The Bigger Picture
+  <a class="anchor" href="#the-bigger-picture">#</a>
+</h2>
+<p>In this document we learn the process of creating our own websites with Blogdown. Simply put, we are learning how to take our knowledge of R Markdown and use it to structure websites of our own design. In the overall context of the workflow, this falls into the category of producing presentations based on the data visualisation we have performed.</p>
+<center><img src = "images/workflowschematic.JPG" width="80%"> </img></center class="ImageBorder">
+\  
+<center><img src = "images/workflow.JPG" width="80%"> </img></center class="ImageBorder">
+<p>If one wants full flexibility when building a website, professional tools such as Adobe Dreamweaver are excellent, but they would deserve a whole course just for themselves. The advantage of Blogdown is that it allows the publishing of a nice looking website very easily and with minimal knowledge of website construction.</p>
+<h1 id="what-is-a-blog">
+  What is a blog?
+  <a class="anchor" href="#what-is-a-blog">#</a>
+</h1>
+<p>A blog is a type of website. Typically, blogs have a main page, or homepage, and then several sub-pages which can be found from the homepage. These sub-pages will be referred to as &ldquo;posts&rdquo; in this material. Below is an example of a blog - the 
+  <a href="https://www.r-bloggers.com/">R-bloggers</a> homepage.</p>
+<center><img src = "images/blog_example.jpg" width="75%" class="ImageBorder"> </img></center>
+<p>Conceptually, it is analogous to a personal journal/diary with a succession of entries. Major differences include:</p>
+<ul>
+<li>The entries are typically written to be shared with others, which is why they are called &ldquo;posts&rdquo;</li>
+<li>The entries can be categorised, potentially in a number of different (cross-sectional) ways</li>
+<li>Posts can include cross-links between themselves, and to other elements on the web.</li>
+<li>Posts can include interactive elements, such as htmlwidgets</li>
+<li>There is a homepage and interface, a &ldquo;shell&rdquo; for the posts, called a <strong>theme</strong>. It will typically include generic information, such as information about the author or the theme, links to the categories (if that functionality is used for the posts), etc&hellip;</li>
+</ul>
+<p>There are a number of different themes to choose from, with different functionalities and &ldquo;look and feel&rdquo;. The great advantage of using Blogdown is that one does not need to create those themes; they are readily available (from Hugo - see below for details). They can be tweaked if one wished to do so, but it is generally unnecessary.</p>
+<h1 id="what-is-blogdown">
+  What is Blogdown?
+  <a class="anchor" href="#what-is-blogdown">#</a>
+</h1>
+<p>Blogdown is an R package launched in 2017, and comes with 
+  <a href="https://bookdown.org/yihui/blogdown/">it&rsquo;s own guide book</a>! It was created and is currently being serviced by R Studio. It is particularly useful for its capabilities to interact with Hugo and create websites from R Studio.</p>
+<ul>
+<li>Hugo is a website generator (
+  <a href="https://gohugo.io/">their website can be found here</a>)</li>
+<li>It allows us to create static websites
+<ul>
+<li>that is, websites with posts produced exactly as stored</li>
+<li>Can contain .html, .css, images, text, JavaScript, etc</li>
+</ul>
+</li>
+</ul>
+<p>Blogdown calls upon the capabilities of Hugo so that we can generate and maintain websites from RStudio.</p>
+<h1 id="setting-up">
+  Setting Up
+  <a class="anchor" href="#setting-up">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/installation.html">R Blogdown 1.1</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;blogdown&#34;</span>)
+blogdown<span style="color:#f92672">::</span><span style="color:#a6e22e">install_hugo</span>()
+</code></pre></div><ul>
+<li>First we install Blogdown by typing the above into the R Studio terminal</li>
+<li>We <strong>do not</strong> have to <code>library()</code> Blogdown because it is used in a unique way</li>
+<li>We also call the <code>install_hugo()</code> Blogdown command to install Hugo automatically so we can use its capabilities</li>
+</ul>
+<h1 id="how-to-use-blogdown-basic-concepts">
+  How to use Blogdown (basic concepts)
+  <a class="anchor" href="#how-to-use-blogdown-basic-concepts">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/a-quick-example.html">R Blogdown 1.2</a></p>
+</blockquote>
+<h2 id="the-default-website">
+  The Default Website
+  <a class="anchor" href="#the-default-website">#</a>
+</h2>
+<p>Blogdown does not operate in the same way as many other packages.</p>
+<ul>
+<li>To get started working with Blogdown, we would open R Studio and create a new project with nothing in it</li>
+<li><strong>Note:</strong> &ldquo;Website using blogdown&rdquo; is one of the options when creating a new project from the File menu. <em>Do not use this option, but create a plain empty project instead.</em> The instructions below assume you are in an empty project - that was to make sure we know what happens in your R Studio when you follow the instructions. (the &ldquo;Website using blogdown&rdquo; choice includes pre-chosen options which may vary from one distribution of R Studio to another)</li>
+<li>We would then type the <code>blogdown::new_site()</code> command into the terminal</li>
+<li><strong>Note:</strong> <em>the command will only execute in a completely empty project</em>. If your project is not completely empty, make a new one!</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">blogdown<span style="color:#f92672">::</span><span style="color:#a6e22e">new_site</span>()
+</code></pre></div><p>This creates the &lsquo;default&rsquo; website with the default theme, sample posts and default formatting. It is automatically made viewable in the &lsquo;Viewer&rsquo; tab. Themes refer to the basic layout of our website. 
+  <a href="http://themes.gohugo.io">Many can be viewed here</a>. Below is an example of what a website built through Blogdown may look like. There are many other styles that look different, but fundamentally they are all constructed in similar ways.</p>
+<center><img src = "images/default_website.jpg" width="75%" class="ImageBorder"> </img></center>
+<p>Also consider the files that were automatically created.</p>
+<center><img src = "images/default_files.jpg" width="30%" class="ImageBorder"> </img></center>
+<p>These are all necessary components of building websites with Blogdown. We will discuss the meaning of several of them soon. The files we do not discuss can be considered to be background work done by R, and their inner workings are unimportant for our basic purposes.</p>
+<h2 id="livereload">
+  LiveReload
+  <a class="anchor" href="#livereload">#</a>
+</h2>
+<p>This is a technology implemented in Blogdown we must be aware of. It automatically rebuilds and reloads websites we create when any source file of the website is modified and saved. This means we never need to explicitly rebuild our websites - LiveReload makes editing our websites very easy and smooth!</p>
+<h2 id="important-hugo-files">
+  Important Hugo Files
+  <a class="anchor" href="#important-hugo-files">#</a>
+</h2>
+<h3 id="configtoml">
+  config.toml
+  <a class="anchor" href="#configtoml">#</a>
+</h3>
+<center><img src = "images/config_file.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>TOML is a configuration file format, and <code>config.toml</code> is a file which controls several aspects of our website, including:</p>
+<ul>
+<li>The title</li>
+<li>The theme</li>
+<li>Menu icons</li>
+<li>Menu urls</li>
+</ul>
+<p>It can be opened in R Studio simply by clicking on the file in the &lsquo;Files&rsquo; tab. Unless we understand TOML well, we can&rsquo;t understand most of this file. However, some sections, like <code>[[menu.main]]</code>, we can clearly pinpoint to a function and then modify as we like.
+As an example, let&rsquo;s copy the format we observe to add another link to the menu of our website.</p>
+<center><img src = "images/config_file2.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>Now we save our file, and observe the changes. We have added a link, taking us to a picture of a duck, on our menu bar!</p>
+<center><img src = "images/config_file3.jpg" width="50%" class="ImageBorder"> </img></center>
+<h3 id="the-content-directory">
+  The <code>content</code> directory
+  <a class="anchor" href="#the-content-directory">#</a>
+</h3>
+<p>This is a folder containing R Markdown source files. R Markdown is how we write the &ldquo;pages&rdquo; of our Blogdown website - each <code>.Rmd</code> file is its own page. We will learn how to modify each of them in time.</p>
+<h3 id="the-publishing-directory">
+  The publishing directory
+  <a class="anchor" href="#the-publishing-directory">#</a>
+</h3>
+<p>By default this is the folder called <code>public/</code>. Our website is generated to this directory automatically, so there is no need to move files to and from the publishing directory manually. When we eventually upload our website, all the contents of this folder will be used. We are able to upload this directory for any web server supporting static websites. In other words, this folder <em>is</em> our website and it is what we need to upload and make available when we want to publish the website.</p>
+<h2 id="summary">
+  Summary
+  <a class="anchor" href="#summary">#</a>
+</h2>
+<p>We use Blogdown in R Studio so we have a familiar way of writing and formatting documents to become websites. Blogdown lets us communicate with Hugo so we can easily produce and reproduce static websites. We write R Markdown files which become our pages and these are put in the <code>content</code> directory. LiveReload automatically processes all our files into a publishing directory, generally called <code>public/</code>. We can then use the contents of that publishing directory to upload a website to the web.</p>
+<h1 id="r-studio-addins-with-blogdown">
+  R Studio &lsquo;Addins&rsquo; with Blogdown
+  <a class="anchor" href="#r-studio-addins-with-blogdown">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/rstudio-ide.html">R Blogdown 1.3</a></p>
+</blockquote>
+<h2 id="what-is-an-addin">
+  What is an &lsquo;addin&rsquo;?
+  <a class="anchor" href="#what-is-an-addin">#</a>
+</h2>
+<ul>
+<li>Addins are processes performed by R Studio that are not installed in R Studio by default</li>
+<li>They can be found in a dropdown menu in the toolbar</li>
+<li>For Blogdown, they are very important to understand and use</li>
+</ul>
+<center><img src = "images/addins1.jpg" width="50%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/addins2.jpg" width="50%" class="ImageBorder"> </img></center>
+<h2 id="the-serve-site-addin">
+  The &ldquo;Serve Site&rdquo; addin
+  <a class="anchor" href="#the-serve-site-addin">#</a>
+</h2>
+<ul>
+<li>This initialises an updated live preview of our website</li>
+<li>We can use it whenever our preview isn&rsquo;t loaded automatically</li>
+<li>The preview will update whenever we modify and save a source file</li>
+</ul>
+<h2 id="the-new-post-addin">
+  The &ldquo;New Post&rdquo; addin
+  <a class="anchor" href="#the-new-post-addin">#</a>
+</h2>
+<p>As soon as we use this button, we are presented with a dialogue box which will allow us to create a new post.</p>
+<center><img src = "images/post.jpg" width="50%" class="ImageBorder"> </img></center>
+<p>\</p>
+<ul>
+<li><strong>We specify the title and author</strong></li>
+<li><strong>The date</strong> will be today by default</li>
+<li><strong>The &ldquo;Categories&rdquo; and &ldquo;Tags&rdquo; section</strong> allow us to add in descriptors of our posts
+<ul>
+<li>&ldquo;Categories&rdquo; are overall encompassing terms to describe the nature of a post, whereas &ldquo;Tags&rdquo; are terms used to give a sense of the content of the post, or &lsquo;buzz words&rsquo; which the post discusses. The two categories often overlap.</li>
+<li>For example, if I wrote a post about why I think ducks are adorable, I might use the categories &ldquo;animals&rdquo;, &ldquo;opinion&rdquo;, &ldquo;ducks&rdquo; and the tags &ldquo;ducks&rdquo;, &ldquo;cute&rdquo;, &ldquo;fluffy&rdquo; and &ldquo;adorable&rdquo;.</li>
+</ul>
+</li>
+<li><strong>The &lsquo;Archetype&rsquo;</strong> refers to what code will instantly run when we create a new post
+<ul>
+<li>This is beyond our needs, but 
+  <a href="https://alison.rbind.io/post/2019-02-19-hugo-archetypes/">this handy post</a> is useful</li>
+</ul>
+</li>
+<li><strong>The filename and slug</strong> are both automatically generated but can be modified
+<ul>
+<li>The &lsquo;slug&rsquo; refers to the last bit of the URL of our post when we open it on the web</li>
+<li>For example, on the website <code>www.ducks.com</code>, if we go to the page at <code>www.ducks.com/quack</code>, the slug is &lsquo;quack&rsquo;</li>
+</ul>
+</li>
+<li><strong>The format we select will be <code>.Rmd</code> for now</strong></li>
+</ul>
+<h2 id="the-update-metadata-addin">
+  The &ldquo;Update Metadata&rdquo; addin
+  <a class="anchor" href="#the-update-metadata-addin">#</a>
+</h2>
+<center><img src = "images/update_metadata.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>This updates the metadata of the currently opened post</li>
+<li>In other words, it gives us the option to modify several of the above options <em>after</em> we&rsquo;ve created a post</li>
+</ul>
+<h2 id="the-insert-image-addin">
+  The &ldquo;Insert Image&rdquo; addin
+  <a class="anchor" href="#the-insert-image-addin">#</a>
+</h2>
+<center><img src = "images/insert_image.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>This allows us to select an image from our computer and automatically embed it</li>
+<li>The addin lets us specify a height, width and caption</li>
+</ul>
+<p><strong>Note</strong>: if an error is encountered, images can be manually inserted the following way:</p>
+<ul>
+<li>Navigate to the subfolder of the project <code>content/post/</code></li>
+<li>Create a new folder within this directory called <code>YYYY-MM-DD-name-of-post_files</code>, where the relevant information relates to your website&rsquo;s post
+<ul>
+<li>Don&rsquo;t forget the name of this folder must end in <code>_files</code></li>
+</ul>
+</li>
+<li>Move your image file to this directory</li>
+<li>In your <code>.Rmd</code> file, where the image is to be placed, type</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#f92672">!</span>[caption<span style="color:#a6e22e">]</span>(<span style="color:#f92672">/</span>post<span style="color:#f92672">/</span>YYYY<span style="color:#f92672">-</span>MM<span style="color:#f92672">-</span>DD<span style="color:#f92672">-</span>name<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>post_files<span style="color:#f92672">/</span>image_name.JPG)
+</code></pre></div><h1 id="global-options">
+  Global Options
+  <a class="anchor" href="#global-options">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/global-options.html">R Blogdown 1.4</a></p>
+</blockquote>
+<ul>
+<li>Global options are miscellaneous settings which affect how Blogdown works</li>
+<li>For our purposes it is convenient to set a few</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">file.edit</span>(<span style="color:#e6db74">&#34;~/.Rprofile&#34;</span>)
+</code></pre></div><p>This command opens a script containing our global options. We can use the <code>options()</code> command to modify the default author of any posts we create, and set the default extension of new posts by typing in the following and saving:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">options</span>(blogdown.author <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hugh Mann&#34;</span>,
+        blogdown.ext <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.Rmd&#34;</span>)
+</code></pre></div><p>For more global options, see 
+  <a href="https://bookdown.org/yihui/blogdown/global-options.html">section 1.4 of the Blogdown book</a>.</p>
+<h1 id="a-note-on-markdown">
+  A note on Markdown
+  <a class="anchor" href="#a-note-on-markdown">#</a>
+</h1>
+<ul>
+<li>Markdown is similar to R Markdown</li>
+<li>It is another language used to format documents and text</li>
+<li>It cannot render or evaluate code chunks, and so it is not particularly useful to us</li>
+<li>This course focuses on R Markdown, however Blogdown is fully compatible with regular Markdown</li>
+</ul>
+<h1 id="publishing-websites">
+  Publishing Websites
+  <a class="anchor" href="#publishing-websites">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/deployment.html">R Blogdown Chapter 3</a></p>
+</blockquote>
+<p>There are many services that allow us to publish static websites for free, including:</p>
+<ul>
+<li>
+  <a href="https://www.netlify.com/">Netlify</a></li>
+<li>
+  <a href="https://updog.co">Updog</a></li>
+<li>
+  <a href="https://pages.github.com">GitHub Pages</a></li>
+<li>
+  <a href="https://travis-ci.org">Travis + GitHub</a></li>
+<li>
+  <a href="http://gitlab.com">GitLab Pages</a></li>
+</ul>
+<p>All of the above are detailed in 
+  <a href="https://bookdown.org/yihui/blogdown/deployment.html">Chapter 3 of the Blogdown book</a>. This course will recommend methods with Netlify. The basic steps are:</p>
+<ul>
+<li>Update the website through R Studio</li>
+<li>Create a Netlify account</li>
+<li>In the section prompting &ldquo;Drag and drop your site folder here&rdquo;, place the entire <code>public</code> file</li>
+<li>Netlify assigns us a random site name we may then change in &ldquo;Site Settings&rdquo;</li>
+</ul>
+<p>There are also methods to connect a git repository to Netlify:</p>
+<ul>
+<li>On Netlify, select &ldquo;New site from Git&rdquo;</li>
+<li>Connect a GitHub, GitLab or BitBucket account to Netlify</li>
+<li>Select a folder to be made into a website</li>
+</ul>
+<p>This method is more advanced, but allows for extremely easy updates to existing websites. For more information see 
+  <a href="https://bookdown.org/yihui/blogdown/netlify.html">Chapter 3.1</a>.</p>
+<h1 id="worked-example">
+  Worked Example
+  <a class="anchor" href="#worked-example">#</a>
+</h1>
+<p>Let&rsquo;s say we&rsquo;re interested in making a simple website about the environment. It will contain posts about environmental topics, and maybe even some R coding. Where do we begin?</p>
+<h2 id="creating-a-website">
+  Creating a Website
+  <a class="anchor" href="#creating-a-website">#</a>
+</h2>
+<p>First we pick a theme for the website. This will dictate the basic layout of the website.</p>
+<ul>
+<li>We can browse from many existing themes 
+  <a href="http://themes.gohugo.io">at the Hugo themes website</a></li>
+<li>Here we click on the &ldquo;Paper&rdquo; theme and get redirected to this page</li>
+</ul>
+<center><img src = "images/eg1.jpg" width="60%"> </img></center>
+<ul>
+<li>If we click on the &ldquo;Homepage&rdquo; of the theme, we are directed to <a href="https://github.com/nanxiaobei/hugo-paper/">https://github.com/nanxiaobei/hugo-paper/</a></li>
+<li><strong>Take note of the slug of this page</strong>, &ldquo;nanxiaobei/hugo-paper&rdquo;, which is of the form &ldquo;user/repo&rdquo;</li>
+<li>This slug will be used to select our theme in R Studio</li>
+</ul>
+<p>Now we create our website from R Studio.</p>
+<ul>
+<li>We create a new, empty project
+<ul>
+<li>Remember, it must be empty!</li>
+</ul>
+</li>
+</ul>
+<center><img src = "images/eg2.jpg" width="60%" class="ImageBorder"> </img></center>
+<ul>
+<li>We then go to the console and run <code>new_site()</code> to create a new Hugo site</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">blogdown<span style="color:#f92672">::</span><span style="color:#a6e22e">new_site</span>(theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;nanxiaobei/hugo-paper&#39;</span>)
+</code></pre></div><ul>
+<li>Notice we use the <code>theme</code> argument and the slug from our theme&rsquo;s homepage to instruct Blogdown to use the theme we desire</li>
+</ul>
+<p>We now have a preview of our website as well as several new files in our directory.</p>
+<center><img src = "images/eg4.jpg" width="60%" class="ImageBorder"> </img></center>
+<ul>
+<li>It is a good idea to navigate to the <code>config.toml</code> file and modify any necessary fields</li>
+<li>Here we modify the title</li>
+</ul>
+<center><img src = "images/eg4.jpg" width="50%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/eg5.jpg" width="50%" class="ImageBorder"> </img></center>
+<p>Our website has now been created!</p>
+<h2 id="editing-a-website">
+  Editing a Website
+  <a class="anchor" href="#editing-a-website">#</a>
+</h2>
+<ul>
+<li>To edit a website, we begin by calling on the &ldquo;Serve Site&rdquo; addin</li>
+<li>Changes we make to our website will now automatically update on our screen</li>
+</ul>
+<center><img src = "images/eg6.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>To add a new post, we call on the &ldquo;New Post&rdquo; addin and fill in the relevant sections</li>
+</ul>
+<center><img src = "images/eg7.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>We are then greeted with a <code>.Rmd</code> file, and we can fill it with content as we like</li>
+</ul>
+<center><img src = "images/eg8.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>Here we will also use the &ldquo;Insert Image&rdquo; addin to insert a picture</li>
+</ul>
+<center><img src = "images/eg9.jpg" width="50%" class="ImageBorder"> </img></center>
+<ul>
+<li>When we hit save, we are automatically greeted with the updated version of our website</li>
+<li>We notice the default post is present, and we may not want this, but this is easily fixed by navigating to the <code>content</code> folder and deleting the relevent R Markdown file</li>
+</ul>
+<center><img src = "images/eg10.jpg" width="50%" class="ImageBorder"> </img></center>
+<h2 id="adding-an-htmlwidget">
+  Adding an htmlwidget
+  <a class="anchor" href="#adding-an-htmlwidget">#</a>
+</h2>
+<p>This isn&rsquo;t complicated, we just need to keep this in mind:</p>
+<p>If we <code>load()</code> a <code>.rdata</code> object into a blog page, <em>the object must be in the <code>post</code> sub-folder of the <code>content</code> directory!</em> This means that if we wish to use <code>farm_data.rdata</code> to create an htmlwidget, we <em><strong>must</strong></em> have the data file in the same directory as the post.</p>
+<p>In this example, we will use the <code>.rdata</code> file stored inside the folder <code>tidy_ABARES_data</code> for the new blog post <code>htmlwidget</code>. (Note this pre-supposes you have already created such a post, otherwise it won&rsquo;t appear in the directory and you won&rsquo;t know where to put your <code>.rdata</code> file)</p>
+<center><img src = "images/directory.jpg" width="60%" class="ImageBorder"> </img></center>
+<p>We open the post in which we wish to insert the htmlwidget. We then just create a code chunk containing it. (You may want to look for the directory provided along with the Rmd file to copy and paste the code.)</p>
+<center><img src = "images/html_in.jpg" width="40%" class = "column"> </img></center>
+<center><img src = "images/html_out.jpg" width="30%" class = "column"> </img></center>
+<div style="clear: both;">
+<h2 id="publishing-a-website">
+  Publishing a Website
+  <a class="anchor" href="#publishing-a-website">#</a>
+</h2>
+<ul>
+<li>We make sure all our files are saved</li>
+<li>We log in to our 
+  <a href="https://www.netlify.com">Netlify</a> account</li>
+<li>We go to our project folder and drag the entire <code>public</code> directory onto Netlify</li>
+</ul>
+<center><img src = "images/eg11.jpg" width="70%" class="ImageBorder"> </img></center>
+<ul>
+<li>After the loading has finished, we click on &ldquo;Site Settings&rdquo; and change our site name</li>
+</ul>
+<center><img src = "images/eg12.jpg" width="40%" class="ImageBorder"> </img></center>
+\  
+<center><img src = "images/eg13.jpg" width="40%" class="ImageBorder"> </img></center>
+<p>We&rsquo;re done, 
+  <a href="https://the-environment-is-important.netlify.com/">and our website looks great</a>!</p>
+<h1 id="summary---the-blogdown-workflow-process">
+  Summary - The Blogdown Workflow Process
+  <a class="anchor" href="#summary---the-blogdown-workflow-process">#</a>
+</h1>
+<blockquote>
+<p>
+  <a href="https://bookdown.org/yihui/blogdown/workflow.html">R Blogdown 1.7</a></p>
+</blockquote>
+<p>First we build a website:</p>
+<ul>
+<li>Create a new project</li>
+<li>Pick a new theme from 
+  <a href="http://themes.gohugo.io">http://themes.gohugo.io</a></li>
+<li>Run <code>blogdown::new_site(theme = 'user/repo')</code> in the console (where <code>user/repo</code> depends on the theme)</li>
+<li>Edit any options we wish in <code>config.toml</code></li>
+</ul>
+<p>Then we edit a website:</p>
+<ul>
+<li>Click &ldquo;Serve Site&rdquo; to view the site</li>
+<li>Click &ldquo;New Post&rdquo; to create a new post</li>
+</ul>
+<p>Then we publish a website:</p>
+<ul>
+<li>Save all our files</li>
+<li>Log into Netlify</li>
+<li>Drag and drop our <code>public</code> folder</li>
+<li>Update the site name</li>
+</ul>
+<h1 id="extension---advanced-custom-blogs">
+  Extension - Advanced Custom Blogs
+  <a class="anchor" href="#extension---advanced-custom-blogs">#</a>
+</h1>
+<p>We have now covered enough to make basic Blogdown blogs. For a more comprehensive look at advanced Blogdown and customisation options, see 
+  <a href="https://bookdown.org/yihui/blogdown/">the Blogdown book</a>, specifically chapter 2. This is not required for the course!</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/agi-lab/Rcourse/edit/master/exampleSite/content/docs/communicate/blogdown/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#blogdown">Blogdown</a>
+      <ul>
+        <li><a href="#the-bigger-picture">The Bigger Picture</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-is-a-blog">What is a blog?</a></li>
+    <li><a href="#what-is-blogdown">What is Blogdown?</a></li>
+    <li><a href="#setting-up">Setting Up</a></li>
+    <li><a href="#how-to-use-blogdown-basic-concepts">How to use Blogdown (basic concepts)</a>
+      <ul>
+        <li><a href="#the-default-website">The Default Website</a></li>
+        <li><a href="#livereload">LiveReload</a></li>
+        <li><a href="#important-hugo-files">Important Hugo Files</a>
+          <ul>
+            <li><a href="#configtoml">config.toml</a></li>
+            <li><a href="#the-content-directory">The <code>content</code> directory</a></li>
+            <li><a href="#the-publishing-directory">The publishing directory</a></li>
+          </ul>
+        </li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#r-studio-addins-with-blogdown">R Studio &lsquo;Addins&rsquo; with Blogdown</a>
+      <ul>
+        <li><a href="#what-is-an-addin">What is an &lsquo;addin&rsquo;?</a></li>
+        <li><a href="#the-serve-site-addin">The &ldquo;Serve Site&rdquo; addin</a></li>
+        <li><a href="#the-new-post-addin">The &ldquo;New Post&rdquo; addin</a></li>
+        <li><a href="#the-update-metadata-addin">The &ldquo;Update Metadata&rdquo; addin</a></li>
+        <li><a href="#the-insert-image-addin">The &ldquo;Insert Image&rdquo; addin</a></li>
+      </ul>
+    </li>
+    <li><a href="#global-options">Global Options</a></li>
+    <li><a href="#a-note-on-markdown">A note on Markdown</a></li>
+    <li><a href="#publishing-websites">Publishing Websites</a></li>
+    <li><a href="#worked-example">Worked Example</a>
+      <ul>
+        <li><a href="#creating-a-website">Creating a Website</a></li>
+        <li><a href="#editing-a-website">Editing a Website</a></li>
+        <li><a href="#adding-an-htmlwidget">Adding an htmlwidget</a></li>
+        <li><a href="#publishing-a-website">Publishing a Website</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary---the-blogdown-workflow-process">Summary - The Blogdown Workflow Process</a></li>
+    <li><a href="#extension---advanced-custom-blogs">Extension - Advanced Custom Blogs</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
