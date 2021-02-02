@@ -1,4 +1,4 @@
-baseURL: https://a-first-r-course.netlify.app
+baseURL: https://communicate-data-with-R.netlify.app
 title: Communicate Data with R
 theme: hugo-book
 disablePathToLower: yes
