@@ -16,7 +16,7 @@ languages:
     contentDir: content
     languageName: English
     weight: 1
-  # ru:
+  # ru: 
   #   contentDir: content.ru
   #   languageName: Russian
   #   weight: 2
@@ -31,7 +31,7 @@ menu:
       weight: 1
     - name: AGIL
       url: https://github.com/agi-lab
-      weight: 2
+      weight: 2 
     - name: Hugo Themes
       url: https://themes.gohugo.io/hugo-book/
       weight: 20
